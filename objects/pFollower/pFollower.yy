@@ -1,13 +1,15 @@
 {
   "$GMObject":"",
-  "%Name":"oColl",
-  "eventList":[],
+  "%Name":"pFollower",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"oColl",
+  "name":"pFollower",
   "overriddenProperties":[],
   "parent":{
-    "name":"Level Design",
-    "path":"folders/Objects/Level Design.yy",
+    "name":"Objects",
+    "path":"folders/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -27,10 +29,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"sColl",
-    "path":"sprites/sColl/sColl.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

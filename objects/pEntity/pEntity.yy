@@ -1,13 +1,15 @@
 {
   "$GMObject":"",
-  "%Name":"oColl",
-  "eventList":[],
+  "%Name":"pEntity",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"oColl",
+  "name":"pEntity",
   "overriddenProperties":[],
   "parent":{
-    "name":"Level Design",
-    "path":"folders/Objects/Level Design.yy",
+    "name":"Entities",
+    "path":"folders/Objects/Entities.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -28,8 +30,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sColl",
-    "path":"sprites/sColl/sColl.yy",
+    "name":"sGarbageCan",
+    "path":"sprites/sGarbageCan/sGarbageCan.yy",
   },
   "spriteMaskId":null,
   "visible":true,
