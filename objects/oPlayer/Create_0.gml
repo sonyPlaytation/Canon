@@ -2,25 +2,7 @@
 
 playerSetup();
 
-colls = [oColl,pEntity,tiles];
 
-// follower stuff
-followLength = 48
-for (var i = followLength-1; i >= 0 ; i--)
-{
-	posX[i] = x;
-	posY[i] = y;
-}
-
-cFollow = true;
-cDist = 16
-Charlie = noone
-
-mFollow = true;
-mDist = cDist + 18
-Matthew = noone;
-
-diagFix = false;
 
 groundMove = function()
 {
@@ -39,7 +21,7 @@ groundMove = function()
 	else
 	{ spd = 0; }
 	
-	if diagFix
+	if diagFix or place_meeting(x+xinput,y+yinput,colls)
 	{
 		hsp = lengthdir_x(spd,dir);
 		vsp = lengthdir_y(spd,dir);	

@@ -2,5 +2,11 @@
 
 depth = -bbox_bottom;
 
-x = oPlayer.posX[followDist];
-y = oPlayer.posY[followDist];
+if follow
+{
+	//x = approach(x, oPlayer.posX[followDist],walksp);
+	//y = approach(y, oPlayer.posY[followDist],walksp);
+	
+	x = oPlayer.posX[followDist];
+	y = oPlayer.posY[followDist];
+}

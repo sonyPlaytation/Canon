@@ -1,3 +1,4 @@
 /// @
 
-diagFix = !diagFix
+
+startDialogue("Gwen");
