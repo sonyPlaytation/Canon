@@ -30,6 +30,15 @@ function playerSetup(){
 	diagFix = false;
 }
 
+function draw_character_shadow()
+{
+	var halfw = sprite_width/2
+	draw_set_color(c_black);
+	draw_set_alpha(0.5);
+	draw_ellipse(round(x-halfw),round(y-6),round(x+halfw),round(y+6),false);
+	draw_set_alpha(1);	
+}
+
 /// @description scr_approach(start, end, shift);
 /// @function scr_approach
 /// @param start

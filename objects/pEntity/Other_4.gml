@@ -1,0 +1,3 @@
+/// @
+
+colls = [oColl,pEntity,tiles];

@@ -1,9 +1,11 @@
 /// @
 
-depth = -bbox_bottom;
 
-groundMove();
 
+if hasControl 
+{ state(); }
+
+// Follower position array
 if (x != xprevious or y != yprevious)
 {
 	for (var i = followLength-1; i > 0 ; i--)

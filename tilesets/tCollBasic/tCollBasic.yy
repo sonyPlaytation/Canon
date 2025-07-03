@@ -18,8 +18,8 @@
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",
   "spriteId":{
-    "name":"sCollTiles",
-    "path":"sprites/sCollTiles/sCollTiles.yy",
+    "name":"sTileColl",
+    "path":"sprites/sTileColl/sTileColl.yy",
   },
   "spriteNoExport":false,
   "textureGroupId":{

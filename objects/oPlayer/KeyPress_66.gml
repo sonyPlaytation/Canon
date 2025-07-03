@@ -1,4 +1,3 @@
 /// @
 
-
-startDialogue("Gwen");
+createTransition(sqFadeOut)

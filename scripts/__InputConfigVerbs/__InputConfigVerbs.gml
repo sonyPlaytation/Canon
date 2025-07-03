@@ -9,10 +9,16 @@ function __InputConfigVerbs()
         RIGHT,
 		RUN,
         ACCEPT,
+		SKIP,
         CANCEL,
         ACTION,
         SPECIAL,
         PAUSE,
+		BL,
+		BM,
+		BH,
+		GRUDGE,
+		DASH
     }
     
     enum INPUT_CLUSTER
@@ -25,17 +31,23 @@ function __InputConfigVerbs()
     if (not INPUT_ON_SWITCH)
     {
 		// Movement
-        InputDefineVerb(INPUT_VERB.UP,      "up",			[vk_up,    "W"],    [-gp_axislv, gp_padu]);
-        InputDefineVerb(INPUT_VERB.DOWN,    "down",			[vk_down,  "S"],    [ gp_axislv, gp_padd]);
-        InputDefineVerb(INPUT_VERB.LEFT,    "left",			[vk_left,  "A"],    [-gp_axislh, gp_padl]);
-        InputDefineVerb(INPUT_VERB.RIGHT,   "right",		[vk_right, "D"],    [ gp_axislh, gp_padr]);
-		InputDefineVerb(INPUT_VERB.RUN,		"run",			vk_shift,			gp_face2);
-		
-        InputDefineVerb(INPUT_VERB.ACCEPT,  "accept",      vk_space,            gp_face1);
-        InputDefineVerb(INPUT_VERB.CANCEL,  "cancel",      vk_backspace,        gp_face2);
-        InputDefineVerb(INPUT_VERB.ACTION,  "action",      vk_enter,            gp_face3);
-        InputDefineVerb(INPUT_VERB.SPECIAL, "special",     vk_shift,            gp_face4);
-        InputDefineVerb(INPUT_VERB.PAUSE,   "pause",       vk_escape,           gp_start);
+        InputDefineVerb(INPUT_VERB.UP,      "up",			[vk_up   ],				undefined);
+        InputDefineVerb(INPUT_VERB.DOWN,    "down",			[vk_down ],				undefined);
+        InputDefineVerb(INPUT_VERB.LEFT,    "left",			[vk_left ],				undefined);
+        InputDefineVerb(INPUT_VERB.RIGHT,   "right",		[vk_right],				undefined);
+		InputDefineVerb(INPUT_VERB.RUN,		"run",			["X"],					undefined);
+		InputDefineVerb(INPUT_VERB.DASH,	"dash",			[vk_space],				undefined);
+																					
+		InputDefineVerb(INPUT_VERB.BL,		"light",		["A"],					undefined);
+		InputDefineVerb(INPUT_VERB.BM,		"medium",		["S"],					undefined);
+		InputDefineVerb(INPUT_VERB.BH,		"heavy",		["D"],					undefined);
+		InputDefineVerb(INPUT_VERB.GRUDGE,	"grudge",		[vk_shift],				undefined);
+																					
+        InputDefineVerb(INPUT_VERB.ACCEPT,  "accept",		["E", "Z"],				undefined);
+		InputDefineVerb(INPUT_VERB.SKIP,	"skip",			["C"],					undefined);
+        InputDefineVerb(INPUT_VERB.CANCEL,  "cancel",		["Q"],					undefined);
+        InputDefineVerb(INPUT_VERB.ACTION,  "action",		["E", "Z"],				undefined);
+        InputDefineVerb(INPUT_VERB.PAUSE,   "pause",		vk_escape,				undefined);
     }
     else //Flip A/B over on Switch
     {
