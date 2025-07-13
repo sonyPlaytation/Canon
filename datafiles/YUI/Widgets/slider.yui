@@ -1,0 +1,80 @@
+file_type: resources
+
+import:
+  - ../Interactions/slider_drag.yui
+
+resources:
+
+  slider:
+    type: template
+
+    slots:
+      min: 0
+      max: 100
+      value: 0
+      on_value_changed: null
+      on_drag_end: null
+      show_value: true
+      slider_size: { h: 20, w: 100 }
+      thumb_size: { h: 20, w: 10, min_w: 10 }
+      wheel_increment: 4
+
+      orientation: horizontal
+      thumb_background: grey
+      line_color: grey
+
+    template:
+
+      type: panel
+      layout: $orientation
+      spacing: 5
+      events:
+        on_mouse_wheel_down: $on_value_changed?(~max($value - $wheel_increment, $min))
+        on_mouse_wheel_up: $on_value_changed?(~min($value + $wheel_increment, $max))
+      elements:
+
+        - type: text
+          text: $min
+
+        - type: panel
+          layout: canvas
+          size: $slider_size
+          elements:
+
+            // slider thumb
+            - type: button
+              padding: 0
+              xoffset: @@ ($value - $min) / ($max - $min) * ($slider_size.w)
+              background: $thumb_background
+              size: $thumb_size
+              events:
+                on_mouse_down:
+                  interaction: slider_drag
+                  parameters:
+                    on_position_changed:
+                      - @@ e => $on_value_changed?((e.left * ($max - $min)) + $min)
+                      //- @@ e => ~yui_log(e.left)
+                    on_drag_end: @@ e => $on_drag_end?(e.left * ($max - $min))
+
+            // slider line
+            - type: border
+              canvas:
+                left: $thumb_size.w / 2
+                right: $thumb_size.w / -2
+                center: v
+              background: $line_color
+              size: { h: 2, w: stretch }
+
+        - type: text
+          xoffset: $thumb_size.w
+          text: $max
+
+        - type: text
+          xoffset: $thumb_size.w
+          text: "-"
+          visible: $show_value
+
+        - type: text
+          xoffset: $thumb_size.w
+          text: $value |> ~string_format(0, 0) // format as a whole number with no decimals
+          visible: $show_value

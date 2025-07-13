@@ -1,0 +1,11 @@
+id: window_move
+file_type: interaction
+type: element_drag
+
+//trace: true
+mode: element
+normalized: false
+direct: true
+
+condition: null
+on_position_changed: null

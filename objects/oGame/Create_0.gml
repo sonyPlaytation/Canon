@@ -1,6 +1,6 @@
 /// @
 
-global.inputDisplay = true;
+global.inputDisplay = false;
 global.debug = false;
 global.dev = true;
 scribble_anim_wave(3,0.5,-0.05);
