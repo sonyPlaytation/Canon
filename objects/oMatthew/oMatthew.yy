@@ -1,7 +1,9 @@
 {
   "$GMObject":"",
   "%Name":"oMatthew",
-  "eventList":[],
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
   "name":"oMatthew",
   "overriddenProperties":[],
@@ -31,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sMatthew",
-    "path":"sprites/sMatthew/sMatthew.yy",
+    "name":"sMattIdle",
+    "path":"sprites/sMattIdle/sMattIdle.yy",
   },
   "spriteMaskId":null,
   "visible":true,

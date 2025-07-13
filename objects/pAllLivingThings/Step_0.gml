@@ -1,0 +1,6 @@
+/// @
+
+if global.pauseEvery
+{
+	exit;
+}

@@ -9,7 +9,9 @@ height = TILE_SIZE*4;
 x = (display_get_gui_width() - width) /2;
 y = display_get_gui_height() - height - padding;
 
-font = fSmart;
+pProtag.going = false;
+
+font = fSmall;
 color = c_white;
 spd = global.textSpeed;
 txtX = padding;
@@ -58,6 +60,7 @@ sprite = noone;
 //portH = sprite_get_height(sprite);
 portSide = PORT_SIDE.L;
 name = ""; 
+nameW = 0;
 
 options = [];
 currentOption = 0;
@@ -91,9 +94,12 @@ setText = function(newText)
 		.starting_format(font_get_name(font),color)
 		.fit_to_box(txtW,height);
 		
+	nameW = string_width_scribble(name);
 	myName = scribble(name)
 		.starting_format("nameFontMod",nameColor)
 		.align(fa_left,fa_middle)
+		
+	
 		
 	length = string_length_scribble(newText);
 	progress = 0;

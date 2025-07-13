@@ -11,8 +11,11 @@ if sprite != noone draw_sprite_ext(sprite,emotion,portraitX,portraitY,xscale,1,0
 draw_sprite_stretched(sprite_index,boxSpr,x,y,width,height);
 
 var nameY = y - 26
-draw_sprite_stretched(sTextNameBox,boxSpr,x + (txtX/2), nameY,string_width(name) * 2,24);
-myName.draw(x + txtX, nameY + 11);
+if name != ""
+{
+	draw_sprite_stretched(sTextNameBox,boxSpr,x + (txtX/2), nameY, nameW * 2,24);
+	myName.draw(x + txtX, nameY + 11);
+}
 scribb.draw(x + txtX, y + txtY, typist);
 
 var finished = (typist.get_state() >= 1)

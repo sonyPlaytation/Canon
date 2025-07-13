@@ -8,8 +8,20 @@ global.topics = {};
 		TEXT("This is a garbage can"),
 		TEXT("it is sooooooooooooooooooooooooooooooooooo stinky"),
 		TEXT("[wave]smelly as shit"),
-		TEXT("[sCharlie]"),
+		TEXT("[sCharIdle,3]"),
 		TEXT("[c_red]ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ")
+	];
+	
+	global.topics[$ "enemy room"] = 
+	[
+		TEXT("Welcome to enemy room.\nBeware of enemies."),
+	];
+	
+	global.topics[$ "sand man"] = 
+	[
+		TEXT("Yo I'm a frickin pile a sand."),
+		TEXT("..."),
+		TEXT("Fight me or somethin!")
 	];
 
 	global.topics[$ "Gwen"] = 
@@ -18,7 +30,7 @@ global.topics = {};
 		TEXT("Hi Gwen"),
 		SPEAKER("Gwen", sPortGwen, PORT_SIDE.R),
 		TEXT("I hate you so fucking much"),
-		TEXT("[wave][sCharlie][sCharlie][sCharlie][sCharlie][sCharlie][sCharlie][sCharlie]"),
+		TEXT("[wave][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3]"),
 	];
 	
 	global.topics[$ "Charlie Choices"] = 
@@ -34,7 +46,7 @@ global.topics = {};
 	global.topics[$ "Chose One Charlie"] = 
 	[
 		SPEAKER(""),
-		TEXT("[sCharlie]!"),
+		TEXT("[sCharIdle,3]!"),
 		SPEAKER("Gwen", sPortGwen, PORT_SIDE.R),
 		TEXT("You have chosen ONE Charlie..."),
 		GOTO("Chose Wisely")
@@ -43,7 +55,7 @@ global.topics = {};
 	global.topics[$ "Chose Two Charlie"] = 
 	[
 		SPEAKER(""),
-		TEXT("[sCharlie][sCharlie]!!"),
+		TEXT("[sCharIdle,3][sCharIdle,3]!!"),
 		SPEAKER("Gwen", sPortGwen, PORT_SIDE.R),
 		TEXT("You have chosen TWO Charlie..."),
 		GOTO("Chose Wisely")

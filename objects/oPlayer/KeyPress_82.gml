@@ -1,3 +1,4 @@
 /// @
 
-room_goto(room);
+//room_goto(room);
+

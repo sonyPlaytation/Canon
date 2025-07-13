@@ -12,8 +12,8 @@
   "duration":150.85715,
   "name":"mOverworldPlaceholder",
   "parent":{
-    "name":"Music",
-    "path":"folders/Sounds/Music.yy",
+    "name":"Placeholder",
+    "path":"folders/Sounds/Music/Placeholder.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"mOverworldPlaceholder.mp3",
   "type":1,
-  "volume":1.0,
+  "volume":0.55,
 }

@@ -1,7 +1,9 @@
 {
   "$GMObject":"",
   "%Name":"oCharlie",
-  "eventList":[],
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
   "name":"oCharlie",
   "overriddenProperties":[],
@@ -31,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sCharlie",
-    "path":"sprites/sCharlie/sCharlie.yy",
+    "name":"sCharIdle",
+    "path":"sprites/sCharIdle/sCharIdle.yy",
   },
   "spriteMaskId":null,
   "visible":true,

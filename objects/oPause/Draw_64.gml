@@ -1,0 +1,24 @@
+/// @description
+
+if pause
+{
+	pauseAlpha = min(0.65,pauseAlpha+0.10);
+	draw_set_color(#221428);
+	draw_set_alpha(pauseAlpha);
+	draw_rectangle(0,0,RESOLUTION_W,RESOLUTION_H,0)
+	draw_set_alpha(1);
+	
+	
+}
+else
+{
+	if audio_is_playing(global.pauseSong){audio_stop_sound(global.pauseSong)};
+	pauseAlpha = max(0, pauseAlpha - 0.05)
+	draw_set_color(#221428);
+	draw_set_alpha(pauseAlpha);
+	draw_rectangle(0,0,RESOLUTION_W,RESOLUTION_H,0)
+	draw_set_alpha(1);
+}
+
+if instance_exists(oMenu) and oMenu.menuLayer != 8
+{draw_sprite_ext(sLogo,0,RESOLUTION_W/2,RESOLUTION_H/3,0.5,0.5,0,c_white,pauseAlpha*1.5)}

@@ -39,6 +39,7 @@ function transition(_roomTarget, _typeOut, _typeIn, _fight = false, _x = 0, _y =
 
 function transitionChangeRoom()
 {	
+	oCamera.drawNothing = true
 	room_goto(global.roomTarget);	
 }
 
@@ -47,3 +48,12 @@ function transitionEnd()
 	layer_sequence_destroy(self.elementID);
 	global.midTransition = false;
 }
+
+function cameraOff()
+{ oCamera.drawNothing = true }
+
+function cameraOn()
+{ oCamera.drawNothing = false }
+
+function cameraToggle()
+{ oCamera.drawNothing = !oCamera.drawNothing }

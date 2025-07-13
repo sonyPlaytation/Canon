@@ -1,5 +1,9 @@
 /// @
 
+if iFrames > 0 { if iFrames >= 90 {blinkExt(alpha,"alpha",1,100)}; iFrames-- };
+
+event_inherited()
+
 if cFollow and Charlie == noone
 {
 	Charlie = instance_create_depth(x - lengthdir_x(cDist*3,facing*90),y - lengthdir_y(cDist*3,facing*90),depth,oCharlie)

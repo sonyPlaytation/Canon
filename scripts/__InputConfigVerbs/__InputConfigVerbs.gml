@@ -43,9 +43,10 @@ function __InputConfigVerbs()
 		InputDefineVerb(INPUT_VERB.BH,		"heavy",		["D"],					undefined);
 		InputDefineVerb(INPUT_VERB.GRUDGE,	"grudge",		[vk_shift],				undefined);
 																					
-        InputDefineVerb(INPUT_VERB.ACCEPT,  "accept",		["E", "Z"],				undefined);
+        InputDefineVerb(INPUT_VERB.ACCEPT,  "accept",		["Z"],					undefined);
+		InputDefineVerb(INPUT_VERB.CANCEL,  "cancel",		["X"],					undefined);
 		InputDefineVerb(INPUT_VERB.SKIP,	"skip",			["C"],					undefined);
-        InputDefineVerb(INPUT_VERB.CANCEL,  "cancel",		["Q"],					undefined);
+       
         InputDefineVerb(INPUT_VERB.ACTION,  "action",		["E", "Z"],				undefined);
         InputDefineVerb(INPUT_VERB.PAUSE,   "pause",		vk_escape,				undefined);
     }

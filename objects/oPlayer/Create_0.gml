@@ -2,10 +2,6 @@
 
 playerSetup();
 
-hasControl = true;
-going = 0;
-facing = 1;
-
 enum FACING
 {
 	UP,
@@ -16,10 +12,30 @@ enum FACING
 
 stateFree = function()
 {
-	mask_index = sNils;
+	mask_index = sNilsIdle;
 	groundMove();
 	interact();
 	animate();
+	
+	if dashCharge == dashFrames and InputPressed(INPUT_VERB.DASH)
+	{
+		dashTime = dashReset;
+		dashSpd = 6;
+		dashCharge = 0
+		state = stateDash;
+	} else if dashCharge < dashFrames {dashCharge++}
+	
+}
+
+anims = 
+{
+	idle : sNilsIdle,
+	walk : {
+		U : sNilsWalkU,	
+		D : sNilsWalkD,	
+		L : sNilsWalkL,	
+		R : sNilsWalkR,	
+	}
 }
 
 interact = function()
@@ -35,8 +51,27 @@ interact = function()
 	}
 }
 
-groundMove = function()
+updateFollowers = function()
 {
+	// Follower position array
+	if (x != xprevious or y != yprevious)
+	{
+		for (var i = followLength-1; i > 0 ; i--)
+		{
+			face[i] = face[i-1];
+			posX[i] = posX[i-1];
+			posY[i] = posY[i-1];	
+			sprSpd[i] = sprSpd[i-1]
+		}
+		face[0] = facing;
+		posX[0] = x;
+		posY[0] = y;
+		sprSpd[0] = image_speed;
+	}	
+}
+
+groundMove = function()
+{	
 	var spdNow;
 	if InputCheck(INPUT_VERB.RUN)
 	{
@@ -52,14 +87,6 @@ groundMove = function()
 	var xinput = InputCheck(INPUT_VERB.RIGHT) - InputCheck(INPUT_VERB.LEFT);
 	var yinput = InputCheck(INPUT_VERB.DOWN) - InputCheck(INPUT_VERB.UP);
 	going = (point_distance(0, 0, xinput, yinput) > 0);
-	
-	//if point_direction(0, 0, xinput, yinput) mod 90 != 0 
-	//{
-	//	if InputPressed(INPUT_VERB.RIGHT)	facing = 0;
-	//	if InputPressed(INPUT_VERB.UP)		facing = 1;
-	//	if InputPressed(INPUT_VERB.LEFT)	facing = 2;
-	//	if InputPressed(INPUT_VERB.DOWN)	facing = 3;
-	//}
 	
 	if going 
 	{
@@ -84,24 +111,73 @@ groundMove = function()
 	move_and_collide(hsp,vsp,colls);
 }
 
-animate = function()
+stateDash = function()
+{
+	sprite_index = sNilsDash
+	if dashTime > 0 { dashTime-- } else { dashSpd = lerp(dashSpd, 0, 0.1) }
+	
+	hsp = lengthdir_x(dashSpd,dir);
+	vsp = lengthdir_y(dashSpd,dir);
+	move_and_collide(hsp,vsp,colls);
+	
+	if dashSpd > 2.5 and place_meeting(x+hsp, y+vsp, colls) {zsp = 4; state = stateCrash}
+	
+	if dashSpd <= 1 {state = stateFree}
+	
+}
+
+stateCrash = function()
 {
 	
-	if spd != 0
+	hsp = lengthdir_x(dashSpd,dir-180);
+	vsp = lengthdir_y(dashSpd,dir-180);
+	move_and_collide(hsp,vsp,colls);
+	dashSpd = lerp(dashSpd, 0, 0.1)
+	
+	zsp -= grv;
+	z += zsp;
+	
+	if z + zsp <= 0 
 	{
-		switch facing
+		zsp = 0;
+		z = 0;
+		state = stateFree
+	}
+}
+
+animate = function()
+{
+	if !going 
+	{
+		sprite_index = anims.idle;
+		image_index = facing;
+	}
+	else // walk anims
+	{
+		switch (facing)
 		{
-			case 3:
-				sprite_index = sNilsWalkDown;
+			case 0:
+				if sprite_index != anims.walk.R {image_index = 0}
+				sprite_index = anims.walk.R;
 			break;
 			
-			default:
-				sprite_index = sNils; image_index = facing;
+			case 1:
+				if sprite_index != anims.walk.U {image_index = 0}
+				sprite_index = anims.walk.U;
 			break;
+			
+			case 2:
+				if sprite_index != anims.walk.L {image_index = 0}
+				sprite_index = anims.walk.L;
+			break;
+			
+			case 3:
+				if sprite_index != anims.walk.D {image_index = 0}
+				sprite_index = anims.walk.D;
+			break;
+			
 		}
-	} else {sprite_index = sNils; image_index = facing;}
-	
-	
+	}
 }
 
 state = stateFree;

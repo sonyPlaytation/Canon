@@ -1,0 +1,3 @@
+/// @
+
+oPlayer.hasControl = true

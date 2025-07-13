@@ -8,3 +8,5 @@ global.cam.smooth_draw = true;
 alarm[0] = 1;
 
 bgx = 0;
+
+drawNothing = false

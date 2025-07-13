@@ -1,19 +1,48 @@
 /// @
 
-
+if global.pauseEvery
+{
+	if JustHitEnemyButCanStillMoveALittle > 0
+	{
+		JustHitEnemyButCanStillMoveALittle--;
+		
+		var xinput = InputCheck(INPUT_VERB.RIGHT) - InputCheck(INPUT_VERB.LEFT);
+		var yinput = InputCheck(INPUT_VERB.DOWN) - InputCheck(INPUT_VERB.UP);
+		facing = point_direction(0, 0, xinput, yinput) div 90
+	
+		switch (facing)
+		{
+			case 0:
+				if sprite_index != anims.walk.R {image_index = 0}
+				sprite_index = anims.walk.R;
+			break;
+			
+			case 1:
+				if sprite_index != anims.walk.U {image_index = 0}
+				sprite_index = anims.walk.U;
+			break;
+			
+			case 2:
+				if sprite_index != anims.walk.L {image_index = 0}
+				sprite_index = anims.walk.L;
+			break;
+			
+			case 3:
+				if sprite_index != anims.walk.D {image_index = 0}
+				sprite_index = anims.walk.D;
+			break;
+		}
+	}
+		
+	exit;
+}
 
 if hasControl 
-{ state(); }
-
-// Follower position array
-if (x != xprevious or y != yprevious)
-{
-	for (var i = followLength-1; i > 0 ; i--)
-	{
-		posX[i] = posX[i-1];
-		posY[i] = posY[i-1];	
-	}
-	
-	posX[0] = x;
-	posY[0] = y;
+{ 
+	JustHitEnemyButCanStillMoveALittle = JustHitEnemyButCanStillMoveALittleReset;
+	var song = mHotSand
+	if global.songPlaying != mHotSand {set_song_ingame(mHotSand)}
+	state();
 }
+
+updateFollowers();

@@ -4,3 +4,8 @@
 #macro RES_W 1920
 #macro RES_H 1080
 #macro TILE_SIZE 24
+
+global.sfxVol = 1;
+global.musVol = 1;
+global.masterVol = 1;
+global.mute = 1;

@@ -1,0 +1,3 @@
+/// @
+
+global.debug = !global.debug

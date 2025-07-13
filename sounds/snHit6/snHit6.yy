@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snHit6",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.9360544,
+  "name":"snHit6",
+  "parent":{
+    "name":"Melee",
+    "path":"folders/Sounds/SFX/Battle/Melee.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snHit6.wav",
+  "type":1,
+  "volume":1.0,
+}

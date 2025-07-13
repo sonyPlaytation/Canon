@@ -1,6 +1,18 @@
 /// @
+var optionsCount = array_length(options);
+height = lineHeight * (optionsCount + (desc != -1));
+heightFull = height + (ymargin * 2);
 
 draw_sprite_stretched(sTextBox, 0, x,y, widthFull, heightFull);
+
+if subMenuLevel == 0 
+{
+	draw_set_text(fSmart,c_black,fa_center, fa_top);
+	draw_text(x + (widthFull/2) -1, y-11, actorName);
+	draw_set_color(c_white)
+	draw_text(x + (widthFull/2), y-12, actorName);
+}
+
 draw_set_text(fSmall,c_white,fa_left, fa_top);
 
 var _desc = desc != -1;

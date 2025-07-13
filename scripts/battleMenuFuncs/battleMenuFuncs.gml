@@ -1,12 +1,15 @@
+
+#macro BATTLE new battleText
+
 function Menu(_x, _y, _options, _desc = -1, _w = undefined, _h = undefined, _selectable = true)
 {
-
-	with (instance_create_depth(_x,_y,-99999,oMenu))
+	var menu = (instance_create_depth(_x,_y,-99999,oMenu))
+	with menu
 	{
 		options = _options;
 		desc = _desc;
 		var optionsCount = array_length(_options);
-		visibleOptionsMax = optionsCount;
+		visibleOptionsMax = 5;
 		
 		xmargin = 12;
 		ymargin = 12;
@@ -40,6 +43,7 @@ function Menu(_x, _y, _options, _desc = -1, _w = undefined, _h = undefined, _sel
 			}
 		}
 	}
+	return menu;
 }
 
 function subMenu(_options)
@@ -56,3 +60,63 @@ function menuGoBack()
 	options = optionsAbove[subMenuLevel];
 	hover = 0;
 }
+
+function menuSelectAction(_user, _action)
+{
+	with (oMenu) {active = false;}
+	
+	with oBattle
+	{
+		if (_action.targetRequired)	
+		{
+			with cursor
+			{
+				active			= true 	;
+				activeAction	= _action;
+				targetAll		= _action.targetAll	;
+				if (targetAll == MODE.VARIES) targetAll = true;
+				activeUser		= _user ;
+				
+				if _action.targetEnemyByDefault
+				{
+					targetIndex		= 0;
+					targetSide		= oBattle.enemyUnits;
+					activeTarget	= oBattle.enemyUnits[targetIndex];
+				}
+				else
+				{
+					targetSide = oBattle.partyUnits;
+					activeTarget = activeUser;
+					var _findSelf = function(_element)
+					{
+						return (_element == activeTarget)	
+					}
+					targetIndex = array_find_index(oBattle.partyUnits, _findSelf);
+				}
+			}
+		}
+		else
+		{
+			beginAction(_user,_action,-1)
+			with(oMenu) instance_destroy();
+		}
+	}
+}
+
+function battleText(_desc, _user = "", _targ = "") constructor
+{
+	desc = _desc;
+	user = _user;
+	targ = _targ;
+	
+	scribble_font_bake_shadow("fSmall", "fBattle",1,0,c_black,1,0,false);
+	
+	msg = string_ext(desc,[user,targ]);
+	msg = scribble(msg);
+	msg.starting_format("fBattle",c_white);
+	with oBattle 
+	{
+		array_insert(btlText, 0, other.msg)
+	}
+}
+
