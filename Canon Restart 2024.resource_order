@@ -230,6 +230,7 @@
     {"name":"YuiGlobals","order":29,"path":"objects/YuiGlobals/YuiGlobals.yy",},
     {"name":"gspl_test_room","order":1,"path":"rooms/gspl_test_room/gspl_test_room.yy",},
     {"name":"rMenu","order":3,"path":"rooms/rMenu/rMenu.yy",},
+    {"name":"Room6","order":4,"path":"rooms/Room6/Room6.yy",},
     {"name":"rTest1","order":1,"path":"rooms/rTest1/rTest1.yy",},
     {"name":"rTest2","order":2,"path":"rooms/rTest2/rTest2.yy",},
     {"name":"__InputBindingIsThumbstick","order":6,"path":"scripts/__InputBindingIsThumbstick/__InputBindingIsThumbstick.yy",},

@@ -22,6 +22,8 @@ document_error = undefined;
 // the actual render instance root
 root = undefined;
 
+
+
 // whether the document is being unloaded
 is_unloading = false;
 

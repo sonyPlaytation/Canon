@@ -3,6 +3,7 @@
 global.forceSong = false;
 
 //audio_group_load(Music)
+//set_song_ingame()
 
 //info for song we want to play
 songInstance = noone;
