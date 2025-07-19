@@ -1,4 +1,4 @@
 /// @
 
-battlehit = noone
-
+battlehit = noone;
+textSFX = noone;

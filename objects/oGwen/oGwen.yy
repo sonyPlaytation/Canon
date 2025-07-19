@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sGwen",
-    "path":"sprites/sGwen/sGwen.yy",
+    "name":"sGwenIdle",
+    "path":"sprites/sGwenIdle/sGwenIdle.yy",
   },
   "spriteMaskId":null,
   "visible":true,

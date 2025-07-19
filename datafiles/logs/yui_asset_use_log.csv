@@ -1,5 +1,1 @@
 NAME, TYPE, SOURCE_EXPRESSION
-yui_color_shift_hue, script, "@@ color => color |> ~yui_color_shift_hue(~yui_resolve_color(&tint_color), &lum_factor)"
-yui_resolve_color, script, "@@ color => color |> ~yui_color_shift_hue(~yui_resolve_color(&tint_color), &lum_factor)"
-fSmall, font, "~fSmall"
-sTextBox, sprite, "~sTextBox"

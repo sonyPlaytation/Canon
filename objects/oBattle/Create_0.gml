@@ -391,7 +391,6 @@ victory = function()
 		{
 			instance_create_depth(_x, _y-24 , depth - 100,oResultsScreen)
 		}
-		//transition(room, sqBattleEnd, sqFadeIn, true);
 	}
 }
 

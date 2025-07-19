@@ -212,24 +212,34 @@ global.party =
 
 	{
 		name: "Charlie",
+		job : "Magician",
+		
+		lvl : 1,
+		EXP : 0,
 		hp: 40,
 		hpMax: 40,
 		ex: 20,
 		exMax: 20,
 		str: 3,
 		exStr: 4,
+		
 		sprites : { idle: sCharIdle, active: sCharFightActive, attack: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sPortNils},
 		actions: [global.actionLibrary.normals, global.actionLibrary.special, global.actionLibrary.heal, global.actionLibrary.revive]
 	},
 	
 	{
 		name: "Matthew",
+		job : "Hermit",
+		
+		lvl : 1,
+		EXP : 0,
 		hp: 75,
 		hpMax: 75,
 		ex: 12,
 		exMax: 12,
 		str: 5,
 		exStr: 6,
+		
 		sprites : { idle: sMattIdle, active: sMatthewFightActive, attack: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sPortNils},
 		actions: [global.actionLibrary.normals, global.actionLibrary.special]
 	}

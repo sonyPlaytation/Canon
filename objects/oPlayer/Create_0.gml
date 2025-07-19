@@ -120,7 +120,13 @@ stateDash = function()
 	vsp = lengthdir_y(dashSpd,dir);
 	move_and_collide(hsp,vsp,colls);
 	
-	if dashSpd > 2.5 and place_meeting(x+hsp, y+vsp, colls) {zsp = 4; state = stateCrash}
+	if dashSpd > 2.5 and place_meeting(x+hsp, y+vsp, colls) 
+	{
+		zsp = 4;
+		state = stateCrash
+		oSFX.battlehit = snHit7
+		global.cam.shake_screen(5,3);	
+	}
 	
 	if dashSpd <= 1 {state = stateFree}
 	

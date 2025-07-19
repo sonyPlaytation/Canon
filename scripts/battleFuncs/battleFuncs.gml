@@ -16,6 +16,7 @@ function leaveBattle()
 	global.pauseEvery = false;
 	instance_destroy(global.fightStarter);
 	instance_destroy(oBattle);	
+	instance_destroy(oResultsScreen);	
 	oPlayer.iFrames = 90;
 	
 	layer_sequence_destroy(self.elementID);

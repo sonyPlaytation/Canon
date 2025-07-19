@@ -14,28 +14,37 @@ advantage = 0;
 startingBattle = false;
 
 // wandering
-homeX = xstart;
-homeY = ystart;
-homeSize = 96;
-wanderTime = 60;
-spd = 0;
-facing = irandom(8);
-dir = facing * 45;
+if doWander
+{
+	homeX = xstart;
+	homeY = ystart;
+	homeSize = 96;
+	wanderTime = 60;
+	spd = 0;
+	facing = irandom(8);
+	dir = facing * 45;
 
-dx = lengthdir_x(spd,dir);
-dy = lengthdir_y(spd,dir);
+	dx = lengthdir_x(spd,dir);
+	dy = lengthdir_y(spd,dir);
+}
 
 // chasing
-chaseRange = 72;
-tooFar = homeSize * 2.5;
-inChase = false;
-alertJump = false
-zsp = 0;
+if doChase
+{
+	chaseRange = 72;
+	tooFar = homeSize * 2.5;
+	inChase = false;
+	alertJump = false
+	zsp = 0;
+	grv = 0.3
+}
+
 z = 0;
-grv = 0.3
 
 enemyStuff = function()
 {
+	if instance_exists(oTextBox) {exit};
+	
 	var myEncounter = encounter[irandom(array_length(encounter)-1)]
 	
 	if !array_contains(myEncounter, undefined) and collision_circle(x,y,sprite_width*0.65,oPlayer, false, false) 
@@ -45,7 +54,7 @@ enemyStuff = function()
 		oPlayer.hasControl = false;
 		startingBattle = true;
 	
-		if collision_line(x,selfCenter,lengthdir_x(24,dir),lengthdir_y(24,dir),oPlayer,false,false) and facing == oPlayer.facing 
+		if instance_exists(oDarkness) or  (collision_line(x,selfCenter,lengthdir_x(24,dir),lengthdir_y(24,dir),oPlayer,false,false) and facing == oPlayer.facing)
 		{ advantage = -1; }
 	
 		if forceAdvantage != noone {advantage = forceAdvantage}

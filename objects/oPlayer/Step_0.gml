@@ -41,7 +41,6 @@ if hasControl
 { 
 	JustHitEnemyButCanStillMoveALittle = JustHitEnemyButCanStillMoveALittleReset;
 	var song = mHotSand
-	if global.songPlaying != mHotSand {set_song_ingame(mHotSand)}
 	state();
 }
 

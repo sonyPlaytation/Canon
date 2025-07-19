@@ -1,11 +1,13 @@
 
 global.canPause = true;
 global.pauseEvery = false;
+global.gamePaused = false
 
 function pauseGame(){
 
 	if room != rMenu and oGame.menuDebounce == 0 and global.canPause
 	{
+		global.gamePaused = true
 		with (oPause)
 		{
 			pause = true;
@@ -28,6 +30,7 @@ function unpauseGame()
 {
 	if room != rMenu
 	{
+		global.gamePaused = false;
 		oGame.menuDebounce = 15;
 		with (oPause)
 		{

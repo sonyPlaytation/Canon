@@ -1,5 +1,7 @@
 
-global.songPlaying = noone
+global.songPlaying = noone;
+global.drawShadows = true;
+
 /// @function					set_song_ingame()
 /// @description				Changes the song you want to play next, with fade in and out times.
 /// @param {Real}	song		The song you want to play.
@@ -64,11 +66,11 @@ function playerSetup(){
 		sprSpd[i] = image_speed;
 	}
 
-	cFollow = true;
+	//cFollow = true;
 	cDist = 16;
 	Charlie = noone;
 
-	mFollow = true;
+	//mFollow = true;
 	mDist = cDist + 18;
 	Matthew = noone;
 
@@ -89,11 +91,14 @@ function playerSetup(){
 
 function draw_character_shadow()
 {
-	var halfw = sprite_width/2
-	draw_set_color(c_black);
-	draw_set_alpha(0.5);
-	draw_ellipse(round(x-halfw),round(y-6),round(x+halfw),round(y+6),false);
-	draw_set_alpha(1);	
+	if global.drawShadows
+	{
+		var halfw = sprite_width/2
+		draw_set_color(c_black);
+		draw_set_alpha(0.5);
+		draw_ellipse(round(x-halfw),round(y-6),round(x+halfw),round(y+6),false);
+		draw_set_alpha(1);	
+	}
 }
 
 /// @description scr_approach(start, end, shift);

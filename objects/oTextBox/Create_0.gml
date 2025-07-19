@@ -1,5 +1,7 @@
 /// @
 
+depth = -9999
+
 // General
 margin = TILE_SIZE;
 padding = TILE_SIZE/2;
