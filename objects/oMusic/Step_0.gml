@@ -3,10 +3,21 @@
 
 //var _finalVol = global.musVol * 3
 
+if tempSongAsset != noone and !audio_is_playing(tempSongAsset)
+{
+	mainSongPrevGain = audio_sound_get_gain(songAsset)
+	audio_sound_gain(songAsset,0,fadeOutTime)
+	if !audio_is_paused(songAsset) and audio_sound_get_gain(songAsset) <= 0
+	{
+		audio_pause_sound(songAsset)
+		audio_play_sound(tempSongAsset,500,true)
+	}
+}
+
+
 //play target song
 if songAsset != targetSongAsset
 {
-	
 	//tell the old song to fade out
 	if audio_is_playing(songInstance)
 	{
@@ -27,7 +38,7 @@ if songAsset != targetSongAsset
 	//play the song if the old song is gone
 	if array_length (fadeOutInst) == 0
 	{
-		if audio_exists(targetSongAsset)
+		if targetSongAsset != noone and audio_exists(targetSongAsset)
 		{
 			//play the song and store its instance in a variable
 			songInstance = audio_play_sound(targetSongAsset, 400, true);
@@ -94,7 +105,5 @@ for (var i = 0; i < array_length(fadeOutInst); i++)
 	}
 }
 
-
-	
 	
 

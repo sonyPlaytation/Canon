@@ -1,4 +1,4 @@
 /// @
 
-//room_goto(room);
+if global.debug {game_restart()}
 

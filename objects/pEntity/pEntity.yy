@@ -12,8 +12,8 @@
   "name":"pEntity",
   "overriddenProperties":[],
   "parent":{
-    "name":"Entities",
-    "path":"folders/Objects/Entities.yy",
+    "name":"Overworld Entities",
+    "path":"folders/Overworld Entities.yy",
   },
   "parentObjectId":{
     "name":"pAllLivingThings",
@@ -33,8 +33,9 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
+    {"$GMObjectProperty":"v1","%Name":"drawShadow","filters":[],"listItems":[],"multiselect":false,"name":"drawShadow","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
     {"$GMObjectProperty":"v1","%Name":"isEnemy","filters":[],"listItems":[],"multiselect":false,"name":"isEnemy","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
-    {"$GMObjectProperty":"v1","%Name":"myTopic","filters":[],"listItems":[],"multiselect":false,"name":"myTopic","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"\"\"","varType":2,},
+    {"$GMObjectProperty":"v1","%Name":"myTopic","filters":[],"listItems":[],"multiselect":false,"name":"myTopic","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"\"placeholder\"","varType":2,},
     {"$GMObjectProperty":"v1","%Name":"myAction","filters":[],"listItems":[],"multiselect":false,"name":"myAction","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"startDialogue","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"collide","filters":[],"listItems":[],"multiselect":false,"name":"collide","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
     {"$GMObjectProperty":"v1","%Name":"bg","filters":[],"listItems":[],"multiselect":false,"name":"bg","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"bgPlaceholder","path":"sprites/bgPlaceholder/bgPlaceholder.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"bgPlaceholder","varType":5,},

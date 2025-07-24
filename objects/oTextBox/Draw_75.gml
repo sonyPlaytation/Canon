@@ -1,6 +1,7 @@
 /// @
 
 var xscale = 1;
+portraitX = x;
 if portSide == PORT_SIDE.R
 {
 	xscale = -1;
@@ -13,7 +14,7 @@ draw_sprite_stretched(sprite_index,boxSpr,x,y,width,height);
 var nameY = y - 26
 if name != ""
 {
-	draw_sprite_stretched(sTextNameBox,boxSpr,x + (txtX/2), nameY, nameW * 2,24);
+	draw_sprite_stretched(sTextNameBox,boxSpr,x + (txtX/2), nameY, nameW * 2.1,24);
 	myName.draw(x + txtX, nameY + 11);
 }
 scribb.draw(x + txtX, y + txtY, typist);

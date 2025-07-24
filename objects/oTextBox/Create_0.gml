@@ -29,6 +29,7 @@ emotion = 0;
 nameFont = fQuit;
 scribble_font_bake_shadow(font_get_name(nameFont),"nameFontMod",1,1,c_black,1,0,false)
 nameColor = c_white;
+sound = [sNarr];
 
 // Options
 optX = padding*6;
@@ -47,7 +48,13 @@ progress = 0;
 length = 0;
 
 typist = scribble_typist();
-typist.in(spd,0);
+typist
+	.in(spd,0)
+	.character_delay_add(". ", 250)
+	.character_delay_add("! ", 250)
+	.character_delay_add("? ", 250)
+	.character_delay_add(", ", 125)
+	.character_delay_add("\n", 400)
 
 oPlayer.hasControl = false
 
@@ -89,7 +96,10 @@ next = function()
 
 setText = function(newText)
 {
+	sound = textSoundLUT(name);
 	text = newText;
+	
+	typist.sound(sound,0.1,0.9,1.1);
 	
 	scribb = scribble(text)
 		.wrap(txtW)

@@ -94,7 +94,7 @@ switch(advantage)
 
 if global.fightSong != -1 {bgm = global.fightSong}
 
-set_song_ingame(bgm);
+set_song_ingame(bgm,,,true);
 
 refreshRenderOrder = function()
 {
@@ -359,7 +359,7 @@ victoryCheck = function()
 	
 	if enemiesDead == array_length(enemyUnits) // win condition
 	{
-		set_song_ingame(mPlaceholderBattleWin)
+		set_song_ingame(mPlaceholderBattleWin,,,true)
 		with oBattleHero 
 		{
 			if hp <= 0 {battleChangeHP(self, 1, 1)};
@@ -373,7 +373,7 @@ victoryCheck = function()
 	}
 	else if partyDead == array_length(partyUnits) // lose condition
 	{
-		set_song_ingame(mPHAllDied)
+		set_song_ingame(mPHAllDied,,,true)
 		
 		btlText = []
 		BATTLE("[c_red][shake]YOU LOSE!")

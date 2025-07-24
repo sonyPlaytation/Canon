@@ -10,5 +10,7 @@ if !instance_exists(oPlayer) and global.midTransition
 {
 	var player = instance_create_layer(global.transitionX,global.transitionY,"Player",oPlayer);
 	player.facing = global.moveFacing;	
+	global.cam.x = player.x;
+	global.cam.y = player.y;
 }
 

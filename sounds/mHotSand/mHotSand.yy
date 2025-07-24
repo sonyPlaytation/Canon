@@ -12,8 +12,8 @@
   "duration":101.818184,
   "name":"mHotSand",
   "parent":{
-    "name":"Music",
-    "path":"folders/Sounds/Music.yy",
+    "name":"Act 1",
+    "path":"folders/Sounds/Music/Act 1.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

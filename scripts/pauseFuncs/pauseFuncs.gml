@@ -36,6 +36,7 @@ function unpauseGame()
 		{
 			pause = false;
 			instance_activate_all();
+			global.cam.set_paused(false)
 		}
 		if instance_exists(oMenu){instance_destroy(oMenu)};
 	}

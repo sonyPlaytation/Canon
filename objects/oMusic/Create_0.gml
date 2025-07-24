@@ -9,6 +9,13 @@ global.forceSong = false;
 songInstance = noone;
 songAsset = noone;
 targetSongAsset = noone;
+
+tempSongInstance = noone;
+tempSongAsset = noone;
+tempTargetSongAsset = noone;
+mainSongPrevGain = -1;
+currentSong = -1;
+
 fadeOutTime = 0; //frames to fade song out for
 fadeInTime = 0; //frames to fade in new song
 fadeInInstVol = 1; //voluem of song instance

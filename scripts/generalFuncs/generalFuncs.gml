@@ -2,31 +2,6 @@
 global.songPlaying = noone;
 global.drawShadows = true;
 
-/// @function					set_song_ingame()
-/// @description				Changes the song you want to play next, with fade in and out times.
-/// @param {Real}	song		The song you want to play.
-/// @param {Real}	fadeOut		The time it should take to fade out, counted in frames.
-/// @param {Real}	fadeIn		The time it should take to fade in, counted in frames.
-/// @param {String}	message		"Now Playing" Message.
-/// @param {Real}	messageFade Message fade fime, counted in frames.
-/// @returns					N/A
-function set_song_ingame(_song, _fadeOut = 0, _fadeIn = 0, _msg = "", _msgFade = 60)
-{
-		//_song to set any song (including noone to stop
-		//_fadeOut to fade out in frames
-		//_fadeIn to fade in in frames
-	show_debug_message("NOW PLAYING: " + audio_get_name(_song))
-	global.songPlaying = _song
-	with (oMusic)
-	{
-		targetSongAsset = _song;	
-		fadeOutTime = _fadeOut;
-		fadeInTime = _fadeIn;
-		playingMsg = _msg;
-		playingFade = _msgFade; 
-	}
-}
-
 function playerSetup(){
 	
 	// Movement and Collision
@@ -46,7 +21,7 @@ function playerSetup(){
 	
 	//animation
 	going = 0;
-	facing = 1;
+	facing = FACING.DOWN;
 	face = [];
 	
 	// drawing

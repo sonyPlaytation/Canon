@@ -26,7 +26,7 @@
   "origin":7,
   "parent":{
     "name":"Props",
-    "path":"folders/Sprites/Entities/Props.yy",
+    "path":"folders/Overworld Entities/Sprites/Props.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

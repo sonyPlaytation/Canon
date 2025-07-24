@@ -26,7 +26,7 @@
   "origin":9,
   "parent":{
     "name":"Enemies",
-    "path":"folders/Sprites/Enemies.yy",
+    "path":"folders/Overworld Entities/Sprites/Enemies.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

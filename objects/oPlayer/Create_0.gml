@@ -2,12 +2,14 @@
 
 playerSetup();
 
+global.cam.follow = id;
+
 enum FACING
 {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT
+	RIGHT	= 0,
+	UP		= 1,
+	LEFT	= 2,
+	DOWN	= 3
 }
 
 stateFree = function()
@@ -84,8 +86,12 @@ groundMove = function()
 		image_speed = 1
 	}
 	
-	var xinput = InputCheck(INPUT_VERB.RIGHT) - InputCheck(INPUT_VERB.LEFT);
-	var yinput = InputCheck(INPUT_VERB.DOWN) - InputCheck(INPUT_VERB.UP);
+	if hasControl
+	{
+		xinput = InputCheck(INPUT_VERB.RIGHT) - InputCheck(INPUT_VERB.LEFT);
+		yinput = InputCheck(INPUT_VERB.DOWN) - InputCheck(INPUT_VERB.UP);
+	}
+	
 	going = (point_distance(0, 0, xinput, yinput) > 0);
 	
 	if going 

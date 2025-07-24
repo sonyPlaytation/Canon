@@ -187,6 +187,8 @@ enum MODE
 	VARIES = 2
 }
 
+#macro PARTY global.party
+
 global.party = 
 [
 	{

@@ -1,31 +1,11 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+
 function saveGame()
 {
 	var mainStruct = {
-		ver : global.ver,
-		lvlFloor : global.lvlFloor,
-		lvlAct : global.lvlAct,
-		seed : oGame.seed,
-		room : room,
-		warp : oNewt.lastWarp,
-		weap : {
-			weapons : [],
-			ammo : [],
-		},
-		inv : {
-			level : oInv.levelCurrent,
-			souls : oInv.souls,
-			sodas : oInv.sodas,	
-			lives : lives,
-			hpMax : oInv.hpMax,
-			hp : oInv.hp,
-			money : oInv.money,
-			pocket : oPocket.slot,
-			pState : oPocket.state,
-			onHit : oInv.onHit
-		},
-		passives : []
+		flags : FLAGS,
+		party : global.party
+		
 	}
 	
 	array_copy(mainStruct.weap.weapons,0,oWeapon.heldweapons,0,array_length(oWeapon.heldweapons));

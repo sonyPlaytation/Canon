@@ -6,8 +6,8 @@
   "name":"pNPC",
   "overriddenProperties":[],
   "parent":{
-    "name":"Entities",
-    "path":"folders/Objects/Entities.yy",
+    "name":"Overworld Entities",
+    "path":"folders/Overworld Entities.yy",
   },
   "parentObjectId":{
     "name":"pEntity",

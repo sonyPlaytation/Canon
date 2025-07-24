@@ -3,12 +3,13 @@ global.roomTarget = -1;
 global.transitionX = 0;
 global.transitionY = 0;
 global.moveFacing = 0;
+global.currentTransition = noone
 
 function createTransition(_type)
 {
 	if layer_exists("transition") layer_destroy("transition");
 	var _layer = layer_create(-9999, "transition");
-	layer_sequence_create(_layer,global.cam.x,global.cam.y,_type);
+	global.currentTransition = layer_sequence_create(_layer,global.cam.x,global.cam.y,_type);
 }
 
 function transition(_roomTarget, _typeOut, _typeIn, _fight = false, _x = 0, _y = 0, face = 0)

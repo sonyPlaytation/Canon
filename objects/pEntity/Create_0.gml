@@ -59,7 +59,7 @@ enemyStuff = function()
 	
 		if forceAdvantage != noone {advantage = forceAdvantage}
 	
-		if advantage == -1 {set_song_ingame(mPHFightStartDisadv)} else set_song_ingame(mPHFightStartAdv)
+		if advantage == -1 {set_song_ingame(mPHFightStartDisadv,,,true)} else set_song_ingame(mPHFightStartAdv,,,true)
 		global.advantage = advantage;
 		global.fightStarter = id;
 		global.fightEnemies = myEncounter;

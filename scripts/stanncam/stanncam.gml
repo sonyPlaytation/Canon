@@ -681,7 +681,7 @@ function stanncam(_x=0, _y=0, _width=global.game_w, _height=global.game_h, _surf
 		}
 
 		//zone constricting
-		if(__zone != noone){
+		if(instance_exists(__zone)){
 			var _zone_constrain_x = 0;
 			var _zone_constrain_y = 0;
 			

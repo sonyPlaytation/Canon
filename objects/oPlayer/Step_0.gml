@@ -33,7 +33,6 @@ if global.pauseEvery
 			break;
 		}
 	}
-		
 	exit;
 }
 
@@ -43,5 +42,6 @@ if hasControl
 	var song = mHotSand
 	state();
 }
+else if global.midTransition { move_and_collide(hsp,vsp,colls); }
 
 updateFollowers();
