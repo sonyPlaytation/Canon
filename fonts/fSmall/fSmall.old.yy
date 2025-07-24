@@ -130,7 +130,7 @@
   "regenerateBitmap":false,
   "resourceType":"GMFont",
   "resourceVersion":"2.0",
-  "sampleText":"ż",
+  "sampleText":"asdasdżżżż",
   "sdfSpread":8,
   "size":12.0,
   "styleName":"Medium",
