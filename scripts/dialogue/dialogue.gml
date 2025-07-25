@@ -46,7 +46,7 @@ global.topics = {};
 	scribble_typists_add_event("rumble", scribRumble);
 	global.topics[$ "Charlie Choices"] = 
 	[
-		SPEAKER("Gwen", sPortGwen,, PORT_SIDE.R),
+		SPEAKER("Gwen", sPortGwen, 2, PORT_SIDE.R),
 		TEXT("Nils I'm gonna give you [rumble]TWO options."),
 		CHOICE("Woudl you rather see One Charlie\n or Two Charlies",
 			OPTION("One", "Chose One Charlie"),
@@ -61,20 +61,24 @@ global.topics = {};
 		TEXT("I pick One Charlie."),
 		SPEAKER(""),
 		TEXT("[sCharIdle,3]!"),
-		SPEAKER("Gwen", sPortGwen,, PORT_SIDE.R),
+		SPEAKER("Gwen", sPortGwen,2, PORT_SIDE.R),
 		TEXT("You have chosen ONE Charlie..."),
 		GOTO("Chose Wisely")
 	];
 	
 	global.topics[$ "Chose Two Charlie"] = 
 	[
-		SPEAKER("Nils", sPortNils,, PORT_SIDE.L),
+		SPEAKER("Nils", sPortNils,1, PORT_SIDE.L),
 		TEXT("Uhhhhhhhhhhhhhhhhhhhhhhh..."),
+		SPEAKER("Nils", sPortNils,2, PORT_SIDE.L),
 		TEXT("Uhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh..."),
+		SPEAKER("Nils", sPortNils,0, PORT_SIDE.L),
 		TEXT("I pick Two Charlie."),
 		SPEAKER(""),
 		TEXT("[sCharIdle,3][sCharIdle,3]!!"),
-		SPEAKER("Gwen", sPortGwen,, PORT_SIDE.R),
+		SPEAKER("Gwen", sPortGwen,0, PORT_SIDE.R),
+		TEXT("..."),
+		SPEAKER("Gwen", sPortGwen,2, PORT_SIDE.R),
 		TEXT("You have chosen TWO Charlie..."),
 		GOTO("Chose Wisely")
 	];

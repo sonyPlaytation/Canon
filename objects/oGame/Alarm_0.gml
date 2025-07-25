@@ -1,5 +1,8 @@
 /// @
 
-yui_do_live_reload()
+if global.debug
+{
+	yui_do_live_reload()
 
-alarm[0] = 60
+	alarm[0] = 20
+}

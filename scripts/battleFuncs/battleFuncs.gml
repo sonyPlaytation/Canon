@@ -1,3 +1,5 @@
+global.fightStarter = noone
+
 function startFight()
 {
 	global.cam.set_paused(true)
@@ -14,9 +16,10 @@ function leaveBattle()
 {
 	instance_activate_all();
 	global.pauseEvery = false;
-	instance_destroy(global.fightStarter);
-	instance_destroy(oBattle);	
-	instance_destroy(oResultsScreen);	
+	if instance_exists(global.fightStarter) {instance_destroy(global.fightStarter);}
+	if instance_exists(oBattle) {instance_destroy(oBattle);}
+	instance_destroy(oBattleResults);	
+	instance_destroy(yui_document);	
 	oPlayer.iFrames = 90;
 	
 	layer_sequence_destroy(self.elementID);

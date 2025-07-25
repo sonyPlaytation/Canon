@@ -10,10 +10,10 @@ if tempSongAsset != noone and !audio_is_playing(tempSongAsset)
 	if !audio_is_paused(songAsset) and audio_sound_get_gain(songAsset) <= 0
 	{
 		audio_pause_sound(songAsset)
+		audio_stop_sound(tempSongAsset)
 		audio_play_sound(tempSongAsset,500,true)
 	}
 }
-
 
 //play target song
 if songAsset != targetSongAsset

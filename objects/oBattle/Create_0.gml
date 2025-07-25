@@ -56,7 +56,7 @@ for (var i = 0; i < array_length(enemies); i++)
 	array_push(units,enemyUnits[i]);
 }
 
-for (var i = 0; i < array_length(global.party); i++)
+for (var i = 0; i < array_length(PARTY); i++)
 {
 	partyUnits[i] = instance_create_depth(x-200-(i*20), y + 68 + (i*30), depth-(20 + i), oBattleHero, global.party[i]);
 	array_push(units,partyUnits[i]);
@@ -385,12 +385,22 @@ victoryCheck = function()
 
 victory = function()
 {
-	if InputPressed(INPUT_VERB.ACCEPT)
+	if !instance_exists(oBattleResults) and InputPressed(INPUT_VERB.ACCEPT)
 	{
-		if !instance_exists(oResultsScreen)
+		var _totalEXP = 0
+		var _killsList = [{name: "Enemies Defeated"}]
+		for (var i = 0; i < array_length(enemyUnits); i++)
 		{
-			instance_create_depth(_x, _y-24 , depth - 100,oResultsScreen)
+			_totalEXP += enemyUnits[i].xpWorth
+			_killsList[i+1] = enemies[i]
 		}
+		
+		instance_create_depth(x,y,depth-100,oBattleResults,
+		{
+			encounterEXP : _totalEXP,
+			killsList : _killsList
+		})
+
 	}
 }
 

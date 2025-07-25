@@ -5,7 +5,7 @@
 /// @param {Real}	fadeIn		The time it should take to fade in, counted in frames.
 /// @param {bool}	tempSong	Should this song pause the main area theme or not.
 /// @returns {asset} currentSong current song playing.
-function set_song_ingame(_song = noone, _fadeOut = 0, _fadeIn = 0, _tempSong = false)
+function set_song_ingame(_song = noone, _fadeOut = 10, _fadeIn = 0, _tempSong = false)
 {
 		//_song to set any song (including noone to stop
 		//_fadeOut to fade out in frames
@@ -16,7 +16,7 @@ function set_song_ingame(_song = noone, _fadeOut = 0, _fadeIn = 0, _tempSong = f
 		
 		if _tempSong 
 		{
-			end_temp_song();
+			end_temp_song(_fadeOut, _fadeIn);
 			tempSongAsset = _song;
 		} else targetSongAsset = _song;		
 		
@@ -31,16 +31,20 @@ function set_song_ingame(_song = noone, _fadeOut = 0, _fadeIn = 0, _tempSong = f
 	return global.songPlaying
 }
 
-function end_temp_song()
+function end_temp_song(_fadeOut = 10, _fadeIn = oMusic.fadeInTime)
 {
 	with oMusic
 	{
-		if audio_is_paused(songAsset)
+		if audio_is_paused(songAsset) or !audio_is_playing(songAsset)
 		{
 			audio_stop_sound(tempSongAsset)
 			tempSongAsset = noone;
-			audio_resume_sound(songAsset)
-			audio_sound_gain(songAsset,0.5,fadeInTime)
+			if audio_is_paused(songAsset) 
+			{
+				audio_resume_sound(songAsset)
+				audio_sound_gain(songAsset,0.5,_fadeIn)
+			}
+			
 		}	
 	}
 }

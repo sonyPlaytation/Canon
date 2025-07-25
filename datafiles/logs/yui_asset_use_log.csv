@@ -1,5 +1,7 @@
 NAME, TYPE, SOURCE_EXPRESSION
-yui_color_shift_hue, script, "@@ color => color |> ~yui_color_shift_hue(~yui_resolve_color(&tint_color), &lum_factor)"
-yui_resolve_color, script, "@@ color => color |> ~yui_color_shift_hue(~yui_resolve_color(&tint_color), &lum_factor)"
+yui_color_shift_hue, script, "@@ color => color |> ~yui_color_shift_hue(~yui_resolve_color(&accent_color), &lum_factor + &accent_lum)"
+yui_resolve_color, script, "@@ color => color |> ~yui_color_shift_hue(~yui_resolve_color(&accent_color), &lum_factor + &accent_lum)"
 fSmall, font, "~fSmall"
+sShadow, sprite, "~sShadow"
 sTextBox, sprite, "~sTextBox"
+sTextOption, sprite, "~sTextOption"

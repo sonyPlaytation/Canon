@@ -3,6 +3,7 @@
 global.inputDisplay = false;
 global.debug = false;
 global.dev = true;
+
 menuDebounce = 0;
 
 //scribble constants

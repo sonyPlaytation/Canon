@@ -207,7 +207,7 @@ global.party =
 		exStr: 7,
 		
 		// BATTLE
-		sprites : { idle: sNilsIdle, active: sNilsWalkD, attack: sNilsIdle, defend: sNilsIdle, down: sGrave, head: sHeadNils, portrait: sPortNils},
+		sprites : { idle: sNilsIdle, active: sNilsWalkD, attack: sNilsIdle, defend: sNilsIdle, down: sGrave, head: sHeadNils, portrait: sBattlePortPH},
 		actions: [global.actionLibrary.normals]
 		
 	},
@@ -225,7 +225,7 @@ global.party =
 		str: 3,
 		exStr: 4,
 		
-		sprites : { idle: sCharIdle, active: sCharFightActive, attack: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sPortNils},
+		sprites : { idle: sCharIdle, active: sCharFightActive, attack: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH},
 		actions: [global.actionLibrary.normals, global.actionLibrary.special, global.actionLibrary.heal, global.actionLibrary.revive]
 	},
 	
@@ -242,7 +242,7 @@ global.party =
 		str: 5,
 		exStr: 6,
 		
-		sprites : { idle: sMattIdle, active: sMatthewFightActive, attack: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sPortNils},
+		sprites : { idle: sMattIdle, active: sMatthewFightActive, attack: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH},
 		actions: [global.actionLibrary.normals, global.actionLibrary.special]
 	}
 
@@ -342,7 +342,7 @@ global.enemies =
 	sand:
 	{
 		name: "Really Angry Sand",
-		hp : 30,
+		hp : 1,
 		hpMax: 30,
 		ex: 10,
 		exMax: 10,
@@ -350,7 +350,7 @@ global.enemies =
 		exStr: 5,
 		sprites : { idle: sSand, attack: sSand, defend: sSand, down: sGrave, head: sSand},
 		actions: [global.actionLibrary.medium,global.actionLibrary.heavy,global.actionLibrary.special],
-		xpWorth: 15,
+		xpWorth: 4,
 		AI: function(user,targets)
 		{
 			var myMove = global.enemyAI.standard(user,targets);
@@ -369,7 +369,7 @@ global.enemies =
 		exStr: 6,
 		sprites : { idle: sBat, attack: sBat, defend: sSand, down: sGrave, head: sBat},
 		actions: [global.actionLibrary.light,global.actionLibrary.revive],
-		xpWorth: 12,
+		xpWorth: 3,
 		AI: function(user,targets)
 		{
 			var myMove = global.enemyAI.standard(user,targets);
