@@ -9,6 +9,14 @@ global.flags =
 //dialogue
 //textSoundLUT()
 
+#region general reusable stuff
+
+global.topics[$ "jammed"] = [TEXT("The lock is [c_yellow]JAMMED[c_white]!\nThis door can't be opened.")]
+global.topics[$ "lockedGeneric"] = [TEXT("It's [c_red]LOCKED[c_white].")]
+global.topics[$ "unlockedGeneric"] = [TEXT("You unlock the door.")]
+
+#endregion
+
 #region rOffice
 global.topics[$ "officeDesk"] = 
 [
@@ -57,7 +65,7 @@ global.topics[$ "officeDesk"] =
 	[
 		TEXT("Despite your wimpiest tug, the desks drawers will not budge. "),
 		SPEAKER("Nils",sPortNils,1),
-		TEXT("I guess its [c_red]LOCKED[c_white]! I bet something really useful or cool is in there..."),
+		TEXT("I guess its [c_red]LOCKED[c_white]!\n[portrait,sPortNils,2]I bet something really useful or cool is in there..."),
 		SPEAKER(),
 		TEXT("The desks drawers are [c_yellow]JAMMED[c_white], not [c_red]LOCKED[c_white].\nThis is universal shorthand for 'Give up'."),
 	]

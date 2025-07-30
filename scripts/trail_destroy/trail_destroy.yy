@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"trail_destroy",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"trail_destroy",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

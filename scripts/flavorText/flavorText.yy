@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"flavorText",
   "parent":{
-    "name":"Canon Restart 2024",
-    "path":"Canon Restart 2024.yyp",
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

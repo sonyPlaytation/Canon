@@ -42,14 +42,31 @@ anims =
 
 interact = function()
 {
-	var actX = lengthdir_x(TILE_SIZE,dir);
-	var actY = lengthdir_y(TILE_SIZE,dir);
+	var seeDist = TILE_SIZE
+	if instance_exists(oDarkness) seeDist = TILE_SIZE/2;
 	
-	if collision_line(x,y,x + actX,y + actY,pEntity, false, false) and InputPressed(INPUT_VERB.ACTION)
+	var actX = lengthdir_x(seeDist,dir);
+	var actY = lengthdir_y(seeDist,dir);
+	
+	if collision_line(x, y, x+actX, y+actY, pEntity, false, false) and InputPressed(INPUT_VERB.ACTION)
 	{
-		var act = instance_nearest(x+actX,y+actY,pEntity);
-		with act
-		{ if myTopic != "" {startDialogue(myTopic)} }
+		var actors = ds_list_create()
+		var act = collision_line_list(x,y,x+actX,y+actY,pEntity,false,false,actors,true);
+		var actNow = ds_list_find_value(actors,0)
+		
+		if actNow != -1
+		{
+			with actNow
+			{ 
+				switch(myAction)
+				{
+					case startDialogue: myAction(myTopic);	break;
+					case addItem:		openChest(id);	break;
+					case unlockDoor :   unlockDoor(lockText, unlockText)	break;
+				}
+			}
+		}
+		ds_list_destroy(actors);
 	}
 }
 

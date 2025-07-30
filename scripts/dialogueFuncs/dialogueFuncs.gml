@@ -7,9 +7,34 @@
 #macro NEXT		new nextAction
 #macro SET		new setFlagAction
 
+#region Custom Scribble Events
+
+	function scribRumble() { global.cam.shake_screen(20,10); SFX snHit7 }
+	scribble_typists_add_event("rumble", scribRumble);
+	
+	function scribPortraitChange(_element, _params, _index) 
+	{ 
+		if array_length(_params) < 2 {_params[1] = 0}
+		oTextBox.sprite = asset_get_index(string_trim(_params[0])); 
+		oTextBox.emotion = real(string_trim(_params[1])); 
+	}
+	scribble_typists_add_event("portrait", scribPortraitChange);
+
+#endregion
+
 function dialogueAction() constructor {
 
 	act = function() { };
+}
+
+function shortMessage(_text)
+{
+	global.topics[$ "shortMessage"] = 
+	[ 
+		TEXT($"{_text}")
+	]
+	
+	startDialogue("shortMessage");
 }
 
 function textAction(_text) : dialogueAction() constructor

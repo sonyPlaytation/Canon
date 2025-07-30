@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":85.55556,
+  "duration":121.417145,
   "name":"mBattleNeut",
   "parent":{
     "name":"Music",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"mBattleNeut.wav",
+  "soundFile":"mBattleNeut.mp3",
   "type":1,
-  "volume":0.28,
+  "volume":0.51,
 }

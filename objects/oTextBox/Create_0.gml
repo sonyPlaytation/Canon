@@ -11,7 +11,11 @@ height = TILE_SIZE*4;
 x = (display_get_gui_width() - width) /2;
 y = display_get_gui_height() - height - padding;
 
-pProtag.going = false;
+with pProtag
+{
+	going = false;
+	image_speed = 0
+}
 
 font = fSmall;
 color = c_white;

@@ -1,6 +1,6 @@
 /// @
 
-if place_meeting(x,y,oPlayer)
+if place_meeting(x,y,oPlayer) and !locked
 {
 	oPlayer.hasControl = false;
 	

@@ -40,10 +40,7 @@ global.topics = {};
 		TEXT("[wave][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3]"),
 	];
 	
-	function scribRumble()
-	{ global.cam.shake_screen(20,10); oSFX.textSFX = snHit7 }
 	
-	scribble_typists_add_event("rumble", scribRumble);
 	global.topics[$ "Charlie Choices"] = 
 	[
 		SPEAKER("Gwen", sPortGwen, 2, PORT_SIDE.R),

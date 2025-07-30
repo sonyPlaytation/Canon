@@ -14,6 +14,8 @@ advantage = global.advantage;
 units = [];
 btlText = [];
 
+stateName = ""
+
 slide = noone;
 slideDone = false;
 slideDist = 24;
@@ -23,6 +25,7 @@ normalsAllowed = 6;
 normalsReset = 3 * 60
 normalsTimer = normalsReset;
 normalsString = "";
+enemyTurnDone = false;
 
 battleJustStarted = 60;
 
@@ -109,6 +112,7 @@ refreshRenderOrder();
 
 selectAction = function()
 {
+	stateName = "selectAction"
 	if battleJustStarted > 0 {battleJustStarted--};
 	
 	if !instance_exists(oMenu)
@@ -178,6 +182,7 @@ selectAction = function()
 
 beginAction = function(user, action, targets)
 {
+	stateName = "beginAction"
 	currentUser = user;
 	currentAction = action;
 	currentTargets = targets;
@@ -209,12 +214,14 @@ beginAction = function(user, action, targets)
 
 stateSlideIn = function()
 {
+	stateName = "slideIn"
 	currentUser.x = lerp(currentUser.x, currentUser.xstart + (slideDist*currentUser.image_xscale), 0.25);
 	if abs(ceil(point_distance(currentUser.xstart,y, currentUser.x,y ))) == slideDist {state = performAction;}
 }
 
 doNormals = function()
 {
+	stateName = "doNormals"
 	var char = "";
 	currentAction = -1;
 	normalsTimer--;
@@ -287,11 +294,43 @@ doNormals = function()
 		normalsTimer = normalsReset
 		state = stateSlideOut;
 	}
+	
+}
+
+enemyNormals = function()
+{
+	stateName = "enemyNormals"
+	
+	if !instance_exists(oBattleDefenseManager) and !enemyTurnDone
+	{
+		parryWidget = instance_create_depth(x,y,depth-10,oBattleDefenseManager,
+		{
+			defender : currentTargets[0]
+		});
+		
+	}
+	
+	if normalsTimer > 0 {normalsTimer -= 0.5;} 
+	else	
+	{
+		enemyTurnDone = true
+		with pBattleDefense {pleaseWrapItUp = true}
+	}
+	
+	if enemyTurnDone and !instance_exists(parryWidget)
+	{
+		enemyTurnDone = false
+		checkNormalsString();
+		normalsString = "";
+		normalsPerformed = 0
+		normalsTimer = normalsReset
+		state = stateSlideOut;
+	}
 }
 
 performAction = function()
 {
-	
+	stateName = "performAction"
 	if slideDone or slide == noone
 	{
 		if currentUser.acting
@@ -339,12 +378,14 @@ performAction = function()
 
 stateSlideOut = function()
 {
+	stateName = "slideOut"
 	currentUser.x = lerp(currentUser.x, currentUser.xstart, 0.25);
 	if abs(floor(point_distance(currentUser.xstart,y, currentUser.x,y ))) == 0 {state = victoryCheck;}
 }
 
 victoryCheck = function()
 {
+	stateName = "victoryCheck"
 	var enemiesDead = 0;
 	for (var i = 0; i < array_length(enemyUnits); i++)
 	{

@@ -1,12 +1,8 @@
 /// @
 
 
-
-
 // background
 draw_sprite(battleBG,0,global.cam.x - (GAME_W/2),global.cam.y - (GAME_H/2));
-
-draw_text(_x + (GAME_W/3),_y + (GAME_H/3), normalsTimer)	
 
 var padding = TILE_SIZE
 
@@ -109,4 +105,10 @@ if cursor.active
 			}
 		}
 	}
+}
+
+if global.debug
+{
+	draw_text(_x + (GAME_W/3),_y + (GAME_H/3), normalsTimer)	
+	draw_text(_x,_y,stateName)
 }

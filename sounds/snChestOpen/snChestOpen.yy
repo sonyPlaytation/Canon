@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snChestOpen",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.9173016,
+  "name":"snChestOpen",
+  "parent":{
+    "name":"General",
+    "path":"folders/Sounds/SFX/General.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snChestOpen.wav",
+  "type":1,
+  "volume":1.0,
+}

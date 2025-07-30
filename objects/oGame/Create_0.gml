@@ -1,6 +1,6 @@
 /// @
 
-global.inputDisplay = false;
+global.inputDisplay = true;
 global.debug = false;
 global.dev = true;
 

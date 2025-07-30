@@ -10,8 +10,8 @@
   "name":"oBattleHitText",
   "overriddenProperties":[],
   "parent":{
-    "name":"Battles",
-    "path":"folders/Objects/Battles.yy",
+    "name":"Effects",
+    "path":"folders/Objects/Battles/Effects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

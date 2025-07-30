@@ -1,6 +1,11 @@
 /// @
 
-
+if play != noone
+{
+	var _sound = audio_play_sound(play,800,false);
+	audio_sound_gain(_sound,global.sfxVol,0);
+	play = noone;
+}
 
 if battlehit != noone
 {

@@ -23,7 +23,7 @@
   ],
   "name":"sHeadNils",
   "nineSlice":null,
-  "origin":9,
+  "origin":4,
   "parent":{
     "name":"Party",
     "path":"folders/Sprites/Battles/Party.yy",
@@ -78,7 +78,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":10,
-    "yorigin":13,
+    "yorigin":11,
   },
   "swatchColours":null,
   "swfPrecision":0.5,

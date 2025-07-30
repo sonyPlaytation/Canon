@@ -7,7 +7,7 @@ if tempSongAsset != noone and !audio_is_playing(tempSongAsset)
 {
 	mainSongPrevGain = audio_sound_get_gain(songAsset)
 	audio_sound_gain(songAsset,0,fadeOutTime)
-	if !audio_is_paused(songAsset) and audio_sound_get_gain(songAsset) <= 0
+	if !audio_is_paused(songAsset)
 	{
 		audio_pause_sound(songAsset)
 		audio_stop_sound(tempSongAsset)

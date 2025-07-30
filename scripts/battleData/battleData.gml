@@ -30,6 +30,7 @@ global.actionLibrary =
 	{
 		name: "Normals",
 		subMenu : -1,
+		type : "attack",
 		targetRequired : true,
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
@@ -39,7 +40,31 @@ global.actionLibrary =
 		//hitSound : snHit8,
 		func : function(user, targets)
 		{
-			with oBattle {state = doNormals;}
+			with oBattle 
+			{
+				state = doNormals;
+			}
+		}
+	},
+	
+	enemyNormals:
+	{
+		name: "Normals",
+		subMenu : -1,
+		type : "attack",
+		targetRequired : true,
+		targetEnemyByDefault: true,
+		targetAll : MODE.NEVER,
+		userAnimation : "attack",
+		//fxSprite : sPunch,
+		//effectOnTarget: MODE.ALWAYS,
+		//hitSound : snHit8,
+		func : function(user, targets)
+		{
+			with oBattle 
+			{
+				state = enemyNormals;
+			}
 		}
 	},
 	
@@ -342,14 +367,14 @@ global.enemies =
 	sand:
 	{
 		name: "Really Angry Sand",
-		hp : 1,
+		hp : 30,
 		hpMax: 30,
 		ex: 10,
 		exMax: 10,
 		str: 4,
 		exStr: 5,
 		sprites : { idle: sSand, attack: sSand, defend: sSand, down: sGrave, head: sSand},
-		actions: [global.actionLibrary.medium,global.actionLibrary.heavy,global.actionLibrary.special],
+		actions: [global.actionLibrary.enemyNormals],
 		xpWorth: 4,
 		AI: function(user,targets)
 		{
@@ -361,14 +386,14 @@ global.enemies =
 	bat:
 	{
 		name: "Swoopty",
-		hp : 1,
+		hp : 25,
 		hpMax: 25,
 		ex: 15,
 		exMax: 15,
 		str: 3,
 		exStr: 6,
 		sprites : { idle: sBat, attack: sBat, defend: sSand, down: sGrave, head: sBat},
-		actions: [global.actionLibrary.light,global.actionLibrary.revive],
+		actions: [global.actionLibrary.enemyNormals,global.actionLibrary.revive],
 		xpWorth: 3,
 		AI: function(user,targets)
 		{

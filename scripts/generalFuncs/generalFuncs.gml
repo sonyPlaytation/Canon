@@ -71,7 +71,7 @@ function draw_character_shadow()
 		var halfw = sprite_width/2
 		draw_set_color(c_black);
 		draw_set_alpha(0.5);
-		draw_ellipse(round(x-halfw),round(y-6),round(x+halfw),round(y+6),false);
+		draw_ellipse(floor(x-halfw)-1,floor(y-6),ceil(x+halfw),ceil(y+6),false);
 		draw_set_alpha(1);	
 	}
 }
