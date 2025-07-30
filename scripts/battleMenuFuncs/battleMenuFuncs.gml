@@ -109,8 +109,6 @@ function battleText(_desc, _user = "", _targ = "") constructor
 	user = _user;
 	targ = _targ;
 	
-	scribble_font_bake_shadow("fSmall", "fBattle",1,0,c_black,1,0,false);
-	
 	msg = string_ext(desc,[user,targ]);
 	msg = scribble(msg);
 	msg.starting_format("fBattle",c_white);

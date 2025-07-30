@@ -66,9 +66,9 @@ for (var i = 0; i < array_length(PARTY); i++)
 }
 
 if array_length(enemyUnits) > 1
-{ new battleText("{0} and cohorts draw near!",enemyUnits[0].name,"") }
+{ BATTLE("{0} and cohorts draw near!",enemyUnits[0].name,"") }
 else
-{ new battleText("{0} draws near!",enemyUnits[0].name,""); }
+{ BATTLE("{0} draws near!",enemyUnits[0].name,""); }
 
 //shuffle turn order
 randomize();
@@ -193,9 +193,9 @@ beginAction = function(user, action, targets)
 	{
 		if array_length(currentTargets) > 1
 		{
-			new battleText(currentAction.description + $" x{array_length(currentTargets)}", currentUser.name, currentTargets[0].name)
+			BATTLE(currentAction.description + $" x{array_length(currentTargets)}", currentUser.name, currentTargets[0].name)
 		}
-		else new battleText(currentAction.description, currentUser.name, currentTargets[0].name);
+		else BATTLE(currentAction.description, currentUser.name, currentTargets[0].name);
 	}
 	
 	battleWaitTimeLeft = battleWaitTimeFrames
@@ -259,9 +259,9 @@ doNormals = function()
 			{
 				if array_length(currentTargets) > 1
 				{
-					new battleText(currentAction.description + $" x{array_length(currentTargets)}", currentUser.name, currentTargets[0].name)
+					BATTLE(currentAction.description + $" x{array_length(currentTargets)}", currentUser.name, currentTargets[0].name)
 				}
-				else new battleText(currentAction.description, currentUser.name, currentTargets[0].name);
+				else BATTLE(currentAction.description, currentUser.name, currentTargets[0].name);
 			}
 			
 			currentAction.func(currentUser,currentTargets);

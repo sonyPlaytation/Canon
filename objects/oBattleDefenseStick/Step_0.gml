@@ -11,12 +11,14 @@ vsp = lengthdir_y(currDist,dir);
 
 if dir != 0 {parryDir = dir}
 
-x = xstart + hsp;
-y = ystart + vsp;
+x = lerp(x,xstart + hsp,0.75);
+y = lerp(y,ystart + vsp,0.75);
 
 defenseHitbox.hsp = lengthdir_x(currDist,dir-180);
 defenseHitbox.vsp = lengthdir_y(currDist,dir-180);	
-defenseHitbox.image_alpha = currDist * image_alpha
+
+if currDist == 0 and !pleaseWrapItUp {defenseHitbox.alphaTarg = 0.2} 
+else {defenseHitbox.image_alpha = image_alpha}
 
 if parryTimer > 0 {parryTimer--;}
 if parryCooldownCurrent > 0 {parryCooldownCurrent--;}

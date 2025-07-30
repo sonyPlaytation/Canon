@@ -10,6 +10,7 @@ if !pleaseWrapItUp
 		if place_meeting(bullet.x,bullet.y,oBattleDefenseHitbox)
 		{
 			bulletHit(bullet, true)
+			oBattleDefenseHitbox.image_alpha = 3
 		}
 		else
 		{

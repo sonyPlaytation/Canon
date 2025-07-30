@@ -12,7 +12,7 @@ alphaTarg = 0.7;
 color = c_black
 
 parry = 0;
-parryFrames = 20;
+parryFrames = 10;
 
 lerpSpeed = 0.15;
 
