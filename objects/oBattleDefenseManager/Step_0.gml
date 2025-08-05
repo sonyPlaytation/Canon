@@ -14,3 +14,8 @@ if pleaseWrapItUp
 		instance_destroy(stick)	
 	}
 }
+
+if closestGuide 
+{
+	
+}

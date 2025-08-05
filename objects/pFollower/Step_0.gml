@@ -1,4 +1,4 @@
 /// @
 
-if follow { doFollow(); }
+state();
 

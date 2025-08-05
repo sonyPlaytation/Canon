@@ -3,6 +3,8 @@
 
 if global.inputDisplay
 {
+	alpha = lerp(alpha,alphaTarg,0.1);
+
 	for (var i = 0; i < array_length(inputs); i++ )
 	{
 		var scribb = scribble(inputs[i])

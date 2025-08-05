@@ -10,7 +10,8 @@ linesMax = 6;
 lineHeight = 16
 drawX = 96;
 drawY = 12;
-alpha = 1;
+alpha = 0;
+alphaTarg = 1;
 
 scribble_font_bake_outline_8dir("fSmart", "fSmartOut",c_black,false);
 

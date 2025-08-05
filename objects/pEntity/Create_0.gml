@@ -1,5 +1,7 @@
 /// @
 
+event_inherited()
+
 depth = -bbox_bottom;
 if !collide { mask_index = sBlank; }
 

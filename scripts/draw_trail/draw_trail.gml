@@ -48,13 +48,15 @@ function draw_trail(argument0, argument1, argument2, argument3, argument4, argum
 	}
 	draw_primitive_end();
 	//Replacing the coordinates positions within the array
-	Min = min(Height,Length);
-	for (var i = Min; i > 0; i--){
-	  ArrayTrail[i,0] = ArrayTrail[i - 1,0];
-	  ArrayTrail[i,1] = ArrayTrail[i - 1,1];
-	  ArrayTrail[i,2] = ArrayTrail[i - 1,2];
+	if oBattleDefenseManager.parry == 0
+	{
+		Min = min(Height,Length);
+		for (var i = Min; i > 0; i--){
+		  ArrayTrail[i,0] = ArrayTrail[i - 1,0];
+		  ArrayTrail[i,1] = ArrayTrail[i - 1,1];
+		  ArrayTrail[i,2] = ArrayTrail[i - 1,2];
+		}
 	}
-
 
 
 }

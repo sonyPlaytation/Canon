@@ -1,3 +1,12 @@
+
+#region sound loop definitions
+
+	audio_sound_loop_start(mBattleWin,1.09)
+	audio_sound_loop_start(mBattleNeut,7.63)
+	audio_sound_loop_start(mGwenIntro,27.82)
+
+#endregion
+
 /// @function					set_song_ingame()
 /// @description				Changes the song you want to play next, with fade in and out times.
 /// @param {Real}	song		The song you want to play.

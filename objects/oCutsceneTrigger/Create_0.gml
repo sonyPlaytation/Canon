@@ -1,0 +1,2 @@
+
+cutscenePlaying = noone

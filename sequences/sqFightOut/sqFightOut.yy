@@ -37,8 +37,8 @@
   },
   "name":"sqFightOut",
   "parent":{
-    "name":"Sequences",
-    "path":"folders/Sequences.yy",
+    "name":"Transitions",
+    "path":"folders/Sequences/Transitions.yy",
   },
   "playback":0,
   "playbackSpeed":60.0,

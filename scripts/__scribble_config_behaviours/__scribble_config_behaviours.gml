@@ -14,7 +14,7 @@
 
 //Whether to use sprite origins. Setting this to <false> will vertically centre sprites on the line
 //of text.
-#macro SCRIBBLE_ADD_SPRITE_ORIGINS  false
+#macro SCRIBBLE_ADD_SPRITE_ORIGINS  true
 
 //Character to use when another character is missing from a font.
 #macro SCRIBBLE_MISSING_CHARACTER  "?"

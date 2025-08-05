@@ -4,6 +4,31 @@ global.drawShadows = true;
 
 scribble_font_bake_shadow("fSmall", "fBattle",1,0,c_black,1,0,false);
 
+function parryFlash(_frame)
+{
+	if _frame > 0
+	{
+		shader_set(shParryBlue); 
+		var uniform_time = shader_get_uniform(shParryBlue, "frame")
+		shader_set_uniform_f(uniform_time, _frame)
+	}
+}
+
+function startCutscene(_scene, _x = oCutsceneAnchor.x, _y = oCutsceneAnchor.y)
+{
+	with pAllLivingThings {state = stateInCutscene;}
+	instance_create_depth(_x,_y,depth,oCutCam)
+	global.cam.follow = oCutCam;
+	
+	oInputReader.alphaTarg = 0;
+	
+	instance_create_depth(_x,_y,depth,oCutscene,
+	{
+		scene : _scene,
+		trigger : other.id
+	})
+}
+
 function playerSetup(){
 	
 	// Movement and Collision
@@ -25,6 +50,9 @@ function playerSetup(){
 	going = 0;
 	facing = FACING.DOWN;
 	face = [];
+	gotoX = -1;
+	gotoY = -1;
+	inPosition = false;
 	
 	// drawing
 	drawXScale = 1

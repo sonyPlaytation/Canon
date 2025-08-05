@@ -3,7 +3,6 @@
   "%Name":"oLockedExit",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"oLockedExit",
@@ -16,8 +15,8 @@
     "path":"folders/Overworld Entities/Objects.yy",
   },
   "parentObjectId":{
-    "name":"pNPC",
-    "path":"objects/pNPC/pNPC.yy",
+    "name":"pDebugDraw",
+    "path":"objects/pDebugDraw/pDebugDraw.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

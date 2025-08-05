@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"battleTexts",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"battleTexts",
+  "parent":{
+    "name":"Dialogues",
+    "path":"folders/Scripts/Dialogues.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

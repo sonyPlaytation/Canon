@@ -13,8 +13,8 @@
   "name":"oBattle",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Battles",
+    "path":"folders/Objects/Battles.yy",
   },
   "parentObjectId":null,
   "persistent":false,

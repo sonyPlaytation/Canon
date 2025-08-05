@@ -1,22 +1,17 @@
 {
   "$GMObject":"",
   "%Name":"oInspect",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "eventList":[],
   "managed":true,
   "name":"oInspect",
-  "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"propertyId":{"name":"drawShadow","path":"objects/pEntity/pEntity.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"False",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"propertyId":{"name":"collide","path":"objects/pEntity/pEntity.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
-  ],
+  "overriddenProperties":[],
   "parent":{
     "name":"Overworld Entities",
     "path":"folders/Overworld Entities.yy",
   },
   "parentObjectId":{
-    "name":"pEntity",
-    "path":"objects/pEntity/pEntity.yy",
+    "name":"pDebugDraw",
+    "path":"objects/pDebugDraw/pDebugDraw.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

@@ -4,6 +4,8 @@ event_inherited()
 depth = -9999
 defender.depth = depth - 10
 
+closestGuide = true
+
 midX = global.cam.x
 midY = global.cam.y
 
@@ -38,14 +40,25 @@ function bulletHit(_bullet, _blocked = false)
 	var dmg = _bullet.dmg
 	if _blocked {dmg *= 0.45;}
 	
+	bulletManager.cooldownReset += 2
+	
 	battleChangeHP(defender,ceil(-dmg))
+	oBattle.parriesMissed++;
 	global.cam.shake_screen(12,5)
 	SFX snHit8
 }
 
 function parried()
 {
+	if variable_struct_exists(defender.sprites,"parry") {defender.sprite_index = defender.sprites.parry}
+	
+	defender.parry = 18.0;
+	
+	bulletManager.cooldownReset -= 0.25
+	
 	parry = parryFrames;
-	stick.flash = 5;
+	stick.flash = 10;
+	stick.parry = 5;
+	stick.parryCooldownCurrent = 0;
 	SFX snParry	
 }

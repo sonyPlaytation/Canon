@@ -32,5 +32,10 @@ prevRadius = lerp(prevRadius, radius, lerpSpeed)
 
 with (defender)
 {
-	draw_self()	
+	event_perform(ev_draw,ev_draw_normal)
+}
+
+with (user)
+{
+	event_perform(ev_draw,ev_draw_normal)
 }

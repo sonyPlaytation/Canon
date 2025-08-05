@@ -25,7 +25,7 @@
   ],
   "name":"sPortGwen",
   "nineSlice":null,
-  "origin":6,
+  "origin":9,
   "parent":{
     "name":"Portraits",
     "path":"folders/Sprites/Characters/Portraits.yy",

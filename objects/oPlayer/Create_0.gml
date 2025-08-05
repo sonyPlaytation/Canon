@@ -1,5 +1,7 @@
 /// @
 
+event_inherited()
+
 playerSetup();
 
 global.cam.follow = id;
@@ -14,6 +16,8 @@ enum FACING
 
 stateFree = function()
 {
+	inPosition = false;
+	
 	mask_index = sNilsIdle;
 	groundMove();
 	interact();
@@ -174,8 +178,44 @@ stateCrash = function()
 	}
 }
 
+stateStartCutscene = function()
+{
+	dir = point_direction(x, y, gotoX, gotoY )
+	going = (point_distance(x,y,gotoX,gotoY) >= 1);
+	facing = dir div 90;
+	
+	animate();
+		
+	if point_distance(x,y,gotoX,gotoY) < 2 
+	{
+		x = gotoX;
+		y = gotoY;
+		inPosition = true;
+	}
+	else
+	{
+		hsp = lengthdir_x(walksp,dir);
+		vsp = lengthdir_y(walksp,dir);	
+
+		move_and_collide(hsp,vsp,[]);
+	}
+}
+
+stateInCutscene = function()
+{
+	going = (point_distance(xprevious, yprevious, x, y ) > 0)
+	if going {dir = point_direction(xprevious, yprevious,x, y)}
+	
+	image_speed = clamp(point_distance(xprevious, yprevious, x, y )/2,0,3)
+	
+	facing = dir div 90;
+	
+	animate();	
+}
+
 animate = function()
 {
+
 	if !going 
 	{
 		sprite_index = anims.idle;

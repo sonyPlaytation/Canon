@@ -232,8 +232,21 @@ global.party =
 		exStr: 7,
 		
 		// BATTLE
-		sprites : { idle: sNilsIdle, active: sNilsWalkD, attack: sNilsIdle, defend: sNilsIdle, down: sGrave, head: sHeadNils, portrait: sBattlePortPH},
-		actions: [global.actionLibrary.normals]
+		sprites : { idle: sNilsIdle, active: sNilsWalkD, attack: sNilsIdle, defend: sNilsIdle, down: sGrave, head: sHeadNils, portrait: sBattlePortPH, parry : sNilsParry},
+		actions: [global.actionLibrary.normals],
+		battleLines : {
+			lowHP : "I could really use a hand right now...",
+			lowEX : "Runnin' low on ammo, you guys.",
+			justHealed : "Okay, that's so much better.",
+			justEXed : "More scary evil bullets, comin' right up!",
+			winQuotes : 
+			[ 
+				"I almost had a heart attack!",
+				"Think that was the last of 'em.",
+				"If we went home right now, would anyone really care? Probably not.",
+				"...but my aim is gettin' better!"
+			]
+		},
 		
 	},
 
@@ -250,8 +263,21 @@ global.party =
 		str: 3,
 		exStr: 4,
 		
-		sprites : { idle: sCharIdle, active: sCharFightActive, attack: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH},
-		actions: [global.actionLibrary.normals, global.actionLibrary.special, global.actionLibrary.heal, global.actionLibrary.revive]
+		sprites : { idle: sCharIdle, active: sCharFightActive, attack: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH, parry : sCharParry},
+		actions: [global.actionLibrary.normals, global.actionLibrary.special, global.actionLibrary.heal, global.actionLibrary.revive],
+		battleLines : {
+			lowHP : "I told grandpa I wouldn't cry anymore...",
+			lowEX : "Better hope this next spell works!",
+			justHealed : "Only a scrape after all!",
+			justEXed : "I feel way more magical now :)",
+			winQuotes : 
+			[
+				"I wish we could have spared them...",
+				"That was fun!",
+				"I hope this moment of friendship will bring you many happy memories!",
+				"Would you like to meet my friends? Or are you too injured?"
+			]
+		},
 	},
 	
 	{
@@ -267,10 +293,21 @@ global.party =
 		str: 5,
 		exStr: 6,
 		
-		sprites : { idle: sMattIdle, active: sMatthewFightActive, attack: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH},
-		actions: [global.actionLibrary.normals, global.actionLibrary.special]
+		sprites : { idle: sMattIdle, active: sMatthewFightActive, attack: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH, parry : sMattParry},
+		actions: [global.actionLibrary.normals, global.actionLibrary.special],
+		battleLines : {
+			lowHP : "[shake]Egh-[/shake] I've had worse... [c_dkgrey]dammit...",
+			lowEX : "Man, I have enough of an 'EX' problem as is...",
+			justHealed : "I could've toughed it out...",
+			justEXed : "Who wants some?",
+			winQuotes : 
+			[
+				"Wubba, wubba. I'm in the pink today, boys!",
+				"Don't you want a rematch...?",
+				"You don't have to be big, to look like a big loser."
+			]
+		},
 	}
-
 ]
 
 // Enemy AI Types

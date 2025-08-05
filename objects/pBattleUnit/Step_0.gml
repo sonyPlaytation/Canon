@@ -2,19 +2,22 @@
 
 selfCenter = y - (sprite_height/2)
 
-if hp <= 0 
+if hp == 0 
 { 
-	if sprite_index != sprites.down
+	if !alreadyDead
 	{
-		ds_list_shuffle(dieText);
-		myDied = ds_list_find_value(dieText,0);
-		with oBattle
+		if sprite_index != sprites.down
 		{
-			BATTLE(other.myDied,other.name);
+			ds_list_shuffle(dieText);
+			myDied = ds_list_find_value(dieText,0);
+			with oBattle
+			{
+				BATTLE(other.myDied,other.name);
+			}
 		}
+		alreadyDead = true
+		sprite_index = sprites.down 
 	}
-	
-	sprite_index = sprites.down 
 }
 else
 {

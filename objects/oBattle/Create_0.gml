@@ -20,6 +20,8 @@ slide = noone;
 slideDone = false;
 slideDist = 24;
 
+parriesMissed = 0;
+
 normalsPerformed = 0;
 normalsAllowed = 6;
 normalsReset = 3 * 60
@@ -40,6 +42,8 @@ battleWaitTimeLeft = 0;
 currentUser = 0;
 currentAction = -1;
 currentTargets = noone;
+
+postParryCounter = false;
 
 cursor = 
 {
@@ -119,7 +123,7 @@ selectAction = function()
 	{
 		var unit = unitTurnOrder[turn];
 	
-		if variable_struct_exists(unit.sprites,"active"){ unit.sprite_index = unit.sprites.active; }
+		if unit.hp > 0 and variable_struct_exists(unit.sprites,"active"){ unit.sprite_index = unit.sprites.active; }
 	
 		if !instance_exists(unit) or unit.hp <= 0
 		{
@@ -299,19 +303,20 @@ doNormals = function()
 
 enemyNormals = function()
 {
+	var defender = currentTargets[0]
 	stateName = "enemyNormals"
 	
 	if !instance_exists(oBattleDefenseManager) and !enemyTurnDone
 	{
 		parryWidget = instance_create_depth(x,y,depth-10,oBattleDefenseManager,
 		{
-			defender : currentTargets[0]
+			defender : defender,
+			user : currentUser
 		});
-		
 	}
 	
-	if normalsTimer > 0 {normalsTimer -= 0.5;} 
-	else	
+	if defender.hp > 0 and normalsTimer > 0 {normalsTimer -= 0.5;} 
+	else
 	{
 		enemyTurnDone = true
 		with pBattleDefense {pleaseWrapItUp = true}
@@ -319,12 +324,20 @@ enemyNormals = function()
 	
 	if enemyTurnDone and !instance_exists(parryWidget)
 	{
+		
 		enemyTurnDone = false
 		checkNormalsString();
 		normalsString = "";
 		normalsPerformed = 0
 		normalsTimer = normalsReset
-		state = stateSlideOut;
+		if parriesMissed == 0 
+		{
+			BATTLE("[c_aqua]PERFECT PARRIES! Now go for a counter-attack!!");
+			postParryCounter = true;
+			state = stateSlideOut; 
+		}
+		else state = stateSlideOut;
+		parriesMissed = 0 
 	}
 }
 
@@ -380,7 +393,12 @@ stateSlideOut = function()
 {
 	stateName = "slideOut"
 	currentUser.x = lerp(currentUser.x, currentUser.xstart, 0.25);
-	if abs(floor(point_distance(currentUser.xstart,y, currentUser.x,y ))) == 0 {state = victoryCheck;}
+	if abs(floor(point_distance(currentUser.xstart,y, currentUser.x,y ))) == 0 
+	{
+		if postParryCounter or global.debug {beginAction(currentTargets[0].id, global.actionLibrary.normals, currentUser.id);}
+		else state = victoryCheck;
+		postParryCounter = false;
+	}
 }
 
 victoryCheck = function()
@@ -400,23 +418,25 @@ victoryCheck = function()
 	
 	if enemiesDead == array_length(enemyUnits) // win condition
 	{
-		set_song_ingame(mPlaceholderBattleWin,,,true)
+		set_song_ingame(mBattleWin,,,true)
 		with oBattleHero 
 		{
-			if hp <= 0 {battleChangeHP(self, 1, 1)};
+			if hp <= 0 {battleChangeHP(id, 1, 1)};
 			sprite_index = sprites.active
 		}
 		
-		btlText = []
+		var winQuoteSayer = partyUnits[irandom(array_length(partyUnits)-1)];
+		winQuote = ":"+winQuoteSayer.battleLines.winQuotes[irandom(array_length(winQuoteSayer.battleLines.winQuotes)-1)];
+		winHead = winQuoteSayer.sprites.head
+		
 		BATTLE("[c_lime][wave]YOU WIN!")
 		
 		state = victory;
 	}
 	else if partyDead == array_length(partyUnits) // lose condition
 	{
-		set_song_ingame(mPHAllDied,,,true)
+		set_song_ingame(mGameOver,,,true)
 		
-		btlText = []
 		BATTLE("[c_red][shake]YOU LOSE!")
 		
 		state = victory;
@@ -439,7 +459,9 @@ victory = function()
 		instance_create_depth(x,y,depth-100,oBattleResults,
 		{
 			encounterEXP : _totalEXP,
-			killsList : _killsList
+			killsList : _killsList,
+			winQuote : winQuote,
+			winHead : winHead
 		})
 
 	}

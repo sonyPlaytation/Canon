@@ -1,13 +1,13 @@
 global.fightStarter = noone
 
-function startFight()
+function startFight(_enemies = global.fightEnemies, _creator = global.fightStarter, _battleBG = global.fightBG)
 {
 	global.cam.set_paused(true)
 	instance_create_depth(global.cam.x,global.cam.y,-999,oBattle,
 	{
-		enemies		: global.fightEnemies,
-		creator		: global.fightStarter,
-		battleBG	: global.fightBG
+		enemies		: _enemies,
+		creator		: _creator,
+		battleBG	: _battleBG
 	
 	})	
 };
@@ -52,22 +52,31 @@ function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 	}
 	else if !failed and sound != -1
 	{ 
+		
 		if amount > 0 //healing
 		{
 			if target.hp <= 0 {text = "Resurrection!";}
-			target.flashCol = c_white
 			target.flash += 15;
 		}
 		else
 		{
-			target.flash = 0;
-			target.flashCol = c_red
-			target.flash += 5;
+			target.hit = 0;
+			target.hit += 5;
 			global.cam.shake_screen(amount/2,abs(amount))	
 		}
 		
 		oSFX.battlehit = sound; 
 	}
+	
+	var healthLine = -1
+	
+	if variable_struct_exists(target,"battleLines") 
+	{
+		if (target.hp > target.hpMax/2) and (target.hp + amount <= target.hpMax/2)	healthLine = target.battleLines.lowHP
+		if (amount > 0 and target.hp < target.hpMax) healthLine = target.battleLines.justHealed
+	}
+	
+	if healthLine != -1 {BATTLE($"[{sprite_get_name(target.sprites.head)}]: "+healthLine)}
 	
 	instance_create_depth
 	(

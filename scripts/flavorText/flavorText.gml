@@ -30,7 +30,7 @@ global.topics[$ "officeDesk"] =
 global.topics[$ "officePhoto"] = 
 [
 	SPEAKER(),
-	TEXT("On the wall hangs a large framed photo of a rather large group of people.\nThe flow of time seems to have worn the caption off of the brass placard."),
+	TEXT("On the cabinet sits a photo of several people at some kind of party.\nThe flow of time seems to have worn the caption off of the brass placard."),
 	CHOICE("Inspect the photo?",
 		OPTION("Sure",			"choiceOfficePhotoYes"),
 		OPTION("Don't care",	"choiceOfficePhotoNo"))
@@ -38,16 +38,16 @@ global.topics[$ "officePhoto"] =
 
 	global.topics[$ "choiceOfficePhotoYes"] = 
 	[
-		TEXT("In the middle of the crowd stands a middle aged man with a very trendy old man moustache."),
-		TEXT("His arms are outstretched in such a way that makes his intent kind of difficult to parse."),
-		TEXT("Everyone around him looks uncomfortable."),
+		TEXT("The guy closest to the camera is a middle aged man with a very trendy old man moustache."),
+		TEXT("His arms are outstretched to either side of him.\nHis pose and facial expression give off an odd mix of conflicting emotions."),
+		TEXT("Everyone around him seems uncomfortable."),
 		SPEAKER("Nils",sPortNils),
-		TEXT("They look like they're having fun!"),
+		TEXT("Damn, they look like they're having fun..."),
 	]
 	
 	global.topics[$ "choiceOfficePhotoNo"] = 
 	[
-		TEXT("The photo depicts something likely very important, but I guess it doesn't interest you."),
+		TEXT("The photo likely depicts something very important...\nbut I guess it doesn't interest you."),
 		SPEAKER("Nils",sPortNils),
 		TEXT("Booooriiiiing!"),
 	]

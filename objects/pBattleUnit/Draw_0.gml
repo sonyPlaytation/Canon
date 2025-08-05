@@ -2,18 +2,12 @@
 
 draw_character_shadow();
 
-if flash > 0
-{
-	flash--;
-	gpu_set_fog(true,  flashCol, 0, 1000)
-	draw_self();
-	gpu_set_fog(false, flashCol, 0, 1000)
-}
-else
-{
-	draw_self();
-}
+if flash > 0 { flash--; shader_set(shWhiteFlash);}
+if hit > 0   { hit--;   shader_set(shRedFlash);}
+if parry > 0 { parry--;	parryFlash(parry); }
 
+draw_self();
+shader_reset();
 
 if global.debug 
 {

@@ -2,7 +2,7 @@
 event_inherited()
 
 dir = 0
-cooldownReset = 60;
+cooldownReset = 30;
 cooldown = 15;
 
 spd = 2;

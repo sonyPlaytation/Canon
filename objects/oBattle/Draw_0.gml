@@ -7,16 +7,17 @@ draw_sprite(battleBG,0,global.cam.x - (GAME_W/2),global.cam.y - (GAME_H/2));
 var padding = TILE_SIZE
 
 // battle text
-var maxMessages = 3
+var maxMessages = 2
 
 draw_sprite_stretched(sTextBox,0, _x + (padding*4), _y + GAME_H - (padding * 3), GAME_W - (padding*8), padding * 3 )
 
-for (var i = 0; i <= min(array_length(btlText)-1,maxMessages) ; i++)
+for (var i = min(array_length(btlText)-1,maxMessages); i >= 0 ; i--)
 {
 	var xx = _x + (padding*4) + (padding/2)
-	var yy = (_y + GAME_H  - (padding * 3) + (13*i)) + 8
+	var yy = (_y + GAME_H  - (padding * 2.66) + (18*i)) + 8
 	
-	var alpha = (1 - (i*0.25))
+	var alpha = 1
+	btlText[i].align(fa_left,fa_middle)
 	btlText[i].blend(c_white,alpha)
 	btlText[i].draw(xx, yy)
 	draw_set_alpha(1)

@@ -1,38 +1,43 @@
 /// @
 
-walksp = 2;
-follow = true;
+event_inherited();
 
 caughtUp = false;
 
-doFollow = function()
+stateFollow = function()
 {
-	var distOff = 2;
+	if follow
+	{
+		var distOff = 2;
 	
-	if x <= oPlayer.posX[followDist] + distOff and x >= oPlayer.posX[followDist] - distOff
-	and y <= oPlayer.posY[followDist] + distOff and y >= oPlayer.posY[followDist] - distOff
-	{ caughtUp = true; }
+		if x <= oPlayer.posX[followDist] + distOff and x >= oPlayer.posX[followDist] - distOff
+		and y <= oPlayer.posY[followDist] + distOff and y >= oPlayer.posY[followDist] - distOff
+		{ caughtUp = true; }
 
-	if !caughtUp
-	{
-		image_speed = 2
-		x = approach(x, oPlayer.posX[followDist],walksp);
-		y = approach(y, oPlayer.posY[followDist],walksp);
-	}
-	else
-	{
-		image_speed = oPlayer.sprSpd[followDist];
-		x = oPlayer.posX[followDist];
-		y = oPlayer.posY[followDist];
-	}
+		if !caughtUp
+		{
+			image_speed = 2
+			x = approach(x, oPlayer.posX[followDist],walksp);
+			y = approach(y, oPlayer.posY[followDist],walksp);
+		}
+		else
+		{
+			image_speed = oPlayer.sprSpd[followDist];
+			x = oPlayer.posX[followDist];
+			y = oPlayer.posY[followDist];
+		}
+		
+		facing = oPlayer.face[followDist]
+		going	= oPlayer.going
 	
-	animate(oPlayer.face[followDist], oPlayer.going)
+		animate()
 	
-	x = round(x);
-	y = round(y);
+		x = round(x);
+		y = round(y);
+	}
 }
 
-animate = function(facing, going)
+animate = function()
 {
 	if !going 
 	{
@@ -66,3 +71,5 @@ animate = function(facing, going)
 		}
 	}
 }
+
+state = stateFollow;

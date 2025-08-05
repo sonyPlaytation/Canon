@@ -1,3 +1,57 @@
 /// @
 
 selfCenter = y - (sprite_height/2);
+
+going = false;
+dir = 0;
+facing = 0;
+
+stateInCutscene = function()
+{
+
+	going = (point_distance(xprevious, yprevious, x, y ) != 0)
+	if going { dir = point_direction(xprevious, yprevious,x, y) }
+	
+	image_speed = clamp(point_distance(xprevious, yprevious, x, y )/2,0,3)
+	
+	facing = dir div 90;
+	
+	animate();	
+	
+}
+
+animate = function()
+{
+
+	if !going 
+	{
+		sprite_index = anims.idle;
+		image_index = facing;
+	}
+	else // walk anims
+	{
+		switch (facing)
+		{
+			case 0:
+				if sprite_index != anims.walk.R {image_index = 0}
+				sprite_index = anims.walk.R;
+			break;
+			
+			case 1:
+				if sprite_index != anims.walk.U {image_index = 0}
+				sprite_index = anims.walk.U;
+			break;
+			
+			case 2:
+				if sprite_index != anims.walk.L {image_index = 0}
+				sprite_index = anims.walk.L;
+			break;
+			
+			case 3:
+				if sprite_index != anims.walk.D {image_index = 0}
+				sprite_index = anims.walk.D;
+			break;
+			
+		}
+	}
+}

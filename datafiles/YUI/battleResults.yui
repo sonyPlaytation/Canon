@@ -36,7 +36,7 @@ root: // THE SCREEN
         - type: panel // FLEX BOX
           flex: true
           layout: horizontal
-          size: { w: 544, h: 150}
+          size: { w: 544, h: 130}
           padding: 12
           canvas: 
             top: 24
@@ -47,7 +47,7 @@ root: // THE SCREEN
           //background: c_white
           elements: 
 
-            - type: panel //Nils panel
+            - type: panel //ITEMS panel
               size: { w: 150}
               padding: 8
               flex: 1
@@ -58,7 +58,7 @@ root: // THE SCREEN
                 - EXP
                 - @encounterEXP
 
-            - type: panel //Nils panel
+            - type: panel //KILLS panel
               size: { w: 150}
               padding: 8
               flex: 2
@@ -69,6 +69,30 @@ root: // THE SCREEN
                 text: Kills
                 type: text
                 text: @name
+
+        - type: panel // win quote
+          size: {h: 28, w: 470}
+          layout: horizontal
+          spacing: 4
+          padding: 2
+          canvas: 
+            top: 148
+            center: h
+          background: ~sTextOption
+
+          elements:
+            - type: panel // win quote
+              size: {w: 3}
+
+            - type: image
+              sprite: @winHead
+
+            - type: text
+              padding: [3,7]
+              canvas:
+                left: 33
+                top: 8
+              text: @winQuote
 
         - type: panel // FLEX BOX
           flex: true

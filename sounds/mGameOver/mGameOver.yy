@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"mGameOver",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":70.909096,
+  "name":"mGameOver",
+  "parent":{
+    "name":"General",
+    "path":"folders/Sounds/Music/General.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"mGameOver.ogg",
+  "type":1,
+  "volume":0.65,
+}

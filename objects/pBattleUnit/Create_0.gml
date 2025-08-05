@@ -19,6 +19,9 @@ ds_list_add(dieText, "{0} couldn't hack it.")
 ds_list_add(dieText, "{0} will not return in Canon 2.")
 
 myDied = "";
+alreadyDead = false
 
+parry = 0;
 flash = 0;
+hit = 0;
 flashCol = c_white;

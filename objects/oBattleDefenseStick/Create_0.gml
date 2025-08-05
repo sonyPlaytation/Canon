@@ -10,6 +10,7 @@ prevDir = dir;
 hsp = 0;
 vsp = 0;
 
+parry = 0;
 flash = 0
 hit = 0;
 

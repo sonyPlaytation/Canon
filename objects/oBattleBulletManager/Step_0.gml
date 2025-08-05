@@ -20,6 +20,6 @@ if cooldown <= 0 and !pleaseWrapItUp
 	
 	})
 	
-	cooldown = cooldownReset
+	cooldown = ceil(cooldownReset)
 	
 }
