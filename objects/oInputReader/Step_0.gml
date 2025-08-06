@@ -43,7 +43,7 @@ var finalInputsString = $"{dirSprite} {inputsString}"
 if (prevInputs != currInputs) or (prevDir != currDir) // if inputs are not the same as last frame
 {
 	array_insert(inputs, 0, $"{inputsHeldTimer} {finalInputsString}");
-	inputsHeldTimer = 0;
+	inputsHeldTimer = 1;
 }
 else
 {

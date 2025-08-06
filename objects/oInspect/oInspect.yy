@@ -1,7 +1,9 @@
 {
   "$GMObject":"",
   "%Name":"oInspect",
-  "eventList":[],
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
   "name":"oInspect",
   "overriddenProperties":[],
@@ -10,8 +12,8 @@
     "path":"folders/Overworld Entities.yy",
   },
   "parentObjectId":{
-    "name":"pDebugDraw",
-    "path":"objects/pDebugDraw/pDebugDraw.yy",
+    "name":"pNPC",
+    "path":"objects/pNPC/pNPC.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

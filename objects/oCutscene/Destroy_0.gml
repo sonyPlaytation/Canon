@@ -2,7 +2,7 @@
 instance_destroy(oCutCam);
 
 layer_sequence_destroy(thisScene)
-trigger.cutscenePlaying = noone;
+if instance_exists(trigger) {trigger.cutscenePlaying = noone;}
 
 with oPlayer
 {

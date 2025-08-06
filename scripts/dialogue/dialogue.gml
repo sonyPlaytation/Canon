@@ -37,6 +37,7 @@ global.topics = {};
 		TEXT("Hi Gwen"),
 		SPEAKER("Gwen", sPortGwen,, PORT_SIDE.R),
 		TEXT("I hate you so fucking much"),
+		HOLD(),
 		TEXT("[wave][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3]"),
 	];
 	

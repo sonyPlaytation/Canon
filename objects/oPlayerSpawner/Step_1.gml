@@ -2,6 +2,10 @@
 
 if !instance_exists(oPlayer) and !global.midTransition
 {
-	instance_create_depth(x,y,depth,oPlayer)
+	instance_create_depth(x,y,depth,oPlayer,
+	{
+		cFollow : cFollow,
+		mFollow : mFollow
+	})
 	global.cam.follow = oPlayer
 }

@@ -33,6 +33,7 @@
     {"$GMObjectProperty":"v1","%Name":"scene","filters":[],"listItems":[],"multiselect":false,"name":"scene","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"cutTest","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"playX","filters":[],"listItems":[],"multiselect":false,"name":"playX","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"x","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"playY","filters":[],"listItems":[],"multiselect":false,"name":"playY","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"y","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"selfDestruct","filters":[],"listItems":[],"multiselect":false,"name":"selfDestruct","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

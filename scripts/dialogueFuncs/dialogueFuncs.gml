@@ -6,6 +6,8 @@
 #macro CHECK	new checkFlagAction
 #macro NEXT		new nextAction
 #macro SET		new setFlagAction
+#macro HOLD		new holdAction
+#macro PLAY		new playAction
 
 #region Custom Scribble Events
 
@@ -44,6 +46,24 @@ function textAction(_text) : dialogueAction() constructor
 	act = function(textbox)
 	{
 		textbox.setText(text);
+		textbox.onHold = false;	
+	}
+}
+
+function holdAction() : dialogueAction() constructor
+{
+	act = function(textbox)
+	{
+		textbox.onHold = true;	
+	}
+}
+
+function playAction() : dialogueAction() constructor
+{
+	act = function(textbox)
+	{
+		textbox.next();
+		textbox.onHold = false;	
 	}
 }
 

@@ -1,5 +1,7 @@
 /// @
 
+if onHold {exit}
+
 var xscale = 1;
 portraitX = x;
 if portSide == PORT_SIDE.R

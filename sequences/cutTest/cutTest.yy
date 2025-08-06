@@ -53,8 +53,8 @@
   "resourceVersion":"2.0",
   "seqHeight":120.0,
   "seqWidth":706.0,
-  "showBackdrop":true,
-  "showBackdropImage":true,
+  "showBackdrop":false,
+  "showBackdropImage":false,
   "spriteId":null,
   "timeUnits":1,
   "tracks":[

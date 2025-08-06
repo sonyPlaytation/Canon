@@ -3,20 +3,18 @@
   "%Name":"oLockedExit",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"oLockedExit",
-  "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"propertyId":{"name":"myAction","path":"objects/pEntity/pEntity.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"unlockDoor",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"propertyId":{"name":"drawShadow","path":"objects/pEntity/pEntity.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"False",},
-  ],
+  "overriddenProperties":[],
   "parent":{
     "name":"Objects",
     "path":"folders/Overworld Entities/Objects.yy",
   },
   "parentObjectId":{
-    "name":"pDebugDraw",
-    "path":"objects/pDebugDraw/pDebugDraw.yy",
+    "name":"pNPC",
+    "path":"objects/pNPC/pNPC.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

@@ -2,6 +2,9 @@
 
 depth = -9999
 
+onHold = false
+alarm[0] = 300
+
 // General
 margin = TILE_SIZE;
 padding = TILE_SIZE/2;
