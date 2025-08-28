@@ -1,5 +1,6 @@
 
 #macro FLAGS global.flags
+#macro nl +"\n"+
 
 global.flags = 
 {
@@ -18,75 +19,66 @@ global.topics[$ "unlockedGeneric"] = [TEXT("You unlock the door.")]
 #endregion
 
 #region rOffice
-global.topics[$ "officeDesk"] = 
-[
-	SPEAKER(),
-	CHOICE("A very expensive looking desk. Its surface is marked with several water rings.",
-		OPTION("Check the drawers", "choice desk drawers"),
-		OPTION("Check the desktop", "choice desk top"),
-		OPTION("Check nothing", "choice desk nothing"))
-];
 
-global.topics[$ "officePhoto"] = 
-[
-	SPEAKER(),
-	TEXT("On the cabinet sits a photo of several people at some kind of party.\nThe flow of time seems to have worn the caption off of the brass placard."),
-	CHOICE("Inspect the photo?",
-		OPTION("Sure",			"choiceOfficePhotoYes"),
-		OPTION("Don't care",	"choiceOfficePhotoNo"))
-];
-
-	global.topics[$ "choiceOfficePhotoYes"] = 
+	global.topics[$ "officePhoto"] = 
 	[
-		TEXT("The guy closest to the camera is a middle aged man with a very trendy old man moustache."),
-		TEXT("His arms are outstretched to either side of him.\nHis pose and facial expression give off an odd mix of conflicting emotions."),
-		TEXT("Everyone around him seems uncomfortable."),
-		SPEAKER("Nils",sPortNils),
-		TEXT("Damn, they look like they're having fun..."),
-	]
-	
-	global.topics[$ "choiceOfficePhotoNo"] = 
-	[
-		TEXT("The photo likely depicts something very important...\nbut I guess it doesn't interest you."),
-		SPEAKER("Nils",sPortNils),
-		TEXT("Booooriiiiing!"),
-	]
-
-global.topics[$ "officeDesk"] = 
-[
-	SPEAKER(),
-	CHOICE("A very expensive looking desk. Its surface is marked with several water rings.",
-		OPTION("Check the drawers", "choice desk drawers"),
-		OPTION("Check the desktop", "choice desk top"),
-		OPTION("Check nothing", "choice desk nothing"))
-];
-
-	global.topics[$ "choice desk drawers"] = 
-	[
-		TEXT("Despite your wimpiest tug, the desks drawers will not budge. "),
-		SPEAKER("Nils",sPortNils,1),
-		TEXT("I guess its [c_red]LOCKED[c_white]!\n[portrait,sPortNils,2]I bet something really useful or cool is in there..."),
 		SPEAKER(),
-		TEXT("The desks drawers are [c_yellow]JAMMED[c_white], not [c_red]LOCKED[c_white].\nThis is universal shorthand for 'Give up'."),
-	]
+		TEXT("On the cabinet sits a photo of several people at some kind of party.\nThe flow of time seems to have worn the caption off of the brass placard."),
+		CHOICE("Inspect the photo?",
+			OPTION("Sure",			"choiceOfficePhotoYes"),
+			OPTION("Don't care",	"choiceOfficePhotoNo"))
+	];
 
-	global.topics[$ "choice desk top"] = 
-	[
-		TEXT("The desktop is made of a very dark brown wood."),
-		TEXT("You know jack shit about wood so that's the most you can discern."),
-		SPEAKER("Nils",sPortNils),
-		TEXT("The perfect arena for a blistering round of solitaire!"),
-		SPEAKER("Nils",sPortNils,2),
-		TEXT("Not sure why I remember what solitaire is though..."),
-		SET("solitaire", 1)
-	]
+		global.topics[$ "choiceOfficePhotoYes"] = 
+		[
+			TEXT("The guy closest to the camera is a middle aged man with a very trendy old man moustache."),
+			TEXT("His arms are outstretched to either side of him.\nHis pose and facial expression give off an odd mix of conflicting emotions."),
+			TEXT("Everyone around him seems uncomfortable."),
+			SPEAKER("Nils",sPortNils),
+			TEXT("Damn, they look like they're having fun..."),
+		]
+	
+		global.topics[$ "choiceOfficePhotoNo"] = 
+		[
+			TEXT("The photo likely depicts something very important...\nbut I guess it doesn't interest you."),
+			SPEAKER("Nils",sPortNils),
+			TEXT("Booooriiiiing!"),
+		]
 
-	global.topics[$ "choice desk nothing"] = 
+	global.topics[$ "officeDesk"] = 
 	[
-		TEXT("You check NOTHING. What are you, a nerd?"),
-		SPEAKER("Nils",sPortNils),
-		TEXT("Stupid nerd desk! I don't even care about your drawer contents or anything!")
-	]
+		CHOICE("An expensive looking desk. Its surface is marked with several water rings.",
+			OPTION("Check the drawers", "choice desk drawers"),
+			OPTION("Check the desktop", "choice desk top"),
+			OPTION("Check nothing", "choice desk nothing"))
+	];
+
+		global.topics[$ "choice desk drawers"] = 
+		[
+			TEXT("Despite your wimpiest tug, the desks drawers will not budge. "),
+			SPEAKER("Nils",sPortNils,1),
+			TEXT("I guess its [c_red]LOCKED[c_white]!\n[portrait,sPortNils,2]I bet something really useful or cool is in there..."),
+			SPEAKER(),
+			TEXT("The desks drawers are [c_yellow]JAMMED[c_white], not [c_red]LOCKED[c_white].\nThis is universal shorthand for 'Give up'."),
+		]
+
+		global.topics[$ "choice desk top"] = 
+		[
+			TEXT("The desktop is made of a very dark brown wood."),
+			TEXT("You know jack shit about wood so that's the most you can discern."),
+			SPEAKER("Nils",sPortNils),
+			TEXT("The perfect arena for a blistering round of solitaire!"),
+			SPEAKER("Nils",sPortNils,2),
+			TEXT("Not sure why I remember what solitaire is though..."),
+			SET("solitaire", 1)
+		]
+
+		global.topics[$ "choice desk nothing"] = 
+		[
+			TEXT("You check NOTHING. What are you, a nerd?"),
+			SPEAKER("Nils",sPortNils),
+			TEXT("Stupid nerd desk! I don't even care about your drawer contents or anything!")
+		]
 
 #endregion
 
@@ -142,6 +134,20 @@ global.topics[$ "officeHallSign3"] =
 	[
 		SPEAKER("Nils",sPortNils),
 		TEXT("Who cares..."),
+	]
+	
+	global.topics[$ "cubicleCoffee"] = 
+	[
+		TEXT("This cubicle is littered with personal adornments."),
+		TEXT("A poster reads:" nl "'WARNING[c_red]![c_white] Do not talk to programmer until they've had there coffee! [sLaughingCryingEmoji]'"),
+		SPEAKER("Nils",sPortNils,1),
+		TEXT("Ugh, lame!"),
+		SPEAKER(),
+		TEXT("That's not all!"),
+		TEXT("Their coffee mug reads:" nl "'WARNING[c_red]![c_white] Do not talk to programmer until they've had there coffee! [sLaughingCryingEmoji]'"),
+		TEXT("Both the poster and the mug have the exact same typo."),
+		SPEAKER("Nils",sPortNils,3),
+		TEXT("Jesus man, was it really THAT funny??"),
 	]
 }
 

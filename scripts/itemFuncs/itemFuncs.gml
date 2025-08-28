@@ -43,15 +43,21 @@ function unlockDoor(_locked, _unlocked)
 	{
 		myExit.locked = false;
 		instance_destroy();
+		SFX snSH2DoorUnlock
 		startDialogue(_unlocked);
-	} else startDialogue(_locked);
+	} 
+	else 
+	{
+		SFX snSH2DoorLocked
+		startDialogue(_locked);
+	}
 }
 
 function addItem(_item)
 {
 	array_push(global.myItems,_item)
 	
-	shortMessage($"Found a {_item.name}!")
+	shortMessage($"Found a {_item.name}!",TXTPOS.MID)
 	
 	show_debug_message($"Added Item: {_item.name} to Inventory")
 }

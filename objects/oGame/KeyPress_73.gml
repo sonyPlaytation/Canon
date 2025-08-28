@@ -1,0 +1,3 @@
+
+
+global.inputDisplay = !global.inputDisplay

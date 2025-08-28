@@ -19,7 +19,6 @@ function leaveBattle()
 	if instance_exists(global.fightStarter) {instance_destroy(global.fightStarter);}
 	if instance_exists(oBattle) {instance_destroy(oBattle);}
 	instance_destroy(oBattleResults);	
-	instance_destroy(yui_document);	
 	oPlayer.iFrames = 90;
 	
 	layer_sequence_destroy(self.elementID);

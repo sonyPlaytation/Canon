@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snSH2DoorUnlock",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":1.6005216,
+  "name":"snSH2DoorUnlock",
+  "parent":{
+    "name":"Funny",
+    "path":"folders/Sounds/SFX/Funny.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snSH2DoorUnlock.wav",
+  "type":1,
+  "volume":0.45,
+}

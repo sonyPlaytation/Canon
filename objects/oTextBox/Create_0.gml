@@ -3,16 +3,28 @@
 depth = -9999
 
 onHold = false
-alarm[0] = 300
+
+alpha = 0;
+alphaTarg = 1;
+alphaSpeed = 0.2
 
 // General
-margin = TILE_SIZE;
-padding = TILE_SIZE/2;
+margin = TILE_SIZE*1.5;
+padding = 16
 width = display_get_gui_width() - (margin*4);
 height = TILE_SIZE*4;
 
+enum TXTPOS
+{
+	TOP,
+	MID,
+	BTM
+}
+
 x = (display_get_gui_width() - width) /2;
-y = display_get_gui_height() - height - padding;
+y = display_get_gui_height() - height - padding; 
+
+yMode = TXTPOS.BTM
 
 with pProtag
 {

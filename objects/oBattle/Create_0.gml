@@ -418,20 +418,7 @@ victoryCheck = function()
 	
 	if enemiesDead == array_length(enemyUnits) // win condition
 	{
-		set_song_ingame(mBattleWin,,,true)
-		with oBattleHero 
-		{
-			if hp <= 0 {battleChangeHP(id, 1, 1)};
-			sprite_index = sprites.active
-		}
-		
-		var winQuoteSayer = partyUnits[irandom(array_length(partyUnits)-1)];
-		winQuote = ":"+winQuoteSayer.battleLines.winQuotes[irandom(array_length(winQuoteSayer.battleLines.winQuotes)-1)];
-		winHead = winQuoteSayer.sprites.head
-		
-		BATTLE("[c_lime][wave]YOU WIN!")
-		
-		state = victory;
+		endBattle()
 	}
 	else if partyDead == array_length(partyUnits) // lose condition
 	{
@@ -487,9 +474,30 @@ turnProgress = function()
 checkNormalsString = function()
 {
 	if string_pos("lmh",normalsString){show_debug_message("Plink detected")};
+}
+
+endBattle = function()
+{ 
+	set_song_ingame(mBattleWin,,,true)
+	with oBattleHero 
+	{
+		if hp <= 0 {battleChangeHP(id, 1, 1)};
+		sprite_index = sprites.active
+	}
 	
-	
-	
+	for (var i = 0; i < array_length(partyUnits); ++i) 
+	{
+		PARTY[i].hp = partyUnits[i].hp;
+		PARTY[i].ex = partyUnits[i].ex; 
+	}
+		
+	var winQuoteSayer = partyUnits[irandom(array_length(partyUnits)-1)];
+	winQuote = "["+sprite_get_name(winQuoteSayer.sprites.head)+"]: "+chr(34)+winQuoteSayer.battleLines.winQuotes[irandom(array_length(winQuoteSayer.battleLines.winQuotes)-1)]+chr(34);
+	winHead = winQuoteSayer.sprites.head
+		
+	BATTLE("[c_lime][wave]YOU WIN!")
+		
+	state = victory;
 }
 
 state = selectAction;

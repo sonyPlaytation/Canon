@@ -7,7 +7,9 @@
   ],
   "managed":true,
   "name":"oLockedExit",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"propertyId":{"name":"myAction","path":"objects/pEntity/pEntity.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"unlockDoor",},
+  ],
   "parent":{
     "name":"Objects",
     "path":"folders/Overworld Entities/Objects.yy",

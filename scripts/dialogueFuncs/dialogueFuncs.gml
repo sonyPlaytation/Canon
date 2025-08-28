@@ -29,14 +29,24 @@ function dialogueAction() constructor {
 	act = function() { };
 }
 
-function shortMessage(_text)
+function shortMessage(_text,yMode = TXTPOS.BTM)
 {
 	global.topics[$ "shortMessage"] = 
 	[ 
 		TEXT($"{_text}")
 	]
 	
-	startDialogue("shortMessage");
+	startDialogue("shortMessage",yMode);
+}
+
+function sysMessage(_text)
+{
+	global.topics[$ "sysMessage"] = 
+	[ 
+		TEXT($"{_text}")
+	]
+	
+	startDialogue("sysMessage",);
 }
 
 function textAction(_text) : dialogueAction() constructor
@@ -52,6 +62,11 @@ function textAction(_text) : dialogueAction() constructor
 
 function holdAction() : dialogueAction() constructor
 {
+	if instance_exists(oCutscene)
+	{
+		with oCutscene {layer_sequence_play(thisScene)}	
+	}
+	
 	act = function(textbox)
 	{
 		textbox.onHold = true;	
@@ -60,11 +75,22 @@ function holdAction() : dialogueAction() constructor
 
 function playAction() : dialogueAction() constructor
 {
+	if instance_exists(oCutscene)
+	{
+		with oCutscene {layer_sequence_pause(thisScene)}	
+	}
+	
 	act = function(textbox)
 	{
 		textbox.next();
 		textbox.onHold = false;	
 	}
+}
+
+function endHold()
+{
+	if instance_exists(oTextBox) { oTextBox.next(); oTextBox.onHold = false }
+	if instance_exists(oCutscene){ with oCutscene {layer_sequence_pause(thisScene)}	}
 }
 
 function textSoundLUT(_name)
@@ -187,11 +213,21 @@ function nextAction() : dialogueAction() constructor
 	}
 }
 
-function startDialogue(topic)
+function startDialogue(topic,yMode = TXTPOS.BTM)
 {
 	if instance_exists(oTextBox){return};
 	
+	show_debug_message($"playerY: {oPlayer.y} | ocamY: {global.cam.y} | ocam_getY: {global.cam.get_y()}")
+	
+	
+	
+	if oPlayer.y > (global.cam.y + (TILE_SIZE/2))
+	{
+		yMode = TXTPOS.TOP
+	}
+	
 	var inst = instance_create_depth(x,y,-999,oTextBox);
+	inst.yMode = yMode
 	inst.setTopic(topic);
 	show_debug_message($"Set topic: {topic}");
 }

@@ -62,6 +62,13 @@ interact = function()
 		{
 			with actNow
 			{ 
+				if struct_exists(anims,"idle")
+				{
+					sprite_index = anims.idle;
+					facing = round(point_direction(x, y, other.x, other.y) / 90)
+					if facing > 3 {facing = 0}
+				}
+				
 				switch(myAction)
 				{
 					case startDialogue: myAction(myTopic);	break;
@@ -118,7 +125,8 @@ groundMove = function()
 	if going 
 	{
 		dir = point_direction(0, 0, xinput, yinput);
-		facing = point_direction(0, 0, xinput, yinput) div 90
+		facing = round(point_direction(0, 0, xinput, yinput) / 90)
+		if facing > 3 {facing = 0}
 		spd = spdNow;
 	}
 	else

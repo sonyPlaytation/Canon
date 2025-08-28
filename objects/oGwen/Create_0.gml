@@ -4,6 +4,12 @@
 // Inherit the parent event
 event_inherited();
 
+stateIdle = function()
+{
+	if facing > 3 {facing = 0}
+	animate()
+}
+
 anims = 
 {
 	idle : sGwenIdle,
@@ -19,4 +25,4 @@ dir = 0;
 
 image_index = facing;
 
-state = stateInCutscene;
+state = stateIdle;

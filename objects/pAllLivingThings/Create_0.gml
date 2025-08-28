@@ -6,6 +6,8 @@ going = false;
 dir = 0;
 facing = 0;
 
+anims = {};
+
 stateInCutscene = function()
 {
 

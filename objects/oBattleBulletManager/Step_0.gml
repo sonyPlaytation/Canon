@@ -2,6 +2,11 @@
 
 if cooldown > 0 {cooldown--}
 
+if instance_exists (oBattleDefenseManager)
+{
+	if oBattleDefenseManager.parry > 0 {exit}
+}
+
 if cooldown <= 0 and !pleaseWrapItUp
 {
 	var bX, bY
@@ -11,13 +16,11 @@ if cooldown <= 0 and !pleaseWrapItUp
 	bX = lengthdir_x(dist,dir)
 	bY = lengthdir_y(dist,dir)
 	
-	instance_create_depth(x + bX, y+ bY,depth-100,oBulletTest,
+	instance_create_depth(x + bX, y+ bY,depth-100,oBullet,
 	{
-	
 		dir : dir-180,
 		spd : spd,
 		dmg : dmg
-	
 	})
 	
 	cooldown = ceil(cooldownReset)

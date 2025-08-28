@@ -232,7 +232,7 @@ global.party =
 		exStr: 7,
 		
 		// BATTLE
-		sprites : { idle: sNilsIdle, active: sNilsWalkD, attack: sNilsIdle, defend: sNilsIdle, down: sGrave, head: sHeadNils, portrait: sBattlePortPH, parry : sNilsParry},
+		sprites : { idle: sNilsIdle, active: sNilsWalkD, attack: sNilsIdle, defend: sNilsIdle, down: sGrave, head: sHeadNils, portrait: sBattlePort, parry : sNilsParry},
 		actions: [global.actionLibrary.normals],
 		battleLines : {
 			lowHP : "I could really use a hand right now...",
@@ -404,7 +404,7 @@ global.enemies =
 	sand:
 	{
 		name: "Really Angry Sand",
-		hp : 30,
+		hp : 1,
 		hpMax: 30,
 		ex: 10,
 		exMax: 10,
