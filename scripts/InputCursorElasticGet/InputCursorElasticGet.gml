@@ -6,7 +6,7 @@
 /// - `.enabled`
 /// - `.x`
 /// - `.y`
-/// - `.strength`
+/// - `.stats.strength`
 /// 
 /// N.B. If no elastic state has been set, `.enabled` will be `false` and the other member
 ///      variables will be set to `undefined`. 
@@ -31,7 +31,7 @@ function InputCursorElasticGet(_playerIndex = 0)
         _result.enabled  = ((__elasticX != undefined) && (__elasticY != undefined));
         _result.x        = __elasticX
         _result.y        = __elasticY;
-        _result.strength = __elasticStrength;
+        _result.stats.strength = __elasticStrength;
     }
     
     return _result;

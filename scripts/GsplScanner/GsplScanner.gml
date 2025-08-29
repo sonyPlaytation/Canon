@@ -11,7 +11,7 @@ function GsplScanner(source, token_definition) constructor {
 	self.keywords = token_definition.keywords;
 	
 	_eof = token_definition.eof_token;
-	self.string_token = token_definition.string_token;
+	self.stats.string_token = token_definition.stats.string_token;
 	self.number_token = token_definition.number_token;
 	self.identifier_token = token_definition.identifier_token;
 	

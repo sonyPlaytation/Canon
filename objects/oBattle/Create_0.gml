@@ -125,9 +125,9 @@ selectAction = function()
 	{
 		var unit = unitTurnOrder[turn];
 	
-		if unit.hp > 0 and variable_struct_exists(unit.sprites,"active"){ unit.sprite_index = unit.sprites.active; }
+		if unit.stats.hp > 0 and variable_struct_exists(unit.sprites,"active"){ unit.sprite_index = unit.sprites.active; }
 	
-		if !instance_exists(unit) or unit.hp <= 0
+		if !instance_exists(unit) or unit.stats.hp <= 0
 		{
 			state = victoryCheck;
 			exit;
@@ -232,13 +232,13 @@ doNormals = function()
 	currentAction = -1;
 	normalsTimer--;
 	
-	if currentTargets[0].hp <= 0 // if current target dies before time is up
+	if currentTargets[0].stats.hp <= 0 // if current target dies before time is up
 	{
 		killsPerTurn++
 		//find random living target and switch to them instead
 		var livingTargets = array_filter(enemyUnits, function(_element, _index)
 		{
-			return _element.hp > 0;	
+			return _element.stats.hp > 0;	
 		});
 		
 		array_shuffle(livingTargets);
@@ -319,7 +319,7 @@ enemyNormals = function()
 		});
 	}
 	
-	if defender.hp > 0 and normalsTimer > 0 {normalsTimer -= 0.5;} 
+	if defender.stats.hp > 0 and normalsTimer > 0 {normalsTimer -= 0.5;} 
 	else
 	{
 		enemyTurnDone = true
@@ -411,13 +411,13 @@ victoryCheck = function()
 	var enemiesDead = 0;
 	for (var i = 0; i < array_length(enemyUnits); i++)
 	{
-		if enemyUnits[i].hp <= 0 {enemiesDead++}
+		if enemyUnits[i].stats.hp <= 0 {enemiesDead++}
 	}
 	
 	var partyDead = 0;
 	for (var i = 0; i < array_length(partyUnits); i++)
 	{
-		if partyUnits[i].hp <= 0 {partyDead++}
+		if partyUnits[i].stats.hp <= 0 {partyDead++}
 	}
 	
 	if enemiesDead == array_length(enemyUnits) // win condition
@@ -488,14 +488,14 @@ endBattle = function()
 	set_song_ingame(mBattleWin,,,true)
 	with oBattleHero 
 	{
-		if hp <= 0 {battleChangeHP(id, 1, 1)};
+		if stats.hp <= 0 {battleChangeHP(id, 1, 1)};
 		sprite_index = sprites.active
 	}
 	
 	for (var i = 0; i < array_length(partyUnits); ++i) 
 	{
-		PARTY[i].hp = partyUnits[i].hp;
-		PARTY[i].ex = partyUnits[i].ex; 
+		PARTY[i].stats.hp = partyUnits[i].stats.hp;
+		PARTY[i].stats.ex = partyUnits[i].stats.ex; 
 	}
 		
 	var winQuoteSayer = partyUnits[irandom(array_length(partyUnits)-1)];

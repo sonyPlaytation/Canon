@@ -23,7 +23,7 @@ global.actionLibrary =
 		hitSound : snHit8,
 		func : function(user, targets)
 		{
-			var damage = ceil(user.str + random_range(-user.str/4, user.str/4));
+			var damage = ceil(user.stats.str + random_range(-user.stats.str/4, user.stats.str/4));
 			battleChangeHP(targets[0], -damage,, self.hitSound);
 		}
 	},
@@ -87,7 +87,7 @@ global.actionLibrary =
 		hitSound : snHit8,
 		func : function(user, targets)
 		{
-			var damage = ceil(user.str + random_range(-user.str/4, user.str/4));
+			var damage = ceil(user.stats.str + random_range(-user.stats.str/4, user.stats.str/4));
 			battleChangeHP(targets[0], -damage,, self.hitSound);
 		}
 	},
@@ -108,7 +108,7 @@ global.actionLibrary =
 		hitSound : snHit7,
 		func : function(user, targets)
 		{
-			var damage = ceil(user.str + random_range(-user.str/3, user.str/3));
+			var damage = ceil(user.stats.str + random_range(-user.stats.str/3, user.stats.str/3));
 			battleChangeHP(targets[0], -damage,, self.hitSound);
 		}
 	},
@@ -129,7 +129,7 @@ global.actionLibrary =
 		hitSound : snHit9,
 		func : function(user, targets)
 		{
-			var damage = ceil(user.str + random_range(-user.str/2, user.str/2));
+			var damage = ceil(user.stats.str + random_range(-user.stats.str/2, user.stats.str/2));
 			battleChangeHP(targets[0], -damage,, self.hitSound);
 		}
 	},
@@ -152,7 +152,7 @@ global.actionLibrary =
 		{
 			for (var i = 0; i< array_length(targets); i++)
 			{
-				var damage = ceil(user.exStr + random_range(-user.exStr/3, user.exStr/2));
+				var damage = ceil(user.stats.exStr + random_range(-user.stats.exStr/3, user.stats.exStr/2));
 				if array_length(targets) > 1 {damage = ceil(damage*0.75)}
 				battleChangeHP(targets[i], -damage,, self.hitSound);
 			}
@@ -177,7 +177,7 @@ global.actionLibrary =
 		{
 			for (var i = 0; i< array_length(targets); i++)
 			{
-				var damage = ceil((user.exStr*3) + random_range(-user.exStr/3, user.exStr/2));
+				var damage = ceil((user.stats.exStr*3) + random_range(-user.stats.exStr/3, user.stats.exStr/2));
 				if array_length(targets) > 1 {damage = ceil(damage*0.75)}
 				battleChangeHP(targets[i], damage, 0, self.hitSound);
 			}
@@ -200,7 +200,7 @@ global.actionLibrary =
 		hitSound : snHealMinor,
 		func : function(user, targets)
 		{
-			var damage = ceil(targets[0].hpMax * 0.66)
+			var damage = ceil(targets[0].stats.hpMax * 0.66)
 			battleChangeHP(targets[0], damage, 1, self.hitSound);
 		}
 	}
@@ -228,14 +228,17 @@ global.party =
 		job : "Fool",
 
 		// STATS
-		lvl : 1,
-		EXP : 0,
-		hp: 50,
-		hpMax: 50,
-		ex: 15,
-		exMax: 15,
-		str: 4,
-		exStr: 7,
+		stats : 
+		{
+			lvl : 1,
+			EXP : 0,
+			hp: 50,
+			hpMax: 50,
+			ex: 15,
+			exMax: 15,
+			str: 4,
+			exStr: 7,
+		},
 		
 		// BATTLE
 		sprites : { idle: sNilsIdle, active: sNilsWalkD, attack: sNilsIdle, defend: sNilsIdle, down: sGrave, head: sHeadNils, portrait: sBattlePort, parry : sNilsParry},
@@ -260,14 +263,17 @@ global.party =
 		name: "Charlie",
 		job : "Magician",
 		
-		lvl : 1,
-		EXP : 0,
-		hp: 40,
-		hpMax: 40,
-		ex: 20,
-		exMax: 20,
-		str: 3,
-		exStr: 4,
+		stats : 
+		{
+			lvl : 1,
+			EXP : 0,
+			hp: 40,
+			hpMax: 40,
+			ex: 20,
+			exMax: 20,
+			str: 3,
+			exStr: 4,
+		},
 		
 		sprites : { idle: sCharIdle, active: sCharFightActive, attack: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH, parry : sCharParry},
 		actions: [global.actionLibrary.normals, global.actionLibrary.special, global.actionLibrary.heal, global.actionLibrary.revive],
@@ -290,14 +296,17 @@ global.party =
 		name: "Matthew",
 		job : "Hermit",
 		
-		lvl : 1,
-		EXP : 0,
-		hp: 75,
-		hpMax: 75,
-		ex: 12,
-		exMax: 12,
-		str: 5,
-		exStr: 6,
+		stats : 
+		{
+			lvl : 1,
+			EXP : 0,
+			hp: 75,
+			hpMax: 75,
+			ex: 12,
+			exMax: 12,
+			str: 5,
+			exStr: 6,
+		},
 		
 		sprites : { idle: sMattIdle, active: sMatthewFightActive, attack: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH, parry : sMattParry},
 		actions: [global.actionLibrary.normals, global.actionLibrary.special],
@@ -336,7 +345,7 @@ global.enemyAI =
 		{
 			var toHeal = array_filter(oBattle.enemyUnits, function(unit, index)
 			{
-				return (unit.hp <= (unit.hpMax*0.65) and unit.hp > 0);
+				return (unit.stats.hp <= (unit.stats.hpMax*0.65) and unit.stats.hp > 0);
 			});
 				
 			if array_length(toHeal) > 0 {action = global.actionLibrary.heal}
@@ -355,7 +364,7 @@ global.enemyAI =
 		{
 			var toRevive = array_filter(oBattle.enemyUnits, function(unit, index)
 			{
-				return unit.hp <= 0;
+				return unit.stats.hp <= 0;
 			});
 				
 			if array_length(toRevive) > 0 {action = global.actionLibrary.revive}
@@ -393,7 +402,7 @@ global.enemyAI =
 				{
 					var possibleTargets = array_filter(oBattle.partyUnits, function(unit, index)
 					{
-						return (unit.hp > 0);	
+						return (unit.stats.hp > 0);	
 					});
 					
 					var target = possibleTargets[irandom(array_length(possibleTargets)-1)];
@@ -410,12 +419,17 @@ global.enemies =
 	sand:
 	{
 		name: "Really Angry Sand",
-		hp : 30,
-		hpMax: 30,
-		ex: 10,
-		exMax: 10,
-		str: 4,
-		exStr: 5,
+		
+		stats : 
+		{
+			hp : 30,
+			hpMax: 30,
+			ex: 10,
+			exMax: 10,
+			str: 4,
+			exStr: 5,
+		},
+		
 		sprites : { idle: sSand, attack: sSand, defend: sSand, down: sGrave, head: sSand},
 		actions: [global.actionLibrary.enemyNormals],
 		xpWorth: 4,
@@ -429,12 +443,16 @@ global.enemies =
 	bat:
 	{
 		name: "Swoopty",
-		hp : 25,
-		hpMax: 25,
-		ex: 15,
-		exMax: 15,
-		str: 3,
-		exStr: 6,
+		stats : 
+		{
+			hp : 25,
+			hpMax: 25,
+			ex: 15,
+			exMax: 15,
+			str: 3,
+			exStr: 6,
+		},
+		
 		sprites : { idle: sBat, attack: sBat, defend: sSand, down: sGrave, head: sBat},
 		actions: [global.actionLibrary.enemyNormals,global.actionLibrary.revive],
 		xpWorth: 3,

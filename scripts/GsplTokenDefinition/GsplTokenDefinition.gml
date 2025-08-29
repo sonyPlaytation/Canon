@@ -5,7 +5,7 @@ function GsplTokenDefinition(eof_token, string_token, number_token, identifier_t
 	self.token_type = undefined;
 	
 	self.eof_token = eof_token;
-	self.string_token = string_token;
+	self.stats.string_token = string_token;
 	self.number_token = number_token;
 	self.identifier_token = identifier_token;
 	

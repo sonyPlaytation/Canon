@@ -25,7 +25,7 @@ function GsplExpressionFactory(parse_tree_definition) constructor {
 function GsplExpressionInstanceFactory(type, expression_definition) constructor {
 	self.type = type;
 	self.class = expression_definition[0];
-	self.expression_definition = expression_definition;
+	self.stats.expression_definition = expression_definition;
 	
 	make = function(expression) {
 		expression.type = type;

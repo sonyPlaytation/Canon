@@ -2,7 +2,7 @@
 
 selfCenter = y - (sprite_height/2)
 
-if hp == 0 
+if stats.hp == 0 
 { 
 	if !alreadyDead
 	{

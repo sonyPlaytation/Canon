@@ -22,7 +22,7 @@ if cursor.active
 		{
 			targetSide = array_filter(targetSide, function(_element, _index)
 			{
-				return _element.hp > 0;	
+				return _element.stats.hp > 0;	
 			})	
 		}
 		

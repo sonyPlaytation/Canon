@@ -9,7 +9,7 @@
 function Cabinet(folder_path, extension = ".*", options = undefined) constructor {
 
 	self.folder_path = folder_path;
-	self.extension = extension;
+	self.stats.extension = extension;
 	
 	self.options = new CabinetOptions(options);
 	
@@ -137,7 +137,7 @@ function CabinetFile(cabinet, data) constructor {
 	fullpath = data.fullpath;
 	directory = data.directory;
 	file = data.file;
-	extension = data.extension;
+	extension = data.stats.extension;
 	
 	// calculate file_id (the name of the file without the extension)
 	var filename_len = string_length(file);

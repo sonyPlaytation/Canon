@@ -10,7 +10,7 @@ function saveGame()
 	var mainStruct = 
 	{
 		flags : FLAGS,
-		party : PARTY,
+		stats : [],
 		inv :
 		[
 			[],
@@ -27,6 +27,11 @@ function saveGame()
 		{
 			array_push( mainStruct.inv[i], global.inv[i][j].key)
 		}
+	}
+	
+	for (var i = 0; i < array_length(PARTY); ++i) 
+	{
+		mainStruct.stats[i] = PARTY[i].stats
 	}
 	
 	var _json = json_stringify(mainStruct, true);
@@ -59,7 +64,10 @@ function loadGame(){
 	var _json = LoadString(SAVEFILE);
 	var mainStruct = json_parse(_json);
 	
-	PARTY = mainStruct.party;
+	for (var i = 0; i < array_length(PARTY); ++i) {
+	    PARTY[i].stats = mainStruct.stats[i];
+	}
+	
 	FLAGS = mainStruct.flags;
 	
 	for (var i = 0; i < array_length(mainStruct.inv); i++)

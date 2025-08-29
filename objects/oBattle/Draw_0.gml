@@ -62,7 +62,7 @@ draw_text(txtX+colEX,		txtY, "EX");
 //for (var i = 0; i < array_length(enemyUnits) and (drawn < drawLimit); i++)
 //{
 //	var char = enemyUnits[i];
-//	if char.hp > 0
+//	if char.stats.hp > 0
 //	{
 //		drawn++;
 //		draw_set_color(c_white);
@@ -75,7 +75,7 @@ draw_text(txtX+colEX,		txtY, "EX");
 for (var i = 0; i < array_length(partyUnits); i++)
 {
 	var char = partyUnits[i];
-	if char.hp > 0
+	if char.stats.hp > 0
 	{
 		draw_set_color(c_white);
 		if char.id == activeUnit {draw_set_color(c_yellow);}
@@ -83,8 +83,8 @@ for (var i = 0; i < array_length(partyUnits); i++)
 	
 	draw_text(txtX+colName,txtY + 12 + (12*i), char.name);
 	draw_set_color(c_white);
-	draw_text(txtX+colHP,txtY + 12 + (12*i), $"{char.hp}/{char.hpMax}");
-	draw_text(txtX+colEX,txtY + 12 + (12*i), $"{char.ex}/{char.exMax}");
+	draw_text(txtX+colHP,txtY + 12 + (12*i), $"{char.stats.hp}/{char.stats.hpMax}");
+	draw_text(txtX+colEX,txtY + 12 + (12*i), $"{char.stats.ex}/{char.stats.exMax}");
 }
 
 if cursor.active 

@@ -36,8 +36,8 @@ function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 	// 1 - DEAD, 
 	// 2 - EITHER 	
 	var failed = false;
-	if (AliveDeadOrEither == 0) and target.hp <= 0 {failed = true};
-	if (AliveDeadOrEither == 1) and target.hp > 0 {failed = true};
+	if (AliveDeadOrEither == 0) and target.stats.hp <= 0 {failed = true};
+	if (AliveDeadOrEither == 1) and target.stats.hp > 0 {failed = true};
 	text = abs(amount);
 	
 	var col = c_white;
@@ -54,7 +54,7 @@ function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 		
 		if amount > 0 //healing
 		{
-			if target.hp <= 0 {text = "Resurrection!";}
+			if target.stats.hp <= 0 {text = "Resurrection!";}
 			target.flash += 15;
 		}
 		else
@@ -71,8 +71,8 @@ function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 	
 	if variable_struct_exists(target,"battleLines") 
 	{
-		if (target.hp > target.hpMax/2) and (target.hp + amount <= target.hpMax/2)	healthLine = target.battleLines.lowHP
-		if (amount > 0 and target.hp < target.hpMax) healthLine = target.battleLines.justHealed
+		if (target.stats.hp > target.stats.hpMax/2) and (target.stats.hp + amount <= target.stats.hpMax/2)	healthLine = target.battleLines.lowHP
+		if (amount > 0 and target.stats.hp < target.stats.hpMax) healthLine = target.battleLines.justHealed
 	}
 	
 	if healthLine != -1 {BATTLE($"[{sprite_get_name(target.sprites.head)}]: "+healthLine)}
@@ -89,7 +89,7 @@ function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 			text : text
 		}
 	)
-	if is_numeric(amount) and !failed {target.hp = clamp(target.hp + amount, 0, target.hpMax)};
+	if is_numeric(amount) and !failed {target.stats.hp = clamp(target.stats.hp + amount, 0, target.stats.hpMax)};
 }
 
 
@@ -127,5 +127,5 @@ function battleChangeEX(target, amount, sound = -1)
 			text : string(amount)
 		}
 	)
-	if !failed {target.hp = clamp(target.hp + amount, 0, target.hpMax)};
+	if !failed {target.stats.hp = clamp(target.stats.hp + amount, 0, target.stats.hpMax)};
 }

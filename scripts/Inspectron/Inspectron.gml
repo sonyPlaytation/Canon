@@ -89,7 +89,7 @@ function Inspectron(target = undefined) {
 /// @param {struct.InspectronRenderer} extends
 function InspectronRenderer(target, extends) constructor {
 	self.target = target;
-	self.extends = extends;
+	self.stats.extends = extends;
 	
 	if extends {
 		// init top fields from our base so that they actually go to the top
