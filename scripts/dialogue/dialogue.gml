@@ -8,29 +8,22 @@ global.topics = {};
 	[
 		TEXT("an extremely interesting placeholder text box with very funny placeholder text"),
 	]
-	
-	global.topics[$ "Example"] = 
+
+	global.topics[$ "theBigWet"] = 
 	[
-		
-		TEXT("This is a garbage can"),
-		TEXT("it is sooooooooooooooooooooooooooooooooooo stinky"),
-		TEXT("[wave]smelly as shit"),
-		TEXT("[sCharIdle,3]"),
-		TEXT("[c_red]ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ba ")
-	];
-	
+		TEXT("Wait!"),
+		TEXT("You can't go down there! Look at that wet floor sign!"),
+		SPEAKER("Nils",sPortNils),
+		TEXT("Oh yeah, I'd better not. Lookin pretty wet!")
+	]
+
+#region stupid testing shit
+
 	global.topics[$ "enemy room"] = 
 	[
 		TEXT("Welcome to enemy room.\nBeware of enemies."),
 	];
 	
-	global.topics[$ "sand man"] = 
-	[
-		TEXT("Yo I'm a frickin pile a sand."),
-		TEXT("..."),
-		TEXT("Fight me or somethin!")
-	];
-
 	global.topics[$ "Gwen"] = 
 	[
 		SPEAKER("Nils", sPortNils),
@@ -94,3 +87,5 @@ global.topics = {};
 	[
 		TEXT("Good choice.")
 	];
+#endregion
+

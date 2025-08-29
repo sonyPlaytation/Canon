@@ -2,4 +2,7 @@
 
 global.debug = !global.debug
 
-if global.debug {alarm[0] = 60}
+if global.debug 
+{
+	instance_activate_object(oTempItemTestPickup)
+}

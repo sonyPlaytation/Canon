@@ -9,7 +9,7 @@ function createTransition(_type)
 {
 	if layer_exists("transition") layer_destroy("transition");
 	var _layer = layer_create(-9999, "transition");
-	global.currentTransition = layer_sequence_create(_layer,global.cam.x,global.cam.y,_type);
+	global.currentTransition = layer_sequence_create(_layer,global.cam.get_x()+(GAME_W/2),global.cam.get_y()+(GAME_H/2),_type);
 }
 
 function transition(_roomTarget, _typeOut, _typeIn, _fight = false, _x = 0, _y = 0, face = 0)

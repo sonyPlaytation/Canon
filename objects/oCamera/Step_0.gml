@@ -5,6 +5,8 @@ bgx += 0.5;
 
 
 
+
+
 if instance_exists(oCutCam)
 {
 	follow = oCutCam

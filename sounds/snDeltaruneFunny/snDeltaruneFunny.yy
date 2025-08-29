@@ -13,7 +13,7 @@
   "name":"snDeltaruneFunny",
   "parent":{
     "name":"Funny",
-    "path":"folders/Sounds/SFX/Funny.yy",
+    "path":"folders/Sounds/SFX/From Something/Funny.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

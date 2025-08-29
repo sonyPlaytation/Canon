@@ -9,7 +9,7 @@ function Menu(_x, _y, _options, _desc = -1, _w = undefined, _h = undefined, _sel
 		options = _options;
 		desc = _desc;
 		var optionsCount = array_length(_options);
-		visibleOptionsMax = 5;
+		visibleOptionsMax = 6;
 		
 		xmargin = 12;
 		ymargin = 12;

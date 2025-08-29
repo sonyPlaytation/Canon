@@ -28,7 +28,7 @@ draw_set_alpha(alph)
 draw_set_color(c_black)
 draw_rectangle(0,0,RES_W,RES_H,false)
 
-for (var i = 0; i < 2; i++)
+for (var i = 0; i < waveRate; i++)
 {
 	var pinSize = irandom_range(40,42) + (i * 12)
 	draw_set_alpha(0.45)

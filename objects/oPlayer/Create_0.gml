@@ -69,12 +69,9 @@ interact = function()
 					if facing > 3 {facing = 0}
 				}
 				
-				switch(myAction)
-				{
-					case startDialogue: myAction(myTopic);	break;
-					case addItem:		openChest(id);	break;
-					case unlockDoor :   unlockDoor(lockText, unlockText)	break;
-				}
+				if shortMsg != "" {global.topics[$ "shortMessage"] = [TEXT(shortMsg)]}
+
+				myScript(myTopic);
 			}
 		}
 		ds_list_destroy(actors);

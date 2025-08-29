@@ -95,6 +95,12 @@ currentOption = 0;
 optCount = 0;
 optSpacing = txtW/optCount;
 
+dialogueResponse = -1
+postDialogue = function()
+{
+	
+}
+
 // Methods
 setTopic = function(topic)
 {

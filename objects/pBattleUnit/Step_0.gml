@@ -21,5 +21,5 @@ if hp == 0
 }
 else
 {
-	if sprite_index == sprites.down {sprite_index = sprites.idle}
+	if sprite_index == sprites.down {sprite_index = sprites.idle; alreadyDead = false}
 }

@@ -1,5 +1,7 @@
 /// @
 
+#macro SAVEFILE "CANON.save"
+
 global.inputDisplay = true;
 global.debug = false;
 global.dev = true;

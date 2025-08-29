@@ -1,6 +1,8 @@
 
 global.advantage = 0;
 
+itemFuncs()
+
 global.actionLibrary = 
 {
 	// NOTES FOR OPERATION
@@ -205,6 +207,10 @@ global.actionLibrary =
 	
 }
 
+struct_foreach(global.actionLibrary, function(_key, _val){
+  if _val[$ "category"] == ITEM_TYPE.CONSUMABLE {_val[$ "subMenu"] = "Items"}
+})
+
 enum MODE
 {
 	NEVER = 0,
@@ -404,7 +410,7 @@ global.enemies =
 	sand:
 	{
 		name: "Really Angry Sand",
-		hp : 1,
+		hp : 30,
 		hpMax: 30,
 		ex: 10,
 		exMax: 10,

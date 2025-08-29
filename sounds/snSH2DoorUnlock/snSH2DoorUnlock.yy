@@ -9,11 +9,11 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.6005216,
+  "duration":0.42034015,
   "name":"snSH2DoorUnlock",
   "parent":{
     "name":"Funny",
-    "path":"folders/Sounds/SFX/Funny.yy",
+    "path":"folders/Sounds/SFX/From Something/Funny.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

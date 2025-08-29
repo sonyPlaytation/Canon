@@ -1,13 +1,17 @@
-#macro TEXT		new textAction
-#macro SPEAKER	new speakerAction
-#macro CHOICE	new choiceAction
-#macro OPTION	new optionAction
-#macro GOTO		new gotoAction
-#macro CHECK	new checkFlagAction
-#macro NEXT		new nextAction
-#macro SET		new setFlagAction
-#macro HOLD		new holdAction
-#macro PLAY		new playAction
+#macro TEXT			new textAction
+#macro SPEAKER		new speakerAction
+#macro CHOICE		new choiceAction
+#macro OPTION		new optionAction
+#macro GOTO			new gotoAction
+#macro CHECKFLAG	new checkFlagAction
+#macro CHECKITEM	new checkItemAction
+#macro NEXT			new nextAction
+#macro SET			new setFlagAction
+#macro HOLD			new holdAction
+#macro PLAY			new playAction
+#macro GIVE			new giveItemAction
+#macro BEGINSAVE	new saveAction
+#macro AFTERTEXT	with (oTextBox) postDialogue = function()
 
 #region Custom Scribble Events
 
@@ -59,6 +63,17 @@ function textAction(_text) : dialogueAction() constructor
 		textbox.onHold = false;	
 	}
 }
+
+function saveAction(_text) : dialogueAction() constructor
+{		
+	text = _text
+	act = function(textbox)
+	{
+		textbox.next();
+		beginSave();
+	}
+}
+
 
 function holdAction() : dialogueAction() constructor
 {
@@ -165,8 +180,9 @@ function gotoAction(_topic) : dialogueAction() constructor
 	}
 }
 
-function checkFlagAction(_flag, _operator, _check, _ifTrue, _ifFalse = -1) : dialogueAction() constructor
+function checkFlagAction(_source, _flag, _operator, _check, _ifTrue, _ifFalse = -1) : dialogueAction() constructor
 {
+	source = _source
 	flag = _flag;
 	operator = _operator;
 	check = _check;
@@ -178,12 +194,12 @@ function checkFlagAction(_flag, _operator, _check, _ifTrue, _ifFalse = -1) : dia
 	{
 		switch(operator)
 		{
-			case ">":	isTrue = struct_get(FLAGS,flag) >  check break;
-			case "<":	isTrue = struct_get(FLAGS,flag) <  check break;		   
-			case ">=":	isTrue = struct_get(FLAGS,flag) >= check break;			   
-			case "<=":	isTrue = struct_get(FLAGS,flag) >= check break;			   
-			case "==":	isTrue = struct_get(FLAGS,flag) == check break;			   
-			case "!=":	isTrue = struct_get(FLAGS,flag) != check break;
+			case ">":	isTrue = (source[$ flag] >  check) break;
+			case "<":	isTrue = (source[$ flag] <  check) break;		   
+			case ">=":	isTrue = (source[$ flag] >= check) break;			   
+			case "<=":	isTrue = (source[$ flag] >= check) break;			   
+			case "==":	isTrue = (source[$ flag] == check) break;			   
+			case "!=":	isTrue = (source[$ flag] != check) break;
 		}
 	
 		if isTrue {textbox.setTopic(ifTrue);} 
@@ -192,15 +208,36 @@ function checkFlagAction(_flag, _operator, _check, _ifTrue, _ifFalse = -1) : dia
 	}
 }
 
-function setFlagAction(_flag, _set) : dialogueAction() constructor
+function checkItemAction(_item, _ifTrue, _ifFalse = -1, _inv = ITEM_TYPE.KEY,_has = true, _remove = false) : dialogueAction() constructor
 {
+	item = _item
+	inv = _inv;
+	has = _has;
+	remove = _remove;
+	
+	ifTrue = _ifTrue;
+	ifFalse = _ifFalse;
+	
+	act = function(textbox)
+	{
+		if has {isTrue = array_contains(global.inv[inv],item)} else isTrue = !array_contains(global.inv[inv],item)
+	
+		if isTrue {textbox.setTopic(ifTrue);} 
+		else if ifFalse = -1 {textbox.next();}
+		else {textbox.setTopic(ifFalse)}
+	}
+}
+
+function setFlagAction(_source, _flag, _set) : dialogueAction() constructor
+{
+	source = _source
 	flag = string(_flag);
 	set = _set; 
 	
 	act = function(textbox)
 	{
-		struct_set(global.flags, flag, set)
-		show_debug_message($"Set global flag '{flag}' to {set} via Dialogue")
+		source[$ flag] = set
+		show_debug_message($"Set '{flag}' to {set} via Dialogue")
 		textbox.next();
 	}
 }
@@ -215,11 +252,7 @@ function nextAction() : dialogueAction() constructor
 
 function startDialogue(topic,yMode = TXTPOS.BTM)
 {
-	if instance_exists(oTextBox){return};
-	
-	show_debug_message($"playerY: {oPlayer.y} | ocamY: {global.cam.y} | ocam_getY: {global.cam.get_y()}")
-	
-	
+	if instance_exists(oTextBox){return};	
 	
 	if oPlayer.y > (global.cam.y + (TILE_SIZE/2))
 	{

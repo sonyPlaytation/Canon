@@ -10,6 +10,11 @@ tiles = layer_tilemap_get_id("CollTiles");
 if collide
 { colls = [oColl,pEntity,pProtag,tiles]; } else {colls = [oColl,tiles]}
 
+myScript = function(myTopic)
+{
+	startDialogue(myTopic)
+}
+
 selfCenter = y;
 
 advantage = 0;

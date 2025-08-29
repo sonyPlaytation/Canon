@@ -7,9 +7,7 @@
   ],
   "managed":true,
   "name":"oLockedExit",
-  "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"propertyId":{"name":"myAction","path":"objects/pEntity/pEntity.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"unlockDoor",},
-  ],
+  "overriddenProperties":[],
   "parent":{
     "name":"Objects",
     "path":"folders/Overworld Entities/Objects.yy",
@@ -33,7 +31,7 @@
   "physicsStartAwake":true,
   "properties":[
     {"$GMObjectProperty":"v1","%Name":"keyNeeded","filters":[],"listItems":[],"multiselect":false,"name":"keyNeeded","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"global.items.keyGeneric","varType":0,},
-    {"$GMObjectProperty":"v1","%Name":"lockText","filters":[],"listItems":[],"multiselect":false,"name":"lockText","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"\"lockedGeneric\"","varType":2,},
+    {"$GMObjectProperty":"v1","%Name":"lockedText","filters":[],"listItems":[],"multiselect":false,"name":"lockedText","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"\"lockedGeneric\"","varType":2,},
     {"$GMObjectProperty":"v1","%Name":"unlockText","filters":[],"listItems":[],"multiselect":false,"name":"unlockText","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"\"unlockedGeneric\"","varType":2,},
   ],
   "resourceType":"GMObject",

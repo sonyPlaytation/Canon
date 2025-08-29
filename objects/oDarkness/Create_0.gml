@@ -10,3 +10,4 @@ h = display_get_gui_height();
 
 depth = -100;
 
+waveRate = 6

@@ -2,19 +2,39 @@
 #macro FLAGS global.flags
 #macro nl +"\n"+
 
+itemFuncs()
+
 global.flags = 
 {
 	//running jokes
-	solitaire: 0
+	solitaire: 0,
+	
+	//scenario items
+	officeBathroomKey : false
 }
 //dialogue
 //textSoundLUT()
+//dialogueFuncs
 
 #region general reusable stuff
 
-global.topics[$ "jammed"] = [TEXT("The lock is [c_yellow]JAMMED[c_white]!\nThis door can't be opened.")]
+global.topics[$ "jammed"] = [TEXT("[snSH2DoorLocked]The lock is [c_yellow]JAMMED[c_white]!\nThis door can't be opened.")]
 global.topics[$ "lockedGeneric"] = [TEXT("It's [c_red]LOCKED[c_white].")]
 global.topics[$ "unlockedGeneric"] = [TEXT("You unlock the door.")]
+
+global.topics[$ "savePrompt"] = 
+[
+
+	CHOICE("Would you like to save your progress?",
+		OPTION("Yes","yesToSave"),
+		OPTION("No",""))
+]
+
+global.topics[$ "yesToSave"] = 
+[
+	SET(oTextBox,"dialogueResponse", true),
+	BEGINSAVE()
+]
 
 #endregion
 
@@ -65,12 +85,12 @@ global.topics[$ "unlockedGeneric"] = [TEXT("You unlock the door.")]
 		global.topics[$ "choice desk top"] = 
 		[
 			TEXT("The desktop is made of a very dark brown wood."),
-			TEXT("You know jack shit about wood so that's the most you can discern."),
+			TEXT("You know Jack Shit about wood so that's the most you can discern."),
 			SPEAKER("Nils",sPortNils),
 			TEXT("The perfect arena for a blistering round of solitaire!"),
 			SPEAKER("Nils",sPortNils,2),
 			TEXT("Not sure why I remember what solitaire is though..."),
-			SET("solitaire", 1)
+			SET(FLAGS,"solitaire", 1)
 		]
 
 		global.topics[$ "choice desk nothing"] = 
@@ -83,33 +103,31 @@ global.topics[$ "unlockedGeneric"] = [TEXT("You unlock the door.")]
 #endregion
 
 #region rOffice_1
-global.topics[$ "officeHallSign1"] = 
-[
-	SPEAKER(),
-	TEXT("An office name plate hangs beside the frosted glass door."),
-	TEXT("Ted Merkle\nDesign Lead")
-];
+	global.topics[$ "officeHallSign1"] = 
+	[
+		SPEAKER(),
+		TEXT("An office name plate hangs beside the frosted glass door."),
+		TEXT("Ted Merkle\nDesign Lead")
+	];
 
-global.topics[$ "officeHallSign2"] = 
-[
-	SPEAKER(),
-	TEXT("An office name plate hangs beside the frosted glass door."),
-	TEXT("Evelyn Proust\nLogistics")
-];
+	global.topics[$ "officeHallSign2"] = 
+	[
+		SPEAKER(),
+		TEXT("An office name plate hangs beside the frosted glass door."),
+		TEXT("Evelyn Proust\nLogistics")
+	];
 
-global.topics[$ "officeHallSign3"] = 
-[
-	SPEAKER(),
-	TEXT("An office name plate hangs beside the heavy wooden door."),
-	TEXT("Bill Wozniak\nDirector"),
-	TEXT("Someone seems to have added an accent over the 'z' with whiteout."),
-];
+	global.topics[$ "officeHallSign3"] = 
+	[
+		SPEAKER(),
+		TEXT("An office name plate hangs beside the heavy wooden door."),
+		TEXT("Bill Wozniak\nDirector"),
+		TEXT("Someone seems to have added an accent over the 'z' with whiteout."),
+	];
 #endregion
 
 #region rOffice_3
 
-
-{ //choices
 	global.topics[$ "cubicleCoffee"] = 
 	[
 		TEXT("Write something cool about paper"),
@@ -121,7 +139,7 @@ global.topics[$ "officeHallSign3"] =
 		TEXT("The pc at this desk is the typical outdated government donor pc."),
 		TEXT("Hard to imagine a time that this would have been impressive."),
 		TEXT("On further inspection, you notice the layout of the the pre-installed Solitaire game faintly burnt into the monitor."),
-		CHECK("solitaire", "==", 1, "cubicleSolitaire")
+		CHECKFLAG(FLAGS,"solitaire", "==", 1, "cubicleSolitaire")
 	]
 	
 	global.topics[$ "cubicleSolitaire"] = 
@@ -149,7 +167,24 @@ global.topics[$ "officeHallSign3"] =
 		SPEAKER("Nils",sPortNils,3),
 		TEXT("Jesus man, was it really THAT funny??"),
 	]
-}
+#endregion
 
-
+#region rOfficeBathroom
+	global.topics[$ "officeBathroom"] = 
+	[
+		TEXT("Your creepy skeletal nostril hole is bombarded with the stench of a toilet that hasn't been cleaned in at least a dozen years."),
+		GOTO("savePrompt"),
+	]
+	
+	global.topics[$ "checkBathroomKey"] = 
+	[
+		CHECKFLAG(FLAGS,"officeBathroomKey", "!=", true,"findBathroomKey")
+	]
+	
+	global.topics[$ "findBathroomKey"] = 
+	[
+		TEXT("Oh? What's this?"),
+		SET(FLAGS,"officeBathroomKey",true),
+		GIVE(global.items.keyGeneric)
+	]
 #endregion

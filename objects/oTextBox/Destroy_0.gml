@@ -7,3 +7,5 @@ if instance_exists(oCutscene)
 {
 	with oCutscene {(layer_sequence_play(thisScene))}
 } else oPlayer.hasControl = true;
+
+postDialogue();

@@ -8,10 +8,11 @@ function pauseGame(){
 	if room != rMenu and oGame.menuDebounce == 0 and global.canPause
 	{
 		global.gamePaused = true
+		global.pauseEvery = true
 		with (oPause)
 		{
 			pause = true;
-			instance_deactivate_all(true);
+			//instance_deactivate_all(true);
 			instance_activate_object(oCamera);
 			instance_activate_object(oGame);
 			instance_activate_object(oMusic);
@@ -31,13 +32,15 @@ function unpauseGame()
 	if room != rMenu
 	{
 		global.gamePaused = false;
+		global.pauseEvery = false;
 		oGame.menuDebounce = 15;
 		with (oPause)
 		{
 			pause = false;
 			instance_activate_all();
-			global.cam.set_paused(false)
 		}
+		global.cam.set_paused(false)
+		//audio_resume_all();
 		if instance_exists(oMenu){instance_destroy(oMenu)};
 	}
 }

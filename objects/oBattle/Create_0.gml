@@ -34,6 +34,7 @@ battleJustStarted = 60;
 turn = 0;
 unitTurnOrder = [];
 unitRenderOrder = [];
+killsPerTurn = 0;
 
 turnCount = 0;
 roundCount = 0;
@@ -66,6 +67,7 @@ for (var i = 0; i < array_length(enemies); i++)
 for (var i = 0; i < array_length(PARTY); i++)
 {
 	partyUnits[i] = instance_create_depth(x-200-(i*20), y + 68 + (i*30), depth-(20 + i), oBattleHero, global.party[i]);
+	
 	array_push(units,partyUnits[i]);
 }
 
@@ -137,13 +139,13 @@ selectAction = function()
 			var _subMenus = {}
 			
 			// get all listed actions as an array from current unit
-			var _actionList = unit.actions;
+			var _actionList = array_concat(unit.actions, global.inv[ITEM_TYPE.CONSUMABLE])
 			
 			// "Packaging" all options into their intended submenus
 			for (var i = 0; i < array_length(_actionList); i++)
 			{
 				var _action = _actionList[i];
-				var _avail = true;
+				var _avail = true; // check EX cost here
 				var _nameAndCount = _action.name;
 				
 				if _action.subMenu == -1 // if Top Level action, not submenu
@@ -232,6 +234,7 @@ doNormals = function()
 	
 	if currentTargets[0].hp <= 0 // if current target dies before time is up
 	{
+		killsPerTurn++
 		//find random living target and switch to them instead
 		var livingTargets = array_filter(enemyUnits, function(_element, _index)
 		{
@@ -295,6 +298,7 @@ doNormals = function()
 		checkNormalsString();
 		normalsString = "";
 		normalsPerformed = 0
+		killsPerTurn = 0;
 		normalsTimer = normalsReset
 		state = stateSlideOut;
 	}
@@ -474,6 +478,9 @@ turnProgress = function()
 checkNormalsString = function()
 {
 	if string_pos("lmh",normalsString){show_debug_message("Plink detected")};
+	
+	if killsPerTurn == 2 {BATTLE("[#F16EAA]HAPPY BIRTHDAY!")}
+	else if killsPerTurn == 3 {BATTLE("[c_red]MERRY [c_green]CHRISTMAS!!")}
 }
 
 endBattle = function()
