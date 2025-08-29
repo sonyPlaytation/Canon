@@ -984,11 +984,11 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rMenu","path":"rooms/rMenu/rMenu.yy",},},
+    {"roomId":{"name":"rOfficeBathroom","path":"rooms/rOfficeBathroom/rOfficeBathroom.yy",},},
     {"roomId":{"name":"rTest2","path":"rooms/rTest2/rTest2.yy",},},
     {"roomId":{"name":"rOffice_3","path":"rooms/rOffice_3/rOffice_3.yy",},},
     {"roomId":{"name":"rOffice","path":"rooms/rOffice/rOffice.yy",},},
     {"roomId":{"name":"rOffice_2","path":"rooms/rOffice_2/rOffice_2.yy",},},
-    {"roomId":{"name":"rOfficeBathroom","path":"rooms/rOfficeBathroom/rOfficeBathroom.yy",},},
     {"roomId":{"name":"rTest1","path":"rooms/rTest1/rTest1.yy",},},
     {"roomId":{"name":"rCutTest","path":"rooms/rCutTest/rCutTest.yy",},},
     {"roomId":{"name":"rParent","path":"rooms/rParent/rParent.yy",},},

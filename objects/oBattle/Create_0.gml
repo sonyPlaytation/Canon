@@ -61,6 +61,7 @@ cursor =
 for (var i = 0; i < array_length(enemies); i++)
 {
 	enemyUnits[i] = instance_create_depth(x+200+(i*20), y + 68 + (i*30), depth-(20 + i), oBattleEnemy, enemies[i]);
+	enemyUnits[i].stats = variable_clone(enemies[i].stats)
 	array_push(units,enemyUnits[i]);
 }
 

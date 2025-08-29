@@ -178,13 +178,14 @@ global.topics[$ "yesToSave"] =
 	
 	global.topics[$ "checkBathroomKey"] = 
 	[
-		CHECKFLAG(FLAGS,"officeBathroomKey", "!=", true,"findBathroomKey")
+		CHECKITEM(global.items.keyGeneric,"findBathroomKey",,,false)
 	]
 	
 	global.topics[$ "findBathroomKey"] = 
 	[
 		TEXT("Oh? What's this?"),
 		SET(FLAGS,"officeBathroomKey",true),
-		GIVE(global.items.keyGeneric)
+		GIVE(global.items.keyGeneric),
+
 	]
 #endregion

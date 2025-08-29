@@ -16,6 +16,6 @@ myScript = function()
 			oDarkToilet.alarm[0] = 60;
 			oBathroomStall.mask_index = -1
 		}
-		else if FLAGS[$ "officeBathroomKey"] == false { startDialogue("checkBathroomKey") }
+		else if FLAGS[$ "officeBathroomKey"] == false { setText("checkBathroomKey") }
 	}
 }
