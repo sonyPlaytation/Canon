@@ -231,7 +231,7 @@ function checkItemAction(_item, _ifTrue, _ifFalse = -1, _inv = ITEM_TYPE.KEY,_ha
 function setFlagAction(_source, _flag, _set) : dialogueAction() constructor
 {
 	source = _source
-	flag = string(_flag);
+	flag = _flag;
 	set = _set; 
 	
 	act = function(textbox)
@@ -259,7 +259,7 @@ function startDialogue(topic,yMode = TXTPOS.BTM)
 		yMode = TXTPOS.TOP
 	}
 	
-	var inst = instance_create_depth(x,y,-999,oTextBox);
+	var inst = instance_create_depth(0,0,-999,oTextBox);
 	inst.yMode = yMode
 	inst.setTopic(topic);
 	show_debug_message($"Set topic: {topic}");

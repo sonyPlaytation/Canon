@@ -4,7 +4,7 @@ event_inherited()
 
 playerSetup();
 
-global.cam.follow = id;
+//global.cam.follow = id;
 
 enum FACING
 {

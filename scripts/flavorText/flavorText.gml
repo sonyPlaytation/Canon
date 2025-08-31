@@ -22,7 +22,14 @@ global.topics[$ "jammed"] = [TEXT("[snSH2DoorLocked]The lock is [c_yellow]JAMMED
 global.topics[$ "lockedGeneric"] = [TEXT("It's [c_red]LOCKED[c_white].")]
 global.topics[$ "unlockedGeneric"] = [TEXT("You unlock the door.")]
 
-global.topics[$ "savePrompt"] = 
+global.topics[$ "saveFlies"] = 
+[
+	TEXT("A group of smelly flies buzz around you, each one chasing anothers smell."nl"They are caught in an unending ouroboruos of stench..."),
+	GOTO("save")
+	
+]
+
+global.topics[$ "save"] = 
 [
 
 	CHOICE("Would you like to save your progress?",
@@ -173,19 +180,6 @@ global.topics[$ "yesToSave"] =
 	global.topics[$ "officeBathroom"] = 
 	[
 		TEXT("Your creepy skeletal nostril hole is bombarded with the stench of a toilet that hasn't been cleaned in at least a dozen years."),
-		GOTO("savePrompt"),
-	]
-	
-	global.topics[$ "checkBathroomKey"] = 
-	[
-		CHECKITEM(global.items.keyGeneric,"findBathroomKey",,,false)
-	]
-	
-	global.topics[$ "findBathroomKey"] = 
-	[
-		TEXT("Oh? What's this?"),
-		SET(FLAGS,"officeBathroomKey",true),
-		GIVE(global.items.keyGeneric),
-
+		GOTO("save"),
 	]
 #endregion

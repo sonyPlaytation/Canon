@@ -10,6 +10,9 @@ global.fightEnemies = [global.enemies.sand]
 global.fightStarter = noone 
 global.fightBG = bgPlaceholder
 
+global.mX = 0
+global.mY = 0
+
 menuDebounce = 0;
 
 //scribble constants

@@ -23,8 +23,6 @@ prevRadius = radius;
 radiusTarg = TILE_SIZE;
 hitBoxSize = radiusTarg - 8
 
-global.cam.follow = id
-
 stick = instance_create_depth(x,y,depth-50,oBattleDefenseStick)
 with stick 
 {

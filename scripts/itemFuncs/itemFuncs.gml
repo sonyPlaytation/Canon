@@ -99,8 +99,8 @@ function unlockDoor(_locked, _unlocked)
 {
 	if array_contains(global.inv[ITEM_TYPE.KEY],keyNeeded) 
 	{
-		myExit.locked = false;
-		instance_destroy();
+		locked = false;
+		FLAGS[$ id] = locked
 		SFX snSH2DoorUnlock
 		startDialogue(_unlocked);
 	} 

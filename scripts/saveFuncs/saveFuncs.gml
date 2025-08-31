@@ -7,8 +7,10 @@ function beginSave()
 
 function saveGame()
 {
+	file_delete(SAVEFILE)
 	var mainStruct = 
 	{
+		room : room,
 		flags : FLAGS,
 		stats : [],
 		inv :
@@ -45,13 +47,21 @@ function SaveString( _str, _filename)
 	buffer_save(_buffer, _filename);
 	show_debug_message("Successfully wrote file: "+_filename);
 	buffer_delete(_buffer);
+		shortMessage("Game Saved",TXTPOS.MID)
 }
 
 function LoadString(_filename)
 {
-	var _buffer = buffer_load(_filename);
-	var _string = buffer_read(_buffer, buffer_string);
-		
+	try
+	{
+		var _buffer = buffer_load(_filename);
+		var _string = buffer_read(_buffer, buffer_string);
+	}
+	catch(fileEpicFail)
+	{
+		file_delete(SAVEFILE) exit;	
+	}
+	
 	buffer_delete(_buffer);
 	show_debug_message("Successfully read file: "+_filename);
 	return _string;
@@ -77,6 +87,8 @@ function loadGame(){
 			array_push(global.inv[i], global.items[$ mainStruct.inv[i][j] ])
 		}
 	}
+	
+	if mainStruct[$ "room"] != undefined {return mainStruct.room;}
 	
 }
 

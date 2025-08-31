@@ -5,6 +5,12 @@ myScript = function()
 {
 	startDialogue(myTopic)
 	
+	if !array_contains(global.inv[ITEM_TYPE.KEY], global.items.keyGeneric) and !instance_exists(oTempItemTestPickup)
+	{
+		var _item = instance_create_depth(264,384,depth,oTempItemTestPickup)
+		_item.item = global.items.keyGeneric
+	}
+	
 	AFTERTEXT
 	{
 		if dialogueResponse
@@ -16,6 +22,5 @@ myScript = function()
 			oDarkToilet.alarm[0] = 60;
 			oBathroomStall.mask_index = -1
 		}
-		else if FLAGS[$ "officeBathroomKey"] == false { setText("checkBathroomKey") }
 	}
 }

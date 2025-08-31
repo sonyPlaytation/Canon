@@ -4,6 +4,7 @@ global.transitionX = 0;
 global.transitionY = 0;
 global.moveFacing = 0;
 global.currentTransition = noone
+global.defaultRoomPosition = false
 
 function createTransition(_type)
 {
@@ -12,10 +13,12 @@ function createTransition(_type)
 	global.currentTransition = layer_sequence_create(_layer,global.cam.get_x()+(GAME_W/2),global.cam.get_y()+(GAME_H/2),_type);
 }
 
-function transition(_roomTarget, _typeOut, _typeIn, _fight = false, _x = 0, _y = 0, face = 0)
+function transition(_roomTarget, _typeOut, _typeIn, _fight = false, _x = 0, _y = 0, face = 0, _defaultPos = false)
 {
 	if !global.midTransition
 	{
+		global.defaultRoomPosition = _defaultPos;
+		
 		if !_fight
 		{
 			global.transitionX = _x;

@@ -8,9 +8,26 @@ layer_set_visible(coll, false);
 
 if !instance_exists(oPlayer) and global.midTransition
 {
-	var player = instance_create_layer(global.transitionX,global.transitionY,"Player",oPlayer);
+	var _x, _y;
+	
+	if global.defaultRoomPosition
+	{
+		_x = oPlayerSpawner.x;
+		_y = oPlayerSpawner.y;
+	}
+	else
+	{
+		_x = global.transitionX;
+		_y = global.transitionY;
+	}
+	
+	var player = instance_create_layer(_x,_y,"Player",oPlayer);
 	player.facing = global.moveFacing;	
-	global.cam.x = player.x;
-	global.cam.y = player.y;
+	player.hasControl = false;
+	global.cam.move(_x,_y,1);
+	
+	alarm[0] = 2;
+	
+	global.defaultRoomPosition = false
 }
 

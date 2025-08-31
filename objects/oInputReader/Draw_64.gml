@@ -1,7 +1,7 @@
 /// @
 
 
-if global.inputDisplay
+if global.inputDisplay and room != rMenu
 {
 	alpha = lerp(alpha,alphaTarg,0.1);
 

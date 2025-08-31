@@ -14,9 +14,9 @@ if instance_exists(oCutCam)
 }
 else 
 {
-	if instance_exists(oPlayer)
-	{
-		follow = oPlayer;
-		global.cam.follow = follow;
-	}
+	//if instance_exists(oPlayer)
+	//{
+	//	follow = oPlayer;
+	//	global.cam.follow = follow;
+	//}
 }
