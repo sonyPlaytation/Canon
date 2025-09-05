@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"m2093Lite",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":93.65852,
+  "name":"m2093Lite",
+  "parent":{
+    "name":"Act 1",
+    "path":"folders/Sounds/Music/Act 1.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"m2093Lite.ogg",
+  "type":1,
+  "volume":0.65,
+}

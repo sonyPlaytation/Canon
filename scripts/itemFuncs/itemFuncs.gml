@@ -11,6 +11,17 @@ enum ITEM_TYPE
 	KEY
 }
 
+enum FOOD_TAG 
+{
+	MEAT,
+	DAIRY,
+	SEAFOOD,
+	SHELLFISH,
+	SPICY,
+	GRAIN,
+	SWEETS
+}
+
 global.inv[ITEM_TYPE.CONSUMABLE] = [];
 global.inv[ITEM_TYPE.ARMOR] = [];
 global.inv[ITEM_TYPE.MOD] = [];
@@ -43,6 +54,7 @@ global.items =
 		fxSprite : sHeal,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHealMinor,
+		tags:[],
 		func : function(user, targets)
 		{
 			battleChangeHP(targets[0],20,0)
@@ -64,6 +76,7 @@ global.items =
 		fxSprite : sHeal,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHealMinor,
+		tags : [FOOD_TAG.DAIRY,FOOD_TAG.GRAIN,FOOD_TAG.MEAT],
 		func : function(user, targets)
 		{
 			battleChangeHP(targets[0],20,0)

@@ -1,23 +1,30 @@
 
-startGame = function()
-{
-	room_goto_next()
-}
-
-loadSavefile = function()
-{
-	transition(loadGame(),sqFadeOut,sqFadeIn,,,,,true)
-}
-
 color = c_white;
 
-this = [startGame,loadSavefile]
-
-switch (doThis)
+options = 
 {
-	case 0: label = "start game" break;
-	case 1: label = "load save" break;
+	startGame : 
+	{
+		label : "Debug Start",
+		func : function() { transition(room_next(room),sqFadeOut,sqFadeIn,,,,,true) }
+	},
+	
+	newGame : 
+	{
+		label : "New Game",
+		func : function() { file_delete(SAVEFILE); transition(rOffice,sqFadeOut,sqFadeIn,,,,,true) }
+	},
+	
+	loadSavefile : 
+	{
+		label : "Load Game",
+		func :  function() { loadGame() transition(loadGame(),sqFadeOut,sqFadeIn,,,,,true) }
+	},
+	
+	wipeSave : 
+	{
+		label : "Wipe Save",
+		func :  function() { file_delete(SAVEFILE); }
+	},
 }
 
-image_xscale = 8;
-image_yscale = 3;

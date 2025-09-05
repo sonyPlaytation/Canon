@@ -1,5 +1,6 @@
 
 global.advantage = 0;
+global.lvlCap = 100;
 
 itemFuncs()
 
@@ -207,8 +208,9 @@ global.actionLibrary =
 	
 }
 
-struct_foreach(global.actionLibrary, function(_key, _val){
-  if _val[$ "category"] == ITEM_TYPE.CONSUMABLE {_val[$ "subMenu"] = "Items"}
+struct_foreach(global.actionLibrary, function(_key, _val)
+{
+	if _val[$ "category"] == ITEM_TYPE.CONSUMABLE {_val[$ "subMenu"] = "Items"}
 })
 
 enum MODE
@@ -220,7 +222,7 @@ enum MODE
 
 #macro PARTY global.party
 
-global.party = 
+global.characters = 
 [
 	{
 		// BASIC
@@ -232,13 +234,24 @@ global.party =
 		{
 			lvl : 1,
 			EXP : 0,
+			requiredEXP : 50,
 			hp: 50,
 			hpMax: 50,
 			ex: 15,
 			exMax: 15,
-			str: 4,
-			exStr: 7,
+			
+			str: 3,
+			def: 4,
+			exStr: 8,
+			exDef: 5,
+			int: 0, // intelligence governs the amount of EX you have, and how fast your meter builds
+			spd: 5, // speed is turn order and also move timer bonus time
+			cha: 0,
+			luk: 5
+			
 		},
+
+		allergies: [FOOD_TAG.SPICY, FOOD_TAG.SWEETS],
 		
 		// BATTLE
 		sprites : { idle: sNilsIdle, active: sNilsWalkD, attack: sNilsIdle, defend: sNilsIdle, down: sGrave, head: sHeadNils, portrait: sBattlePort, parry : sNilsParry},
@@ -248,6 +261,12 @@ global.party =
 			lowEX : "Runnin' low on ammo, you guys.",
 			justHealed : "Okay, that's so much better.",
 			justEXed : "More scary evil bullets, comin' right up!",
+			justLeveled :
+			[
+				"I can already feel this thing getting stronger..."nl" That's for the better, right?",
+				"This prophecy business wouldn't be so bad if I were jacked as shit.",
+				"Maybe I don't need to hold back as much."nl"Maybe... maybe this power is good for me..."
+			],
 			winQuotes : 
 			[ 
 				"I almost had a heart attack!",
@@ -267,13 +286,23 @@ global.party =
 		{
 			lvl : 1,
 			EXP : 0,
+			requiredEXP : 50,
 			hp: 40,
 			hpMax: 40,
 			ex: 20,
 			exMax: 20,
+			
 			str: 3,
-			exStr: 4,
+			def: 4,
+			exStr: 6,
+			exDef: 6,
+			int: 4, // intelligence governs the amount of EX you have, and how fast your meter builds
+			spd: 3, // speed is turn order and also move timer bonus time
+			cha: 0,
+			luk: 4
 		},
+		
+		allergies: [FOOD_TAG.SHELLFISH],
 		
 		sprites : { idle: sCharIdle, active: sCharFightActive, attack: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH, parry : sCharParry},
 		actions: [global.actionLibrary.normals, global.actionLibrary.special, global.actionLibrary.heal, global.actionLibrary.revive],
@@ -282,6 +311,11 @@ global.party =
 			lowEX : "Better hope this next spell works!",
 			justHealed : "Only a scrape after all!",
 			justEXed : "I feel way more magical now :)",
+			justLeveled :
+			[
+				"Hey Matthew, I have a new spell I really wanna try out!"nl"Wait, where are you going?",
+				""
+			],
 			winQuotes : 
 			[
 				"I wish we could have spared them...",
@@ -300,13 +334,23 @@ global.party =
 		{
 			lvl : 1,
 			EXP : 0,
+			requiredEXP : 50,
 			hp: 75,
 			hpMax: 75,
 			ex: 12,
 			exMax: 12,
-			str: 5,
-			exStr: 6,
+			
+			str: 6,
+			def: 6,
+			exStr: 5,
+			exDef: 4,
+			int: 0, // intelligence governs the amount of EX you have, and how fast your meter builds
+			spd: 5, // speed is turn order and also move timer bonus time
+			cha: 0,
+			luk: 3
 		},
+		
+		allergies: [FOOD_TAG.DAIRY],
 		
 		sprites : { idle: sMattIdle, active: sMatthewFightActive, attack: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH, parry : sMattParry},
 		actions: [global.actionLibrary.normals, global.actionLibrary.special],
@@ -315,6 +359,12 @@ global.party =
 			lowEX : "Man, I have enough of an 'EX' problem as is...",
 			justHealed : "I could've toughed it out...",
 			justEXed : "Who wants some?",
+			justLeveled :
+			[
+				"Hey man, don't take it personally. It's not easy being this much better than you.",
+				"I'm gonna need all the defense I can get if Charlie's gonna keep testing his spells out on me...",
+				"OOOOOH I'll givem wunna these! and wunna those! And wunna-"nl"And wunna these, and wunna those! And I'll choke 'em!!"nl"And givem wunna these! and I'll..."
+			],
 			winQuotes : 
 			[
 				"Wubba, wubba. I'm in the pink today, boys!",
@@ -323,6 +373,13 @@ global.party =
 			]
 		},
 	}
+]
+
+global.party = 
+[
+	global.characters[0],
+	global.characters[1],
+	global.characters[2]
 ]
 
 // Enemy AI Types
@@ -422,7 +479,7 @@ global.enemies =
 		
 		stats : 
 		{
-			hp : 30,
+			hp : 1,
 			hpMax: 30,
 			ex: 10,
 			exMax: 10,
@@ -432,7 +489,7 @@ global.enemies =
 		
 		sprites : { idle: sSand, attack: sSand, defend: sSand, down: sGrave, head: sSand},
 		actions: [global.actionLibrary.enemyNormals],
-		xpWorth: 4,
+		xpWorth: 100,
 		AI: function(user,targets)
 		{
 			var myMove = global.enemyAI.standard(user,targets);
@@ -455,7 +512,7 @@ global.enemies =
 		
 		sprites : { idle: sBat, attack: sBat, defend: sSand, down: sGrave, head: sBat},
 		actions: [global.actionLibrary.enemyNormals,global.actionLibrary.revive],
-		xpWorth: 3,
+		xpWorth: 4,
 		AI: function(user,targets)
 		{
 			var myMove = global.enemyAI.standard(user,targets);

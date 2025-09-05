@@ -71,7 +71,7 @@ function __InputConfigVerbs()
        
         InputDefineVerb(INPUT_VERB.ACTION,  "action",		["E", "Z"],				gp_face1);
         InputDefineVerb(INPUT_VERB.PAUSE,   "pause",		vk_escape,				gp_start);
-    }
+    }	
     
     //Define a cluster of verbs for moving around
     InputDefineCluster(INPUT_CLUSTER.NAVIGATION, INPUT_VERB.UP, INPUT_VERB.RIGHT, INPUT_VERB.DOWN, INPUT_VERB.LEFT);

@@ -11,8 +11,8 @@
   "name":"oBattleResults",
   "overriddenProperties":[],
   "parent":{
-    "name":"System",
-    "path":"folders/Objects/System.yy",
+    "name":"Battles",
+    "path":"folders/Objects/Battles.yy",
   },
   "parentObjectId":null,
   "persistent":false,

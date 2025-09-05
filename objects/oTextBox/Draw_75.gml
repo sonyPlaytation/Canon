@@ -1,6 +1,6 @@
 /// @
 
-if onHold {exit}
+if onHold or !drawNow {exit}
 
 if yMode == TXTPOS.BTM 
 {

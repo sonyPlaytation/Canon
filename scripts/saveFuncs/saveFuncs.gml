@@ -2,12 +2,22 @@
 
 function beginSave()
 {
-	saveGame()	
+	audio_pause_all()
+	oGame.nowSaving = true;
+	global.pauseEvery = true;
+	oPlayer.JustHitEnemyButCanStillMoveALittle = 0;
+	call_later(45,time_source_units_frames,function()
+	{
+		saveGame()	
+		global.pauseEvery = false;
+		audio_resume_all()
+	})
 }
 
 function saveGame()
 {
 	file_delete(SAVEFILE)
+	oGame.nowSaving = true;
 	var mainStruct = 
 	{
 		room : room,
@@ -47,7 +57,8 @@ function SaveString( _str, _filename)
 	buffer_save(_buffer, _filename);
 	show_debug_message("Successfully wrote file: "+_filename);
 	buffer_delete(_buffer);
-		shortMessage("Game Saved",TXTPOS.MID)
+	shortMessage("Game Saved",TXTPOS.MID)
+	oGame.nowSaving = false;
 }
 
 function LoadString(_filename)

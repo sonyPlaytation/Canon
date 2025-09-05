@@ -14,6 +14,7 @@ global.mX = 0
 global.mY = 0
 
 menuDebounce = 0;
+nowSaving = false;
 
 //scribble constants
 draw_set_text(fSmall,c_white,fa_center,fa_middle)
