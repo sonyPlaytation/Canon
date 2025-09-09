@@ -2,26 +2,28 @@
 
 
 // background
-draw_sprite(battleBG,0,global.cam.x - (GAME_W/2),global.cam.y - (GAME_H/2));
+draw_sprite_stretched(battleBG,2,global.cam.x - (GAME_W/2),global.cam.y - (GAME_H/2),GAME_W,GAME_H);
+draw_sprite_stretched(battleBG,1,global.cam.x - (GAME_W/2),global.cam.y - (GAME_H/2),GAME_W,GAME_H);
+draw_sprite_stretched(battleBG,0,global.cam.x - (GAME_W/2),global.cam.y - (GAME_H/2),GAME_W,GAME_H);
 
 var padding = TILE_SIZE
 
 // battle text
 var maxMessages = 2
 
-draw_sprite_stretched(sTextBox,0, _x + (padding*4), _y + GAME_H - (padding * 3), GAME_W - (padding*8), padding * 3 )
+//draw_sprite_stretched(sTextBox,0, _x + (padding*4), _y + GAME_H - (padding * 3), GAME_W - (padding*8), padding * 3 )
 
-for (var i = min(array_length(btlText)-1,maxMessages); i >= 0 ; i--)
-{
-	var xx = _x + (padding*4) + (padding/2)
-	var yy = (_y + GAME_H  - (padding * 2.66) + (18*i)) + 8
+//for (var i = min(array_length(btlText)-1,maxMessages); i >= 0 ; i--)
+//{
+//	var xx = _x + (padding*4) + (padding/2)
+//	var yy = (_y + GAME_H  - (padding * 2.66) + (18*i)) + 8
 	
-	var alpha = 1
-	btlText[i].align(fa_left,fa_middle)
-	btlText[i].blend(c_white,alpha)
-	btlText[i].draw(xx, yy)
-	draw_set_alpha(1)
-}
+//	var alpha = 1
+//	btlText[i].align(fa_left,fa_middle)
+//	btlText[i].blend(c_white,alpha)
+//	btlText[i].draw(xx, yy)
+//	draw_set_alpha(1)
+//}
 
 //draw units in depth order
 var activeUnit = unitTurnOrder[turn].id
@@ -33,7 +35,8 @@ for (var i = 0; i < array_length(unitRenderOrder); i++)
 	}
 }
 
-if state = victory exit;
+//if sState.get_current_state() == "victory" 
+exit;
 
 //right box
 draw_sprite_stretched(sTextBox,0, _x + 240, _y + (padding/2), GAME_W - (padding) - 240, padding * 3 )
@@ -113,3 +116,6 @@ if global.debug
 	draw_text(_x + (GAME_W/3),_y + (GAME_H/3), normalsTimer)	
 	draw_text(_x,_y,stateName)
 }
+
+draw_text(_x+100,_y+100,sState.get_current_state())
+draw_text(_x+100,_y+120,postParryCounter)

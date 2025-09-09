@@ -58,5 +58,7 @@ function parried()
 	stick.flash = 10;
 	stick.parry = 5;
 	stick.parryCooldownCurrent = 0;
+	stick.currDist = 0;
+	InputVerbConsumeAll()
 	SFX snParry	
 }

@@ -8,7 +8,7 @@ global.dev = true;
 
 global.fightEnemies = [global.enemies.sand] 
 global.fightStarter = noone 
-global.fightBG = bgPlaceholder
+global.fightBG = bgBattleDesert
 
 global.mX = 0
 global.mY = 0

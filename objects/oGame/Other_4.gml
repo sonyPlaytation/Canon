@@ -21,6 +21,8 @@ if !instance_exists(oPlayer) and global.midTransition
 		_y = global.transitionY;
 	}
 	
+	if !layer_exists("Player") layer_create(100,"Player");
+	
 	var player = instance_create_layer(_x,_y,"Player",oPlayer);
 	player.facing = global.moveFacing;	
 	player.hasControl = false;

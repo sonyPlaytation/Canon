@@ -161,3 +161,4 @@ function levelUp(character)
 		array_push(oBattleResults.baseStats, [STATS.str,STATS.def,STATS.exStr,STATS.exDef,STATS.int,STATS.spd,STATS.cha,STATS.luk] )
 	}
 }
+

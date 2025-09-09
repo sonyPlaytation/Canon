@@ -45,7 +45,7 @@ global.actionLibrary =
 		{
 			with oBattle 
 			{
-				state = doNormals;
+				sState.change("doNormals");
 			}
 		}
 	},
@@ -66,7 +66,7 @@ global.actionLibrary =
 		{
 			with oBattle 
 			{
-				state = enemyNormals;
+				sState.change("enemyNormals");
 			}
 		}
 	},
@@ -254,7 +254,7 @@ global.characters =
 		allergies: [FOOD_TAG.SPICY, FOOD_TAG.SWEETS],
 		
 		// BATTLE
-		sprites : { idle: sNilsIdle, active: sNilsWalkD, attack: sNilsIdle, defend: sNilsIdle, down: sGrave, head: sHeadNils, portrait: sBattlePort, parry : sNilsParry},
+		sprites : { idle: sNilsIdle, active: sNilsWalkD, attack: sNilsDash, defend: sNilsIdle, down: sGrave, head: sHeadNils, portrait: sBattlePort, parry : sNilsParry},
 		actions: [global.actionLibrary.normals],
 		battleLines : {
 			lowHP : "I could really use a hand right now...",
@@ -479,7 +479,7 @@ global.enemies =
 		
 		stats : 
 		{
-			hp : 1,
+			hp : 30,
 			hpMax: 30,
 			ex: 10,
 			exMax: 10,
@@ -489,7 +489,7 @@ global.enemies =
 		
 		sprites : { idle: sSand, attack: sSand, defend: sSand, down: sGrave, head: sSand},
 		actions: [global.actionLibrary.enemyNormals],
-		xpWorth: 100,
+		xpWorth: 6,
 		AI: function(user,targets)
 		{
 			var myMove = global.enemyAI.standard(user,targets);
