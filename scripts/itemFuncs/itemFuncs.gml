@@ -65,7 +65,7 @@ global.items =
 	{
 		category : ITEM_TYPE.CONSUMABLE,
 		sprite : sItemBurger,
-		name: "Double Cheeseburger",
+		name: "Cheeseburger",
 		type : "item",
 		description: "{1} eats a burger!",
 		desc: "Heals 20 hp to one target",

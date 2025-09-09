@@ -3,7 +3,7 @@
 
 function Menu(_x, _y, _options, _desc = -1, _w = undefined, _h = undefined, _selectable = true)
 {
-	var menu = (instance_create_depth(_x,_y,-99999,oMenu))
+	var menu = (instance_create_depth(_x,_y,-9999,oMenu))
 	with menu
 	{
 		options = _options;
@@ -12,7 +12,7 @@ function Menu(_x, _y, _options, _desc = -1, _w = undefined, _h = undefined, _sel
 		visibleOptionsMax = 6;
 		
 		xmargin = 12;
-		ymargin = 12;
+		ymargin = 8;
 		draw_set_font(fSmall);
 		lineHeight = 16;
 		

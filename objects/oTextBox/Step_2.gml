@@ -1,11 +1,12 @@
 
 switch (yMode)
 {
-	case TXTPOS.TOP: 
-		y = 0; 
-		portraitY = display_get_gui_height()
-	break;
+	//case TXTPOS.TOP: 
+	//	y = 0; 
+	//	portraitY = display_get_gui_height()
+	//break;
 	
+	default:
 	case TXTPOS.MID:
 	
 		width = string_width_scribble(text) + (margin)
@@ -15,7 +16,7 @@ switch (yMode)
 		
 	break;
 	
-	default:
+	
 	case TXTPOS.BTM: 
 		y = display_get_gui_height() - height - padding; 
 	break;

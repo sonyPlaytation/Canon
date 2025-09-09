@@ -1,7 +1,10 @@
 /// @
 
+x = lerp(x,xTarg,lerpSpd);
+
 if active
 {
+	xTarg = 24;
 	hover += InputPressed(INPUT_VERB.DOWN) - InputPressed(INPUT_VERB.UP);
 	if hover > array_length(options)-1 {hover = 0;}
 	if (hover < 0 ) { hover = array_length(options)-1; }
@@ -13,7 +16,11 @@ if active
 			if options[hover][1] != -1
 			{
 				var _func = options[hover][1];
-				if options[hover][2] != -1 {script_execute_ext(_func,options[hover][2]);} else _func();
+				if options[hover][2] != -1 {script_execute_ext(_func,options[hover][2]);} 
+				else
+				{
+					_func();
+				}
 			}
 		}
 	}
@@ -23,3 +30,4 @@ if active
 		if subMenuLevel > 0 menuGoBack();	
 	}
 }
+else {xTarg = -175;}
