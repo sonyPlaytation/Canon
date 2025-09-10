@@ -74,7 +74,7 @@ for (var i = 0; i < array_length(enemies); i++)
 
 for (var i = 0; i < array_length(PARTY); i++)
 {
-	partyUnits[i] = instance_create_depth(x-200-(i*20), y + 68 + (i*30), depth-(20 + i), oBattleHero, global.party[i]);
+	partyUnits[i] = instance_create_depth(x-200-(i*30), y + 68 + (i*30), depth-(20 + i), oBattleHero, global.party[i]);
 	
 	array_push(units,partyUnits[i]);
 }

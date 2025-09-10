@@ -4,7 +4,7 @@ x = lerp(x,xTarg,lerpSpd);
 
 if active
 {
-	xTarg = 24;
+	xTarg = global.cam.get_x() + 24;
 	hover += InputPressed(INPUT_VERB.DOWN) - InputPressed(INPUT_VERB.UP);
 	if hover > array_length(options)-1 {hover = 0;}
 	if (hover < 0 ) { hover = array_length(options)-1; }
@@ -30,4 +30,4 @@ if active
 		if subMenuLevel > 0 menuGoBack();	
 	}
 }
-else {xTarg = -175;}
+else {xTarg = global.cam.get_x()-175;}

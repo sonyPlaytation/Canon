@@ -4,8 +4,8 @@ active = true;
 subMenuLevel = 0;
 actorName = ""
 
-x = -120
-xTarg = 24;
+x = global.cam.get_x() -120
+xTarg = global.cam.get_x() + 24;
 lerpSpd = 0.25;
-y = 0
+y =  global.cam.get_y()
 menuGap = 6
