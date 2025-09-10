@@ -46,6 +46,8 @@ currentTargets = noone;
 
 postParryCounter = false;
 
+potExp = 0;
+
 cursor = 
 {
 	activeUser : noone,
@@ -60,8 +62,10 @@ cursor =
 
 for (var i = 0; i < array_length(enemies); i++)
 {
-	enemyUnits[i] = instance_create_depth(x+200+(i*20), y + 68 + (i*30), depth-(20 + i), oBattleEnemy, enemies[i]);
-	enemyUnits[i].stats = variable_clone(enemies[i].stats)
+	var enemy = enemies[i]
+	enemyUnits[i] = instance_create_depth(x+200+(i*20), y + 68 + (i*30), depth-(20 + i), oBattleEnemy, enemy);
+	enemyUnits[i].stats = variable_clone(enemy.stats)
+	potExp += enemy.xpWorth
 	array_push(units,enemyUnits[i]);
 }
 
@@ -440,17 +444,15 @@ victory = function()
 {
 	if !instance_exists(oBattleResults) and InputPressed(INPUT_VERB.ACCEPT)
 	{
-		var _totalEXP = 0
-		var _killsList = [{name: "Enemies Defeated"}]
+		var _killsList = ["Enemies Defeated"]
 		for (var i = 0; i < array_length(enemyUnits); i++)
 		{
-			_totalEXP += enemyUnits[i].xpWorth
-			_killsList[i+1] = enemies[i]
+			array_push(_killsList, enemies[i].name)
 		}
 		
 		instance_create_depth(x,y,depth-100,oBattleResults,
 		{
-			encounterEXP : _totalEXP,
+			encounterEXP : potExp,
 			killsList : _killsList,
 			winQuote : winQuote,
 			winHead : winHead

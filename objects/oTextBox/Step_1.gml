@@ -20,3 +20,5 @@ switch (yMode)
 		y = display_get_gui_height() - height - padding; 
 	break;
 }
+
+drawNow = true;

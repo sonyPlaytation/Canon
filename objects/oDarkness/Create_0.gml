@@ -11,3 +11,7 @@ h = display_get_gui_height();
 depth = -100;
 
 waveRate = 6
+
+follow = oPlayer
+
+pinSize = irandom_range(40,42)

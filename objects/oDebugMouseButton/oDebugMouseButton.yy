@@ -29,7 +29,12 @@
   "physicsStartAwake":true,
   "properties":[
     {"$GMObjectProperty":"v1","%Name":"label","filters":[],"listItems":[],"multiselect":false,"name":"label","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"\"DEFAULT\"","varType":2,},
-    {"$GMObjectProperty":"v1","%Name":"doThis","filters":[],"listItems":[],"multiselect":false,"name":"doThis","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
+    {"$GMObjectProperty":"v1","%Name":"doThis","filters":[],"listItems":[
+        "\"startGame\"",
+        "\"newGame\"",
+        "\"loadSavefile\"",
+        "\"wipeSave\"",
+      ],"multiselect":false,"name":"doThis","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"\"startGame\"","varType":6,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

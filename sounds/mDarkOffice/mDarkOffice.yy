@@ -9,7 +9,7 @@
   "bitRate":192,
   "compression":0,
   "conversionMode":0,
-  "duration":50.973446,
+  "duration":0.0,
   "name":"mDarkOffice",
   "parent":{
     "name":"Act 1",
