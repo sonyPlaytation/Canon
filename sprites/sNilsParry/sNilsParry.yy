@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Parry",
-    "path":"folders/Sprites/Battles/Party/Parry.yy",
+    "name":"Nils",
+    "path":"folders/Sprites/Battles/Party/Nils.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -95,20 +95,25 @@ function battleStates(){
 		{
 			currentUser.forward = true;
 			currentUser.image_index = 0;
-			currentUser.sprite_index = currentUser.sprites.attack
+			if currentUser.sprites[$ "slide"] != undefined { currentUser.sprite_index = currentUser.sprites.slide}
 		}
 		,
 		step : function()
 		{
 			if currentUser.percent >= currentUser.percentTarg
 			{
+				if variable_struct_exists(currentAction, "userAnimation")
+				{
+					var anim = struct_get(currentAction, "userAnimation");
+					if currentUser.sprites[$ anim ] != undefined { currentUser.sprite_index = currentUser.sprites[$ anim ]; }
+				}
+				
 				if currentUser.acting
 				{
 					if (currentUser.image_index >= image_number-1)
 					{
 						with(currentUser)
 						{
-							sprite_index = sprites.idle	
 							image_index = 0;
 							acting = false;
 						}
@@ -149,7 +154,7 @@ function battleStates(){
 		,
 		leave : function()
 		{
-			//postParryCounter = false;	
+			currentUser.sprite_index = currentUser.sprites.idle;
 		}
 	})
 

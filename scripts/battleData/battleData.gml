@@ -18,7 +18,7 @@ global.actionLibrary =
 		targetRequired : true,
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		fxSprite : sPunch,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHit8,
@@ -37,7 +37,7 @@ global.actionLibrary =
 		targetRequired : true,
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		//fxSprite : sPunch,
 		//effectOnTarget: MODE.ALWAYS,
 		//hitSound : snHit8,
@@ -58,7 +58,7 @@ global.actionLibrary =
 		targetRequired : true,
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		//fxSprite : sPunch,
 		//effectOnTarget: MODE.ALWAYS,
 		//hitSound : snHit8,
@@ -82,7 +82,7 @@ global.actionLibrary =
 		frameCost : 33,
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		fxSprite : sPunch,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHit8,
@@ -103,7 +103,7 @@ global.actionLibrary =
 		frameCost : 42,
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		fxSprite : sPunch,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHit7,
@@ -124,7 +124,7 @@ global.actionLibrary =
 		targetRequired : true,
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		fxSprite : sPunch,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHit9,
@@ -145,7 +145,7 @@ global.actionLibrary =
 		targetRequired : true,
 		targetEnemyByDefault: true,
 		targetAll : MODE.ALWAYS,
-		userAnimation : "attack",
+		userAnimation : "specials",
 		fxSprite : sPunch,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHit6,
@@ -170,7 +170,7 @@ global.actionLibrary =
 		targetRequired : true,
 		targetEnemyByDefault: false,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		fxSprite : sHeal,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHealMinor,
@@ -195,7 +195,7 @@ global.actionLibrary =
 		targetRequired : true,
 		targetEnemyByDefault: false,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		fxSprite : sHeal,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHealMinor,
@@ -254,8 +254,21 @@ global.characters =
 		allergies: [FOOD_TAG.SPICY, FOOD_TAG.SWEETS],
 		
 		// BATTLE
-		sprites : { idle: sNilsIdle, active: sNilsWalkD, attack: sNilsDash, defend: sNilsIdle, down: sGrave, head: sHeadNils, portrait: sBattlePort, parry : sNilsParry},
-		actions: [global.actionLibrary.normals],
+		sprites : 
+		{ 
+			idle: sNilsIdle, 
+			active: sNilsWalkD, 
+			slide: sNilsDash, 
+			normals: sNilsDash,
+			specials : sNilsSpecials,
+			defend: sNilsIdle, 
+			down: sGrave, 
+			head: sHeadNils, 
+			portrait: sBattlePort, 
+			parry : sNilsParry
+		},
+		
+		actions: [global.actionLibrary.normals, global.actionLibrary.special],
 		battleLines : {
 			lowHP : "I could really use a hand right now...",
 			lowEX : "Runnin' low on ammo, you guys.",
@@ -304,7 +317,7 @@ global.characters =
 		
 		allergies: [FOOD_TAG.SHELLFISH],
 		
-		sprites : { idle: sCharIdle, active: sCharFightActive, attack: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH, parry : sCharParry},
+		sprites : { idle: sCharIdle, active: sCharFightActive, normals: sCharIdle, slide: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH, parry : sCharParry},
 		actions: [global.actionLibrary.normals, global.actionLibrary.special, global.actionLibrary.heal, global.actionLibrary.revive],
 		battleLines : {
 			lowHP : "I told grandpa I wouldn't cry anymore...",
@@ -352,7 +365,7 @@ global.characters =
 		
 		allergies: [FOOD_TAG.DAIRY],
 		
-		sprites : { idle: sMattIdle, active: sMatthewFightActive, attack: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH, parry : sMattParry},
+		sprites : { idle: sMattIdle, active: sMatthewFightActive, normals: sMattIdle,  slide: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH, parry : sMattParry},
 		actions: [global.actionLibrary.normals, global.actionLibrary.special],
 		battleLines : {
 			lowHP : "[shake]Egh-[/shake] I've had worse... [c_dkgrey]dammit...",
@@ -487,7 +500,7 @@ global.enemies =
 			exStr: 5,
 		},
 		
-		sprites : { idle: sSand, attack: sSand, defend: sSand, down: sGrave, head: sSand},
+		sprites : { idle: sSand, normals: sSand, defend: sSand, down: sGrave, head: sSand},
 		actions: [global.actionLibrary.enemyNormals],
 		xpWorth: 6,
 		AI: function(user,targets)
@@ -510,7 +523,7 @@ global.enemies =
 			exStr: 6,
 		},
 		
-		sprites : { idle: sBat, attack: sBat, defend: sSand, down: sGrave, head: sBat},
+		sprites : { idle: sBat, normals: sBat, defend: sSand, down: sGrave, head: sBat},
 		actions: [global.actionLibrary.enemyNormals,global.actionLibrary.revive],
 		xpWorth: 4,
 		AI: function(user,targets)
