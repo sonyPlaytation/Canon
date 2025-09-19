@@ -37,10 +37,10 @@ function unpauseGame()
 		with (oPause)
 		{
 			pause = false;
-			instance_activate_all();
 		}
+		instance_activate_all();
 		global.cam.set_paused(false)
-		//audio_resume_all();
+		audio_resume_all();
 		if instance_exists(oMenu){instance_destroy(oMenu)};
 	}
 }

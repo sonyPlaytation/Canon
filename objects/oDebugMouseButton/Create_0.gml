@@ -18,7 +18,7 @@ options =
 	loadSavefile : 
 	{
 		label : "Load Game",
-		func :  function() { loadGame() transition(loadGame(),sqFadeOut,sqFadeIn,,,,,true) }
+		func :  function() { loadGame(true)  }
 	},
 	
 	wipeSave : 

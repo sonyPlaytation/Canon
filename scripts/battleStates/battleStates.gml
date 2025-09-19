@@ -1,4 +1,4 @@
-function initBattleStates(){
+function battleStates(){
 
 	sState = new SnowState("selectAction");
 
@@ -7,8 +7,16 @@ function initBattleStates(){
 		enter : function()
 		{
 			var unit = unitTurnOrder[turn];
+			show_debug_message($"START OF {unit.name}'S TURN")
 	
 			if unit.stats.hp > 0 and variable_struct_exists(unit.sprites,"active"){ unit.sprite_index = unit.sprites.active; }
+	
+			//todo fix turn order
+			if unit.stats.hp > 0 and array_contains(partyUnits,unit)
+			{
+				array_delete(oBattle.partyTurnOrder,0,1) 
+				oBattle.partyTurnOrder[2] = unit 
+			}
 		}
 		,
 		step : function()
@@ -21,7 +29,7 @@ function initBattleStates(){
 			{
 				if !instance_exists(unit) or unit.stats.hp <= 0
 				{
-					victoryCheck();
+					sState.change("victoryCheck")
 					exit;
 				}
 	
@@ -61,7 +69,7 @@ function initBattleStates(){
 					for (var i = 0; i < array_length(_subMenusArray); i++)
 					{
 						//can sort submenu stuff here but i dont think i need to
-						array_push(_subMenus[$ _subMenusArray[i]], ["Back", menuGoBack, -1, true]);
+						array_push(_subMenus[$ _subMenusArray[i]], ["Back", submenuGoBack, -1, true]);
 						// add submenus we just created into the greater menu
 						array_push(_menuOptions, [_subMenusArray[i], subMenu, [_subMenus[$ _subMenusArray[i]]], true] );
 					}
@@ -167,7 +175,7 @@ function initBattleStates(){
 		
 				if array_length(livingTargets) >= 1 
 				{ currentTargets[0] = livingTargets[0] } 
-				else { victoryCheck(); }
+				else { sState.change("victoryCheck"); }
 			}
 	
 			if normalsAllowed > normalsPerformed and normalsTimer > 0
@@ -222,7 +230,7 @@ function initBattleStates(){
 				normalsPerformed = 0
 				killsPerTurn = 0;
 				normalsTimer = normalsReset
-				victoryCheck();
+				sState.change("victoryCheck");
 			}
 		}
 		,
@@ -282,14 +290,8 @@ function initBattleStates(){
 	
 	.add("victoryCheck",
 	{
-		enter : function()
-		{
-			
-		}
-		,
 		step : function()
 		{
-			stateName = "victoryCheck"
 			var enemiesDead = 0;
 			for (var i = 0; i < array_length(enemyUnits); i++)
 			{
@@ -304,15 +306,13 @@ function initBattleStates(){
 	
 			if enemiesDead == array_length(enemyUnits) // win condition
 			{
-				endBattle()
+				//instance_destroy(oBattleHealth)
+				sState.change("victory");
 			}
 			else if partyDead == array_length(partyUnits) // lose condition
 			{
-				set_song_ingame(mGameOver,,,true)
-		
-				BATTLE("[c_red][shake]YOU LOSE!")
-		
-				endBattle()
+				//instance_destroy(oBattleHealth)
+				sState.change("defeat");
 			}
 			else sState.change("turnProgress");
 		}
@@ -322,7 +322,25 @@ function initBattleStates(){
 	{
 		enter : function()
 		{
-
+			set_song_ingame(mBattleWin,,,true)
+			BATTLE("[c_lime][wave]YOU WIN![/wave]")
+		
+			with oBattleHero 
+			{
+				if stats.hp <= 0 {battleChangeHP(id, 1, 1)};
+				sprite_index = sprites.active
+			}
+			
+			for (var i = 0; i < array_length(partyUnits); ++i) 
+			{
+				PARTY[i].stats.hp = partyUnits[i].stats.hp;
+				PARTY[i].stats.ex = partyUnits[i].stats.ex; 
+			}
+		
+			var winQuoteSayer = partyUnits[irandom(array_length(partyUnits)-1)];
+			winQuote = "["+sprite_get_name(winQuoteSayer.sprites.head)+"]: "+chr(34)+winQuoteSayer.battleLines.winQuotes[irandom(array_length(winQuoteSayer.battleLines.winQuotes)-1)]+chr(34);
+			winHead = winQuoteSayer.sprites.head
+			
 		}
 		,
 		step : function()
@@ -346,8 +364,32 @@ function initBattleStates(){
 		}
 	})
 	
+	.add("defeat",
+	{
+		enter : function()
+		{
+			//set_song_ingame(mGameOver,,,true)
+			//BATTLE("[c_red][shake]YOU LOSE![/shake]")
+			shortMessage("you died",TXTPOS.MID)
+		}
+		,
+		step : function()
+		{
+			if InputPressed(INPUT_VERB.ACCEPT)
+			{
+				transition(room, sqBattleEnd, sqFadeIn, true);
+				loadGame(true)
+			}
+		}
+	})
+	
 	.add("turnProgress",
 	{
+		enter : function()
+		{
+			
+		}
+		,
 		step : function()
 		{
 			turnCount++;
@@ -358,6 +400,13 @@ function initBattleStates(){
 				roundCount++;
 			}
 			sState.change("selectAction");
+		}
+		,
+		leave : function()
+		{
+		
+			
+			
 		}
 	})
 

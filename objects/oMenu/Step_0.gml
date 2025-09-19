@@ -2,9 +2,10 @@
 
 x = lerp(x,xTarg,lerpSpd);
 
-if active
+if active 
 {
-	xTarg = global.cam.get_x() + 24;
+	//if InputPressed(INPUT_VERB.DOWN) or InputPressed(INPUT_VERB.UP){SFX sNarr}
+	
 	hover += InputPressed(INPUT_VERB.DOWN) - InputPressed(INPUT_VERB.UP);
 	if hover > array_length(options)-1 {hover = 0;}
 	if (hover < 0 ) { hover = array_length(options)-1; }
@@ -24,10 +25,15 @@ if active
 			}
 		}
 	}
-	
-	if InputPressed(INPUT_VERB.CANCEL)
-	{
-		if subMenuLevel > 0 menuGoBack();	
-	}
 }
-else {xTarg = global.cam.get_x()-175;}
+
+if !destroyMenu 
+{ 
+	xTarg = global.cam.get_x() + 36; 
+}
+else 
+{
+	if x >= global.cam.get_x() + 22 {alarm[0] = 5;}
+	xTarg = global.cam.get_x()-175;
+
+}

@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":183.27403,
+  "duration":0.0,
   "name":"mBattleAdv",
   "parent":{
     "name":"Music",

@@ -10,9 +10,7 @@ var padding = TILE_SIZE
 
 // battle text
 var maxMessages = 2
-
 draw_sprite_stretched(sTextBox,0, _x + (padding*4), _y + GAME_H - (padding * 3), GAME_W - (padding*8), padding * 3 )
-
 for (var i = min(array_length(btlText)-1,maxMessages); i >= 0 ; i--)
 {
 	var xx = _x + (padding*4) + (padding/2)
@@ -24,6 +22,10 @@ for (var i = min(array_length(btlText)-1,maxMessages); i >= 0 ; i--)
 	btlText[i].draw(xx, yy)
 	draw_set_alpha(1)
 }
+
+draw_sprite(sBattleTurnCount,0,_x + (GAME_W/2),_y + 26);
+draw_set_text(global.fSF3Time,c_white,fa_center,fa_middle);
+draw_text(_x + (GAME_W/2),_y + 52,roundCount)
 
 //draw units in depth order
 var activeUnit = unitTurnOrder[turn].id

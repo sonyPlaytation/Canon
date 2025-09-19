@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":70.909096,
+  "duration":74.28571,
   "name":"mGameOver",
   "parent":{
     "name":"General",
@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"mGameOver.ogg",
   "type":1,
-  "volume":0.65,
+  "volume":0.5,
 }

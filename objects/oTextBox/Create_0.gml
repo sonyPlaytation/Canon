@@ -39,6 +39,7 @@ spd = global.textSpeed;
 txtX = padding;
 txtY = padding/2;
 txtW = width - (padding * 2);
+draw_set_font(font);
 
 // Portrait 
 portraitX = x;
@@ -47,7 +48,6 @@ portraitY = y + (TILE_SIZE/2);
 // Speaker
 emotion = 0;
 nameFont = fQuit;
-scribble_font_bake_shadow(font_get_name(nameFont),"nameFontMod",1,1,c_black,1,0,false)
 nameColor = c_white;
 sound = [sNarr];
 
@@ -124,20 +124,17 @@ setText = function(newText)
 {
 	sound = textSoundLUT(name);
 	text = newText;
-	
-	typist.sound(sound,0.1,0.9,1.1);
+
+	typist.sound(sound,0.1,0.9,1.1,global.sfxVol);
 	
 	scribb = scribble(text)
 		.wrap(txtW)
 		.starting_format(font_get_name(font),color)
 		.fit_to_box(txtW,height);
 		
-	nameW = string_width_scribble(name);
 	myName = scribble(name)
 		.starting_format("nameFontMod",nameColor)
 		.align(fa_left,fa_middle)
-		
-	
 		
 	length = string_length_scribble(newText);
 	progress = 0;

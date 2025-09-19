@@ -14,6 +14,14 @@ advantage = global.advantage;
 units = [];
 btlText = [];
 
+partyHP = 0;
+partyHPMAX = 0;
+partyHPPercent = 0;
+
+enemyHP = 0;
+enemyHPMAX = 0;
+enemyHPPercent = 0;
+
 bgx = [0,0,0];
 
 stateName = ""
@@ -40,7 +48,7 @@ unitRenderOrder = [];
 killsPerTurn = 0;
 
 turnCount = 0;
-roundCount = 0;
+roundCount = 1;
 battleWaitTimeFrames = 15;
 battleWaitTimeLeft = 0;
 currentUser = 0;
@@ -69,13 +77,14 @@ for (var i = 0; i < array_length(enemies); i++)
 	enemyUnits[i] = instance_create_depth(x+200+(i*20), y + 68 + (i*30), depth-(20 + i), oBattleEnemy, enemy);
 	enemyUnits[i].stats = variable_clone(enemy.stats)
 	potExp += enemy.xpWorth
+	enemyHPMAX += enemyUnits[i].stats.hpMax;
 	array_push(units,enemyUnits[i]);
 }
 
 for (var i = 0; i < array_length(PARTY); i++)
 {
 	partyUnits[i] = instance_create_depth(x-200-(i*30), y + 68 + (i*30), depth-(20 + i), oBattleHero, global.party[i]);
-	
+	partyHPMAX += partyUnits[i].stats.hpMax;
 	array_push(units,partyUnits[i]);
 }
 
@@ -108,6 +117,23 @@ switch(advantage)
 		
 	break;
 }
+
+partyTurnOrder = array_filter(unitTurnOrder,function(element,index)
+{
+	return array_contains(partyUnits,unitTurnOrder[index])
+})
+
+partyHealthbar = instance_create_depth(x,y,-10000,oBattleHealth,
+{
+	turnOrder : partyTurnOrder,
+	enemy : false
+})
+
+enemyHealthbar = instance_create_depth(x,y,-10000,oBattleHealth,
+{
+	enemy : true
+})
+enemyHealthbar.enemy = true;
 
 if global.fightSong != -1 {bgm = global.fightSong}
 
@@ -156,71 +182,12 @@ beginAction = function(user, action, targets) // THIS IS A FUNCTION NOT A STATE
 	sState.change("performAction");
 }
 
-
-victoryCheck = function()
-{
-	var enemiesDead = 0;
-	for (var i = 0; i < array_length(enemyUnits); i++)
-	{
-		if enemyUnits[i].stats.hp <= 0 {enemiesDead++}
-	}
-	
-	var partyDead = 0;
-	for (var i = 0; i < array_length(partyUnits); i++)
-	{
-		if partyUnits[i].stats.hp <= 0 {partyDead++}
-	}
-	
-	if enemiesDead == array_length(enemyUnits) // win condition
-	{
-		endBattle()
-	}
-	else if partyDead == array_length(partyUnits) // lose condition
-	{
-		set_song_ingame(mGameOver,,,true)
-		
-		BATTLE("[c_red][shake]YOU LOSE!")
-		
-		endBattle()
-	}
-	else sState.change("turnProgress");
-}
-
-defeat = function()
-{
-	
-}
-
 checkNormalsString = function()
 {
 	if string_pos("lmh",normalsString){show_debug_message("Plink detected")};
 	
 	if killsPerTurn == 2 {BATTLE("[#F16EAA]HAPPY BIRTHDAY!")}
 	else if killsPerTurn == 3 {BATTLE("[c_red]MERRY [c_green]CHRISTMAS!!")}
-}
-
-endBattle = function()
-{ 
-	set_song_ingame(mBattleWin,,,true)
-	with oBattleHero 
-	{
-		if stats.hp <= 0 {battleChangeHP(id, 1, 1)};
-		sprite_index = sprites.active
-	}
-	
-	for (var i = 0; i < array_length(partyUnits); ++i) 
-	{
-		PARTY[i].stats.hp = partyUnits[i].stats.hp;
-		PARTY[i].stats.ex = partyUnits[i].stats.ex; 
-	}
-		
-	var winQuoteSayer = partyUnits[irandom(array_length(partyUnits)-1)];
-	winQuote = "["+sprite_get_name(winQuoteSayer.sprites.head)+"]: "+chr(34)+winQuoteSayer.battleLines.winQuotes[irandom(array_length(winQuoteSayer.battleLines.winQuotes)-1)]+chr(34);
-	winHead = winQuoteSayer.sprites.head
-		
-	BATTLE("[c_lime][wave]YOU WIN!")
-		
-	sState.change("victory");
 }
 
 useCursor = function()
@@ -274,7 +241,7 @@ useCursor = function()
 			if InputPressed(INPUT_VERB.ACCEPT)
 			{
 				with (oBattle) beginAction(cursor.activeUser, cursor.activeAction, cursor.activeTarget);
-				with (oMenu) instance_destroy();
+				with (oMenu) destroyMenu = true;
 				active = false;
 				confirmDelay = 0;
 			}
@@ -288,4 +255,4 @@ useCursor = function()
 	}	
 }
 
-initBattleStates()
+battleStates()

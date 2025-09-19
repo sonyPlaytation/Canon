@@ -16,15 +16,20 @@ function leaveBattle()
 {
 	instance_activate_all();
 	global.pauseEvery = false;
-	if instance_exists(global.fightStarter) {instance_destroy(global.fightStarter);}
-	if instance_exists(oBattle) {instance_destroy(oBattle);}
-	instance_destroy(oBattleResults);	
+	
+	oInputReader.alphaTarg = 1
 	oPlayer.iFrames = 90;
+	end_temp_song()
 	
 	layer_sequence_destroy(self.elementID);
 	global.midTransition = false;
 	
-	layer_sequence_create("transition",global.cam.x,global.cam.y,sqFadeIn);
+	if (instance_exists(oBattle) and oBattle.sState.get_current_state() == "defeat") {loadGame(true)}
+	else {layer_sequence_create("transition",global.cam.x,global.cam.y,sqFadeIn);}
+	
+	if instance_exists(global.fightStarter) { instance_destroy(global.fightStarter); }
+	if instance_exists(oBattle) { instance_destroy(oBattle); }
+	if instance_exists(oBattleResults) { instance_destroy(oBattleResults); }
 	
 	//oCamera.drawNothing = false
 };

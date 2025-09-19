@@ -22,15 +22,18 @@ draw_sprite_stretched(sprite_index,boxSpr,x,y,width,height);
 
 if (yMode == TXTPOS.BTM and alpha == alphaTarg) or yMode != TXTPOS.BTM 
 {
-
-	var nameY = y - 26
+	
+	var nameY = y - 24
 	if name != ""
 	{
-		draw_sprite_stretched(sTextNameBox,boxSpr,x + (txtX/2), nameY, nameW * 2.1,24);
-		myName.draw(x + txtX, nameY + 11);
+		nameW = string_width_scribble(name);
+		draw_sprite(sBattleOptions,0,x + (txtX/2), nameY);
+		myName.draw(x + txtX, nameY + 8);
 	}
-	scribb.draw(x + txtX, y + txtY, typist);
-
+	draw_set_font(font);
+	scribb.draw(x + txtX, y + txtY, typist); //main text rendering
+	
+	draw_set_font(font);
 	var finished = (typist.get_state() >= 1)
 
 	// Options

@@ -11,7 +11,7 @@ if tempSongAsset != noone and !audio_is_playing(tempSongAsset)
 	{
 		audio_pause_sound(songAsset)
 		audio_stop_sound(tempSongAsset)
-		audio_play_sound(tempSongAsset,500,true)
+		audio_play_sound(tempSongAsset,500,true,global.musVol)
 	}
 }
 
@@ -33,7 +33,6 @@ if songAsset != targetSongAsset
 		songAsset = noone;
 		
 	}
-	
 	
 	//play the song if the old song is gone
 	if array_length (fadeOutInst) == 0
@@ -71,7 +70,7 @@ if audio_is_playing(songInstance)
 	}
 	
 	//actually set gain
-	audio_sound_gain(songInstance, fadeInInstVol, 0);
+	audio_sound_gain(songInstance, fadeInInstVol*global.musVol, 0);
 	
 }
 

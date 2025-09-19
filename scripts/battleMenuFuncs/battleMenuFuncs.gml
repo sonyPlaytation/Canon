@@ -1,5 +1,5 @@
 
-#macro BATTLE new battleText
+#macro BATTLE battleText
 
 function Menu(_x, _y, _options, _desc = -1, _w = undefined, _h = undefined, _selectable = true)
 {
@@ -46,12 +46,29 @@ function Menu(_x, _y, _options, _desc = -1, _w = undefined, _h = undefined, _sel
 	return menu;
 }
 
-function subMenu(_options)
+function subMenu(_options, _desc = -1)
 {
-	optionsAbove[subMenuLevel] = options;
-	subMenuLevel++;
-	options = _options;
-	hover = 0;
+	active = false
+	
+	var menu = (instance_create_depth(x + sprite_get_width(sBattleOptionHeader),selectY,-9989,oSubmenu))
+	with menu
+	{
+		owner = other;
+		options = _options;
+		desc = _desc;
+		var optionsCount = array_length(_options);
+		visibleOptionsMax = 6;
+		
+		xmargin = 12;
+		ymargin = 8;
+		draw_set_font(fSmall);
+		lineHeight = 19;
+		height = lineHeight * (visibleOptionsMax + 1 + (desc != -1));
+		heightFull = height + (ymargin * 2);
+
+	}
+	return menu;
+	
 }
 
 function menuGoBack()
@@ -59,6 +76,11 @@ function menuGoBack()
 	subMenuLevel--;
 	options = optionsAbove[subMenuLevel];
 	hover = 0;
+}
+
+function submenuGoBack()
+{
+	destroyMenu = true;
 }
 
 function menuSelectAction(_user, _action)
@@ -98,23 +120,16 @@ function menuSelectAction(_user, _action)
 		else
 		{
 			beginAction(_user,_action,-1)
-			with(oMenu) instance_destroy();
+			with(oMenu) destroyMenu = true;
 		}
 	}
 }
 
-function battleText(_desc, _user = "", _targ = "") constructor
+function battleText(_desc, _user = "", _targ = "")
 {
-	desc = _desc;
-	user = _user;
-	targ = _targ;
-	
-	msg = string_ext(desc,[user,targ]);
+	var msg = string_ext(_desc,[_user,_targ]);
 	msg = scribble(msg);
 	msg.starting_format("fBattle",c_white);
-	with oBattle 
-	{
-		array_insert(btlText, 0, other.msg)
-	}
+	array_insert(oBattle.btlText, 0, msg)
 }
 

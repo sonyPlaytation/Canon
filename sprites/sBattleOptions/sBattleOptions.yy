@@ -43,7 +43,7 @@
     ],
     "top":0,
   },
-  "origin":0,
+  "origin":9,
   "parent":{
     "name":"UI",
     "path":"folders/Sprites/Battles/UI.yy",
@@ -100,7 +100,7 @@
     ],
     "visibleRange":null,
     "volume":1.0,
-    "xorigin":0,
+    "xorigin":1,
     "yorigin":0,
   },
   "swatchColours":null,

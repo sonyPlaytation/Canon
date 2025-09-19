@@ -1,4 +1,4 @@
 /// @
 
-audio_stop_all()
+global.mute = !global.mute
 tempSongAsset = noone

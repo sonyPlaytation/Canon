@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"initBattleStates",
+  "%Name":"battleStates",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"initBattleStates",
+  "name":"battleStates",
   "parent":{
     "name":"Scripts",
     "path":"folders/Scripts.yy",
