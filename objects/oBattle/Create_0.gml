@@ -22,6 +22,8 @@ enemyHP = 0;
 enemyHPMAX = 0;
 enemyHPPercent = 0;
 
+normalsCooldown = 0;
+
 bgx = [0,0,0];
 
 stateName = ""
@@ -32,6 +34,7 @@ slideDist = 24;
 slideTime = 180
 
 parriesMissed = 0;
+enemyMove = "";
 
 normalsPerformed = 0;
 normalsAllowed = 6;
@@ -84,6 +87,7 @@ for (var i = 0; i < array_length(enemies); i++)
 for (var i = 0; i < array_length(PARTY); i++)
 {
 	partyUnits[i] = instance_create_depth(x-200-(i*30), y + 68 + (i*30), depth-(20 + i), oBattleHero, global.party[i]);
+	partyUnitsFixed[i] = global.party[i];
 	partyHPMAX += partyUnits[i].stats.hpMax;
 	array_push(units,partyUnits[i]);
 }
@@ -96,24 +100,33 @@ else
 //shuffle turn order
 randomize();
 
+var sortBySpd = function(arr)
+{
+	array_sort(arr,function(unit1,unit2)
+	{
+		return  unit2.stats.spd - unit1.stats.spd;
+	})
+	return arr;
+}
+
 switch(advantage)
 {
 	case 1:
 		BATTLE("[c_lime]You have the upper hand! Press this advantage!");
-		unitTurnOrder = array_concat(array_shuffle(partyUnits),array_shuffle(enemyUnits));
+		unitTurnOrder = array_concat(sortBySpd(partyUnits),sortBySpd(enemyUnits));
 		bgm = mBattleAdv;
 	break;
 	
 	case -1:
 		BATTLE("[c_red]Look out! You're completely surrounded!");
-		unitTurnOrder = array_concat(array_shuffle(enemyUnits),array_shuffle(partyUnits));
+		unitTurnOrder = array_concat(sortBySpd(enemyUnits),sortBySpd(partyUnits));
 		bgm = mBattleDisadv;
 	break;
 	
 	default:
 	case 0:
 		BATTLE("[c_yellow]It all depends on your skill. Go for broke!");
-		unitTurnOrder = array_shuffle(units);
+		unitTurnOrder = sortBySpd(units);
 		
 	break;
 }

@@ -3,8 +3,8 @@
 var tiles = layer_get_id("CollTiles");
 var coll = layer_get_id("Coll");
 
-layer_set_visible(tiles, false);
-layer_set_visible(coll, false);
+if layer_exists(tiles) layer_set_visible(tiles, false);
+if layer_exists(coll) layer_set_visible(coll, false);
 
 if !instance_exists(oPlayer) and global.midTransition
 {

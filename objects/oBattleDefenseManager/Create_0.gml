@@ -31,7 +31,8 @@ with stick
 	dist = other.radiusTarg
 }
 
-bulletManager = instance_create_depth(x,y,depth-25,oBattleBulletManager)
+bulletManager = instance_create_depth(x,y,depth-25,oBattleBulletManager, variable_clone(global.patterns[$ enemyMove]));
+bulletManager.user = user;
 
 function bulletHit(_bullet, _blocked = false)
 {

@@ -40,7 +40,7 @@ if songAsset != targetSongAsset
 		if targetSongAsset != noone and audio_exists(targetSongAsset)
 		{
 			//play the song and store its instance in a variable
-			songInstance = audio_play_sound(targetSongAsset, 400, true);
+			songInstance = audio_play_sound(targetSongAsset, 400, true,global.musVol);
 
 			//start the songs voluem at 0
 			audio_sound_gain(songInstance, 0, 0)

@@ -51,25 +51,26 @@ function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 	{
 		if amount < 0 {audio_play_sound(snSwingMiss,765,false)};
 		col = c_white;
-		text = "Failed!";
+		text = "Whiff!";
 		
 	}
-	else if !failed and sound != -1
+	else if !failed
 	{ 
-		
 		if amount > 0 //healing
 		{
 			if target.stats.hp <= 0 {text = "Resurrection!";}
 			target.flash += 15;
 		}
-		else
+		else // damage
 		{
 			target.hit = 0;
 			target.hit += 5;
-			global.cam.shake_screen(amount/2,abs(amount))	
+			amount = min(amount + target.stats.def, 0)
+			text = amount;
+			//global.cam.shake_screen(amount/2,abs(amount))	
 		}
 		
-		oSFX.battlehit = sound; 
+		if sound != -1 { oSFX.battlehit = sound; } 
 	}
 	
 	var healthLine = -1

@@ -12,6 +12,7 @@ if pleaseWrapItUp
 	{
 		instance_destroy()
 		instance_destroy(stick)	
+		instance_destroy(bulletManager)	
 	}
 }
 

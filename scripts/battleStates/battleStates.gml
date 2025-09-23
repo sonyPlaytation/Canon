@@ -105,18 +105,15 @@ function battleStates(){
 				if variable_struct_exists(currentAction, "userAnimation")
 				{
 					var anim = struct_get(currentAction, "userAnimation");
-					if currentUser.sprites[$ anim ] != undefined { currentUser.sprite_index = currentUser.sprites[$ anim ]; }
+					if currentUser.sprites[$ anim ] != undefined and currentUser.sprite_index != currentUser.sprites[$ anim ] 
+					{ currentUser.image_index = 0; currentUser.sprite_index = currentUser.sprites[$ anim ];  }
 				}
 				
 				if currentUser.acting
 				{
-					if (currentUser.image_index >= image_number-1)
-					{
-						with(currentUser)
-						{
-							image_index = 0;
-							acting = false;
-						}
+					if sprite_get_speed(currentUser.sprite_index) < 1 or (currentUser.image_index >= (currentUser.image_number-1)/2)
+					{ 
+						if (currentUser.image_index >= (currentUser.image_number-1)) { currentUser.image_speed = 0; }
 			
 						if variable_struct_exists(currentAction, "fxSprite")
 						{
@@ -133,8 +130,11 @@ function battleStates(){
 								instance_create_depth(x,y,depth-100,oBattleEffect,{sprite_index : _fxSprite});
 							}
 						}
-						currentAction.func(currentUser,currentTargets);
+					
+						currentUser.acting = false;
+						currentAction.func(currentUser,currentTargets) 
 					}
+					
 				}
 				else
 				{
@@ -155,6 +155,7 @@ function battleStates(){
 		leave : function()
 		{
 			currentUser.sprite_index = currentUser.sprites.idle;
+			currentUser.image_speed = 1;
 		}
 	})
 
@@ -166,6 +167,7 @@ function battleStates(){
 			var char = "";
 			currentAction = -1;
 			normalsTimer--;
+			if normalsCooldown > 0 {normalsCooldown--}
 	
 			if currentTargets[0].stats.hp <= 0 // if current target dies before time is up
 			{
@@ -185,6 +187,7 @@ function battleStates(){
 	
 			if normalsAllowed > normalsPerformed and normalsTimer > 0
 			{
+
 				if InputPressed(INPUT_VERB.BL)		{currentAction = global.actionLibrary.light		char = "l" }
 				else if InputPressed(INPUT_VERB.BM)	{currentAction = global.actionLibrary.medium	char = "m" }
 				else if InputPressed(INPUT_VERB.BH)	{currentAction = global.actionLibrary.heavy		char = "h" }
@@ -195,7 +198,7 @@ function battleStates(){
 					char = "";
 				}
 		
-				if currentAction != -1 and normalsTimer > currentAction.frameCost
+				if currentAction != -1 and normalsCooldown == 0
 				{
 					if variable_struct_exists(currentAction,"description")
 					{
@@ -207,7 +210,7 @@ function battleStates(){
 					}
 			
 					currentAction.func(currentUser,currentTargets);
-					normalsTimer -= currentAction.frameCost;
+					normalsCooldown = currentAction.frameCost;
 					normalsPerformed++;	
 			
 					if variable_struct_exists(currentAction, "fxSprite")
@@ -256,7 +259,8 @@ function battleStates(){
 				parryWidget = instance_create_depth(x,y,depth-10,oBattleDefenseManager,
 				{
 					defender : defender,
-					user : currentUser
+					user : currentUser,
+					enemyMove : enemyMove
 				});
 			}
 	
@@ -330,16 +334,16 @@ function battleStates(){
 			set_song_ingame(mBattleWin,,,true)
 			BATTLE("[c_lime][wave]YOU WIN![/wave]")
 		
-			with oBattleHero 
+			for (var i = 0; i < array_length(partyUnits); i++ )
 			{
-				if stats.hp <= 0 {battleChangeHP(id, 1, 1)};
-				sprite_index = sprites.active
+				if partyUnits[i].stats.hp <= 0 {show_message(partyUnits[i].stats.hp) battleChangeHP(partyUnits[i], 1, 1)};
+				partyUnits[i].sprite_index = partyUnits[i].sprites.active
 			}
 			
-			for (var i = 0; i < array_length(partyUnits); ++i) 
+			for (var i = 0; i < array_length(partyUnits); i++) 
 			{
-				PARTY[i].stats.hp = partyUnits[i].stats.hp;
-				PARTY[i].stats.ex = partyUnits[i].stats.ex; 
+				PARTY[i].stats.hp = partyUnitsFixed[i].stats.hp;
+				//PARTY[i].stats.ex = partyUnits[i].stats.ex; 
 			}
 		
 			var winQuoteSayer = partyUnits[irandom(array_length(partyUnits)-1)];

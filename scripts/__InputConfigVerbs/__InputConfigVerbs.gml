@@ -38,10 +38,10 @@ function __InputConfigVerbs()
 		InputDefineVerb(INPUT_VERB.RUN,		"run",			["X"],					gp_face3);
 		InputDefineVerb(INPUT_VERB.DASH,	"dash",			[vk_space],				gp_face2);
 																					
-		InputDefineVerb(INPUT_VERB.BL,		"light",		["A", "Z"],				gp_face3);
-		InputDefineVerb(INPUT_VERB.BM,		"medium",		["S", "X"],				gp_face4);
-		InputDefineVerb(INPUT_VERB.BH,		"heavy",		["D", "C"],				gp_face2);
-		InputDefineVerb(INPUT_VERB.GRUDGE,	"grudge",		[vk_shift],				gp_shoulderlb);
+		InputDefineVerb(INPUT_VERB.BL,		"L",			["A"],					gp_face3);
+		InputDefineVerb(INPUT_VERB.BM,		"M",			["S"],					gp_face4);
+		InputDefineVerb(INPUT_VERB.BH,		"H",			["D"],					gp_shoulderr);
+		InputDefineVerb(INPUT_VERB.GRUDGE,	"g.",			[vk_shift],				gp_shoulderl);
 																					
         InputDefineVerb(INPUT_VERB.ACCEPT,  "accept",		["Z"],					gp_face1);
 		InputDefineVerb(INPUT_VERB.CANCEL,  "cancel",		["X"],					gp_face2);
@@ -60,10 +60,10 @@ function __InputConfigVerbs()
 		InputDefineVerb(INPUT_VERB.RUN,		"run",			["X"],					gp_face3);
 		InputDefineVerb(INPUT_VERB.DASH,	"dash",			[vk_space],				gp_face2);
 																					
-		InputDefineVerb(INPUT_VERB.BL,		"light",		["A", "Z"],				gp_face3);
-		InputDefineVerb(INPUT_VERB.BM,		"medium",		["S", "X"],				gp_face4);
-		InputDefineVerb(INPUT_VERB.BH,		"heavy",		["D", "C"],				gp_face2);
-		InputDefineVerb(INPUT_VERB.GRUDGE,	"grudge",		[vk_shift],				gp_shoulderlb);
+		InputDefineVerb(INPUT_VERB.BL,		"L",			["A"],					gp_face3);
+		InputDefineVerb(INPUT_VERB.BM,		"M",			["S"],					gp_face4);
+		InputDefineVerb(INPUT_VERB.BH,		"H",			["D"],					gp_face2);
+		InputDefineVerb(INPUT_VERB.GRUDGE,	"g.",			[vk_shift],				gp_shoulderlb);
 																					
         InputDefineVerb(INPUT_VERB.ACCEPT,  "accept",		["Z"],					gp_face1);
 		InputDefineVerb(INPUT_VERB.CANCEL,  "cancel",		["X"],					gp_face2);

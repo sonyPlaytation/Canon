@@ -32,6 +32,8 @@ if forward
 	var _start = xstart
 	var _end = xstart + (TILE_SIZE*2*image_xscale);
 	var _dist = _end - _start; 
+	
+	if percent >= 0.75 {percent = 1};
 			
 	x = _start + (_dist * position);
 } 

@@ -73,3 +73,5 @@ if global.debug
 	draw_text(_x + (GAME_W/3),_y + (GAME_H/3), normalsTimer)	
 	draw_text(100,100,sState.get_current_state())
 }
+
+draw_text(_x +100,_y +100,enemyMove)
