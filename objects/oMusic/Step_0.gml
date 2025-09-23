@@ -11,7 +11,7 @@ if tempSongAsset != noone and !audio_is_playing(tempSongAsset)
 	{
 		audio_pause_sound(songAsset)
 		audio_stop_sound(tempSongAsset)
-		audio_play_sound(tempSongAsset,500,true)
+		audio_play_sound(tempSongAsset,500,true,global.musVol)
 	}
 }
 
@@ -34,14 +34,13 @@ if songAsset != targetSongAsset
 		
 	}
 	
-	
 	//play the song if the old song is gone
 	if array_length (fadeOutInst) == 0
 	{
 		if targetSongAsset != noone and audio_exists(targetSongAsset)
 		{
 			//play the song and store its instance in a variable
-			songInstance = audio_play_sound(targetSongAsset, 400, true);
+			songInstance = audio_play_sound(targetSongAsset, 400, true,global.musVol);
 
 			//start the songs voluem at 0
 			audio_sound_gain(songInstance, 0, 0)
@@ -71,7 +70,7 @@ if audio_is_playing(songInstance)
 	}
 	
 	//actually set gain
-	audio_sound_gain(songInstance, fadeInInstVol, 0);
+	audio_sound_gain(songInstance, fadeInInstVol*global.musVol, 0);
 	
 }
 

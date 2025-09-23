@@ -13,4 +13,7 @@ if global.debug
 {
 	draw_set_text(fSmall,c_white,fa_center,fa_middle)
 	draw_text(x,y+5,$"{stats.hp}/{stats.hpMax}")	
+	draw_set_text(fSmall,c_white,fa_center,fa_middle)
+	draw_text(x,y+25,image_index)	
 }
+

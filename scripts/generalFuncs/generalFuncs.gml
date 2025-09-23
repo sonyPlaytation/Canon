@@ -3,6 +3,7 @@ global.songPlaying = noone;
 global.drawShadows = true;
 
 scribble_font_bake_shadow("fSmall", "fBattle",1,0,c_black,1,0,false);
+scribble_font_bake_shadow("fQuit","nameFontMod",1,1,c_black,1,0,false)
 
 function parryFlash(_frame)
 {

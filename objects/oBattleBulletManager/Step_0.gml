@@ -1,28 +1,32 @@
 
+upTime++;
 
-if cooldown > 0 {cooldown--}
+if currentCooldown > 0 {currentCooldown--}
 
 if instance_exists (oBattleDefenseManager)
 {
 	if oBattleDefenseManager.parry > 0 {exit}
 }
 
-if cooldown <= 0 and !pleaseWrapItUp
+if currentCooldown <= 0 and !pleaseWrapItUp
 {
 	var bX, bY
 	
-	dir = irandom(7) * 45
+	shotDir = dirs[irandom(array_length(dirs)-1)]*45;
 	
-	bX = lengthdir_x(dist,dir)
-	bY = lengthdir_y(dist,dir)
+	bX = lengthdir_x(dist,shotDir)
+	bY = lengthdir_y(dist,shotDir)
 	
 	instance_create_depth(x + bX, y+ bY,depth-100,oBullet,
 	{
-		dir : dir-180,
+		dir : shotDir-180,
 		spd : spd,
-		dmg : dmg
+		dmg : user.stats.str + dmg
 	})
 	
-	cooldown = ceil(cooldownReset)
+	shotsShot++;
+	funcPerShot();
+	
+	currentCooldown = ceil(cooldownReset)
 	
 }

@@ -1,10 +1,9 @@
 
 event_inherited()
+ 
+shotDir = 0;
+cooldownReset = rate
+currentCooldown = cooldownReset;
 
-dir = 0
-cooldownReset = 30;
-cooldown = 15;
-
-spd = 2;
-dist = 150;
-dmg = 5;
+shotsShot = 0;
+upTime = 0

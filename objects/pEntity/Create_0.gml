@@ -61,7 +61,11 @@ enemyStuff = function()
 		oPlayer.hasControl = false;
 		startingBattle = true;
 	
-		if instance_exists(oDarkness) or  (collision_line(x,selfCenter,lengthdir_x(24,dir),lengthdir_y(24,dir),oPlayer,false,false) and facing == oPlayer.facing)
+		var advRoll = irandom(2)-1
+		
+		advantage = advRoll
+		
+		if instance_exists(oDarkness)//or  (collision_line(x,selfCenter,lengthdir_x(24,dir),lengthdir_y(24,dir),oPlayer,false,false) and facing == oPlayer.facing)
 		{ advantage = -1; }
 	
 		if forceAdvantage != noone {advantage = forceAdvantage}

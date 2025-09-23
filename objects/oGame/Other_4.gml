@@ -3,8 +3,8 @@
 var tiles = layer_get_id("CollTiles");
 var coll = layer_get_id("Coll");
 
-layer_set_visible(tiles, false);
-layer_set_visible(coll, false);
+if layer_exists(tiles) layer_set_visible(tiles, false);
+if layer_exists(coll) layer_set_visible(coll, false);
 
 if !instance_exists(oPlayer) and global.midTransition
 {
@@ -20,6 +20,8 @@ if !instance_exists(oPlayer) and global.midTransition
 		_x = global.transitionX;
 		_y = global.transitionY;
 	}
+	
+	if !layer_exists("Player") layer_create(100,"Player");
 	
 	var player = instance_create_layer(_x,_y,"Player",oPlayer);
 	player.facing = global.moveFacing;	

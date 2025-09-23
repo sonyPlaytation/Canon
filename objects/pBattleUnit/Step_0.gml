@@ -23,3 +23,22 @@ else
 {
 	if sprite_index == sprites.down {sprite_index = sprites.idle; alreadyDead = false}
 }
+
+if forward
+{
+	percent += 1/60
+	var position = animcurve_channel_evaluate(curve,percent);
+			
+	var _start = xstart
+	var _end = xstart + (TILE_SIZE*2*image_xscale);
+	var _dist = _end - _start; 
+	
+	if percent >= 0.75 {percent = 1};
+			
+	x = _start + (_dist * position);
+} 
+else
+{
+	percent = 0
+	x = lerp(x, xstart, 0.25);	
+}

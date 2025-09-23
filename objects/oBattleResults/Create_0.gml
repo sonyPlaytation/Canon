@@ -4,6 +4,7 @@
 //killsList = []
 //winQuote = "poopyhead"
 
+depth = oBattle.depth-200
 
 //myDoc = instance_create_depth(x,y,depth,yui_document,
 //{

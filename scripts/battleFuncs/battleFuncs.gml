@@ -16,15 +16,20 @@ function leaveBattle()
 {
 	instance_activate_all();
 	global.pauseEvery = false;
-	if instance_exists(global.fightStarter) {instance_destroy(global.fightStarter);}
-	if instance_exists(oBattle) {instance_destroy(oBattle);}
-	instance_destroy(oBattleResults);	
+	
+	oInputReader.alphaTarg = 1
 	oPlayer.iFrames = 90;
+	end_temp_song()
 	
 	layer_sequence_destroy(self.elementID);
 	global.midTransition = false;
 	
-	layer_sequence_create("transition",global.cam.x,global.cam.y,sqFadeIn);
+	if (instance_exists(oBattle) and oBattle.sState.get_current_state() == "defeat") {loadGame(true)}
+	else {layer_sequence_create("transition",global.cam.x,global.cam.y,sqFadeIn);}
+	
+	if instance_exists(global.fightStarter) { instance_destroy(global.fightStarter); }
+	if instance_exists(oBattle) { instance_destroy(oBattle); }
+	if instance_exists(oBattleResults) { instance_destroy(oBattleResults); }
 	
 	//oCamera.drawNothing = false
 };
@@ -46,25 +51,26 @@ function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 	{
 		if amount < 0 {audio_play_sound(snSwingMiss,765,false)};
 		col = c_white;
-		text = "Failed!";
+		text = "Whiff!";
 		
 	}
-	else if !failed and sound != -1
+	else if !failed
 	{ 
-		
 		if amount > 0 //healing
 		{
 			if target.stats.hp <= 0 {text = "Resurrection!";}
 			target.flash += 15;
 		}
-		else
+		else // damage
 		{
 			target.hit = 0;
 			target.hit += 5;
-			global.cam.shake_screen(amount/2,abs(amount))	
+			amount = min(amount + target.stats.def, 0)
+			text = amount;
+			//global.cam.shake_screen(amount/2,abs(amount))	
 		}
 		
-		oSFX.battlehit = sound; 
+		if sound != -1 { oSFX.battlehit = sound; } 
 	}
 	
 	var healthLine = -1
@@ -161,3 +167,4 @@ function levelUp(character)
 		array_push(oBattleResults.baseStats, [STATS.str,STATS.def,STATS.exStr,STATS.exDef,STATS.int,STATS.spd,STATS.cha,STATS.luk] )
 	}
 }
+

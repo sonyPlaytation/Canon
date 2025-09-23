@@ -1,3 +1,3 @@
 
 
-loadGame()
+loadGame(true)

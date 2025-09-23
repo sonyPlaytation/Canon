@@ -78,7 +78,7 @@ function LoadString(_filename)
 	return _string;
 }
 
-function loadGame(){
+function loadGame(roomChange = false){
 
 	if !file_exists(SAVEFILE) return;
 	
@@ -99,7 +99,7 @@ function loadGame(){
 		}
 	}
 	
-	if mainStruct[$ "room"] != undefined {return mainStruct.room;}
+	if roomChange and mainStruct[$ "room"] != undefined { transition(mainStruct.room,sqFadeOut,sqFadeIn,,,,,true) }
 	
 }
 

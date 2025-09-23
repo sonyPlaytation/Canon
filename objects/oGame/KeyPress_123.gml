@@ -1,8 +1,11 @@
 /// @
 
-global.debug = !global.debug
-
-if global.debug 
+if DEV
 {
-	instance_activate_object(oTempItemTestPickup)
+	global.debug = !global.debug
+
+	if global.debug 
+	{
+		instance_activate_object(oTempItemTestPickup)
+	}
 }

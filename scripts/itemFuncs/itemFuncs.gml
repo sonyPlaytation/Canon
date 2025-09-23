@@ -65,7 +65,7 @@ global.items =
 	{
 		category : ITEM_TYPE.CONSUMABLE,
 		sprite : sItemBurger,
-		name: "Double Cheeseburger",
+		name: "Cheeseburger",
 		type : "item",
 		description: "{1} eats a burger!",
 		desc: "Heals 20 hp to one target",
@@ -133,7 +133,7 @@ function addItem(_item, _showMsg = true)
 	
 		array_push(global.inv[_item.category],_item);
 	
-		if _showMsg { shortMessage($"[snCaveStoryGetItem]Found a [c_red]{_item.name}[c_white]!",TXTPOS.MID) }
+		if _showMsg { SFX snCaveStoryGetItem; shortMessage($"Found a [c_red]{_item.name}[c_white]!",TXTPOS.MID) }
 		show_debug_message($"Added Item: {_item.name} to Inventory")
 	}
 }

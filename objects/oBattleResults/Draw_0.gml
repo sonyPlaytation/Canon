@@ -21,7 +21,7 @@ if screen == 0 and  h >= hTarg-1
 	draw_set_text(fSmall,c_white,fa_center,fa_middle)
 	
 	draw_sprite_stretched(sTextBox,1,quoteX,quoteY,quoteW,quoteH)
-	draw_text_scribble(scrWhalf,quoteY+pad2,winQuote)
+	//draw_text_scribble(scrWhalf,quoteY+pad2,winQuote)
 	
 	draw_set_text(fSmall,c_white,fa_left,fa_top)
 	

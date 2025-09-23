@@ -9,26 +9,6 @@ global.actionLibrary =
 	// NOTES FOR OPERATION
 	// subMenu can be -1 to be a top level action, otherwise it MUST have subMenu
 	
-	attack:
-	{
-		name: "Attack",
-		type : "attack",
-		description: "{0} attacks {1}!",
-		subMenu : -1,
-		targetRequired : true,
-		targetEnemyByDefault: true,
-		targetAll : MODE.NEVER,
-		userAnimation : "attack",
-		fxSprite : sPunch,
-		effectOnTarget: MODE.ALWAYS,
-		hitSound : snHit8,
-		func : function(user, targets)
-		{
-			var damage = ceil(user.stats.str + random_range(-user.stats.str/4, user.stats.str/4));
-			battleChangeHP(targets[0], -damage,, self.hitSound);
-		}
-	},
-	
 	normals:
 	{
 		name: "Normals",
@@ -37,7 +17,7 @@ global.actionLibrary =
 		targetRequired : true,
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		//fxSprite : sPunch,
 		//effectOnTarget: MODE.ALWAYS,
 		//hitSound : snHit8,
@@ -45,7 +25,7 @@ global.actionLibrary =
 		{
 			with oBattle 
 			{
-				state = doNormals;
+				sState.change("doNormals");
 			}
 		}
 	},
@@ -58,16 +38,34 @@ global.actionLibrary =
 		targetRequired : true,
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		//fxSprite : sPunch,
 		//effectOnTarget: MODE.ALWAYS,
 		//hitSound : snHit8,
 		func : function(user, targets)
 		{
-			with oBattle 
-			{
-				state = enemyNormals;
-			}
+			oBattle.sState.change("enemyNormals");
+			oBattle.enemyMove = user.attacks[irandom(array_length(user.attacks)-1)];
+		}
+	},
+	
+	attack:
+	{
+		name: "Attack",
+		type : "attack",
+		description: "{0} attacks {1}!",
+		subMenu : -1,
+		targetRequired : true,
+		targetEnemyByDefault: true,
+		targetAll : MODE.NEVER,
+		userAnimation : "normals",
+		fxSprite : sPunch,
+		effectOnTarget: MODE.ALWAYS,
+		hitSound : snHit8,
+		func : function(user, targets)
+		{
+			var damage = ceil(user.stats.str + random_range(-user.stats.str/4, user.stats.str/4));
+			battleChangeHP(targets[0], -damage,, self.hitSound);
 		}
 	},
 	
@@ -79,16 +77,16 @@ global.actionLibrary =
 		description: "{0} jabs {1}!",
 		subMenu : "Normals",
 		targetRequired : true,
-		frameCost : 33,
+		frameCost : 6,
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		fxSprite : sPunch,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHit8,
 		func : function(user, targets)
 		{
-			var damage = ceil(user.stats.str + random_range(-user.stats.str/4, user.stats.str/4));
+			var damage = ceil(user.stats.str * random_range(1.25,1.5));
 			battleChangeHP(targets[0], -damage,, self.hitSound);
 		}
 	},
@@ -100,16 +98,16 @@ global.actionLibrary =
 		description: "{0} punches {1}!",
 		subMenu : "Normals",
 		targetRequired : true,
-		frameCost : 42,
+		frameCost : 8,
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		fxSprite : sPunch,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHit7,
 		func : function(user, targets)
 		{
-			var damage = ceil(user.stats.str + random_range(-user.stats.str/3, user.stats.str/3));
+			var damage = ceil(user.stats.str * random_range(1.5,1.75));
 			battleChangeHP(targets[0], -damage,, self.hitSound);
 		}
 	},
@@ -120,32 +118,32 @@ global.actionLibrary =
 		type : "attack",
 		description: "{0} CLOBBERS {1}!",
 		subMenu : "Normals",
-		frameCost : 85,
+		frameCost : 14,
 		targetRequired : true,
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		fxSprite : sPunch,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHit9,
 		func : function(user, targets)
 		{
-			var damage = ceil(user.stats.str + random_range(-user.stats.str/2, user.stats.str/2));
+			var damage = ceil(user.stats.str * random_range(1.75,2));
 			battleChangeHP(targets[0], -damage,, self.hitSound);
 		}
 	},
 	
 	special:
 	{
-		name: "AOE",
+		name: "Spinning Kick",
 		type : "attack",
 		description: "{0} uses their special move!",
 		subMenu : "Specials",
 		exCost : 5,
 		targetRequired : true,
 		targetEnemyByDefault: true,
-		targetAll : MODE.ALWAYS,
-		userAnimation : "attack",
+		targetAll : MODE.VARIES,
+		userAnimation : "specials",
 		fxSprite : sPunch,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHit6,
@@ -154,6 +152,56 @@ global.actionLibrary =
 			for (var i = 0; i< array_length(targets); i++)
 			{
 				var damage = ceil(user.stats.exStr + random_range(-user.stats.exStr/3, user.stats.exStr/2));
+				if array_length(targets) > 1 {damage = ceil(damage*0.75)}
+				battleChangeHP(targets[i], -damage,, self.hitSound);
+			}
+		}
+	},
+	
+	devilshot:
+	{
+		name: "Devil's Gun",
+		type : "attack",
+		description: "{0} fires off the Devil's Gun!",
+		subMenu : "Specials",
+		exCost : 7,
+		targetRequired : true,
+		targetEnemyByDefault: true,
+		targetAll : MODE.NEVER,
+		userAnimation : "shoot",
+		fxSprite : sPunch,
+		effectOnTarget: MODE.ALWAYS,
+		hitSound : snHit6,
+		func : function(user, targets)
+		{
+			for (var i = 0; i< array_length(targets); i++)
+			{
+				var damage = ceil(user.stats.exStr * random_range(1,1.25));
+				if array_length(targets) > 1 {damage = ceil(damage*0.75)}
+				battleChangeHP(targets[i], -damage,, self.hitSound);
+			}
+		}
+	},
+	
+	devilvolley:
+	{
+		name: "Devil Volley",
+		type : "attack",
+		description: "{0} blasts away!",
+		subMenu : "Specials",
+		exCost : 12,
+		targetRequired : true,
+		targetEnemyByDefault: true,
+		targetAll : MODE.ALWAYS,
+		userAnimation : "shoot",
+		fxSprite : sPunch,
+		effectOnTarget: MODE.ALWAYS,
+		hitSound : snHit6,
+		func : function(user, targets)
+		{
+			for (var i = 0; i< array_length(targets); i++)
+			{
+				var damage = ceil(user.stats.exStr * random_range(1,1.25));
 				if array_length(targets) > 1 {damage = ceil(damage*0.75)}
 				battleChangeHP(targets[i], -damage,, self.hitSound);
 			}
@@ -170,7 +218,7 @@ global.actionLibrary =
 		targetRequired : true,
 		targetEnemyByDefault: false,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		fxSprite : sHeal,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHealMinor,
@@ -195,7 +243,7 @@ global.actionLibrary =
 		targetRequired : true,
 		targetEnemyByDefault: false,
 		targetAll : MODE.NEVER,
-		userAnimation : "attack",
+		userAnimation : "normals",
 		fxSprite : sHeal,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHealMinor,
@@ -206,6 +254,69 @@ global.actionLibrary =
 		}
 	}
 	
+}
+	
+global.patterns = 
+{
+	def :
+	{
+		dmg : 0,
+		dirs : [0,1,2,3,4,5,6,7],
+		rate : 30,
+		dist : 150,
+		spd : 2,
+		funcPerShot : function() {show_debug_message("def");},
+	},
+	
+	cross :
+	{
+		dmg : 0,
+		dirs : [0,2,4,6],
+		rate : 23,
+		dist : 115,
+		spd : 2.25,
+		funcPerShot : function() {show_debug_message("cross");},
+	},
+	
+	plus :
+	{
+		dmg : 0,
+		dirs : [1,3,5,7],
+		rate : 23,
+		dist : 115,
+		spd : 2.25,
+		funcPerShot : function() {show_debug_message("plus");},
+	},
+	
+	spiral :
+	{
+		dmg : 0,
+		dirs : [irandom(7)],
+		rate : 30,
+		dist : 150,
+		spd : 2.45,
+		funcPerShot : function() { show_debug_message("spiral"); self.dirs[0]++ },
+	},
+	
+	counterspiral :
+	{
+		dmg : 0,
+		dirs : [irandom(7)],
+		rate : 30,
+		dist : 150,
+		spd : 2.45,
+		funcPerShot : function() { show_debug_message("counterspiral"); self.dirs[0]-- },
+	},
+	
+	bursts :
+	{
+		dmg : 0,
+		dirs : [irandom(7)],
+		rate : 20,
+		dist : 150,
+		spd : 2.3,
+		funcPerShot : function() { show_debug_message("bursts"); if oBattleBulletManager.shotsShot mod 3 == 0 {self.dirs[0] += irandom_range(2,5)} },
+	},
 }
 
 struct_foreach(global.actionLibrary, function(_key, _val)
@@ -254,8 +365,22 @@ global.characters =
 		allergies: [FOOD_TAG.SPICY, FOOD_TAG.SWEETS],
 		
 		// BATTLE
-		sprites : { idle: sNilsIdle, active: sNilsWalkD, attack: sNilsIdle, defend: sNilsIdle, down: sGrave, head: sHeadNils, portrait: sBattlePort, parry : sNilsParry},
-		actions: [global.actionLibrary.normals],
+		sprites : 
+		{ 
+			idle: sNilsIdle, 
+			active: sNilsWalkD, 
+			slide: sNilsDash, 
+			normals: sNilsDash,
+			specials : sNilsShoot1,
+			shoot : sNilsShoot1,
+			defend: sNilsIdle, 
+			down: sGrave, 
+			head: sHeadNils, 
+			portrait: sBattlePort, 
+			parry : sNilsParry
+		},
+		
+		actions: [global.actionLibrary.normals, global.actionLibrary.devilshot, global.actionLibrary.devilvolley],
 		battleLines : {
 			lowHP : "I could really use a hand right now...",
 			lowEX : "Runnin' low on ammo, you guys.",
@@ -263,7 +388,7 @@ global.characters =
 			justEXed : "More scary evil bullets, comin' right up!",
 			justLeveled :
 			[
-				"I can already feel this thing getting stronger..."nl" That's for the better, right?",
+				"I can already feel this thing getting stronger..."nl" That's a good thing, right?",
 				"This prophecy business wouldn't be so bad if I were jacked as shit.",
 				"Maybe I don't need to hold back as much."nl"Maybe... maybe this power is good for me..."
 			],
@@ -304,8 +429,8 @@ global.characters =
 		
 		allergies: [FOOD_TAG.SHELLFISH],
 		
-		sprites : { idle: sCharIdle, active: sCharFightActive, attack: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH, parry : sCharParry},
-		actions: [global.actionLibrary.normals, global.actionLibrary.special, global.actionLibrary.heal, global.actionLibrary.revive],
+		sprites : { idle: sCharIdle, active: sCharFightActive, normals: sCharIdle, slide: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH, parry : sCharParry},
+		actions: [global.actionLibrary.normals, global.actionLibrary.heal, global.actionLibrary.revive],
 		battleLines : {
 			lowHP : "I told grandpa I wouldn't cry anymore...",
 			lowEX : "Better hope this next spell works!",
@@ -340,11 +465,11 @@ global.characters =
 			ex: 12,
 			exMax: 12,
 			
-			str: 6,
+			str: 4,
 			def: 6,
 			exStr: 5,
 			exDef: 4,
-			int: 0, // intelligence governs the amount of EX you have, and how fast your meter builds
+			int: 2, // intelligence governs the amount of EX you have, and how fast your meter builds
 			spd: 5, // speed is turn order and also move timer bonus time
 			cha: 0,
 			luk: 3
@@ -352,7 +477,7 @@ global.characters =
 		
 		allergies: [FOOD_TAG.DAIRY],
 		
-		sprites : { idle: sMattIdle, active: sMatthewFightActive, attack: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH, parry : sMattParry},
+		sprites : { idle: sMattIdle, active: sMatthewFightActive, normals: sMattIdle,  slide: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH, parry : sMattParry},
 		actions: [global.actionLibrary.normals, global.actionLibrary.special],
 		battleLines : {
 			lowHP : "[shake]Egh-[/shake] I've had worse... [c_dkgrey]dammit...",
@@ -479,17 +604,19 @@ global.enemies =
 		
 		stats : 
 		{
-			hp : 1,
 			hpMax: 30,
 			ex: 10,
 			exMax: 10,
-			str: 4,
+			str: 8,
+			def : 2,
 			exStr: 5,
+			spd : 4
 		},
 		
-		sprites : { idle: sSand, attack: sSand, defend: sSand, down: sGrave, head: sSand},
+		sprites : { idle: sSand, normals: sSand, defend: sSand, down: sGrave, head: sSand},
 		actions: [global.actionLibrary.enemyNormals],
-		xpWorth: 100,
+		attacks: ["bursts","def","cross"],
+		xpWorth: 6,
 		AI: function(user,targets)
 		{
 			var myMove = global.enemyAI.standard(user,targets);
@@ -502,16 +629,18 @@ global.enemies =
 		name: "Swoopty",
 		stats : 
 		{
-			hp : 25,
 			hpMax: 25,
 			ex: 15,
 			exMax: 15,
-			str: 3,
+			str: 6,
+			def: 1,
 			exStr: 6,
+			spd : 4
 		},
 		
-		sprites : { idle: sBat, attack: sBat, defend: sSand, down: sGrave, head: sBat},
+		sprites : { idle: sBat, normals: sBat, defend: sSand, down: sGrave, head: sBat},
 		actions: [global.actionLibrary.enemyNormals,global.actionLibrary.revive],
+		attacks: ["spiral","counterspiral","plus"],
 		xpWorth: 4,
 		AI: function(user,targets)
 		{
@@ -519,5 +648,9 @@ global.enemies =
 			return [myMove[0],myMove[1]] 
 		}
 	}
-
 }
+
+struct_foreach(global.enemies, function(_key, _val)
+{
+	_val.stats[$ "hp"] = _val.stats[$ "hpMax"]
+})

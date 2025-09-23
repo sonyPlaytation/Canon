@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"battleStates",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"battleStates",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,47 +1,43 @@
 /// @
+
+
 var optionsCount = array_length(options);
 height = lineHeight * (optionsCount + (desc != -1));
 heightFull = height + (ymargin * 2);
 
-draw_sprite_stretched(sTextBox, 0, x,y, widthFull, heightFull);
+draw_sprite(sBattleOptionHeader, 0, x,y);
+draw_set_text(fSmall,c_white,fa_left, fa_middle);
 
-if subMenuLevel == 0 
-{
-	draw_set_text(fSmart,c_black,fa_center, fa_top);
-	draw_text(x + (widthFull/2) -1, y-11, actorName);
-	draw_set_color(c_white)
-	draw_text(x + (widthFull/2), y-12, actorName);
-}
-
-draw_set_text(fSmall,c_white,fa_left, fa_top);
-
-var _desc = desc != -1;
+var _desc = (desc != -1);
 var scrollPush = max(0, hover - (visibleOptionsMax-1));
 
 for (var l = 0; l < visibleOptionsMax + _desc; l++)
 {
 	if l >= array_length(options) {break;}
-	draw_set_color(c_white);
-	if l == 0 and _desc
-	{
-		draw_text(x + xmargin, y + ymargin, _desc);
-	}
-	else
-	{
-		var optionToShow = l - _desc + scrollPush;
-		var str = options[optionToShow][0];
-		if (hover == optionToShow - _desc)
-		{
-			draw_set_color(c_yellow);
-		}
-		if options[optionToShow][3] == false {draw_set_color(c_grey);}
-		draw_text(x + xmargin, y + ymargin + (l*lineHeight), str)
-	}
-}
+	if active {draw_set_color(c_white)} else draw_set_color(c_dkgrey)
 
-draw_sprite(sOptionArrow, 0, x + xmargin, y + ymargin + ((hover - scrollPush) * lineHeight)+7);
+	var optionToShow = l - _desc + scrollPush;
+	var selected = (hover == optionToShow - _desc)
+	
+	var optY = y + sprite_get_height(sBattleOptionHeader) + (sprite_get_height(sBattleOptions)*l) + (menuGap*(l+1))
+	var optX = x + (12*selected)
+	
+	draw_sprite(sBattleOptions,selected, optX, optY);
 
-if (visibleOptionsMax < array_length(options) and hover < array_length(options)-1)
-{
-	draw_sprite(sMenuArrow,3,x + widthFull * 0.95, y + heightFull - 7)	
+	var str = options[optionToShow][0];
+		
+	if options[optionToShow][3] == false {draw_set_color(c_grey);}
+	
+	if selected 
+	{ 
+		draw_set_color(c_black)
+		draw_text(optX+xmargin-1, optY+ymargin, str)
+		draw_text(optX+xmargin, optY+ymargin+1, str)
+		draw_text(optX+xmargin-1, optY+ymargin+1, str)
+		draw_set_color( #ff4194 ); 
+		if active draw_sprite(sBattleMenuMainArrow, 0, optX, optY+ymargin);
+		selectY = optY;
+	}
+	
+	draw_text(optX+xmargin, y+ymargin + sprite_get_height(sBattleOptionHeader) + (sprite_get_height(sBattleOptions)*l) + (menuGap*(l+1)), str)	
 }

@@ -9,4 +9,4 @@ if layer_sequence_exists("transition",global.currentTransition)
 	layer_sequence_y(global.currentTransition,global.screenHalfY)	
 }
 
-layer_set_visible("CollTiles",global.debug)
+if layer_exists("CollTiles") layer_set_visible("CollTiles",global.debug);
