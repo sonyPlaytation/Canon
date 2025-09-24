@@ -8,5 +8,6 @@ sprite_index = item.sprite;
 
 if place_meeting(x,y,oPlayer)
 {
-	myScript()
+	if canPickup {myScript()}
+	alarm[0] = 5
 }

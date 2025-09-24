@@ -99,10 +99,9 @@ struct_foreach(global.items, function(_key, _val){
 
 function openChest(_chest)
 {
-	if stock > 0 
+	if stock > 0 and addItem(item)
 	{
 		if stock == fullStock {SFX snChestOpen}
-		addItem(item);
 		stock--;
 		FLAGS[$ _chest] = stock
 	}
@@ -135,7 +134,11 @@ function addItem(_item, _showMsg = true)
 	
 		if _showMsg { SFX snCaveStoryGetItem; shortMessage($"Found a [c_red]{_item.name}[c_white]!",TXTPOS.MID) }
 		show_debug_message($"Added Item: {_item.name} to Inventory")
+		return true;
 	}
+	
+	shortMessage($"You don't have room for this [c_red]{_item.name}[c_white].",TXTPOS.MID)
+	return false;
 }
 
 function giveItemAction(_item,_count = 1) : dialogueAction() constructor

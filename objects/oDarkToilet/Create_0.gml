@@ -5,9 +5,9 @@ myScript = function()
 {
 	startDialogue(myTopic)
 	
-	if !array_contains(global.inv[ITEM_TYPE.KEY], global.items.keyGeneric) and !instance_exists(oTempItemTestPickup)
+	if !array_contains(global.inv[ITEM_TYPE.KEY], global.items.keyGeneric) and !instance_exists(oItemPickup)
 	{
-		var _item = instance_create_depth(264,384,depth,oTempItemTestPickup)
+		var _item = instance_create_depth(264,384,depth,oItemPickup)
 		_item.item = global.items.keyGeneric
 	}
 	

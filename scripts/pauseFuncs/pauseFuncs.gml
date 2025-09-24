@@ -29,7 +29,7 @@ function pauseGame(){
 
 function unpauseGame()
 {
-	if room != rMenu
+	if room != rMenu and global.canPause
 	{
 		global.gamePaused = false;
 		global.pauseEvery = false;
