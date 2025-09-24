@@ -362,6 +362,13 @@ global.characters =
 			
 		},
 
+		equips : {
+			armor : noone,
+			weapon : noone,
+			gem1 : noone,
+			gem2 : noone
+		},
+
 		allergies: [FOOD_TAG.SPICY, FOOD_TAG.SWEETS],
 		
 		// BATTLE
@@ -427,6 +434,13 @@ global.characters =
 			luk: 4
 		},
 		
+		equips : {
+			armor : noone,
+			weapon : noone,
+			gem1 : noone,
+			gem2 : noone
+		},
+		
 		allergies: [FOOD_TAG.SHELLFISH],
 		
 		sprites : { idle: sCharIdle, active: sCharFightActive, normals: sCharIdle, slide: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH, parry : sCharParry},
@@ -473,6 +487,13 @@ global.characters =
 			spd: 5, // speed is turn order and also move timer bonus time
 			cha: 0,
 			luk: 3
+		},
+		
+		equips : {
+			armor : noone,
+			weapon : noone,
+			gem1 : noone,
+			gem2 : noone
 		},
 		
 		allergies: [FOOD_TAG.DAIRY],
