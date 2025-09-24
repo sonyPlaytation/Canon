@@ -38,7 +38,6 @@ if doWander
 // chasing
 if doChase
 {
-	chaseRange = 72;
 	tooFar = homeSize * 2.5;
 	inChase = false;
 	alertJump = false
@@ -52,31 +51,34 @@ enemyStuff = function()
 {
 	if instance_exists(oTextBox) {exit};
 	
-	var myEncounter = encounter[irandom(array_length(encounter)-1)]
-	
-	if !array_contains(myEncounter, undefined) and collision_circle(x,y,sprite_width*0.65,oPlayer, false, false) 
-	and !startingBattle and oPlayer.iFrames <= 0
+	if isEnemy
 	{
-		global.pauseEvery = true;
-		oPlayer.hasControl = false;
-		startingBattle = true;
+		var myEncounter = encounter[irandom(array_length(encounter)-1)]
 	
-		var advRoll = irandom(2)-1
+		if !array_contains(myEncounter, undefined) and collision_circle(x,y,sprite_width*0.65,oPlayer, false, false) 
+		and !startingBattle and oPlayer.iFrames <= 0
+		{
+			global.pauseEvery = true;
+			oPlayer.hasControl = false;
+			startingBattle = true;
+	
+			var advRoll = irandom(2)-1
 		
-		advantage = advRoll
+			advantage = advRoll
 		
-		if instance_exists(oDarkness)//or  (collision_line(x,selfCenter,lengthdir_x(24,dir),lengthdir_y(24,dir),oPlayer,false,false) and facing == oPlayer.facing)
-		{ advantage = -1; }
+			if instance_exists(oDarkness)//or  (collision_line(x,selfCenter,lengthdir_x(24,dir),lengthdir_y(24,dir),oPlayer,false,false) and facing == oPlayer.facing)
+			{ advantage = -1; }
 	
-		if forceAdvantage != noone {advantage = forceAdvantage}
+			if forceAdvantage != noone {advantage = forceAdvantage}
 	
-		if advantage == -1 {set_song_ingame(mPHFightStartDisadv,,,true)} else set_song_ingame(mPHFightStartAdv,,,true)
-		global.advantage = advantage;
-		global.fightStarter = id;
-		global.fightEnemies = myEncounter;
-		global.fightBG = bg;
-		global.fightSong = bgm;
-		alarm[0] = 60;
+			if advantage == -1 {set_song_ingame(mPHFightStartDisadv,,,true)} else set_song_ingame(mPHFightStartAdv,,,true)
+			global.advantage = advantage;
+			global.fightStarter = id;
+			global.fightEnemies = myEncounter;
+			global.fightBG = bg;
+			global.fightSong = bgm;
+			alarm[0] = 60;
+		}
 	}
 
 	if doWander and !inChase

@@ -6,6 +6,6 @@ if DEV
 
 	if global.debug 
 	{
-		instance_activate_object(oTempItemTestPickup)
+		instance_activate_object(oItemPickup)
 	}
 }

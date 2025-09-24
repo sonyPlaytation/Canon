@@ -10,9 +10,7 @@ else
 	image_speed = 1
 }
 
-if isEnemy 
-{
-	enemyStuff();	
-}
+enemyStuff();	
+
 
 

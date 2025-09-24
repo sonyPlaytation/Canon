@@ -5,6 +5,7 @@
 createTransition(sqFightIn);
 
 pauseGame()
+global.canPause = false;
 
 _x = x - (GAME_W/2)
 _y = y - (GAME_H/2)
