@@ -6,6 +6,8 @@ array_foreach(partyUnits,function(element,index)
 })
 partyHPPercent = partyHP/partyHPMAX
 
+if partyHP < partyHPStart {perfect = false};
+
 enemyHP = 0;
 array_foreach(enemyUnits,function(element,index)
 {

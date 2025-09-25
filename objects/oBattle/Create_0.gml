@@ -7,13 +7,15 @@ createTransition(sqFightIn);
 pauseGame()
 global.canPause = false;
 
-_x = x - (GAME_W/2)
-_y = y - (GAME_H/2)
+_x = global.cam.x - (GAME_W/2);
+_y = global.cam.y - (GAME_H/2);
 
 bgm = mBattleNeut
 advantage = global.advantage;
 units = [];
 btlText = [];
+
+perfect = true;
 
 partyHP = 0;
 partyHPMAX = 0;
@@ -92,6 +94,8 @@ for (var i = 0; i < array_length(PARTY); i++)
 	partyHPMAX += partyUnits[i].stats.hpMax;
 	array_push(units,partyUnits[i]);
 }
+
+partyHPStart = partyHPMAX;
 
 if array_length(enemyUnits) > 1
 { BATTLE("{0} and cohorts draw near!",enemyUnits[0].name,"") }

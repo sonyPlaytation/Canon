@@ -10,7 +10,7 @@ var padding = TILE_SIZE
 
 // battle text
 var maxMessages = 2
-draw_sprite_stretched(sTextBox,0, _x + (padding*6), _y + GAME_H - (padding * 3), GAME_W - (padding*10), padding * 3 )
+draw_sprite_stretched(sTextBox,0, _x + (padding*6), _y + GAME_H - (padding * 3), GAME_W - (padding*12), padding * 3 )
 for (var i = min(array_length(btlText)-1,maxMessages); i >= 0 ; i--)
 {
 	var xx = _x + (padding*6) + (padding/2)

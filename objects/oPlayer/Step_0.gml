@@ -2,7 +2,7 @@
 
 if global.pauseEvery
 {
-	if JustHitEnemyButCanStillMoveALittle > 0
+	if JustHitEnemyButCanStillMoveALittle > 0 and InputCheckMany([INPUT_VERB.UP,INPUT_VERB.DOWN,INPUT_VERB.LEFT,INPUT_VERB.RIGHT])
 	{
 		JustHitEnemyButCanStillMoveALittle--;
 		
