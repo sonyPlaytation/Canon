@@ -121,6 +121,18 @@ function approach( from, to, by)
 	}
 }
 
+/// @desc wave(from, to, duration, offset, time)
+/// @arg from
+/// @arg to
+/// @arg duration
+/// @arg offset
+/// @arg time
+function wave(from, to, duration, offset, time)
+{
+    var _wave = (to - from) * 0.5;
+    return from + _wave + sin((((time * 0.001) + duration * offset) / duration) * (pi * 2)) * _wave;
+}
+
 function draw_set_text(font, color, halign, valign)
 {
 	draw_set_font(font);

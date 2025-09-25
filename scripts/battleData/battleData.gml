@@ -176,7 +176,7 @@ global.actionLibrary =
 		{
 			for (var i = 0; i< array_length(targets); i++)
 			{
-				var damage = ceil(user.stats.exStr * random_range(1,1.25));
+				var damage = ceil(user.stats.exStr * random_range(1.45,2.25));
 				if array_length(targets) > 1 {damage = ceil(damage*0.75)}
 				battleChangeHP(targets[i], -damage,, self.hitSound);
 			}
@@ -201,7 +201,7 @@ global.actionLibrary =
 		{
 			for (var i = 0; i< array_length(targets); i++)
 			{
-				var damage = ceil(user.stats.exStr * random_range(1,1.25));
+				var damage = ceil(user.stats.exStr * random_range(1.25,1.65));
 				if array_length(targets) > 1 {damage = ceil(damage*0.75)}
 				battleChangeHP(targets[i], -damage,, self.hitSound);
 			}
@@ -295,7 +295,7 @@ global.patterns =
 		rate : 30,
 		dist : 150,
 		spd : 2.45,
-		funcPerShot : function() { show_debug_message("spiral"); self.dirs[0]++ },
+		funcPerShot : function() { show_debug_message("spiral"); self.dirs[0]++; self.rate -= 1.5 },
 	},
 	
 	counterspiral :
@@ -305,7 +305,7 @@ global.patterns =
 		rate : 30,
 		dist : 150,
 		spd : 2.45,
-		funcPerShot : function() { show_debug_message("counterspiral"); self.dirs[0]-- },
+		funcPerShot : function() { show_debug_message("counterspiral"); self.dirs[0]--; self.rate -= 1.5},
 	},
 	
 	bursts :
@@ -345,7 +345,7 @@ global.characters =
 		{
 			lvl : 1,
 			EXP : 0,
-			requiredEXP : 50,
+			requiredEXP : 100,
 			hp: 50,
 			hpMax: 50,
 			ex: 15,
@@ -418,7 +418,7 @@ global.characters =
 		{
 			lvl : 1,
 			EXP : 0,
-			requiredEXP : 50,
+			requiredEXP : 100,
 			hp: 40,
 			hpMax: 40,
 			ex: 20,
@@ -473,7 +473,7 @@ global.characters =
 		{
 			lvl : 1,
 			EXP : 0,
-			requiredEXP : 50,
+			requiredEXP : 100,
 			hp: 75,
 			hpMax: 75,
 			ex: 12,
@@ -636,7 +636,7 @@ global.enemies =
 		
 		sprites : { idle: sSand, normals: sSand, defend: sSand, down: sGrave, head: sSand},
 		actions: [global.actionLibrary.enemyNormals],
-		attacks: ["bursts","def","cross"],
+		attacks: ["bursts","def"],
 		xpWorth: 6,
 		AI: function(user,targets)
 		{
@@ -661,8 +661,33 @@ global.enemies =
 		
 		sprites : { idle: sBat, normals: sBat, defend: sSand, down: sGrave, head: sBat},
 		actions: [global.actionLibrary.enemyNormals,global.actionLibrary.revive],
-		attacks: ["spiral","counterspiral","plus"],
+		attacks: ["spiral","counterspiral"],
 		xpWorth: 4,
+		AI: function(user,targets)
+		{
+			var myMove = global.enemyAI.standard(user,targets);
+			return [myMove[0],myMove[1]] 
+		}
+	},
+        
+    cactus:
+	{
+		name: "Okey-Pokey",
+		stats : 
+		{
+			hpMax: 35,
+			ex: 15,
+			exMax: 15,
+			str: 8,
+			def: 1,
+			exStr: 6,
+			spd : 4
+		},
+		
+		sprites : { idle: sOkeyPokey, normals: sOkeyPokey, defend: sOkeyPokey, down: sGrave, head: sOkeyPokey},
+		actions: [global.actionLibrary.enemyNormals],
+		attacks: ["plus","cross","cross"],
+		xpWorth: 7,
 		AI: function(user,targets)
 		{
 			var myMove = global.enemyAI.standard(user,targets);
