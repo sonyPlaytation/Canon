@@ -123,6 +123,14 @@ function approach( from, to, by)
 	}
 }
 
+function round_ext(_val, _decimal) {
+    ///@desc	returns the rounded value to the number of decimal places passed
+    ///@arg	real	value
+    ///@arg	real	decimal to round to, 0.1 will be every 0.1, 0.5 will be every 0.5 increment
+
+    return round(_val / _decimal) * _decimal;
+}
+
 function draw_set_text(font, color, halign, valign)
 {
 	draw_set_font(font);

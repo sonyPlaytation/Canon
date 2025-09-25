@@ -1,0 +1,2 @@
+
+colls = [oBlockStopper,pEntity,tiles];

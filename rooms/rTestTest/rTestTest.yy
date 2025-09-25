@@ -14,6 +14,11 @@
     {"name":"inst_94F18FB","path":"rooms/rTestTest/rTestTest.yy",},
     {"name":"inst_45E1509B","path":"rooms/rTestTest/rTestTest.yy",},
     {"name":"inst_7312CF87","path":"rooms/rTestTest/rTestTest.yy",},
+    {"name":"inst_168A57F5","path":"rooms/rTestTest/rTestTest.yy",},
+    {"name":"inst_214FA10E","path":"rooms/rTestTest/rTestTest.yy",},
+    {"name":"inst_D0B9E4F","path":"rooms/rTestTest/rTestTest.yy",},
+    {"name":"inst_48A3E9CD","path":"rooms/rTestTest/rTestTest.yy",},
+    {"name":"inst_625A867A","path":"rooms/rTestTest/rTestTest.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -31,6 +36,11 @@
         {"$GMRInstance":"v2","%Name":"inst_7312CF87","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7312CF87","objectId":{"name":"oMusicPlay","path":"objects/oMusicPlay/oMusicPlay.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oMusicPlay","path":"objects/oMusicPlay/oMusicPlay.yy",},"propertyId":{"name":"song","path":"objects/oMusicPlay/oMusicPlay.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"m2093",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},
+        {"$GMRInstance":"v2","%Name":"inst_168A57F5","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_168A57F5","objectId":{"name":"oPushBlock","path":"objects/oPushBlock/oPushBlock.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":504.0,"y":312.0,},
+        {"$GMRInstance":"v2","%Name":"inst_214FA10E","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_214FA10E","objectId":{"name":"oBlockStopper","path":"objects/oBlockStopper/oBlockStopper.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":14.0,"x":360.0,"y":144.0,},
+        {"$GMRInstance":"v2","%Name":"inst_D0B9E4F","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_D0B9E4F","objectId":{"name":"oBlockStopper","path":"objects/oBlockStopper/oBlockStopper.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":25.0,"scaleY":1.0,"x":384.0,"y":456.0,},
+        {"$GMRInstance":"v2","%Name":"inst_48A3E9CD","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_48A3E9CD","objectId":{"name":"oBlockStopper","path":"objects/oBlockStopper/oBlockStopper.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":14.0,"x":960.0,"y":144.0,},
+        {"$GMRInstance":"v2","%Name":"inst_625A867A","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_625A867A","objectId":{"name":"oBlockStopper","path":"objects/oBlockStopper/oBlockStopper.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":25.0,"scaleY":1.0,"x":360.0,"y":144.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRAssetLayer":"","%Name":"Assets_1","assets":[
         {"$GMRSpriteGraphic":"v1","%Name":"graphic_651F27D2","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"name":"graphic_651F27D2","resourceType":"GMRSpriteGraphic","resourceVersion":"2.0","rotation":0.0,"scaleX":26.0,"scaleY":14.0,"spriteId":{"name":"sTextBox","path":"sprites/sTextBox/sTextBox.yy",},"x":360.0,"y":456.0,},
