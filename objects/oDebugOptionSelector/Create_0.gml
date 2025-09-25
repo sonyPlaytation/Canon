@@ -10,3 +10,5 @@ for (var i = 0; i < instance_number(oDebugMouseButton); ++i)
 currentSelection = 0
 
 selected = buttons[currentSelection];
+
+pressed = false;

@@ -38,7 +38,9 @@ function playerSetup(){
 	hsp = 0;
 	vsp = 0;
 	walksp = 2;
-	runsp = 3;
+	runspDefault = 2;
+	runsp = runspDefault;
+	runspMax = 3
 	dir = 0;
 	onGround = true;
 	tiles = layer_tilemap_get_id("CollTiles");
@@ -133,6 +135,15 @@ function wave(from, to, duration, offset, time)
     return from + _wave + sin((((time * 0.001) + duration * offset) / duration) * (pi * 2)) * _wave;
 }
 
+function round_ext(_val, _decimal) 
+{
+    ///@desc	returns the rounded value to the number of decimal places passed
+    ///@arg	real	value
+    ///@arg	real	decimal to round to, 0.1 will be every 0.1, 0.5 will be every 0.5 increment
+
+    return round(_val / _decimal) * _decimal;
+}
+
 function draw_set_text(font, color, halign, valign)
 {
 	draw_set_font(font);
@@ -140,3 +151,4 @@ function draw_set_text(font, color, halign, valign)
 	draw_set_halign(halign);
 	draw_set_valign(valign);
 }
+

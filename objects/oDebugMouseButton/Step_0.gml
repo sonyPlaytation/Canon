@@ -9,3 +9,5 @@ if position_meeting(global.mX,global.mY,id)
 		options[$ doThis].func()
 	}
 }
+
+if string_lower(doThis) = "loadsavefile" and !file_exists(SAVEFILE) {instance_destroy()}
