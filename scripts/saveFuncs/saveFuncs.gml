@@ -14,11 +14,18 @@ function beginSave()
 	})
 }
 
-function saveRoomObjectFlag(_id, _flag, _state)
+function saveRoomObjectFlag(_id, _flag, _state = noone)
 {
-	if !variable_struct_exists( global.flags, _id) {  global.flags[$ _id] = {}; }
-	var struct = global.flags[$ _id]
-	variable_global_set(struct[$ _flag],_state)
+	if !is_string(_flag) and _state == noone
+	{
+		variable_struct_set(FLAGS, _id ,_flag)
+	}
+	else
+	{
+		if !variable_struct_exists(FLAGS, _id) {  FLAGS[$ _id] = {}; }
+		variable_struct_set(FLAGS[$ _id],_flag,_state)
+	}
+	
 }
 
 function saveGame()
@@ -53,7 +60,7 @@ function saveGame()
 		mainStruct.stats[i] = PARTY[i].stats
 	}
 	
-	var _json = json_stringify(mainStruct, true);
+	var _json = json_stringify(mainStruct, DEV);
 	SaveString(_json, SAVEFILE);
 }
 
@@ -106,7 +113,7 @@ function loadGame(roomChange = false){
 		}
 	}
 	
-	if roomChange and mainStruct[$ "room"] != undefined { transition(mainStruct.room,sqFadeOut,sqFadeIn,,,,,true) }
+	if roomChange { transition(mainStruct.room,sqFadeOut,sqFadeIn,,,,,true) }
 	
 }
 

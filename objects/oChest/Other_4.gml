@@ -1,4 +1,4 @@
 // Inherit the parent event
 event_inherited();
 
-if FLAGS[$ id] != undefined { stock = FLAGS[$ id] }
+if FLAGS[$ flagID] != undefined { stock = FLAGS[$ flagID].stock }

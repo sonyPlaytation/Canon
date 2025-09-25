@@ -18,13 +18,13 @@ options =
 	loadSavefile : 
 	{
 		label : "Load Game",
-		func :  function() { loadGame(true)  }
+		func :  function() { loadGame(true)  transition(room_next(room),sqFadeOut,sqFadeIn,,,,,true) }
 	},
 	
 	wipeSave : 
 	{
 		label : "Wipe Save",
-		func :  function() { file_delete(SAVEFILE); }
+		func :  function() { file_delete(SAVEFILE);  }
 	},
 }
 
