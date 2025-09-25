@@ -103,7 +103,7 @@ function openChest(_chest)
 	{
 		if stock == fullStock {SFX snChestOpen}
 		stock--;
-		FLAGS[$ _chest] = stock
+		saveRoomObjectFlag(_chest.flagID,"stock",stock)
 	}
 }
 

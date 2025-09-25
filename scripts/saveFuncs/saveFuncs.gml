@@ -14,6 +14,13 @@ function beginSave()
 	})
 }
 
+function saveRoomObjectFlag(_id, _flag, _state)
+{
+	if !variable_struct_exists( global.flags, _id) {  global.flags[$ _id] = {}; }
+	var struct = global.flags[$ _id]
+	variable_global_set(struct[$ _flag],_state)
+}
+
 function saveGame()
 {
 	file_delete(SAVEFILE)
