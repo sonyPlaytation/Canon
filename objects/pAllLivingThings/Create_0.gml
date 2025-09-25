@@ -6,6 +6,8 @@ going = false;
 dir = 0;
 facing = 0;
 
+flagID = $"{room_get_name(room)}-{object_get_name(id.object_index)}-{x}-{y}"
+
 anims = {};
 
 stateInCutscene = function()
