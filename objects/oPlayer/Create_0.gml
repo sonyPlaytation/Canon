@@ -4,7 +4,7 @@ event_inherited()
 
 playerSetup();
 
-//global.cam.follow = id;
+canDash = DEV;
 
 enum FACING
 {
@@ -23,7 +23,7 @@ stateFree = function()
 	interact();
 	animate();
 	
-	if dashCharge == dashFrames and InputPressed(INPUT_VERB.DASH)
+	if canDash and dashCharge == dashFrames and InputPressed(INPUT_VERB.DASH)
 	{
 		dashTime = dashReset;
 		dashSpd = 6;
@@ -102,11 +102,13 @@ groundMove = function()
 	var spdNow;
 	if InputCheck(INPUT_VERB.RUN)
 	{
+		runsp = lerp(runsp, runspMax, 0.05)
 		spdNow = runsp;
-		image_speed = 1.5
+		image_speed = runsp/2
 	} 
 	else 
 	{
+		runsp = runspDefault
 		spdNow = walksp
 		image_speed = 1
 	}
