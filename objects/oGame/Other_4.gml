@@ -6,7 +6,7 @@ var coll = layer_get_id("Coll");
 if layer_exists(tiles) layer_set_visible(tiles, false);
 if layer_exists(coll) layer_set_visible(coll, false);
 
-if !instance_exists(oPlayer) and global.midTransition
+if !instance_exists(oPlayer) and global.midTransition and room != rBattle
 {
 	var _x, _y;
 	

@@ -12,3 +12,5 @@ if window_mouse_get_x() > (window_get_width()-100) and window_mouse_get_y() < 10
 {
 	window_set_caption("PLEASE DON'T CLOSE ME")
 } else window_set_caption("Canon")
+
+//show_debug_message(room_get_name(room))

@@ -1,6 +1,6 @@
 
-_x = global.cam.get_x() + 12
-_y = global.cam.get_y() + 12
+_x = 12
+_y = 12
 
 depth = oBattle.depth-100
 
@@ -25,8 +25,8 @@ if !enemy
 }
 else
 {
-	_x = global.cam.get_x()	+ (GAME_W - sprite_width - 12);
-	_y = global.cam.get_y()	+ 12;
+	_x = GAME_W - sprite_width - 12;
+	_y = 12;
 	
 	x = _x 
 	y = _y 

@@ -6,10 +6,10 @@ active = true;
 subMenuLevel = 0;
 actorName = ""
 
-x = global.cam.get_x() -120
-xTarg = global.cam.get_x() + 36;
+x = -120
+xTarg = 36;
 lerpSpd = 0.25;
-y =  global.cam.get_y()
+y = 0
 menuGap = 6
 
 selectY = y;

@@ -2,14 +2,7 @@ global.fightStarter = noone
 
 function startFight(_enemies = global.fightEnemies, _creator = global.fightStarter, _battleBG = global.fightBG)
 {
-	global.cam.set_paused(true)
-	instance_create_depth(global.cam.x,global.cam.y,-999,oBattle,
-	{
-		enemies		: _enemies,
-		creator		: _creator,
-		battleBG	: _battleBG
-	
-	})	
+	room_goto(rBattle)
 };
 
 function leaveBattle()
@@ -18,7 +11,6 @@ function leaveBattle()
 	global.pauseEvery = false;
 	
 	oInputReader.alphaTarg = 1
-	oPlayer.iFrames = 90;
 	end_temp_song()
 	
 	layer_sequence_destroy(self.elementID);
@@ -30,6 +22,10 @@ function leaveBattle()
 	if instance_exists(global.fightStarter) { instance_destroy(global.fightStarter); }
 	if instance_exists(oBattle) { instance_destroy(oBattle); }
 	if instance_exists(oBattleResults) { instance_destroy(oBattleResults); }
+	
+	room_goto(global.roomTarget)
+	
+	//oPlayer.iFrames = 90;
 	
 	//oCamera.drawNothing = false
 };

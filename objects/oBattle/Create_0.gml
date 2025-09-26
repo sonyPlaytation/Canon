@@ -2,13 +2,18 @@
 
 //partyData
 
+//TODO: make battles happen in a room instead of an object... because this SUCKS ass
+
 createTransition(sqFightIn);
+oCamera.follow = id;
+enemies = global.fightEnemies
+creator = global.fightStarter
 
 pauseGame()
 global.canPause = false;
 
-_x = global.cam.x - (GAME_W/2);
-_y = global.cam.y - (GAME_H/2);
+_x = room_width/2
+_y = room_height/2
 
 bgm = mBattleNeut
 advantage = global.advantage;

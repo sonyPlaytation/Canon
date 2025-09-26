@@ -1,5 +1,5 @@
 
-color = c_white
+color = c_white;
 
 if position_meeting(global.mX,global.mY,id)
 {

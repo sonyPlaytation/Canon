@@ -288,6 +288,7 @@
     {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},},
     {"id":{"name":"oPlayerSpawner","path":"objects/oPlayerSpawner/oPlayerSpawner.yy",},},
     {"id":{"name":"oPushBlock","path":"objects/oPushBlock/oPushBlock.yy",},},
+    {"id":{"name":"oRoomCapture","path":"objects/oRoomCapture/oRoomCapture.yy",},},
     {"id":{"name":"oRoomExit","path":"objects/oRoomExit/oRoomExit.yy",},},
     {"id":{"name":"oRopeBridge","path":"objects/oRopeBridge/oRopeBridge.yy",},},
     {"id":{"name":"oRopeRail","path":"objects/oRopeRail/oRopeRail.yy",},},
@@ -309,6 +310,7 @@
     {"id":{"name":"pProtag","path":"objects/pProtag/pProtag.yy",},},
     {"id":{"name":"gspl_test_room","path":"rooms/gspl_test_room/gspl_test_room.yy",},},
     {"id":{"name":"prOffice","path":"rooms/prOffice/prOffice.yy",},},
+    {"id":{"name":"rBattle","path":"rooms/rBattle/rBattle.yy",},},
     {"id":{"name":"rCutTest","path":"rooms/rCutTest/rCutTest.yy",},},
     {"id":{"name":"rMenu","path":"rooms/rMenu/rMenu.yy",},},
     {"id":{"name":"rOffice_1","path":"rooms/rOffice_1/rOffice_1.yy",},},
@@ -1049,6 +1051,7 @@
     {"roomId":{"name":"gspl_test_room","path":"rooms/gspl_test_room/gspl_test_room.yy",},},
     {"roomId":{"name":"rOffice_1","path":"rooms/rOffice_1/rOffice_1.yy",},},
     {"roomId":{"name":"prOffice","path":"rooms/prOffice/prOffice.yy",},},
+    {"roomId":{"name":"rBattle","path":"rooms/rBattle/rBattle.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

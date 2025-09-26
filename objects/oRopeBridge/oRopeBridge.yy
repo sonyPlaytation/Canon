@@ -4,17 +4,12 @@
   "eventList":[],
   "managed":true,
   "name":"oRopeBridge",
-  "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"propertyId":{"name":"drawShadow","path":"objects/pEntity/pEntity.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"False",},
-  ],
+  "overriddenProperties":[],
   "parent":{
     "name":"Props",
     "path":"folders/Overworld Entities/Objects/Props.yy",
   },
-  "parentObjectId":{
-    "name":"pEntity",
-    "path":"objects/pEntity/pEntity.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

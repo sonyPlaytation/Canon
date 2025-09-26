@@ -13,8 +13,37 @@ function createTransition(_type)
 	global.currentTransition = layer_sequence_create(_layer,global.cam.get_x()+(GAME_W/2),global.cam.get_y()+(GAME_H/2),_type);
 }
 
+//function transition(_roomTarget, _typeOut, _typeIn, _fight = false, _x = 0, _y = 0, face = 0, _defaultPos = false)
+//{
+//	if !global.midTransition
+//	{
+//		global.defaultRoomPosition = _defaultPos;
+		
+//		if !_fight
+//		{
+//			global.transitionX = _x;
+//			global.transitionY = _y;
+//			if face > -1 {global.moveFacing = face;} else face = oPlayer.facing;
+//			global.roomTarget = _roomTarget;
+//		}
+		
+//		global.midTransition = true;
+//		createTransition(_typeOut);
+		
+//		if !_fight
+//		{
+//			layer_set_target_room(_roomTarget);
+//			createTransition(_typeIn);
+//			layer_reset_target_room();
+//		}
+		
+//		return true;
+//	} else return false;
+//}
+
 function transition(_roomTarget, _typeOut, _typeIn, _fight = false, _x = 0, _y = 0, face = 0, _defaultPos = false)
 {
+
 	if !global.midTransition
 	{
 		global.defaultRoomPosition = _defaultPos;
@@ -23,22 +52,25 @@ function transition(_roomTarget, _typeOut, _typeIn, _fight = false, _x = 0, _y =
 		{
 			global.transitionX = _x;
 			global.transitionY = _y;
-			if face > -1 {global.moveFacing = face;} else face = oPlayer.facing;
-			global.roomTarget = _roomTarget;
+			if face > -1 {global.moveFacing = face;} else face = oPlayer.facing;	
+		}
+		else
+		{
+			
 		}
 		
+		global.roomTarget = _roomTarget;
 		global.midTransition = true;
 		createTransition(_typeOut);
-		
-		if !_fight
-		{
-			layer_set_target_room(_roomTarget);
-			createTransition(_typeIn);
-			layer_reset_target_room();
-		}
+
+		layer_set_target_room(_roomTarget);
+		createTransition(_typeIn);
+		layer_reset_target_room();	
 		
 		return true;
 	} else return false;
+	
+	
 }
 
 function transitionChangeRoom()

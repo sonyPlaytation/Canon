@@ -24,7 +24,8 @@ if InputPressed(INPUT_VERB.ACCEPT)
 	}
 	else
 	{
-		transition(room, sqBattleEnd, sqFadeIn, true);
+		var _room = rTest2
+		transition(_room, sqBattleEnd, sqFadeIn);
 	}
 }
 

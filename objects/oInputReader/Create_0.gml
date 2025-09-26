@@ -108,10 +108,10 @@ detectInputs = function()
 				{
 					inputsActionable += thisInput
 					checkMoves(inputsActionable) 
-					if inputsActionable != "" 
-					{
-						show_debug_message(inputsActionable + thisInput)
-					}
+					//if inputsActionable != "" 
+					//{
+					//	show_debug_message(inputsActionable + thisInput)
+					//}
 				}	
 			}
 		}
@@ -119,7 +119,7 @@ detectInputs = function()
 	} 
 	else numPadDir = 5;
 	
-	if inputsActionable != "" {show_debug_message(inputsActionable)}
+	//if inputsActionable != "" {show_debug_message(inputsActionable)}
 	
 	prevDir = numPadDir;
 }

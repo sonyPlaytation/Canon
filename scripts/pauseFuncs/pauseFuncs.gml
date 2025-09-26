@@ -20,7 +20,7 @@ function pauseGame(){
 			//instance_activate_object(oInputReader);
 			//instance_activate_object(__InputUpdateController);
 			//instance_activate_object(__obj_stanncam_manager);
-			global.cam.set_paused(true)
+			//global.cam.set_paused(true)
 
 			audio_pause_all();
 		}

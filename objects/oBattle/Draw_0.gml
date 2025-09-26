@@ -1,20 +1,14 @@
 /// @
 
-
-// background
-draw_sprite_stretched(battleBG,2,global.cam.x - (GAME_W/2),global.cam.y - (GAME_H/2),GAME_W,GAME_H);
-draw_sprite_stretched(battleBG,1,global.cam.x - (GAME_W/2),global.cam.y - (GAME_H/2),GAME_W,GAME_H);
-draw_sprite_stretched(battleBG,0,global.cam.x - (GAME_W/2),global.cam.y - (GAME_H/2),GAME_W,GAME_H);
-
 var padding = TILE_SIZE
 
 // battle text
 var maxMessages = 2
-draw_sprite_stretched(sTextBox,0, _x + (padding*6), _y + GAME_H - (padding * 3), GAME_W - (padding*12), padding * 3 )
+draw_sprite_stretched(sTextBox,0, padding*6, GAME_H - (padding * 3), GAME_W - (padding*12), padding * 3 )
 for (var i = min(array_length(btlText)-1,maxMessages); i >= 0 ; i--)
 {
-	var xx = _x + (padding*6) + (padding/2)
-	var yy = (_y + GAME_H  - (padding * 2.66) + (18*i)) + 8
+	var xx = (padding*6) + (padding/2)
+	var yy = (GAME_H  - (padding * 2.66) + (18*i)) + 8
 	
 	var alpha = 1
 	btlText[i].align(fa_left,fa_middle)
@@ -23,9 +17,9 @@ for (var i = min(array_length(btlText)-1,maxMessages); i >= 0 ; i--)
 	draw_set_alpha(1)
 }
 
-draw_sprite(sBattleTurnCount,0,_x + (GAME_W/2),_y + 26);
+draw_sprite(sBattleTurnCount,0, room_width/2, 26);
 draw_set_text(global.fSF3Time,c_white,fa_center,fa_middle);
-draw_text(_x + (GAME_W/2),_y + 52,roundCount)
+draw_text( room_width/2, 52, roundCount )
 
 //draw units in depth order
 var activeUnit = unitTurnOrder[turn].id
@@ -70,8 +64,8 @@ if cursor.active
 
 if global.debug
 {
-	draw_text(_x + (GAME_W/3),_y + (GAME_H/3), normalsTimer)	
+	draw_text(GAME_W/3,GAME_H/3, normalsTimer)	
 	draw_text(100,100,sState.get_current_state())
 }
 
-draw_text(_x +100,_y +100,enemyMove)
+//draw_text(_x +100,_y +100,enemyMove)
