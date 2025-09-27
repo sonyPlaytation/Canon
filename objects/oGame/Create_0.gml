@@ -3,6 +3,9 @@
 #macro SAVEFILE "CANON.save"
 #macro DEV (GM_build_type == "run")
 
+roomsTilDoom = 3;
+roomsBeenThrough = []
+
 global.inputDisplay = true;
 global.debug = false;
 
@@ -30,3 +33,9 @@ scribble_anim_wave(3,0.5,-0.05);
 scribble_anim_shake(0.5,0.75);
 
 //window_set_cursor(cr_none)
+
+noSpawnRooms =
+[
+	rMenu,
+	rBattle
+]

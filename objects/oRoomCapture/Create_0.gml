@@ -1,14 +1,13 @@
 
-entities = [];
-guyToDestroy = global.fightStarter;
 
-global.defaultRoomPosition = false
-global.transitionX = oPlayer.x;
-global.transitionY = oPlayer.y;
-global.moveFacing = oPlayer.facing;
+entities = []
 
-//for (var e = 0; e < instance_number(pEnemy); e++)
-//{
-//	var guy = instance_find(pEnemy,e)
-//	entities[e] = struct
-//}
+returnRoom = room;
+if instance_exists(pEnemy) and global.enemiesKilled[$ room] == undefined 
+{ global.enemiesKilled[$ room] = [] }
+
+for(var i = 0; i < instance_number(pEnemy); i++)
+{
+	var guy = instance_find(pEnemy,i);
+	array_push( entities, { id : guy.id, x : guy.x, y : guy.y });
+}

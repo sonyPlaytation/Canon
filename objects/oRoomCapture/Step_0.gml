@@ -1,3 +1,0 @@
-
-
-guyToDestroy = global.fightStarter;

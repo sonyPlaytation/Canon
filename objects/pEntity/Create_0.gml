@@ -19,6 +19,7 @@ selfCenter = y;
 
 advantage = 0;
 startingBattle = false;
+killed = -1;
 
 // wandering
 if doWander
@@ -77,6 +78,8 @@ enemyStuff = function()
 			global.fightEnemies = myEncounter;
 			global.fightBG = bg;
 			global.fightSong = bgm;
+			instance_create_depth(0,0,0,oRoomCapture);
+			
 			alarm[0] = 60;
 		}
 	}

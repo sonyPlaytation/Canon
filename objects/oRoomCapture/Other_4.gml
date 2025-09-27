@@ -1,8 +1,5 @@
 
-if !instance_exists(oBattle)
+if room == returnRoom
 {
-	
-	instance_destroy(guyToDestroy);
-	instance_destroy();
+	alarm[0] = 1;
 }
-

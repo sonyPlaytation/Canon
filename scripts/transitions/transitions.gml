@@ -1,7 +1,15 @@
+
+global.enemiesKilled = {}
+
 global.midTransition = false;
 global.roomTarget = -1;
+
 global.transitionX = 0;
 global.transitionY = 0;
+
+global.playerReturnX = -1;
+global.playerReturnY = -1;
+
 global.moveFacing = 0;
 global.currentTransition = noone
 global.defaultRoomPosition = false
@@ -48,15 +56,14 @@ function transition(_roomTarget, _typeOut, _typeIn, _fight = false, _x = 0, _y =
 	{
 		global.defaultRoomPosition = _defaultPos;
 		
-		if !_fight
+		global.transitionX = _x;
+		global.transitionY = _y;
+		if face > -1 {global.moveFacing = face;} else global.moveFacing = oPlayer.facing;
+
+		if instance_exists(oPlayer)
 		{
-			global.transitionX = _x;
-			global.transitionY = _y;
-			if face > -1 {global.moveFacing = face;} else face = oPlayer.facing;	
-		}
-		else
-		{
-			
+			global.playerReturnX = oPlayer.x;
+			global.playerReturnY = oPlayer.y;
 		}
 		
 		global.roomTarget = _roomTarget;
@@ -69,8 +76,27 @@ function transition(_roomTarget, _typeOut, _typeIn, _fight = false, _x = 0, _y =
 		
 		return true;
 	} else return false;
+}
+
+function returnToPrevRoom(_typeOut = sqBattleEnd, _typeIn = sqFadeIn)
+{
+	global.defaultRoomPosition = false;
 	
-	
+	if !global.midTransition
+	{
+		global.transitionX = global.playerReturnX;
+		global.transitionY = global.playerReturnY;
+		
+		global.roomTarget = oRoomCapture.returnRoom;
+		global.midTransition = true;
+		createTransition(_typeOut);
+
+		layer_set_target_room(global.roomTarget);
+		createTransition(_typeIn);
+		layer_reset_target_room();	
+		
+		return true;
+	} else return false;
 }
 
 function transitionChangeRoom()
