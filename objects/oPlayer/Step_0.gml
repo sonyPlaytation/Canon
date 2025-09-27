@@ -39,7 +39,7 @@ if global.pauseEvery
 if hasControl 
 { 
 	JustHitEnemyButCanStillMoveALittle = JustHitEnemyButCanStillMoveALittleReset;
-	
+	//colls = [oColl,sDashGap,pNPC,tiles];
 	state();
 }
 //else if global.midTransition { move_and_collide(hsp,vsp,colls); }

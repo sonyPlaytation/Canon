@@ -6,6 +6,20 @@ fullStock = stock;
 
 myScript = function()
 {
-	openChest(id)	
-	image_index = 1
+	
+}
+
+myScript = function(myTopic)
+{
+	switch(oPlayer.facing)
+	{
+		case 1: 
+		case 0:
+			openChest(id)	
+			image_index = 1 
+		break;
+	
+		default: shortMessage("It doesn't open from this side...")	
+	}
+	
 }

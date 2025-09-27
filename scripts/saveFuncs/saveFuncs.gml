@@ -8,9 +8,9 @@ function beginSave()
 	oPlayer.JustHitEnemyButCanStillMoveALittle = 0;
 	call_later(45,time_source_units_frames,function()
 	{
+		audio_resume_all()
 		saveGame()	
 		global.pauseEvery = false;
-		audio_resume_all()
 	})
 }
 
@@ -30,6 +30,10 @@ function saveRoomObjectFlag(_id, _flag, _state = noone)
 
 function saveGame()
 {
+	global.enemiesKilled = {}
+
+	if array_contains(PARTY[0].actions,global.actionLibrary.devilshot) {flashScreen(c_red,sDoomSave,0.05)};
+	
 	file_delete(SAVEFILE)
 	oGame.nowSaving = true;
 	var mainStruct = 

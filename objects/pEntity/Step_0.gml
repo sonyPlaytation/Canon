@@ -1,6 +1,6 @@
 /// @
 
-if global.pauseEvery or killed
+if global.pauseEvery or killed > -1
 {
 	image_speed = 0
 	exit;

@@ -15,6 +15,25 @@ function parryFlash(_frame)
 	}
 }
 
+function flashScreen(_color = c_white, _sound = -1, _fadeRate = 0.1)
+{
+	if _sound != -1
+	{
+		global.musVol = 0.25;
+		call_later(audio_sound_length(_sound),time_source_units_seconds,function()
+		{
+			global.musVol = 1;
+		})	
+	}
+	
+	instance_create_depth(0,0,0,oScreenFlash,
+	{
+		color : _color,
+		sound : _sound,
+		fadeRate : _fadeRate
+	})
+}
+
 function startCutscene(_scene, _x = oCutsceneAnchor.x, _y = oCutsceneAnchor.y)
 {
 	with pAllLivingThings {state = stateInCutscene;}
@@ -46,8 +65,6 @@ function playerSetup(){
 	tiles = layer_tilemap_get_id("CollTiles");
 	JustHitEnemyButCanStillMoveALittleReset = 45;
 	JustHitEnemyButCanStillMoveALittle = JustHitEnemyButCanStillMoveALittleReset;
-	
-	colls = [oColl,pNPC,tiles];
 	
 	//animation
 	going = 0;

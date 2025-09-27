@@ -16,6 +16,8 @@ for (var i = 0; i < array_length(entities); i++)
 		global.fightStarter = noone;
 		array_push(global.enemiesKilled[$ room ],guy.id);
 	}
+	
+	oPlayer.iFrames = 90;
 }
 
 instance_destroy();

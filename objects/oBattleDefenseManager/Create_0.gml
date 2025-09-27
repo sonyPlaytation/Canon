@@ -4,6 +4,8 @@ event_inherited()
 depth = -9999
 defender.depth = depth - 10
 
+time = 0;
+
 closestGuide = true
 
 midX = global.cam.x

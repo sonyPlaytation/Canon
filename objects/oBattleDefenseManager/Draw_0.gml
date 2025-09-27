@@ -27,7 +27,9 @@ draw_circle(x,y,prevRadius,true)
 draw_set_alpha(1)
 draw_circle(x,y,radius,true)
 
-radius = lerp(radius,radiusTarg,lerpSpeed+0.1)
+var radWave = wave(radiusTarg-1,radiusTarg+1,0.25,0,time)
+
+radius = lerp(radius,radWave,lerpSpeed+0.1)
 prevRadius = lerp(prevRadius, radius, lerpSpeed)
 
 with (defender)

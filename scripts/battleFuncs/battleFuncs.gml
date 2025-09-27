@@ -24,7 +24,7 @@ function leaveBattle()
 	
 	room_goto(global.roomTarget)
 	
-	//oPlayer.iFrames = 90;
+	
 	
 	//oCamera.drawNothing = false
 };

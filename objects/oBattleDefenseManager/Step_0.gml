@@ -1,4 +1,6 @@
 
+time++
+
 if parry > 0 {parry--;}
 stick.flash = parry;
 

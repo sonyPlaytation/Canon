@@ -625,7 +625,7 @@ global.enemies =
 		
 		stats : 
 		{
-			hpMax: 1,
+			hpMax: 30,
 			ex: 10,
 			exMax: 10,
 			str: 8,
@@ -650,7 +650,7 @@ global.enemies =
 		name: "Swoopty",
 		stats : 
 		{
-			hpMax: 1,
+			hpMax: 25,
 			ex: 15,
 			exMax: 15,
 			str: 6,
@@ -675,7 +675,7 @@ global.enemies =
 		name: "Okey-Pokey",
 		stats : 
 		{
-			hpMax: 1,
+			hpMax: 35,
 			ex: 15,
 			exMax: 15,
 			str: 8,

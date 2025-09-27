@@ -1,3 +1,3 @@
 /// @
 
-colls = [oColl,pEntity,tiles];
+colls = [oColl,oDashGap,pEntity,tiles];

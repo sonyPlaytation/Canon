@@ -5,6 +5,7 @@ event_inherited()
 playerSetup();
 
 canDash = DEV;
+colls = [oColl,oDashGap,pNPC,tiles];
 
 enum FACING
 {
@@ -16,6 +17,7 @@ enum FACING
 
 stateFree = function()
 {
+	colls = [oColl,oDashGap,pNPC,tiles];
 	inPosition = false;
 	
 	mask_index = sNilsIdle;
@@ -25,6 +27,8 @@ stateFree = function()
 	
 	if canDash and dashCharge == dashFrames and InputPressed(INPUT_VERB.DASH)
 	{
+		solidGroundX = x;
+		solidGroundY = y;
 		dashTime = dashReset;
 		dashSpd = 6;
 		dashCharge = 0
@@ -147,8 +151,17 @@ groundMove = function()
 
 stateDash = function()
 {
+	colls = [oColl,pNPC,tiles];
+	
+	var dx = lengthdir_x(TILE_SIZE*5.5,dir);
+	var dy = lengthdir_y(TILE_SIZE*5.5,dir);
+	
 	sprite_index = sNilsDash
-	if dashTime > 0 { dashTime-- } else { dashSpd = lerp(dashSpd, 0, 0.1) }
+
+	if dashTime > 0 { dashTime-- } 
+	else { dashSpd = lerp(dashSpd, 0, 0.1) }
+	
+	if place_meeting(x,y,oDashGap) and dashTime == 0 { dashTime = 1 } 
 	
 	hsp = lengthdir_x(dashSpd,dir);
 	vsp = lengthdir_y(dashSpd,dir);
@@ -179,6 +192,13 @@ stateCrash = function()
 	
 	if z + zsp <= 0 
 	{
+		if place_meeting(x,y,oDashGap)
+		{
+			blinkExt(alpha,"alpha",1,30)
+			x = solidGroundX;
+			y = solidGroundY;
+		}
+		
 		zsp = 0;
 		z = 0;
 		state = stateFree

@@ -56,7 +56,7 @@ enemyStuff = function()
 	{
 		var myEncounter = encounter[irandom(array_length(encounter)-1)]
 	
-		if !array_contains(myEncounter, undefined) and collision_circle(x,y,sprite_width*0.65,oPlayer, false, false) 
+		if !killed and !array_contains(myEncounter, undefined) and collision_circle(x,y,sprite_width*0.65,oPlayer, false, false) 
 		and !startingBattle and oPlayer.iFrames <= 0
 		{
 			global.pauseEvery = true;
@@ -69,6 +69,9 @@ enemyStuff = function()
 		
 			if instance_exists(oDarkness)//or  (collision_line(x,selfCenter,lengthdir_x(24,dir),lengthdir_y(24,dir),oPlayer,false,false) and facing == oPlayer.facing)
 			{ advantage = -1; }
+			
+			if oPlayer.state = oPlayer.stateDash
+			{ advantage++ }
 	
 			if forceAdvantage != noone {advantage = forceAdvantage}
 	
