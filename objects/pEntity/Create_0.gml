@@ -12,7 +12,8 @@ if collide
 
 myScript = function(myTopic)
 {
-	startDialogue(myTopic)
+	if myTopic != "" { startDialogue(myTopic) }
+	else if shortMsg != "" { shortMessage(shortMsg) }
 }
 
 selfCenter = y;
