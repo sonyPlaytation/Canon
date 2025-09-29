@@ -128,7 +128,7 @@ function speakerAction(_name = "", _sprite = noone, _frame = 0, _side = PORT_SID
 			
 	act = function(textbox)
 	{
-		textbox.speakersVisible = true;
+		textbox.activeSpeaker = side;
 		
 		if sprite != noone
 		{
@@ -144,11 +144,10 @@ function speakerAction(_name = "", _sprite = noone, _frame = 0, _side = PORT_SID
 				alpha : 0,
 				yscale : 1
 			});
-		} else textbox.speakersVisible = false;
+		} else textbox.activeSpeaker = -1;
 		
 		textbox.name = name;
 		textbox.sound = sound;
-		textbox.activeSpeaker = side;
 		
 		textbox.next();
 	}
