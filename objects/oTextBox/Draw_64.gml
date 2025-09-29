@@ -9,15 +9,36 @@ if yMode == TXTPOS.BTM
 	draw_set_alpha(alpha)
 }
 
-var xscale = 1;
-portraitX = x;
-if portSide == PORT_SIDE.R
+
+var xscale;
+var portcolor = c_dkgrey;
+var shrinkSize = 0.15
+
+if speakersVisible
 {
-	xscale = -1;
-	portraitX = x + width;
+	// left portraits
+	xscale = 1
+	for (var l = array_length(speaker[PORT_SIDE.L])-1; l >= 0 ; l--)
+	{
+		var portXCurr = lerp(portraitX[PORT_SIDE.L],-50,1/l);
+		var _spkr = speaker[PORT_SIDE.L][l]
+		if l == 0 and activeSpeaker == PORT_SIDE.L {portcolor = c_white} else portcolor = c_dkgrey;
+		if speaker[PORT_SIDE.L][l] != noone 
+		draw_sprite_ext(_spkr.sprite, _spkr.emotion, portraitX[PORT_SIDE.L] - (75*l),portraitY,xscale - (shrinkSize*l),1 - (shrinkSize*l),0,portcolor,alpha);
+	}
+
+	// right portraits
+	xscale = -1
+	for (var r = array_length(speaker[PORT_SIDE.R])-1; r >= 0 ; r--)
+	{
+		var portXCurr = lerp(portraitX[PORT_SIDE.R],-50,1/r);
+		var _spkr = speaker[PORT_SIDE.R][r]
+		if r == 0 and activeSpeaker == PORT_SIDE.R {portcolor = c_white} else portcolor = c_dkgrey;
+		if speaker[PORT_SIDE.R][r] != noone 
+		draw_sprite_ext(_spkr.sprite, _spkr.emotion, portraitX[PORT_SIDE.R] + (75*r),portraitY,xscale + (shrinkSize*r),1 - (shrinkSize*r),0,portcolor,alpha);
+	}
 }
 
-if sprite != noone draw_sprite_ext(sprite,emotion,portraitX,portraitY,xscale,1,0,c_white,alpha)
 draw_sprite_stretched(sprite_index,boxSpr,x,y,width,height);
 
 if (yMode == TXTPOS.BTM and alpha == alphaTarg) or yMode != TXTPOS.BTM 

@@ -11,7 +11,7 @@ global.topics = {};
 
 	global.topics[$ "theBigWet"] = 
 	[
-		TEXT("Wait!"),
+		TEXT("Wait!!!"),
 		TEXT("You can't go down there! Look at that wet floor sign!"),
 		SPEAKER("Nils",sPortNils),
 		TEXT("Oh yeah, I'd better not. Lookin pretty wet!")
@@ -24,16 +24,19 @@ global.topics = {};
 		TEXT("Welcome to enemy room.\nBeware of enemies."),
 	];
 	
-	global.topics[$ "Gwen"] = 
+	global.topics[$ "GwenTest"] = 
 	[
+		SPEAKER("Nils", sPortMatt),
+		SPEAKER("Nils", sPortChar),
 		SPEAKER("Nils", sPortNils),
 		TEXT("Hi Gwen"),
 		SPEAKER("Gwen", sPortGwen,, PORT_SIDE.R),
 		TEXT("I hate you so fucking much"),
-		HOLD(),
-		TEXT("[wave][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3][sCharIdle,3]"),
+		SPEAKER("Matthew", sPortMatt),
+		TEXT("Hello I am the green man wow"),
+		SPEAKER("Charlie", sPortChar),
+		TEXT("and I am child [sCharIdle,3]"),
 	];
-	
 	
 	global.topics[$ "Charlie Choices"] = 
 	[

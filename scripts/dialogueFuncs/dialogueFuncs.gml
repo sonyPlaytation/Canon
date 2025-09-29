@@ -118,7 +118,7 @@ function textSoundLUT(_name)
 	}
 }
 
-function speakerAction(_name = "", _sprite = noone, _frame = 0, _side = undefined, _sound = textSoundLUT(_name)) : dialogueAction() constructor
+function speakerAction(_name = "", _sprite = noone, _frame = 0, _side = PORT_SIDE.L, _sound = textSoundLUT(_name)) : dialogueAction() constructor
 {
 	name = _name;
 	sprite = _sprite;
@@ -128,13 +128,27 @@ function speakerAction(_name = "", _sprite = noone, _frame = 0, _side = undefine
 			
 	act = function(textbox)
 	{
-		textbox.name = name;
-		textbox.sprite = sprite;
-		textbox.sound = sound;
-		textbox.emotion = frame;
+		textbox.speakersVisible = true;
 		
-		if !is_undefined(side)
-		{ textbox.portSide = side; }
+		if sprite != noone
+		{
+			textbox.speaker[side] = array_filter(textbox.speaker[side],function(element,index)
+			{
+				return element.sprite != sprite;
+			})
+		
+			array_insert(textbox.speaker[side],0,
+			{
+				sprite : sprite,
+				emotion : frame,
+				alpha : 0,
+				yscale : 1
+			});
+		} else textbox.speakersVisible = false;
+		
+		textbox.name = name;
+		textbox.sound = sound;
+		textbox.activeSpeaker = side;
 		
 		textbox.next();
 	}

@@ -42,14 +42,16 @@ txtW = width - (padding * 2);
 draw_set_font(font);
 
 // Portrait 
-portraitX = x;
+portraitX[PORT_SIDE.L] = x;
+portraitX[PORT_SIDE.R] = x + width;
 portraitY = y + (TILE_SIZE/2);
+speakersVisible = true;
 
 // Speaker
-emotion = 0;
 nameFont = fQuit;
 nameColor = c_white;
 sound = [sNarr];
+activeSpeaker = noone;
 
 // Options
 optX = padding*6;
@@ -84,10 +86,11 @@ enum PORT_SIDE
 	R
 }
 
-sprite = noone;
+speaker[PORT_SIDE.L] = [];
+speaker[PORT_SIDE.R] = [];
 //portW = sprite_get_width(sprite); // For a portrait background 
 //portH = sprite_get_height(sprite);
-portSide = PORT_SIDE.L;
+//portSide = PORT_SIDE.L;
 name = ""; 
 nameW = 0;
 

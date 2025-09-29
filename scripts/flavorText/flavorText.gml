@@ -49,7 +49,6 @@ global.topics[$ "yesToSave"] =
 
 	global.topics[$ "officePhoto"] = 
 	[
-		SPEAKER(),
 		TEXT("On the cabinet sits a photo of several people at some kind of party.\nThe flow of time seems to have worn the caption off of the brass placard."),
 		CHOICE("Inspect the photo?",
 			OPTION("Sure",			"choiceOfficePhotoYes"),
