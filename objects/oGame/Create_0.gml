@@ -16,13 +16,15 @@ global.fightBG = bgBattleDesert;
 global.mX = 0;
 global.mY = 0;
 
-global.mute = !DEV;
+global.mute = 1;
 global.masterVolume = 1;
 global.sfxVolume = 1;
 global.musicVolume = 1;
+global.voiceVolume = 0.4;
 
 global.musVol = global.musicVolume * global.masterVolume * global.mute;
 global.sfxVol = global.sfxVolume * global.masterVolume * global.mute;
+global.voiceVol = global.voiceVolume * global.masterVolume * global.mute;
 
 menuDebounce = 0;
 nowSaving = false;

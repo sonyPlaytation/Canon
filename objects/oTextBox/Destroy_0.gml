@@ -1,6 +1,6 @@
 /// @
 
-
+oInputReader.alphaTarg = 1;
 InputVerbConsume(INPUT_VERB.ACTION);
 
 if instance_exists(oCutscene)

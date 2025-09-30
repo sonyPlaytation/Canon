@@ -1,5 +1,8 @@
 /// @
 
+audio_group_set_gain(agText,global.voiceVol,0)
+
+
 if play != noone // this is what the SFX macro does
 {
 	var _sound = audio_play_sound(play,800,false,global.sfxVol);

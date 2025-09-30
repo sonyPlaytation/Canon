@@ -1,16 +1,16 @@
 {
   "$GMSound":"",
-  "%Name":"sNarr",
+  "%Name":"snTextMatt1",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"agText",
+    "path":"audiogroups/agText",
   },
   "bitDepth":1,
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.060839,
-  "name":"sNarr",
+  "duration":0.10714286,
+  "name":"snTextMatt1",
   "parent":{
     "name":"Text",
     "path":"folders/Sounds/SFX/Text.yy",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sNarr.wav",
-  "type":1,
+  "soundFile":"snTextMatt1.wav",
+  "type":0,
   "volume":1.0,
 }

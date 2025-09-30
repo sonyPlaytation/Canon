@@ -26,7 +26,17 @@ if speakersVisible
 		if l == 0 and activeSpeaker == _side {portcolor = c_white} else portcolor = c_dkgrey;
 		
 		portSlide[_side] = lerp(portSlide[_side],0,0.1);
-		if l != 0 {portX = portraitX[_side] - ((150/array_length(speaker[_side]))*(l-portSlide[_side]))} else portX = portraitX[_side] - ((150/array_length(speaker[_side]))*l);
+		if l != 0 
+		{
+			
+			portX = portraitX[_side] - ((150/array_length(speaker[_side]))*(l-portSlide[_side]))
+		} 
+		else 
+		{
+
+			portX = portraitX[_side] - ((150/array_length(speaker[_side]))*l);
+		}
+		
 		if l == 0 _spkr.y = lerp(_spkr.y,0,0.2) else _spkr.y = 0
 		
 		if speaker[_side][l] != noone 
@@ -60,15 +70,20 @@ draw_sprite_stretched(sprite_index,boxSpr,x,y,width,height);
 
 if (yMode == TXTPOS.BTM and alpha == alphaTarg) or yMode != TXTPOS.BTM 
 {
-	
-	var nameY = y - 24
-	if name != ""
-	{
-		nameW = string_width_scribble(name);
-		draw_sprite(sBattleOptions,0,x + (txtX/2), nameY);
-		myName.draw(x + txtX, nameY + 8);
-	}
 	draw_set_font(font);
+	var nameY = y - 24
+	if name != "" and activeSpeaker != -1
+	{
+		var _txtXFinal;
+		switch (activeSpeaker)
+		{
+			case PORT_SIDE.L: _txtXFinal = x + (txtX/2) break;
+			case PORT_SIDE.R: _txtXFinal = x + width - sprite_get_width(sBattleOptions) - (txtX/2) break;
+		}
+		draw_sprite(sBattleOptions,0,_txtXFinal, nameY);
+		myName.draw(_txtXFinal+6, nameY + 8);
+	}
+	
 	scribb.draw(x + txtX, y + txtY, typist); //main text rendering
 	
 	draw_set_font(font);

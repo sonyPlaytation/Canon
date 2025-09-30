@@ -1,5 +1,6 @@
 /// @
 
+oInputReader.alphaTarg = 0;
 depth = -9999
 
 onHold = false
@@ -52,7 +53,7 @@ speakersVisible = true;
 // Speaker
 nameFont = fQuit;
 nameColor = c_white;
-sound = [sNarr];
+sound = [snNarr];
 activeSpeaker = noone;
 
 // Options
@@ -138,7 +139,7 @@ setText = function(newText)
 		.fit_to_box(txtW,height);
 		
 	myName = scribble(name)
-		.starting_format("nameFontMod",nameColor)
+		.starting_format(font_get_name(font),nameColor)
 		.align(fa_left,fa_middle)
 		
 	length = string_length_scribble(newText);
