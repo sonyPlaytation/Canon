@@ -129,9 +129,10 @@ function speakerAction(_name = "", _sprite = noone, _frame = 0, _side = PORT_SID
 	act = function(textbox)
 	{
 		textbox.speakersVisible = true;
+		textbox.portSlide[side] = 1;
 		
 		if sprite != noone
-		{
+		{	
 			textbox.speaker[side] = array_filter(textbox.speaker[side],function(element,index)
 			{
 				return element.sprite != sprite;
@@ -142,7 +143,7 @@ function speakerAction(_name = "", _sprite = noone, _frame = 0, _side = PORT_SID
 				sprite : sprite,
 				emotion : frame,
 				alpha : 0,
-				yscale : 1
+				y : TILE_SIZE
 			});
 		} else textbox.speakersVisible = false;
 		

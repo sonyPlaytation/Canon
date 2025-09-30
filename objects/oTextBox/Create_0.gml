@@ -44,6 +44,8 @@ draw_set_font(font);
 // Portrait 
 portraitX[PORT_SIDE.L] = x;
 portraitX[PORT_SIDE.R] = x + width;
+portSlide[PORT_SIDE.L] = 0;
+portSlide[PORT_SIDE.R] = 0;
 portraitY = y + (TILE_SIZE/2);
 speakersVisible = true;
 
