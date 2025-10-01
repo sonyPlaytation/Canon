@@ -16,26 +16,53 @@ var shrinkSize = 0.15
 
 if speakersVisible
 {
+	var _side = PORT_SIDE.L
+	var portX;
 	// left portraits
 	xscale = 1
-	for (var l = array_length(speaker[PORT_SIDE.L])-1; l >= 0 ; l--)
+	for (var l = array_length(speaker[_side])-1; l >= 0 ; l--)
 	{
-		var portXCurr = lerp(portraitX[PORT_SIDE.L],-50,1/l);
-		var _spkr = speaker[PORT_SIDE.L][l]
-		if l == 0 and activeSpeaker == PORT_SIDE.L {portcolor = c_white} else portcolor = c_dkgrey;
-		if speaker[PORT_SIDE.L][l] != noone 
-		draw_sprite_ext(_spkr.sprite, _spkr.emotion, portraitX[PORT_SIDE.L] - (75*l),portraitY,xscale - (shrinkSize*l),1 - (shrinkSize*l),0,portcolor,alpha);
+		var _spkr = speaker[_side][l]
+		if l == 0 and activeSpeaker == _side {portcolor = c_white} else portcolor = c_dkgrey;
+		
+		portSlide[_side] = lerp(portSlide[_side],0,0.1);
+		if l != 0 
+		{
+			
+			portX = portraitX[_side] - ((150/array_length(speaker[_side]))*(l-portSlide[_side]))
+		} 
+		else 
+		{
+
+			portX = portraitX[_side] - ((150/array_length(speaker[_side]))*l);
+		}
+		
+		if l == 0 _spkr.y = lerp(_spkr.y,0,0.2) else _spkr.y = 0
+		
+		if speaker[_side][l] != noone 
+		{	
+			_spkr.alpha = approach(_spkr.alpha,1,alphaSpeed)
+			draw_sprite_ext(_spkr.sprite, _spkr.emotion, portX, portraitY + _spkr.y,xscale - (shrinkSize*(l-portSlide[_side])),1 - (shrinkSize*(l-portSlide[_side])),0,portcolor,speaker[_side][l].alpha);
+		}
 	}
 
+	_side = PORT_SIDE.R
 	// right portraits
 	xscale = -1
-	for (var r = array_length(speaker[PORT_SIDE.R])-1; r >= 0 ; r--)
+	for (var r = array_length(speaker[_side])-1; r >= 0 ; r--)
 	{
-		var portXCurr = lerp(portraitX[PORT_SIDE.R],-50,1/r);
-		var _spkr = speaker[PORT_SIDE.R][r]
-		if r == 0 and activeSpeaker == PORT_SIDE.R {portcolor = c_white} else portcolor = c_dkgrey;
-		if speaker[PORT_SIDE.R][r] != noone 
-		draw_sprite_ext(_spkr.sprite, _spkr.emotion, portraitX[PORT_SIDE.R] + (75*r),portraitY,xscale + (shrinkSize*r),1 - (shrinkSize*r),0,portcolor,alpha);
+		var _spkr = speaker[_side][r]
+		if r == 0 and activeSpeaker == _side {portcolor = c_white} else portcolor = c_dkgrey;
+		
+		portSlide[_side] = lerp(portSlide[_side],0,0.1);
+		if r != 0 {portX = portraitX[_side] - (75*(r-portSlide[_side]))} else portX = portraitX[_side] - (75*r);
+		if r == 0 _spkr.y = lerp(_spkr.y,0,0.2) else _spkr.y = 0
+		
+		if speaker[_side][r] != noone 
+		{
+			_spkr.alpha = approach(_spkr.alpha,1,alphaSpeed)
+			draw_sprite_ext(_spkr.sprite, _spkr.emotion, portX, portraitY + _spkr.y,xscale + (shrinkSize*(r-portSlide[_side])),1 - (shrinkSize*(r-portSlide[_side])),0,portcolor,speaker[_side][r].alpha);
+		}
 	}
 }
 
@@ -43,15 +70,20 @@ draw_sprite_stretched(sprite_index,boxSpr,x,y,width,height);
 
 if (yMode == TXTPOS.BTM and alpha == alphaTarg) or yMode != TXTPOS.BTM 
 {
-	
-	var nameY = y - 24
-	if name != ""
-	{
-		nameW = string_width_scribble(name);
-		draw_sprite(sBattleOptions,0,x + (txtX/2), nameY);
-		myName.draw(x + txtX, nameY + 8);
-	}
 	draw_set_font(font);
+	var nameY = y - 24
+	if name != "" and activeSpeaker != -1
+	{
+		var _txtXFinal;
+		switch (activeSpeaker)
+		{
+			case PORT_SIDE.L: _txtXFinal = x + (txtX/2) break;
+			case PORT_SIDE.R: _txtXFinal = x + width - sprite_get_width(sBattleOptions) - (txtX/2) break;
+		}
+		draw_sprite(sBattleOptions,0,_txtXFinal, nameY);
+		myName.draw(_txtXFinal+6, nameY + 8);
+	}
+	
 	scribb.draw(x + txtX, y + txtY, typist); //main text rendering
 	
 	draw_set_font(font);

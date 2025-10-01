@@ -2,8 +2,8 @@
   "$GMSound":"",
   "%Name":"snTextNils5",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"agText",
+    "path":"audiogroups/agText",
   },
   "bitDepth":1,
   "bitRate":128,
@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"snTextNils5.wav",
   "type":0,
-  "volume":0.2,
+  "volume":1.0,
 }

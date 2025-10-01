@@ -7,6 +7,7 @@ global.mY = global.cam.get_mouse_y()
 
 global.musVol = global.musicVolume * global.masterVolume * global.mute;
 global.sfxVol = global.sfxVolume * global.masterVolume * global.mute;
+global.voiceVol = global.voiceVolume * global.masterVolume * global.mute;
 
 if window_mouse_get_x() > (window_get_width()-100) and window_mouse_get_y() < 100
 {

@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snNarr",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.060839,
+  "name":"snNarr",
+  "parent":{
+    "name":"Canon Restart 2024",
+    "path":"Canon Restart 2024.yyp",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snNarr.wav",
+  "type":1,
+  "volume":0.4,
+}

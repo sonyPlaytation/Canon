@@ -4,6 +4,11 @@ if pause
 {
 	oInputReader.alphaTarg = 0;
 	
+	//if !instance_exists(oPauseMenu)
+	//{
+	//	instance_create_depth(global.cam.get_x(),global.cam.get_y(),-9999,oPauseMenu)	
+	//}
+	
 	//var _offset = 20
 	//draw_set_text(fSmall,c_black,fa_left,fa_middle)
 
@@ -17,5 +22,5 @@ if pause
 }
 else
 {
-	oInputReader.alphaTarg = 1;	
+	//oInputReader.alphaTarg = 1;	
 }

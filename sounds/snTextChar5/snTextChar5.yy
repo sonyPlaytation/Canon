@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snTextChar5",
+  "audioGroupId":{
+    "name":"agText",
+    "path":"audiogroups/agText",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.08929705,
+  "name":"snTextChar5",
+  "parent":{
+    "name":"Text",
+    "path":"folders/Sounds/SFX/Text.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snTextChar5.wav",
+  "type":0,
+  "volume":1.0,
+}

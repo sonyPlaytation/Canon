@@ -112,8 +112,10 @@ function textSoundLUT(_name)
 {
 	switch (_name)
 	{
-		case "":			return [sNarr];
+		case "":			return [snNarr];
 		case "Nils":		return [snTextNils1,snTextNils2,snTextNils3,snTextNils4,snTextNils5];
+		case "Charlie":		return [snTextChar1,snTextChar2,snTextChar3,snTextChar4,snTextChar5];
+		case "Matthew":		return [snTextMatt1,snTextMatt2,snTextMatt3,snTextMatt4,snTextMatt5];
 		case "Gwen":		return [snTextGwen1,snTextGwen2,snTextGwen3,snTextGwen4,snTextGwen5];
 	}
 }
@@ -129,20 +131,30 @@ function speakerAction(_name = "", _sprite = noone, _frame = 0, _side = PORT_SID
 	act = function(textbox)
 	{
 		textbox.activeSpeaker = side;
+		textbox.speakersVisible = true;
 		
 		if sprite != noone
-		{
-			textbox.speaker[side] = array_filter(textbox.speaker[side],function(element,index)
+		{	
+			
+			if array_length(textbox.speaker[side]) != 0 and sprite == textbox.speaker[side][0].sprite
 			{
-				return element.sprite != sprite;
-			})
+				textbox.speaker[side][0].emotion = frame
+			}
+			else
+			{
+				textbox.speaker[side] = array_filter(textbox.speaker[side],function(element,index)
+				{
+					return element.sprite != sprite;
+				})
+				textbox.portSlide[side] = 1;
+			}
 		
 			array_insert(textbox.speaker[side],0,
 			{
 				sprite : sprite,
 				emotion : frame,
 				alpha : 0,
-				yscale : 1
+				y : TILE_SIZE
 			});
 		} else textbox.activeSpeaker = -1;
 		

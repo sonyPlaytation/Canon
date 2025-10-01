@@ -3,15 +3,18 @@
 
 //var _finalVol = global.musVol * 3
 
-if tempSongAsset != noone and !audio_is_playing(tempSongAsset)
+if tempSongAsset != noone 
 {
-	mainSongPrevGain = audio_sound_get_gain(songAsset)
-	audio_sound_gain(songAsset,0,fadeOutTime)
-	if !audio_is_paused(songAsset)
+	if !audio_is_playing(tempSongAsset)
 	{
-		audio_pause_sound(songAsset)
-		audio_stop_sound(tempSongAsset)
-		audio_play_sound(tempSongAsset,500,true,global.musVol)
+		mainSongPrevGain = audio_sound_get_gain(songAsset)
+		audio_sound_gain(songAsset,0,fadeOutTime)
+		if !audio_is_paused(songAsset)
+		{
+			audio_pause_sound(songAsset)
+			audio_stop_sound(tempSongAsset)
+			audio_play_sound(tempSongAsset,500,true,global.musVol)
+		}
 	}
 }
 
@@ -56,22 +59,24 @@ if songAsset != targetSongAsset
 
 //volume control
 //main song volume
-if audio_is_playing(songInstance)
+if songInstance!= noone
 {
-	//fade the song in
-	if fadeInTime >0
+	if audio_is_playing(songInstance)
 	{
-		if fadeInInstVol < 1 {fadeInInstVol += 1/fadeInTime} else fadeInInstVol = 1;
-	}
-	//immediately start the song if the fade in time is 0 frames
-	else
-	{
-		fadeInInstVol = 1;
-	}
+		//fade the song in
+		if fadeInTime >0
+		{
+			if fadeInInstVol < 1 {fadeInInstVol += 1/fadeInTime} else fadeInInstVol = 1;
+		}
+		//immediately start the song if the fade in time is 0 frames
+		else
+		{
+			fadeInInstVol = 1;
+		}
 	
-	//actually set gain
-	audio_sound_gain(songInstance, fadeInInstVol*global.musVol, 0);
-	
+		//actually set gain
+		audio_sound_gain(songInstance, fadeInInstVol*global.musVol, 0);
+	}
 }
 
 //fading songs out
