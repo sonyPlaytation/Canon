@@ -37,6 +37,7 @@ function create_item(_category, _name, _desc, _sprite, _func = undefined) constr
 	func = _func;
 }
 
+//TODO: change items to be constructors
 global.items = 
 {
 	template:
@@ -81,14 +82,14 @@ global.items =
 		hitSound : snHealMinor,
 		tags : [FOOD_TAG.DAIRY,FOOD_TAG.GRAIN,FOOD_TAG.MEAT],
 		func : function(user, targets)
-		{
+		{ // TODO: make item funcs work universally
 			if instance_exists(oBattle) {
 				battleChangeHP(targets[0],heal,0)
 			} 
 			else 
 			{
 				overworldChangeHP(oPlayer,heal,0,snHealMinor)
-				with oPauseMenu {destroyMenu = true}
+				with oPauseMenu {destroyMenu}
 			}
 			
 			var me = array_get_index(global.inv[category],self)

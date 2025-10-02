@@ -230,7 +230,7 @@ function createItemMenu(invType = ITEM_TYPE.CONSUMABLE, key = label)
 			allowed : true,
 			type : "item",
 			label : element.name,
-			func : element.func // TODO: define Menu Functions within the item structs
+			func : element.func // TODO: change pause menu to tak references to structs
 		}
 				
 		array_push(other.items,_item)
