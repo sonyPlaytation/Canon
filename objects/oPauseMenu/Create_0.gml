@@ -60,7 +60,7 @@ options[$ "Menu"] =
 					allowed : true,
 					type : "submenu",
 					label : element.name,
-					func : undefined // TODO: define Menu Functions within the item structs
+					func : undefined
 				}
 				
 				array_push(other.guys,_guy)
@@ -77,7 +77,28 @@ options[$ "Menu"] =
 		allowed : true,
 		type : "submenu",
 		label : "Party",
-		func : enterSubmenu
+		func : function(){
+			
+			guys = []
+			other.options[$ "Equip"] = guys
+			array_foreach(PARTY,function(element, index)
+			{
+				var _guy =
+				{
+					allowed : true,
+					type : "submenu",
+					label : element.name,
+					func : undefined
+				}
+				
+				array_push(other.guys,_guy)
+			})
+	
+			var len = array_length(guys)
+			array_copy(other.options[$ "Equip"],0,guys,0,len);
+			array_push(other.options[$ "Equip"],variable_clone(other.goBack))
+			enterSubmenu("Equip");	
+		}
 	},
 	
 	{
@@ -88,46 +109,63 @@ options[$ "Menu"] =
 	},
 ]
 
+#region set items menu based on which items you have currently
 //TODO: probably make separate objects for displaying items in.
-options[$ "Item"] = 
-[
-	{
-		allowed : true,
-		type : "submenu",
-		label : "Consumables",
-		func : function() {createItemMenu(ITEM_TYPE.CONSUMABLE)}
-	},
-	
+options[$ "Item"] =  []
+
+array_push(options[$ "Item"],
+{
+	allowed : true,
+	type : "submenu",
+	label : "Consumables",
+	func : function() {createItemMenu(ITEM_TYPE.CONSUMABLE)}
+})	
+
+if array_length(global.inv[ITEM_TYPE.WEAPON]) != 0
+{
+	array_push(options[$ "Item"],
 	{
 		allowed : true,
 		type : "submenu",
 		label : "Weapons",
 		func : function() {createItemMenu(ITEM_TYPE.WEAPON)}
-	},
-	
+	})	
+}
+
+if array_length(global.inv[ITEM_TYPE.ARMOR]) != 0
+{
+	array_push(options[$ "Item"],
 	{
 		allowed : true,
 		type : "submenu",
 		label : "Armor",
 		func : function() {createItemMenu(ITEM_TYPE.ARMOR)}
-	},
-	
+	})	
+}
+
+if array_length(global.inv[ITEM_TYPE.MOD]) != 0
+{
+	array_push(options[$ "Item"],
 	{
 		allowed : true,
 		type : "submenu",
 		label : "Gems",
 		func : function() {createItemMenu(ITEM_TYPE.MOD)}
-	},
-	
-	{
-		allowed : true,
-		type : "submenu",
-		label : "Key Items",
-		func : function() {createItemMenu(ITEM_TYPE.KEY)}
-	},
-	
-	variable_clone(goBack)
-]
+	})	
+}
+
+
+array_push(options[$ "Item"],
+{
+	allowed : true,
+	type : "submenu",
+	label : "Key Items",
+	func : function() {createItemMenu(ITEM_TYPE.KEY)}
+})	
+
+array_push(options[$ "Item"],variable_clone(goBack))
+#endregion
+
 
 function createItemMenu(invType = ITEM_TYPE.CONSUMABLE, key = label)
 {

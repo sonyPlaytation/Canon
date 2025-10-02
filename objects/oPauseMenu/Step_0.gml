@@ -39,7 +39,7 @@ if InputPressed(INPUT_VERB.CANCEL)
 	}
 }
 
-if InputPressed(INPUT_VERB.PAUSE) 
+if InputPressed(INPUT_VERB.PAUSE) or InputPressed(INPUT_VERB.SKIP)
 destroyMenu = true;
 
 if !destroyMenu 
