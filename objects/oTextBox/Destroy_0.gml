@@ -8,4 +8,6 @@ if instance_exists(oCutscene)
 	with oCutscene {(layer_sequence_play(thisScene))}
 } else oPlayer.hasControl = true;
 
+InputVerbConsume(INPUT_VERB.SKIP)
+
 postDialogue();

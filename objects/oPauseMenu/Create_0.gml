@@ -1,5 +1,7 @@
 /// @
-
+global.pauseEvery = true;
+oPlayer.JustHitEnemyButCanStillMoveALittle = 0;
+oInputReader.alphaTarg = 0;
 depth = -9999
 hover = 0;
 active = true;
