@@ -81,7 +81,7 @@ typist
 	.character_delay_add(", ", 125)
 	.character_delay_add("\n", 400)
 
-oPlayer.hasControl = false
+if instance_exists(oPlayer) oPlayer.hasControl = false
 
 enum PORT_SIDE
 {

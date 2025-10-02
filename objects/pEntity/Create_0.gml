@@ -82,7 +82,7 @@ enemyStuff = function()
 			global.fightEnemies = myEncounter;
 			global.fightBG = bg;
 			global.fightSong = bgm;
-			instance_create_depth(0,0,0,oRoomCapture);
+			//instance_create_depth(0,0,0,oRoomCapture);
 			
 			alarm[0] = 60;
 		}

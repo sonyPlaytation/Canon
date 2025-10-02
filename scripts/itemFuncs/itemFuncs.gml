@@ -89,7 +89,7 @@ global.items =
 			else 
 			{
 				overworldChangeHP(oPlayer,heal,0,snHealMinor)
-				with oPauseMenu {destroyMenu}
+				with oPauseMenu {destroyMenu = true}
 			}
 			
 			var me = array_get_index(global.inv[category],self)

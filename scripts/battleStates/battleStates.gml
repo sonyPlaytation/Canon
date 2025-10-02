@@ -336,7 +336,7 @@ function battleStates(){
 		
 			for (var i = 0; i < array_length(partyUnits); i++ )
 			{
-				if partyUnits[i].stats.hp <= 0 {show_message(partyUnits[i].stats.hp) battleChangeHP(partyUnits[i], 1, 1)};
+				if partyUnits[i].stats.hp <= 0 {battleChangeHP(partyUnits[i], 1, 1)};
 				partyUnits[i].sprite_index = partyUnits[i].sprites.active
 			}
 			

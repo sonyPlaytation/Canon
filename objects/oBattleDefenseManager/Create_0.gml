@@ -55,7 +55,7 @@ function parried()
 	
 	defender.parry = 18.0;
 	
-	bulletManager.cooldownReset -= 0.25
+	//bulletManager.cooldownReset -= 0.25
 	
 	parry = parryFrames;
 	stick.flash = 10;

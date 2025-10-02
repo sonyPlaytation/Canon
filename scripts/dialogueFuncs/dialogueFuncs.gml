@@ -279,11 +279,6 @@ function startDialogue(topic,yMode = TXTPOS.BTM)
 {
 	if instance_exists(oTextBox){return};	
 	
-	if oPlayer.y > (global.cam.y + (TILE_SIZE/2))
-	{
-		yMode = TXTPOS.TOP
-	}
-	
 	var inst = instance_create_depth(0,0,-999,oTextBox);
 	inst.yMode = yMode
 	inst.setTopic(topic);

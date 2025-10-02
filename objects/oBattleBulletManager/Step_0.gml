@@ -1,12 +1,12 @@
 
 upTime++;
 
-if currentCooldown > 0 {currentCooldown--}
-
 if instance_exists (oBattleDefenseManager)
 {
 	if oBattleDefenseManager.parry > 0 {exit}
 }
+
+if currentCooldown > 0 {currentCooldown--}
 
 if currentCooldown <= 0 and !pleaseWrapItUp
 {
