@@ -166,6 +166,46 @@ array_push(options[$ "Item"],
 array_push(options[$ "Item"],variable_clone(goBack))
 #endregion
 
+options[$ "System"] = 
+[
+	{
+		allowed : true,
+		type : "submenu",
+		label : "Save",
+		func : function(){ instance_destroy(other) saveGame()}
+	},
+
+	{
+		allowed : true,
+		type : "submenu",
+		label : "Load",
+		func : function(){ instance_destroy(other) loadGame(true)}
+	},
+
+	{
+		allowed : true,
+		type : "submenu",
+		label : "Toggle Debug",
+		func : function(){ global.debug = !global.debug }
+	},
+
+	{
+		allowed : true,
+		type : "submenu",
+		label : "Toggle Mute",
+		func : function(){ global.mute = !global.mute }
+	},
+
+	{
+		allowed : true,
+		type : "submenu",
+		label : "Close Game",
+		func : function(){ if show_question("Are you sure?") game_end() }
+	},
+
+	variable_clone(goBack)
+	
+]
 
 function createItemMenu(invType = ITEM_TYPE.CONSUMABLE, key = label)
 {
