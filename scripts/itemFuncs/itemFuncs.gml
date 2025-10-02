@@ -55,15 +55,18 @@ global.items =
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHealMinor,
 		tags:[],
-		func : function(user, targets)
+		func : function(user, targets, source = -1)
 		{
-			battleChangeHP(targets[0],20,0)
+			if source == -1 {
+				battleChangeHP(targets[0],20,0)
+			}
 		}
 	},
 		
 	burger:
 	{
 		category : ITEM_TYPE.CONSUMABLE,
+		heal : 20,
 		sprite : sItemBurger,
 		name: "Cheeseburger",
 		type : "item",
@@ -79,7 +82,15 @@ global.items =
 		tags : [FOOD_TAG.DAIRY,FOOD_TAG.GRAIN,FOOD_TAG.MEAT],
 		func : function(user, targets)
 		{
-			battleChangeHP(targets[0],20,0)
+			if instance_exists(oBattle) {
+				battleChangeHP(targets[0],heal,0)
+			} 
+			else 
+			{
+				overworldChangeHP(oPlayer,heal,0,snHealMinor)
+				with oPauseMenu {destroyMenu = true}
+			}
+			
 			var me = array_get_index(global.inv[category],self)
 			array_delete(global.inv[category],me,1);
 		}

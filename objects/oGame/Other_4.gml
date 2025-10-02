@@ -25,7 +25,7 @@ if !instance_exists(oPlayer) and !array_contains(noSpawnRooms, room)
 	
 	if !layer_exists("Player") layer_create(100,"Player");
 	
-	var player = instance_create_layer(_x,_y,"Player",oPlayer);
+	var player = instance_create_layer(_x,_y,"Player",oPlayer,global.characters[0]);
 	player.facing = global.moveFacing;	
 	player.hasControl = false;
 	

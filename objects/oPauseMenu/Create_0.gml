@@ -185,15 +185,8 @@ options[$ "System"] =
 	{
 		allowed : true,
 		type : "submenu",
-		label : "Toggle Debug",
-		func : function(){ global.debug = !global.debug }
-	},
-
-	{
-		allowed : true,
-		type : "submenu",
-		label : "Toggle Mute",
-		func : function(){ global.mute = !global.mute }
+		label : "Settings",
+		func : enterSubmenu
 	},
 
 	{
@@ -207,6 +200,25 @@ options[$ "System"] =
 	
 ]
 
+options[$ "Settings"] =
+[
+	{
+		allowed : DEV,
+		type : "submenu",
+		label : "Toggle Debug",
+		func : function(){ global.debug = !global.debug }
+	},
+
+	{
+		allowed : true,
+		type : "submenu",
+		label : "Toggle Mute",
+		func : function(){ global.mute = !global.mute }
+	},
+
+	variable_clone(goBack)
+]
+
 function createItemMenu(invType = ITEM_TYPE.CONSUMABLE, key = label)
 {
 	items = []
@@ -218,7 +230,7 @@ function createItemMenu(invType = ITEM_TYPE.CONSUMABLE, key = label)
 			allowed : true,
 			type : "item",
 			label : element.name,
-			func : undefined // TODO: define Menu Functions within the item structs
+			func : element.func // TODO: define Menu Functions within the item structs
 		}
 				
 		array_push(other.items,_item)

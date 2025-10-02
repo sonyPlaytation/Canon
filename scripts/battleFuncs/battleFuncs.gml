@@ -93,6 +93,35 @@ function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 	if is_numeric(amount) and !failed {target.stats.hp = clamp(target.stats.hp + amount, 0, target.stats.hpMax)};
 }
 
+function overworldChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
+{
+	// ADOE : 
+	// 0 - ALIVE, 
+	// 1 - DEAD, 
+	// 2 - EITHER 	
+	text = abs(amount);
+	
+	var col = c_white;
+	
+	if sound != -1 { SFX sound; } 
+	
+	var healthLine = -1
+	
+	instance_create_depth
+	(
+		target.x,
+		target.selfCenter,
+		target.depth-20,
+		oBattleHitText,
+		{
+			font : fSmall,
+			color : col,
+			text : text
+		}
+	)
+	if is_numeric(amount) {target.stats.hp = clamp(target.stats.hp + amount, 0, target.stats.hpMax)};
+}
+
 
 function battleChangeEX(target, amount, sound = -1)
 {
