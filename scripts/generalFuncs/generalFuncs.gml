@@ -68,7 +68,7 @@ function playerSetup(){
 	
 	//animation
 	going = 0;
-	facing = FACING.DOWN;
+	facing = global.moveFacing;
 	face = [];
 	gotoX = -1;
 	gotoY = -1;
@@ -86,8 +86,8 @@ function playerSetup(){
 	for (var i = followLength-1; i >= 0 ; i--)
 	{
 		face[i] = facing;
-		posX[i] = x;
-		posY[i] = y;
+		posX[i] = x + lengthdir_x(3*i,facing-180);
+		posY[i] = y + lengthdir_y(3*i,facing-180);
 		sprSpd[i] = image_speed;
 	}
 

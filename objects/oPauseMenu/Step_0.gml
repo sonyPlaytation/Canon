@@ -24,7 +24,7 @@ if active
 	}
 }
 
-if InputPressed(INPUT_VERB.CANCEL)
+if canDestroy and InputPressed(INPUT_VERB.CANCEL)
 {
 	//show_debug_message("Return to MenuLayer: "+options[$ currentMenu][hover].label)
 	if currentMenu == "Menu" 
@@ -39,8 +39,7 @@ if InputPressed(INPUT_VERB.CANCEL)
 	}
 }
 
-if InputPressed(INPUT_VERB.PAUSE) or InputPressed(INPUT_VERB.SKIP)
-destroyMenu = true;
+if canDestroy and (InputPressed(INPUT_VERB.PAUSE) or InputPressed(INPUT_VERB.SKIP)) {destroyMenu = true;}
 
 if !destroyMenu 
 { 

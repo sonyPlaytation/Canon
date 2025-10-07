@@ -133,29 +133,37 @@ function speakerAction(_name = "", _sprite = noone, _frame = 0, _side = PORT_SID
 		textbox.activeSpeaker = side;
 		textbox.speakersVisible = true;
 		
-		if sprite != noone
-		{	
-			
-			if array_length(textbox.speaker[side]) != 0 and sprite == textbox.speaker[side][0].sprite
-			{
-				textbox.speaker[side][0].emotion = frame
-			}
-			else
-			{
-				textbox.speaker[side] = array_filter(textbox.speaker[side],function(element,index)
-				{
-					return element.sprite != sprite;
-				})
-				textbox.portSlide[side] = 1;
-			}
-		
-			array_insert(textbox.speaker[side],0,
+		entry = {}
+		if name != ""
+		{
+			entry[$ name] = 
 			{
 				sprite : sprite,
 				emotion : frame,
 				alpha : 0,
 				y : TILE_SIZE
-			});
+			}
+		
+			if sprite != noone
+			{	
+				if !array_contains(textbox.speaker[side],entry[$ name])
+				{
+					textbox.speaker[side] = array_filter(textbox.speaker[side],function(element,index)
+					{
+						return element.sprite != sprite;
+					})
+					textbox.portSlide[side] = 1;
+				}
+				else
+				{
+					var pos = array_get_index(textbox.speaker[side],entry[$ name])
+					textbox.speaker[side][pos].emotion = frame
+					textbox.portSlide[side] = 0;
+				}
+			
+				array_insert(textbox.speaker[side],0,entry[$ name]);
+			
+			}
 		} else textbox.activeSpeaker = -1;
 		
 		textbox.name = name;

@@ -184,7 +184,7 @@ global.enemies =
 			hpMax: 30,
 			ex: 10,
 			exMax: 10,
-			str: 8,
+			str: 14,
 			def : 2,
 			exStr: 5,
 			spd : 4
@@ -209,7 +209,7 @@ global.enemies =
 			hpMax: 25,
 			ex: 15,
 			exMax: 15,
-			str: 6,
+			str: 12,
 			def: 1,
 			exStr: 6,
 			spd : 4
@@ -234,7 +234,7 @@ global.enemies =
 			hpMax: 15,
 			ex: 15,
 			exMax: 15,
-			str: 8,
+			str: 15,
 			def: 0,
 			exStr: 6,
 			spd : 6
@@ -242,8 +242,8 @@ global.enemies =
 		
 		sprites : { idle: sFeralAnt, normals: sFeralAnt, defend: sFeralAnt, down: sGrave, head: sFeralAnt},
 		actions: [global.actionLibrary.enemyNormals],
-		attacks: ["antDaigo"],
-		xpWorth: 1,
+		attacks: ["antDaigo", "ant"],
+		xpWorth: 4,
 		AI: function(user,targets)
 		{
 			var myMove = global.enemyAI.standard(user,targets);
@@ -259,7 +259,7 @@ global.enemies =
 			hpMax: 35,
 			ex: 15,
 			exMax: 15,
-			str: 8,
+			str: 13,
 			def: 1,
 			exStr: 6,
 			spd : 4

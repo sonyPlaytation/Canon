@@ -140,9 +140,9 @@ function addItem(_item, _showMsg = true)
 	if array_length(global.inv[_item.category]) < global.invSize
 	{
 		item = _item
-		theItem = item.key
+		var itemKey = item.key;
 	
-		array_push(global.inv[_item.category],_item);
+		array_push(global.inv[_item.category],item);
 	
 		if _showMsg { SFX snCaveStoryGetItem; shortMessage($"Found a [c_red]{_item.name}[c_white]!",TXTPOS.MID) }
 		show_debug_message($"Added Item: {_item.name} to Inventory")

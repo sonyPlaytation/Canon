@@ -22,8 +22,9 @@ for (var l = 0; l < visibleOptionsMax + _desc; l++)
 	var optY = y + sprite_get_height(sBattleOptionHeader) + (sprite_get_height(sBattleOptions)*l) + (menuGap*(l+1))
 	var optX = x + (12*selected)
 	
+	gpu_set_scissor(optX,optY,sprite_get_width(sBattleOptions),sprite_get_height(sBattleOptions))
 	draw_sprite(sBattleOptions,selected, optX, optY);
-
+	
 	var str = options[optionToShow][0];
 		
 	if options[optionToShow][3] == false {draw_set_color(c_grey);}
@@ -40,4 +41,5 @@ for (var l = 0; l < visibleOptionsMax + _desc; l++)
 	}
 	
 	draw_text(optX+xmargin, y+ymargin + sprite_get_height(sBattleOptionHeader) + (sprite_get_height(sBattleOptions)*l) + (menuGap*(l+1)), str)	
+	gpu_set_scissor(0,0,GAME_W,GAME_H);
 }

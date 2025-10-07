@@ -7,6 +7,7 @@ hover = 0;
 active = true;
 subMenuLevel = 0;
 actorName = ""
+InputVerbConsume(INPUT_VERB.CANCEL);
 
 x = -120
 xTarg = 0
@@ -22,7 +23,9 @@ xmargin = 12;
 ymargin = 8
 
 selectY = y;
+canDestroy = false;
 destroyMenu = false
+alarm[1] = 10;
 
 currentMenu = "Menu"
 prevMenus = []

@@ -21,7 +21,7 @@ for (var l = 0; l < optionsCount ; l++)
 	var optX = x + (12*selected)
 	
 	draw_sprite(sBattleOptions,selected, optX, optY);
-
+	
 	var str = options[$ currentMenu][l].label;	
 	if !options[$ currentMenu][l].allowed {draw_set_color(c_grey);}
 	
@@ -35,7 +35,17 @@ for (var l = 0; l < optionsCount ; l++)
 		if active draw_sprite(sBattleMenuMainArrow, 0, optX, optY+ymargin);
 		selectY = optY;
 	}
+	else
+	{
+		//var scale = RES_W div GAME_W
+		//gpu_set_scissor(optX*scale,optY*scale,(sprite_get_width(sBattleOptions))*scale,(sprite_get_height(sBattleOptions)-1)*scale)
+		//draw_set_color(c_red)
+		//draw_rectangle(0,0,GAME_W,GAME_H,false)
+		//draw_set_color(c_dkgrey)
+		//gpu_set_scissor(0,0,RES_W,RES_H);	
+	}
 	
 	draw_text(optX+xmargin, y+ymargin + sprite_get_height(sBattleOptionHeader) + (sprite_get_height(sBattleOptions)*l) + (menuGap*(l+1)), str)	
+	
 }
 

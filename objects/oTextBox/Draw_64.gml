@@ -28,12 +28,10 @@ if speakersVisible
 		portSlide[_side] = lerp(portSlide[_side],0,0.1);
 		if l != 0 
 		{
-			
 			portX = portraitX[_side] - ((150/array_length(speaker[_side]))*(l-portSlide[_side]))
 		} 
 		else 
 		{
-
 			portX = portraitX[_side] - ((150/array_length(speaker[_side]))*l);
 		}
 		
@@ -51,12 +49,28 @@ if speakersVisible
 	xscale = -1
 	for (var r = array_length(speaker[_side])-1; r >= 0 ; r--)
 	{
-		var _spkr = speaker[_side][r]
-		if r == 0 and activeSpeaker == _side {portcolor = c_white} else portcolor = c_dkgrey;
-		
 		portSlide[_side] = lerp(portSlide[_side],0,0.1);
-		if r != 0 {portX = portraitX[_side] - (75*(r-portSlide[_side]))} else portX = portraitX[_side] - (75*r);
-		if r == 0 _spkr.y = lerp(_spkr.y,0,0.2) else _spkr.y = 0
+		
+		var _spkr = speaker[_side][r]
+		if r == 0 and activeSpeaker == _side 
+		{
+			portcolor = c_white
+			_spkr.y = lerp(_spkr.y,0,0.2)
+		} 
+		else 
+		{
+			portcolor = c_dkgrey;
+			_spkr.y = 0
+		}
+		
+		if r != 0 
+		{
+			portX = portraitX[_side] - ((150/array_length(speaker[_side]))*(r-portSlide[_side]))
+		} 
+		else 
+		{
+			portX = portraitX[_side] - ((150/array_length(speaker[_side]))*r);
+		}
 		
 		if speaker[_side][r] != noone 
 		{

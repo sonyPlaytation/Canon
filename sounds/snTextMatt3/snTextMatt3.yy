@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.10714286,
+  "duration":0.084829934,
   "name":"snTextMatt3",
   "parent":{
     "name":"Text",

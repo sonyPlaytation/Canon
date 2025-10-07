@@ -16,9 +16,10 @@ stateFollow = function()
 
 		if !caughtUp
 		{
+			var distToGo = point_distance(x,y,oPlayer.posX[followDist],oPlayer.posY[followDist])
 			image_speed = 2
-			x = approach(x, oPlayer.posX[followDist],walksp);
-			y = approach(y, oPlayer.posY[followDist],walksp);
+			x = approach(x, oPlayer.posX[followDist],clamp(distToGo/100,2.95,10));
+			y = approach(y, oPlayer.posY[followDist],clamp(distToGo/100,2.95,10));
 		}
 		else
 		{

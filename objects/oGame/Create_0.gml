@@ -2,6 +2,7 @@
 
 #macro SAVEFILE "CANON.save"
 #macro DEV (GM_build_type == "run")
+#macro SPOTS part_particles_burst(global.menuSpotsPart,global.cam.get_x()+(GAME_W/2),global.cam.get_y()+(GAME_H/2),psMenuSpots)
 
 roomsTilDoom = 3;
 roomsBeenThrough = []

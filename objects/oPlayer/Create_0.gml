@@ -6,6 +6,7 @@ playerSetup();
 
 canDash = DEV;
 colls = [oColl,oDashGap,pNPC,tiles];
+followers = [];
 
 enum FACING
 {
