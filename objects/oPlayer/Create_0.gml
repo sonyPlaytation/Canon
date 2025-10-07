@@ -25,10 +25,10 @@ stateFree = function()
 	interact();
 	animate();
 	
+	if place_meeting(x,y,oDashGap){backToSolidGround()}
+	
 	if canDash and dashCharge == dashFrames and InputPressed(INPUT_VERB.DASH)
 	{
-		solidGroundX = x;
-		solidGroundY = y;
 		dashTime = dashReset;
 		dashSpd = 6;
 		dashCharge = 0
@@ -161,7 +161,7 @@ stateDash = function()
 	if dashTime > 0 { dashTime-- } 
 	else { dashSpd = lerp(dashSpd, 0, 0.1) }
 	
-	if place_meeting(x,y,oDashGap) and dashTime == 0 { dashTime = 1 } 
+	if FLAGS.chargeTackle and place_meeting(x,y,oDashGap) and dashTime == 0 { dashTime = 1 } 
 	
 	hsp = lengthdir_x(dashSpd,dir);
 	vsp = lengthdir_y(dashSpd,dir);
@@ -175,7 +175,14 @@ stateDash = function()
 		global.cam.shake_screen(5,3);	
 	}
 	
-	if dashSpd <= 1 {state = stateFree}
+	if dashSpd <= 1 
+	{
+		if place_meeting(x,y,oDashGap)
+		{
+			backToSolidGround()
+		}
+		state = stateFree
+	}
 	
 }
 
@@ -194,9 +201,7 @@ stateCrash = function()
 	{
 		if place_meeting(x,y,oDashGap)
 		{
-			blinkExt(alpha,"alpha",1,30)
-			x = solidGroundX;
-			y = solidGroundY;
+			backToSolidGround()
 		}
 		
 		zsp = 0;
@@ -274,6 +279,13 @@ animate = function()
 			
 		}
 	}
+}
+
+backToSolidGround = function()
+{
+	blinkExt(alpha,"alpha",1,30)
+	x = global.solidGroundX;
+	y = global.solidGroundY;	
 }
 
 state = stateFree;

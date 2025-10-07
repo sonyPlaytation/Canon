@@ -6,6 +6,9 @@ itemFuncs()
 
 global.flags = 
 {
+	//permanent upgrades
+	chargeTackle : false,
+	
 	//running jokes
 	solitaire: 0,
 	
