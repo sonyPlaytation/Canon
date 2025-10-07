@@ -103,8 +103,9 @@ function playerSetup(){
 	
 	// State Specific
 	dashCharge = 0;
-	dashFrames = 40;
-	dashReset = 15
+	dashFrames = 20;
+	dashReset = 5
+	if FLAGS.chargeTackle dashReset = 15
 	dashTime = dashReset;
 	dashH = 0;
 	dashV = 0;
