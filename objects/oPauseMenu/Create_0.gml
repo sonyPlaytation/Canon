@@ -195,6 +195,13 @@ options[$ "System"] =
 	{
 		allowed : true,
 		type : "submenu",
+		label : "Main Menu",
+		func : function(){ if show_question("Are you sure?") global.pauseEvery = false; game_restart() }
+	},
+
+	{
+		allowed : true,
+		type : "submenu",
 		label : "Close Game",
 		func : function(){ if show_question("Are you sure?") game_end() }
 	},

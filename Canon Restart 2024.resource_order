@@ -808,6 +808,7 @@
     {"name":"sBattleTurnCount","order":10,"path":"sprites/sBattleTurnCount/sBattleTurnCount.yy",},
     {"name":"sBigSand","order":4,"path":"sprites/sBigSand/sBigSand.yy",},
     {"name":"sBigSpill","order":8,"path":"sprites/sBigSpill/sBigSpill.yy",},
+    {"name":"sBlackTowerPH","order":1,"path":"sprites/sBlackTowerPH/sBlackTowerPH.yy",},
     {"name":"sBlank","order":6,"path":"sprites/sBlank/sBlank.yy",},
     {"name":"sBlockStopper","order":31,"path":"sprites/sBlockStopper/sBlockStopper.yy",},
     {"name":"sBulletTest","order":24,"path":"sprites/sBulletTest/sBulletTest.yy",},

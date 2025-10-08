@@ -971,6 +971,7 @@
     {"id":{"name":"sBattleTurnCount","path":"sprites/sBattleTurnCount/sBattleTurnCount.yy",},},
     {"id":{"name":"sBigSand","path":"sprites/sBigSand/sBigSand.yy",},},
     {"id":{"name":"sBigSpill","path":"sprites/sBigSpill/sBigSpill.yy",},},
+    {"id":{"name":"sBlackTowerPH","path":"sprites/sBlackTowerPH/sBlackTowerPH.yy",},},
     {"id":{"name":"sBlank","path":"sprites/sBlank/sBlank.yy",},},
     {"id":{"name":"sBlockStopper","path":"sprites/sBlockStopper/sBlockStopper.yy",},},
     {"id":{"name":"sBulletTest","path":"sprites/sBulletTest/sBulletTest.yy",},},

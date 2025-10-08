@@ -38,6 +38,15 @@ sceneAddMoment(cutAct1TowerFall, -30, function()
 	transition(rTest1,sqFadeOut,sqFadeIn,,,,0,true)
 });
 
+
+sceneAddMoment(cutCharlieFindsYou, 0, function()
+{
+	with oCharlie{
+		fogAlpha = 1
+		fogColor = c_black;
+	}
+});
+
 sceneAddMoment(cutCharlieFindsYou, -45, function()
 {
 	transition(rTest2,sqFadeOut,sqFadeIn,,,,0,true)

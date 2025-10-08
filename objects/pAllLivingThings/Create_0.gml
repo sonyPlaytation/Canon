@@ -2,6 +2,9 @@
 
 selfCenter = y - (sprite_height/2);
 
+fogColor = c_white;
+fogAlpha = 0;
+
 going = false;
 dir = 0;
 facing = 0;
