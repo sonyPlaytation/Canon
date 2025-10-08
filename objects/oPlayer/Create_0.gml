@@ -4,6 +4,8 @@ event_inherited()
 
 playerSetup();
 
+global.cam.move(x,y)
+
 canDash = DEV;
 colls = [oColl,oDashGap,pNPC,tiles];
 followers = [];

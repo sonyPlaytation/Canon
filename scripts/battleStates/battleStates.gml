@@ -12,11 +12,11 @@ function battleStates(){
 			if unit.stats.hp > 0 and variable_struct_exists(unit.sprites,"active"){ unit.sprite_index = unit.sprites.active; }
 	
 			//todo fix turn order
-			if unit.stats.hp > 0 and array_contains(partyUnits,unit)
-			{
-				array_delete(oBattle.partyTurnOrder,0,1) 
-				oBattle.partyTurnOrder[2] = unit 
-			}
+			//if unit.stats.hp > 0 and array_contains(partyUnits,unit)
+			//{
+			//	array_delete(oBattle.partyTurnOrder,0,1) 
+			//	oBattle.partyTurnOrder[2] = unit 
+			//}
 		}
 		,
 		step : function()

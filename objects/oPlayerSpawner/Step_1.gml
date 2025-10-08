@@ -7,5 +7,5 @@ if !instance_exists(oPlayer) and !global.midTransition
 		cFollow : cFollow,
 		mFollow : mFollow
 	})
-	global.cam.follow = oPlayer
+	oCamera.follow = oPlayer
 }

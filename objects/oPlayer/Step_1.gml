@@ -4,17 +4,18 @@ if iFrames > 0 { if iFrames >= 90 {blinkExt(alpha,"alpha",1,100)}; iFrames-- };
 
 event_inherited()
 
-var followDist = 18 * (array_length(followers)+1)
+var followDist = 12 * (array_length(followers)+1)
+var facedir = facing * 90
 
 if cFollow and Charlie == noone
 {
-	Charlie = instance_create_depth(x - lengthdir_x(followDist*2,facing),y - lengthdir_y(followDist*2,facing),depth,oCharlie)
+	Charlie = instance_create_depth(x - lengthdir_x(20,facedir),y - lengthdir_y(20,facedir),depth,oCharlie)
 	array_push(followers, Charlie);
 }
 
 if mFollow and Matthew == noone
 {
-	Matthew = instance_create_depth(x - lengthdir_x(followDist*2,facing),y - lengthdir_y(followDist*2,facing),depth,oMatthew)
+	Matthew = instance_create_depth(x - lengthdir_x(20,facedir),y - lengthdir_y(20,facedir),depth,oMatthew)
 	array_push(followers, Matthew);
 }
 

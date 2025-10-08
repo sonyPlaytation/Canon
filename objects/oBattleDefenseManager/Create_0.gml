@@ -20,6 +20,7 @@ parryFrames = 10;
 
 lerpSpeed = 0.15;
 
+//TODO: change parrying to be more "backendy"
 radius = 0
 prevRadius = radius;
 radiusTarg = TILE_SIZE;

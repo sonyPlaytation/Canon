@@ -32,7 +32,7 @@ function saveGame()
 {
 	global.enemiesKilled = {}
 
-	if array_contains(PARTY[0].actions,global.actionLibrary.devilshot) {flashScreen(c_red,sDoomSave,0.05)};
+	if array_contains(PARTY[0].actions,global.actionLibrary.devilshot) {flashScreen(c_red,snDoomSave,0.05)};
 	
 	file_delete(SAVEFILE)
 	oGame.nowSaving = true;

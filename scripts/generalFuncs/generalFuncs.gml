@@ -86,8 +86,8 @@ function playerSetup(){
 	for (var i = followLength-1; i >= 0 ; i--)
 	{
 		face[i] = facing;
-		posX[i] = x + lengthdir_x(3*i,facing-180);
-		posY[i] = y + lengthdir_y(3*i,facing-180);
+		posX[i] = x - lengthdir_x(2*i,facing*90);
+		posY[i] = y - lengthdir_y(2*i,facing*90);
 		sprSpd[i] = image_speed;
 	}
 
@@ -104,8 +104,8 @@ function playerSetup(){
 	// State Specific
 	dashCharge = 0;
 	dashFrames = 20;
-	dashReset = 5
-	if FLAGS.chargeTackle dashReset = 15
+	dashReset = 8
+	if FLAGS.chargeTackle {dashReset *= 2}
 	dashTime = dashReset;
 	dashH = 0;
 	dashV = 0;
@@ -115,14 +115,15 @@ function playerSetup(){
 	zsp = 0;
 }
 
-function draw_character_shadow()
+function draw_character_shadow(w = sprite_width, h = sprite_height)
 {
 	if global.drawShadows
 	{
-		var halfw = sprite_width/2
+		var halfw = w/2
+		var halfh = min(h/4,6)
 		draw_set_color(c_black);
 		draw_set_alpha(0.5);
-		draw_ellipse(floor(x-halfw)-1,floor(y-6),ceil(x+halfw),ceil(y+6),false);
+		draw_ellipse(floor(x-halfw)-1,floor(y-halfh),ceil(x+halfw),ceil(y+halfh),false);
 		draw_set_alpha(1);	
 	}
 }

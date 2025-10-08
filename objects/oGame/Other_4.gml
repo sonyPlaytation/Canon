@@ -29,7 +29,7 @@ if !instance_exists(oPlayer) and !array_contains(noSpawnRooms, room)
 	player.cFollow = array_contains(PARTY,global.characters[1]);
 	player.mFollow = array_contains(PARTY,global.characters[2]);
 	player.facing = global.moveFacing;	
-	player.hasControl = false;
+	oPlayer.hasControl = true;
 	
 	alarm[0] = 2;
 }

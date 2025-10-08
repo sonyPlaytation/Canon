@@ -101,7 +101,7 @@ function returnToPrevRoom(_typeOut = sqBattleEnd, _typeIn = sqFadeIn)
 
 function transitionChangeRoom()
 {	
-	oCamera.drawNothing = true
+	//oCamera.drawNothing = true
 	room_goto(global.roomTarget);	
 }
 

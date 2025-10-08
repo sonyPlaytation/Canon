@@ -1,3 +1,3 @@
 
-oPlayer.hasControl = true;
-global.cam.follow = oPlayer
+
+oCamera.follow = oPlayer

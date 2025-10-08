@@ -1,6 +1,6 @@
 /// @
 
-draw_character_shadow();
+draw_character_shadow(sprite_width,sprite_height);
 
 if flash > 0 { flash--; shader_set(shWhiteFlash);}
 if hit > 0   { hit--;   shader_set(shRedFlash);}

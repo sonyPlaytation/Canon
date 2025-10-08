@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snDoomSave",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":1.1019502,
+  "name":"snDoomSave",
+  "parent":{
+    "name":"From Something",
+    "path":"folders/Sounds/SFX/From Something.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snDoomSave.wav",
+  "type":1,
+  "volume":1.0,
+}

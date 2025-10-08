@@ -464,6 +464,6 @@ global.party =
 [
 	global.characters[0],
 	//global.characters[1],
-	global.characters[2]
+	//global.characters[2]
 ]
 

@@ -1,0 +1,2 @@
+
+global.cam.follow = follow
