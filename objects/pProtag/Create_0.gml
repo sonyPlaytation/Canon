@@ -5,6 +5,7 @@ gotoX = -1;
 gotoY = -1;
 inPosition = false;
 myCutStart = noone;
+drawShadow = true;
 
 stateStartCutscene = function()
 {
@@ -14,7 +15,7 @@ stateStartCutscene = function()
 	
 	animate();
 		
-	if point_distance(x,y,gotoX,gotoY) < 2 
+	if !follow or point_distance(x,y,gotoX,gotoY) < 2 
 	{
 		x = gotoX;
 		y = gotoY;

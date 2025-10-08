@@ -48,7 +48,8 @@ function saveGame()
 			[],
 			[],
 			[],
-		]
+		],
+		party : []
 	}
 	
 	for (var i = 0; i < array_length(global.inv); i++)
@@ -61,7 +62,8 @@ function saveGame()
 	
 	for (var i = 0; i < array_length(PARTY); ++i) 
 	{
-		mainStruct.stats[i] = PARTY[i].stats
+		mainStruct.party[i] = array_get_index(global.characters,PARTY[i]);
+		mainStruct.stats[i] = PARTY[i].stats;
 	}
 	
 	var _json = json_stringify(mainStruct, DEV);
@@ -105,6 +107,10 @@ function loadGame(roomChange = false){
 	
 	for (var i = 0; i < array_length(PARTY); ++i) {
 	    PARTY[i].stats = mainStruct.stats[i];
+	}
+	
+	for (var i = 0; i < array_length(mainStruct.party); ++i) {
+	    PARTY[i] = global.characters[mainStruct.party[i]];
 	}
 	
 	FLAGS = mainStruct.flags;

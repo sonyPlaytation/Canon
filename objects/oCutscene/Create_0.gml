@@ -1,8 +1,9 @@
+frame = 0;
+sceneTitle = sequence_get(scene).name;
 
+myLayer = layer_create(-500);
 
-if !layer_exists("Player") layer_create(200, "Player");
-
-thisScene = layer_sequence_create("Player", x, y,scene);
+thisScene = layer_sequence_create(myLayer, x, y,scene);
 sceneStruct = layer_sequence_get_instance(thisScene);
 
 actors = sequence_get_objects(scene)
@@ -14,6 +15,5 @@ for (var i = 0; i < array_length(actors); i++)
 		sequence_instance_override_object(sceneStruct,actors[i],actorReplace)
 	}
 }
-
 
 layer_sequence_play(thisScene);

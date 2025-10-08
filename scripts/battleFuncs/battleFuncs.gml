@@ -24,8 +24,6 @@ function leaveBattle()
 	
 	room_goto(global.roomTarget)
 	
-	
-	
 	//oCamera.drawNothing = false
 };
 

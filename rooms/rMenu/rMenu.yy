@@ -18,6 +18,7 @@
     {"name":"inst_15FD8768","path":"rooms/rMenu/rMenu.yy",},
     {"name":"inst_39C135B4","path":"rooms/rMenu/rMenu.yy",},
     {"name":"inst_5EE077B6","path":"rooms/rMenu/rMenu.yy",},
+    {"name":"inst_567E8F9B","path":"rooms/rMenu/rMenu.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -36,6 +37,9 @@
         {"$GMRInstance":"v2","%Name":"inst_15FD8768","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_15FD8768","objectId":{"name":"oDebugMouseButton","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oDebugMouseButton","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"propertyId":{"name":"doThis","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"loadSavefile\"",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":9.0,"scaleY":1.0,"x":216.0,"y":216.0,},
+        {"$GMRInstance":"v2","%Name":"inst_567E8F9B","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_567E8F9B","objectId":{"name":"oDebugMouseButton","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oDebugMouseButton","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"propertyId":{"name":"doThis","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"help\"",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":9.0,"scaleY":1.0,"x":216.0,"y":288.0,},
         {"$GMRInstance":"v2","%Name":"inst_39C135B4","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_39C135B4","objectId":{"name":"oDebugMouseButton","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oDebugMouseButton","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"propertyId":{"name":"doThis","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"wipeSave\"",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":5.0,"scaleY":1.0,"x":504.0,"y":324.0,},

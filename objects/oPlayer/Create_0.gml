@@ -10,6 +10,8 @@ canDash = DEV;
 colls = [oColl,oDashGap,pNPC,tiles];
 followers = [];
 
+cutMove = false;
+
 enum FACING
 {
 	RIGHT	= 0,
@@ -238,14 +240,19 @@ stateStartCutscene = function()
 
 stateInCutscene = function()
 {
-	going = (point_distance(xprevious, yprevious, x, y ) > 0)
-	if going {dir = point_direction(xprevious, yprevious,x, y)}
+	if cutMove
+	{
+		going = (point_distance(xprevious, yprevious, x, y ) > 0)
+		if going {dir = point_direction(xprevious, yprevious,x, y)}
+		
+		image_speed = clamp(point_distance(xprevious, yprevious, x, y )/2,0,3)
+		
+		facing = dir div 90;
+		
+		animate();	
+	}
 	
-	image_speed = clamp(point_distance(xprevious, yprevious, x, y )/2,0,3)
-	
-	facing = dir div 90;
-	
-	animate();	
+	rot = image_angle;
 }
 
 animate = function()

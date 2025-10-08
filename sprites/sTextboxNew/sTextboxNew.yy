@@ -44,8 +44,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"Dev Assets",
-    "path":"folders/Sprites/Dev Assets.yy",
+    "name":"UI",
+    "path":"folders/Sprites/UI.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -83,7 +83,7 @@ options[$ "Menu"] =
 		func : function(){
 			
 			guys = []
-			other.options[$ "Equip"] = guys
+			other.options[$ label] = guys
 			array_foreach(PARTY,function(element, index)
 			{
 				var _guy =
@@ -98,9 +98,9 @@ options[$ "Menu"] =
 			})
 	
 			var len = array_length(guys)
-			array_copy(other.options[$ "Equip"],0,guys,0,len);
-			array_push(other.options[$ "Equip"],variable_clone(other.goBack))
-			enterSubmenu("Equip");	
+			array_copy(other.options[$ label],0,guys,0,len);
+			array_push(other.options[$ label],variable_clone(other.goBack))
+			enterSubmenu(label);	
 		}
 	},
 	

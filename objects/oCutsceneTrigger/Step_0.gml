@@ -14,9 +14,12 @@ if cutscenePlaying == noone and scene != -1 and place_meeting(x,y,oPlayer) and !
 		with oCharlie
 		{
 			state = stateStartCutscene;
-			myCutStart = oCutStartC
-			gotoX = myCutStart.x
-			gotoY = myCutStart.y
+			if follow
+			{
+				myCutStart = oCutStartC
+				gotoX = myCutStart.x
+				gotoY = myCutStart.y
+			}
 		}
 	}
 	
@@ -25,10 +28,18 @@ if cutscenePlaying == noone and scene != -1 and place_meeting(x,y,oPlayer) and !
 		with oMatthew
 		{
 			state = stateStartCutscene;
-			myCutStart = oCutStartM
-			gotoX = myCutStart.x
-			gotoY = myCutStart.y
+			if follow
+			{
+				myCutStart = oCutStartM
+				gotoX = myCutStart.x
+				gotoY = myCutStart.y
+			}
 		}
+	}
+	
+	if myAnchor != noone{
+		playX = myAnchor.x;
+		playY = myAnchor.y;
 	}
 	
 	if oPlayer.inPosition 

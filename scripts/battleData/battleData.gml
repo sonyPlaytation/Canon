@@ -466,4 +466,4 @@ global.party =
 	//global.characters[1],
 	//global.characters[2]
 ]
-
+//FLAGS

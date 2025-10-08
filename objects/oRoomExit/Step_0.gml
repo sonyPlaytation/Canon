@@ -6,7 +6,7 @@ if place_meeting(x,y,oPlayer) and !locked
 	
 	if facing == -1 {facing = oPlayer.facing}
 	
-	transition(target,outType,inType,,moveX,moveY,facing);	
+	transition(target,outType,inType,,moveX,moveY,facing,defaultSpawn);	
 	
 	if endTempSong { end_temp_song() }
 }

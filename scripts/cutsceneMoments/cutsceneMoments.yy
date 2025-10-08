@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"cutsceneMoments",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"cutsceneMoments",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

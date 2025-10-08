@@ -1,4 +1,5 @@
-
+if instance_exists(oTextBox) exit;
+	
 color = c_white;
 
 if position_meeting(global.mX,global.mY,id)

@@ -1,3 +1,4 @@
+if instance_exists(oTextBox) exit;
 
 if !pressed
 {
@@ -9,6 +10,10 @@ if !pressed
 	    var _button = instance_find(oDebugMouseButton,i)
 		array_push(buttons,_button)
 	}
+	
+	array_sort(buttons, function(e1,e2){
+		return e1.y - e2.y
+	});
 
 	with selected
 	{
@@ -28,6 +33,6 @@ if !pressed
 		{
 			options[$ doThis].func()
 		}
-		if selected.doThis !="wipeSave" pressed = true
+		//if selected.doThis !="wipeSave" pressed = true
 	}
 }

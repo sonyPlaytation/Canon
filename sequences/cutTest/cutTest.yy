@@ -13,9 +13,9 @@
     "Keyframes":[
       {"$Keyframe<MessageEventKeyframe>":"","Channels":{
           "0":{"$MessageEventKeyframe":"","Events":[
-              "Gwen",
+              "GwenTest",
             ],"resourceType":"MessageEventKeyframe","resourceVersion":"2.0",},
-        },"Disabled":false,"id":"0bf7a83a-0572-4e83-b40d-baf7d5a5ea3f","IsCreationKey":false,"Key":99.0,"Length":1.0,"resourceType":"Keyframe<MessageEventKeyframe>","resourceVersion":"2.0","Stretch":false,},
+        },"Disabled":false,"id":"4da6b006-e041-4e3e-879a-ea2deeaa0d21","IsCreationKey":false,"Key":99.0,"Length":1.0,"resourceType":"Keyframe<MessageEventKeyframe>","resourceVersion":"2.0","Stretch":false,},
     ],
     "resourceType":"KeyframeStore<MessageEventKeyframe>",
     "resourceVersion":"2.0",
@@ -62,6 +62,9 @@
   "showBackdrop":false,
   "showBackdropImage":false,
   "spriteId":null,
+  "tags":[
+    "cutscene",
+  ],
   "timeUnits":1,
   "tracks":[
     {"$GMInstanceTrack":"","%Name":"oCharlie","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<AssetInstanceKeyframe>":"","Keyframes":[

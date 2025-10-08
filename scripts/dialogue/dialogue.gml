@@ -9,6 +9,13 @@ global.topics = {};
 		TEXT("an extremely interesting placeholder text box with very funny placeholder text"),
 	]
 
+	global.topics[$ "menuHelp"] = 
+	[
+		TEXT("OVERWORLD:"nl nl"Move with the arrow keys"nl"Z - interact, X - run, C - open menu." nl "Save your game at smelly objects, or in the pause menu."),
+		TEXT("TEXTBOXES:"nl nl "Z -" nl "..." nl "...It's like Deltarune..."),
+		TEXT("COMBAT:"nl nl "A/S/D - Light/Med/Heavy attacks. Heavier attacks are slower/stronger" nl "Tap towards incoming shot to parry, or hold away from shots to defend." ),
+	]
+
 	global.topics[$ "theBigWet"] = 
 	[
 		TEXT("Wait!!!"),

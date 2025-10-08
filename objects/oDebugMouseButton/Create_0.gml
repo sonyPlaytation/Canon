@@ -21,6 +21,12 @@ options =
 		func :  function() { loadGame(true)  transition(room_next(room),sqFadeOut,sqFadeIn,,,,,true) }
 	},
 	
+	help : 
+	{
+		label : "Help",
+		func :  function() { startDialogue("menuHelp") }
+	},
+	
 	wipeSave : 
 	{
 		label : "Wipe Save",
