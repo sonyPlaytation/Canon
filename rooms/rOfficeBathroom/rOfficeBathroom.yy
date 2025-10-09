@@ -18,6 +18,8 @@
     {"name":"inst_6CEC52CB","path":"rooms/rOfficeBathroom/rOfficeBathroom.yy",},
     {"name":"inst_3EE6A01A","path":"rooms/rOfficeBathroom/rOfficeBathroom.yy",},
     {"name":"inst_7888943D","path":"rooms/rOfficeBathroom/rOfficeBathroom.yy",},
+    {"name":"inst_7C0417DD","path":"rooms/rOfficeBathroom/rOfficeBathroom.yy",},
+    {"name":"inst_667B2C9C","path":"rooms/rOfficeBathroom/rOfficeBathroom.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -42,6 +44,10 @@
         {"$GMRInstance":"v2","%Name":"inst_7888943D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7888943D","objectId":{"name":"oInspect","path":"objects/oInspect/oInspect.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"propertyId":{"name":"myTopic","path":"objects/pEntity/pEntity.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"jammed\"",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":2.0,"x":600.0,"y":312.0,},
+        {"$GMRInstance":"v2","%Name":"inst_7C0417DD","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7C0417DD","objectId":{"name":"oCutsceneAnchor","path":"objects/oCutsceneAnchor/oCutsceneAnchor.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":456.0,"y":336.0,},
+        {"$GMRInstance":"v2","%Name":"inst_667B2C9C","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_667B2C9C","objectId":{"name":"oCutsceneTrigger","path":"objects/oCutsceneTrigger/oCutsceneTrigger.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oCutsceneTrigger","path":"objects/oCutsceneTrigger/oCutsceneTrigger.yy",},"propertyId":{"name":"scene","path":"objects/oCutsceneTrigger/oCutsceneTrigger.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"cutBathroomMirror",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":2.0,"x":264.0,"y":384.0,},
       ],"layers":[],"name":"Player","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRTileLayer":"","%Name":"CollTiles","depth":100,"effectEnabled":true,"effectType":null,"gridX":12,"gridY":12,"hierarchyFrozen":false,"inheritLayerDepth":true,"inheritLayerSettings":true,"inheritSubLayers":true,"inheritVisibility":false,"layers":[],"name":"CollTiles","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":23,"SerialiseWidth":40,"TileCompressedData":[
           -44,-2147483648,3,0,-2147483648,-2147483648,-26,0,-11,-2147483648,-31,0,-9,-2147483648,-31,0,-9,-2147483648,

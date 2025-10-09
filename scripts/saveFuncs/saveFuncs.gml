@@ -77,7 +77,7 @@ function SaveString( _str, _filename)
 	buffer_save(_buffer, _filename);
 	show_debug_message("Successfully wrote file: "+_filename);
 	buffer_delete(_buffer);
-	shortMessage("Game Saved",TXTPOS.MID)
+	shortMessage("//Game Saved",TXTPOS.MID)
 	oGame.nowSaving = false;
 }
 

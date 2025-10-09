@@ -1,4 +1,5 @@
 
+
 // initialize a list of cutscenes to put moments into
 global.cutsceneMoments = {}
 
@@ -12,20 +13,17 @@ for (var i = 0; i < array_length(scenes); i++)
 	global.cutsceneMoments[$ scenes[i]] = array_create(length)
 }
 
-function sceneAddMoment(scene, frame = 0, callback = noone )
+function sceneAddMoment(scene, frame = 0, callback = function(){} )
 {
 
 	if frame < 0 {frame = sequence_get(scene).length+frame}
 	
-	if scene != "" and callback != noone
+	if scene != "" and callback != function(){}
 	{
 		var name = sequence_get(scene).name;
 		global.cutsceneMoments[$ name][frame] = callback
 	}
 }
-
-
-#region MOMENTS
 
 sceneAddMoment(cutAct1TowerFall, 1, function()
 {
@@ -52,4 +50,34 @@ sceneAddMoment(cutCharlieFindsYou, -45, function()
 	transition(rTest2,sqFadeOut,sqFadeIn,,,,0,true)
 });
 
-#endregion
+
+sceneAddMoment(cutBathroomMirror, 0, function()
+{
+	oPlayer.cutMove = true;
+	instance_deactivate_object(obj_stanncam_zone) 
+});
+sceneAddMoment(cutBathroomMirror, 100, function()
+{
+	with oPlayer
+	{
+		cutMove = false;
+		sprite_index = sNilsWalkR;
+		image_speed = 0;
+		image_index = 0
+	}
+});
+sceneAddMoment(cutBathroomMirror, 150, function()
+{
+	with oPlayer
+	{
+		sprite_index = sNilsIdle;
+		image_index = 1
+	}
+});
+sceneAddMoment(cutBathroomMirror, 200, function()
+{
+	with oPlayer
+	{
+		cutMove = true;
+	}
+});

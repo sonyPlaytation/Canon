@@ -10,6 +10,11 @@ roomsBeenThrough = []
 global.inputDisplay = true;
 global.debug = false;
 
+global.playerName = "???";
+initDialogue()
+initFlavorText()
+initCharacters()
+
 global.fightEnemies = [global.enemies.sand];
 global.fightStarter = noone ;
 global.fightBG = bgBattleDesert;

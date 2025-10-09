@@ -46,7 +46,7 @@
   "resourceType":"GMSequence",
   "resourceVersion":"2.0",
   "seqHeight":93.0,
-  "seqWidth":312.3457,
+  "seqWidth":196.65465,
   "showBackdrop":true,
   "showBackdropImage":false,
   "spriteId":null,
@@ -70,7 +70,7 @@
               {"$Keyframe<RealKeyframe>":"","Channels":{
                   "0":{"$RealKeyframe":"","AnimCurveId":null,"EmbeddedAnimCurve":{"$GMAnimCurve":"","%Name":"Position","channels":[
                         {"$GMAnimCurveChannel":"","%Name":"x","colour":4290799884,"name":"x","points":[
-                            {"th0":0.0,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":0.0,"y":164.34569,},
+                            {"th0":0.0,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":0.0,"y":-187.65465,},
                             {"th0":-0.16000001,"th1":0.11838974,"tv0":0.0,"tv1":0.0,"x":0.2,"y":0.0,},
                             {"th0":-0.20943344,"th1":0.0737223,"tv0":0.0,"tv1":0.0,"x":0.82141453,"y":0.0,},
                             {"th0":-0.04161024,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":1.0,"y":0.0,},
@@ -84,7 +84,7 @@
                       ],"function":2,"name":"Position","resourceType":"GMAnimCurve","resourceVersion":"2.0",},"RealValue":0.0,"resourceType":"RealKeyframe","resourceVersion":"2.0",},
                   "1":{"$RealKeyframe":"","AnimCurveId":null,"EmbeddedAnimCurve":{"$GMAnimCurve":"","%Name":"Position","channels":[
                         {"$GMAnimCurveChannel":"","%Name":"x","colour":4290799884,"name":"x","points":[
-                            {"th0":0.0,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":0.0,"y":164.34569,},
+                            {"th0":0.0,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":0.0,"y":-187.65465,},
                             {"th0":-0.16000001,"th1":0.11838974,"tv0":0.0,"tv1":0.0,"x":0.2,"y":0.0,},
                             {"th0":-0.20943344,"th1":0.0737223,"tv0":0.0,"tv1":0.0,"x":0.82141453,"y":0.0,},
                             {"th0":-0.04161024,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":1.0,"y":0.0,},
@@ -96,7 +96,7 @@
                             {"th0":-0.04161024,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":1.0,"y":29.234566,},
                           ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
                       ],"function":2,"name":"Position","resourceType":"GMAnimCurve","resourceVersion":"2.0",},"RealValue":0.0,"resourceType":"RealKeyframe","resourceVersion":"2.0",},
-                },"Disabled":false,"id":"65a42630-5cbd-43bc-875b-a7e134e228c8","IsCreationKey":false,"Key":0.0,"Length":500.0,"resourceType":"Keyframe<RealKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                },"Disabled":false,"id":"e1854265-5b8c-4408-8271-63d51f009dcd","IsCreationKey":false,"Key":0.0,"Length":500.0,"resourceType":"Keyframe<RealKeyframe>","resourceVersion":"2.0","Stretch":false,},
             ],"resourceType":"KeyframeStore<RealKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"position","resourceType":"GMRealTrack","resourceVersion":"2.0","trackColour":4294068306,"tracks":[],"traits":0,},
         {"$GMRealTrack":"","%Name":"rotation","builtinName":8,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":true,"keyframes":{"$KeyframeStore<RealKeyframe>":"","Keyframes":[
               {"$Keyframe<RealKeyframe>":"","Channels":{

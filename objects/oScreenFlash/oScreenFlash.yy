@@ -9,8 +9,8 @@
   "name":"oScreenFlash",
   "overriddenProperties":[],
   "parent":{
-    "name":"Cutscenes",
-    "path":"folders/Objects/Cutscenes.yy",
+    "name":"Cutscene Tools",
+    "path":"folders/Objects/Cutscene Tools.yy",
   },
   "parentObjectId":null,
   "persistent":false,

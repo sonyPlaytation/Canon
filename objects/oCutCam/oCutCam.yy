@@ -8,8 +8,8 @@
   "name":"oCutCam",
   "overriddenProperties":[],
   "parent":{
-    "name":"Cutscenes",
-    "path":"folders/Objects/Cutscenes.yy",
+    "name":"Cutscene Tools",
+    "path":"folders/Objects/Cutscene Tools.yy",
   },
   "parentObjectId":{
     "name":"pDebugDraw",

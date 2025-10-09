@@ -272,198 +272,201 @@ enum MODE
 
 #macro PARTY global.party
 
-global.characters = 
-[
-	{
-		// BASIC
-		name: "Nils",
-		job : "Fool",
 
-		// STATS
-		stats : 
+function initCharacters()
+{
+	global.characters = 
+	[
 		{
-			lvl : 1,
-			EXP : 0,
-			requiredEXP : 100,
-			hp: 50,
-			hpMax: 50,
-			ex: 15,
-			exMax: 15,
+			// BASIC
+			name: global.playerName,
+			job : "Fool",
+
+			// STATS
+			stats : 
+			{
+				lvl : 1,
+				EXP : 0,
+				requiredEXP : 100,
+				hp: 50,
+				hpMax: 50,
+				ex: 15,
+				exMax: 15,
 			
-			str: 3,
-			def: 4,
-			exStr: 8,
-			exDef: 5,
-			int: 0, // intelligence governs the amount of EX you have, and how fast your meter builds
-			spd: 5, // speed is turn order and also move timer bonus time
-			cha: 0,
-			luk: 5
+				str: 3,
+				def: 4,
+				exStr: 8,
+				exDef: 5,
+				int: 0, // intelligence governs the amount of EX you have, and how fast your meter builds
+				spd: 5, // speed is turn order and also move timer bonus time
+				cha: 0,
+				luk: 5
 			
+			},
+
+			equips : {
+				armor : noone,
+				weapon : noone,
+				gem1 : noone,
+				gem2 : noone
+			},
+
+			allergies: [FOOD_TAG.SPICY, FOOD_TAG.SWEETS],
+		
+			// BATTLE
+			sprites : 
+			{ 
+				idle: sNilsIdle, 
+				active: sNilsWalkD, 
+				slide: sNilsDash, 
+				normals: sNilsDash,
+				specials : sNilsShoot1,
+				shoot : sNilsShoot1,
+				defend: sNilsIdle, 
+				down: sGrave, 
+				head: sHeadNils, 
+				portrait: sBattlePort, 
+				parry : sNilsParry
+			},
+		
+			actions: [global.actionLibrary.normals, global.actionLibrary.devilshot, global.actionLibrary.devilvolley],
+			battleLines : {
+				lowHP : "I could really use a hand right now...",
+				lowEX : "Runnin' low on ammo, you guys.",
+				justHealed : "Okay, that's so much better.",
+				justEXed : "More scary evil bullets, comin' right up!",
+				justLeveled :
+				[
+					"I can already feel this thing getting stronger..."nl" That's a good thing, right?",
+					"This prophecy business wouldn't be so bad if I were jacked as shit.",
+					"Maybe I don't need to hold back as much."nl"Maybe... maybe this power is good for me..."
+				],
+				winQuotes : 
+				[ 
+					"I almost had a heart attack!",
+					"Think that was the last of 'em.",
+					"If we went home right now, would anyone really care? Probably not.",
+					"...but my aim is gettin' better!"
+				]
+			},
+		
 		},
 
-		equips : {
-			armor : noone,
-			weapon : noone,
-			gem1 : noone,
-			gem2 : noone
-		},
-
-		allergies: [FOOD_TAG.SPICY, FOOD_TAG.SWEETS],
-		
-		// BATTLE
-		sprites : 
-		{ 
-			idle: sNilsIdle, 
-			active: sNilsWalkD, 
-			slide: sNilsDash, 
-			normals: sNilsDash,
-			specials : sNilsShoot1,
-			shoot : sNilsShoot1,
-			defend: sNilsIdle, 
-			down: sGrave, 
-			head: sHeadNils, 
-			portrait: sBattlePort, 
-			parry : sNilsParry
-		},
-		
-		actions: [global.actionLibrary.normals, global.actionLibrary.devilshot, global.actionLibrary.devilvolley],
-		battleLines : {
-			lowHP : "I could really use a hand right now...",
-			lowEX : "Runnin' low on ammo, you guys.",
-			justHealed : "Okay, that's so much better.",
-			justEXed : "More scary evil bullets, comin' right up!",
-			justLeveled :
-			[
-				"I can already feel this thing getting stronger..."nl" That's a good thing, right?",
-				"This prophecy business wouldn't be so bad if I were jacked as shit.",
-				"Maybe I don't need to hold back as much."nl"Maybe... maybe this power is good for me..."
-			],
-			winQuotes : 
-			[ 
-				"I almost had a heart attack!",
-				"Think that was the last of 'em.",
-				"If we went home right now, would anyone really care? Probably not.",
-				"...but my aim is gettin' better!"
-			]
-		},
-		
-	},
-
-	{
-		name: "Charlie",
-		job : "Magician",
-		
-		stats : 
 		{
-			lvl : 1,
-			EXP : 0,
-			requiredEXP : 100,
-			hp: 40,
-			hpMax: 40,
-			ex: 20,
-			exMax: 20,
+			name: "Charlie",
+			job : "Magician",
+		
+			stats : 
+			{
+				lvl : 1,
+				EXP : 0,
+				requiredEXP : 100,
+				hp: 40,
+				hpMax: 40,
+				ex: 20,
+				exMax: 20,
 			
-			str: 3,
-			def: 4,
-			exStr: 6,
-			exDef: 6,
-			int: 4, // intelligence governs the amount of EX you have, and how fast your meter builds
-			spd: 3, // speed is turn order and also move timer bonus time
-			cha: 0,
-			luk: 4
-		},
+				str: 3,
+				def: 4,
+				exStr: 6,
+				exDef: 6,
+				int: 4, // intelligence governs the amount of EX you have, and how fast your meter builds
+				spd: 3, // speed is turn order and also move timer bonus time
+				cha: 0,
+				luk: 4
+			},
 		
-		equips : {
-			armor : noone,
-			weapon : noone,
-			gem1 : noone,
-			gem2 : noone
-		},
+			equips : {
+				armor : noone,
+				weapon : noone,
+				gem1 : noone,
+				gem2 : noone
+			},
 		
-		allergies: [FOOD_TAG.SHELLFISH],
+			allergies: [FOOD_TAG.SHELLFISH],
 		
-		sprites : { idle: sCharIdle, active: sCharFightActive, normals: sCharIdle, slide: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH, parry : sCharParry},
-		actions: [global.actionLibrary.normals, global.actionLibrary.heal, global.actionLibrary.revive],
-		battleLines : {
-			lowHP : "I told grandpa I wouldn't cry anymore...",
-			lowEX : "Better hope this next spell works!",
-			justHealed : "Only a scrape after all!",
-			justEXed : "I feel way more magical now :)",
-			justLeveled :
-			[
-				"Hey Matthew, I have a new spell I really wanna try out!"nl"Wait, where are you going?",
-				""
-			],
-			winQuotes : 
-			[
-				"I wish we could have spared them...",
-				"That was fun!",
-				"I hope this moment of friendship will bring you many happy memories!",
-				"Would you like to meet my friends? Or are you too injured?"
-			]
+			sprites : { idle: sCharIdle, active: sCharFightActive, normals: sCharIdle, slide: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH, parry : sCharParry},
+			actions: [global.actionLibrary.normals, global.actionLibrary.heal, global.actionLibrary.revive],
+			battleLines : {
+				lowHP : "I told grandpa I wouldn't cry anymore...",
+				lowEX : "Better hope this next spell works!",
+				justHealed : "Only a scrape after all!",
+				justEXed : "I feel way more magical now :)",
+				justLeveled :
+				[
+					"Hey Matthew, I have a new spell I really wanna try out!"nl"Wait, where are you going?",
+					""
+				],
+				winQuotes : 
+				[
+					"I wish we could have spared them...",
+					"That was fun!",
+					"I hope this moment of friendship will bring you many happy memories!",
+					"Would you like to meet my friends? Or are you too injured?"
+				]
+			},
 		},
-	},
 	
-	{
-		name: "Matthew",
-		job : "Hermit",
-		
-		stats : 
 		{
-			lvl : 1,
-			EXP : 0,
-			requiredEXP : 100,
-			hp: 75,
-			hpMax: 75,
-			ex: 12,
-			exMax: 12,
+			name: "Matthew",
+			job : "Hermit",
+		
+			stats : 
+			{
+				lvl : 1,
+				EXP : 0,
+				requiredEXP : 100,
+				hp: 75,
+				hpMax: 75,
+				ex: 12,
+				exMax: 12,
 			
-			str: 4,
-			def: 6,
-			exStr: 5,
-			exDef: 4,
-			int: 2, // intelligence governs the amount of EX you have, and how fast your meter builds
-			spd: 5, // speed is turn order and also move timer bonus time
-			cha: 0,
-			luk: 3
-		},
+				str: 4,
+				def: 6,
+				exStr: 5,
+				exDef: 4,
+				int: 2, // intelligence governs the amount of EX you have, and how fast your meter builds
+				spd: 5, // speed is turn order and also move timer bonus time
+				cha: 0,
+				luk: 3
+			},
 		
-		equips : {
-			armor : noone,
-			weapon : noone,
-			gem1 : noone,
-			gem2 : noone
-		},
+			equips : {
+				armor : noone,
+				weapon : noone,
+				gem1 : noone,
+				gem2 : noone
+			},
 		
-		allergies: [FOOD_TAG.DAIRY],
+			allergies: [FOOD_TAG.DAIRY],
 		
-		sprites : { idle: sMattIdle, active: sMatthewFightActive, normals: sMattIdle,  slide: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH, parry : sMattParry},
-		actions: [global.actionLibrary.normals, global.actionLibrary.special],
-		battleLines : {
-			lowHP : "[shake]Egh-[/shake] I've had worse... [c_dkgrey]dammit...",
-			lowEX : "Man, I have enough of an 'EX' problem as is...",
-			justHealed : "I could've toughed it out...",
-			justEXed : "Who wants some?",
-			justLeveled :
-			[
-				"Hey man, don't take it personally. It's not easy being this much better than you.",
-				"I'm gonna need all the defense I can get if Charlie's gonna keep testing his spells out on me...",
-				"OOOOOH I'll givem wunna these! and wunna those! And wunna-"nl"And wunna these, and wunna those! And I'll choke 'em!!"nl"And givem wunna these! and I'll..."
-			],
-			winQuotes : 
-			[
-				"Wubba, wubba. I'm in the pink today, boys!",
-				"Don't you want a rematch...?",
-				"You don't have to be big, to look like a big loser."
-			]
-		},
-	}
-]
+			sprites : { idle: sMattIdle, active: sMatthewFightActive, normals: sMattIdle,  slide: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH, parry : sMattParry},
+			actions: [global.actionLibrary.normals, global.actionLibrary.special],
+			battleLines : {
+				lowHP : "[shake]Egh-[/shake] I've had worse... [c_dkgrey]dammit...",
+				lowEX : "Man, I have enough of an 'EX' problem as is...",
+				justHealed : "I could've toughed it out...",
+				justEXed : "Who wants some?",
+				justLeveled :
+				[
+					"Hey man, don't take it personally. It's not easy being this much better than you.",
+					"I'm gonna need all the defense I can get if Charlie's gonna keep testing his spells out on me...",
+					"OOOOOH I'll givem wunna these! and wunna those! And wunna-"nl"And wunna these, and wunna those! And I'll choke 'em!!"nl"And givem wunna these! and I'll..."
+				],
+				winQuotes : 
+				[
+					"Wubba, wubba. I'm in the pink today, boys!",
+					"Don't you want a rematch...?",
+					"You don't have to be big, to look like a big loser."
+				]
+			},
+		}
+	]
 
-global.party = 
-[
-	global.characters[0],
-	//global.characters[1],
-	//global.characters[2]
-]
+	global.party = 
+	[
+		global.characters[0]
+	]
+
+}
 //FLAGS
