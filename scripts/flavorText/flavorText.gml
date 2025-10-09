@@ -52,31 +52,31 @@ global.topics[$ "yesToSave"] =
 
 	global.topics[$ "officePhoto"] = 
 	[
-		TEXT("On the cabinet sits a photo of several people at some kind of party.\nThe flow of time seems to have worn the caption off of the brass placard."),
-		CHOICE("Inspect the photo?",
+		TEXT("//On the cabinet sits a photo of several people at some kind of party.\nThe flow of time seems to have worn the caption off of the brass placard."),
+		CHOICE("//Inspect the photo?",
 			OPTION("Sure",			"choiceOfficePhotoYes"),
 			OPTION("Don't care",	"choiceOfficePhotoNo"))
 	];
 
 		global.topics[$ "choiceOfficePhotoYes"] = 
 		[
-			TEXT("The guy closest to the camera is a middle aged man with a very trendy old man moustache."),
-			TEXT("His arms are outstretched to either side of him.\nHis pose and facial expression give off an odd mix of conflicting emotions."),
-			TEXT("Everyone around him seems uncomfortable."),
+			TEXT("//The guy closest to the camera is a middle aged man with a very trendy old man moustache."),
+			TEXT("//His arms are outstretched to either side of him.\nHis pose and facial expression give off an odd mix of conflicting emotions."),
+			TEXT("//Everyone around him seems uncomfortable."),
 			SPEAKER("Nils",sPortNils),
 			TEXT("Damn, they look like they're having fun..."),
 		]
 	
 		global.topics[$ "choiceOfficePhotoNo"] = 
 		[
-			TEXT("The photo likely depicts something very important...\nbut I guess it doesn't interest you."),
+			TEXT("//The photo likely depicts something very important...\nbut I guess it doesn't interest you."),
 			SPEAKER("Nils",sPortNils),
 			TEXT("Booooriiiiing!"),
 		]
 
 	global.topics[$ "officeDesk"] = 
 	[
-		CHOICE("An expensive looking desk. Its surface is marked with several water rings.",
+		CHOICE("//An expensive looking desk. Its surface is marked with several water rings.",
 			OPTION("Check the drawers", "choice desk drawers"),
 			OPTION("Check the desktop", "choice desk top"),
 			OPTION("Check nothing", "choice desk nothing"))
@@ -84,17 +84,17 @@ global.topics[$ "yesToSave"] =
 
 		global.topics[$ "choice desk drawers"] = 
 		[
-			TEXT("Despite your wimpiest tug, the desks drawers will not budge. "),
+			TEXT("//Despite your wimpiest tug, the desks drawers will not budge. "),
 			SPEAKER("Nils",sPortNils,1),
 			TEXT("I guess its [c_red]LOCKED[c_white]!\n[portrait,sPortNils,2]I bet something really useful or cool is in there..."),
 			SPEAKER(),
-			TEXT("The desks drawers are [c_yellow]JAMMED[c_white], not [c_red]LOCKED[c_white].\nThis is universal shorthand for 'Give up'."),
+			TEXT("//The desks drawers are [c_yellow]JAMMED[c_white], not [c_red]LOCKED[c_white].\n//This is universal shorthand for 'Give up'."),
 		]
 
 		global.topics[$ "choice desk top"] = 
 		[
-			TEXT("The desktop is made of a very dark brown wood."),
-			TEXT("You know Jack Shit about wood so that's the most you can discern."),
+			TEXT("//The desktop is made of a very dark brown wood."),
+			TEXT("//You know Jack Shit about wood so that's the most you can discern."),
 			SPEAKER("Nils",sPortNils),
 			TEXT("The perfect arena for a blistering round of solitaire!"),
 			SPEAKER("Nils",sPortNils,2),
@@ -104,10 +104,36 @@ global.topics[$ "yesToSave"] =
 
 		global.topics[$ "choice desk nothing"] = 
 		[
-			TEXT("You check NOTHING. What are you, a nerd?"),
+			TEXT("//You check NOTHING. What are you, a nerd?"),
 			SPEAKER("Nils",sPortNils),
 			TEXT("Stupid nerd desk! I don't even care about your drawer contents or anything!")
 		]
+
+	global.topics[$ "officeFilingCabinet"] = 
+	[
+		TEXT("//Before you stands a temptingly slate-toned filing cabinet, no doubt full to bursting with [c_red]Lascivious Business Secrets."),
+		CHOICE("//Search for sexy secrets?",
+			OPTION("Indulge...", "officeFilingCabinet Choice1"),
+			OPTION("Remain chaste!", "officeFilingCabinet Choice2"))
+	];
+
+	global.topics[$ "officeFilingCabinet Choice1"] = 
+	[
+		SPEAKER("Nils",sPortNils),
+		TEXT("Perhaps I am a sick pervert, what do I know??"),
+		SPEAKER(),
+		TEXT("//You attempt to yank it, but alas, this filing cabinet too is [c_yellow]JAMMED!"),
+		SPEAKER("Nils",sPortNils),
+		TEXT("FUCK!")
+	]
+
+	global.topics[$ "officeFilingCabinet Choice2"] = 
+	[
+		SPEAKER("Nils",sPortNils),
+		TEXT("Nice try, idiot! "nl"These Sexy Secrets are to be kept between a cabinet and its zero to one hundred manilla folder wives!"),
+		SPEAKER(),
+		TEXT("//Your will-power is truly outstanding."nl"//These hallowed aluminum handles remain un-yanked... for now...")
+	]
 
 #endregion
 
@@ -115,23 +141,23 @@ global.topics[$ "yesToSave"] =
 	global.topics[$ "officeHallSign1"] = 
 	[
 		SPEAKER(),
-		TEXT("An office name plate hangs beside the frosted glass door."),
-		TEXT("Ted Merkle\nDesign Lead")
+		TEXT("//An office name plate hangs beside the frosted glass door."),
+		TEXT("//Ted Merkle\n//Design Lead")
 	];
 
 	global.topics[$ "officeHallSign2"] = 
 	[
 		SPEAKER(),
-		TEXT("An office name plate hangs beside the frosted glass door."),
-		TEXT("Evelyn Proust\nLogistics")
+		TEXT("//An office name plate hangs beside the frosted glass door."),
+		TEXT("//Evelyn Proust\n//Logistics")
 	];
 
 	global.topics[$ "officeHallSign3"] = 
 	[
 		SPEAKER(),
-		TEXT("An office name plate hangs beside the heavy wooden door."),
-		TEXT("Bill Wozniak\nDirector"),
-		TEXT("Someone seems to have added an accent over the 'z' with whiteout."),
+		TEXT("//An office name plate hangs beside the heavy wooden door."),
+		TEXT("//Bill Wozniak\n//Director"),
+		TEXT("//Someone seems to have added an accent over the 'z' with whiteout."),
 	];
 #endregion
 
@@ -139,15 +165,14 @@ global.topics[$ "yesToSave"] =
 
 	global.topics[$ "cubicleCoffee"] = 
 	[
-		TEXT("Write something cool about paper"),
-		
+		TEXT("//Write something cool about paper"),
 	]
 
 	global.topics[$ "cubiclePC"] = 
 	[
-		TEXT("The pc at this desk is the typical outdated government donor pc."),
-		TEXT("Hard to imagine a time that this would have been impressive."),
-		TEXT("On further inspection, you notice the layout of the the pre-installed Solitaire game faintly burnt into the monitor."),
+		TEXT("//At this desk sits a typical outdated government donor pc."),
+		TEXT("//It's probably just barely good enough for word processing and the like." nl"//In other words, it's a total piece of shit."),
+		TEXT("//On further inspection, you notice the layout of the the pre-installed Solitaire game faintly burnt into the monitor."),
 		CHECKFLAG(FLAGS,"solitaire", "==", 1, "cubicleSolitaire")
 	]
 	
@@ -165,14 +190,14 @@ global.topics[$ "yesToSave"] =
 	
 	global.topics[$ "cubicleCoffee"] = 
 	[
-		TEXT("This cubicle is littered with personal adornments."),
-		TEXT("A poster reads:" nl "'WARNING[c_red]![c_white] Do not talk to programmer until they've had there coffee! [sLaughingCryingEmoji]'"),
+		TEXT("//This cubicle is littered with personal adornments."),
+		TEXT("//A poster reads:" nl "'WARNING[c_red]![c_white] Do not talk to programmer until they've had there coffee! [sLaughingCryingEmoji]'"),
 		SPEAKER("Nils",sPortNils,1),
 		TEXT("Ugh, lame!"),
 		SPEAKER(),
-		TEXT("That's not all!"),
-		TEXT("Their coffee mug reads:" nl "'WARNING[c_red]![c_white] Do not talk to programmer until they've had there coffee! [sLaughingCryingEmoji]'"),
-		TEXT("Both the poster and the mug have the exact same typo."),
+		TEXT("//That's not all!"),
+		TEXT("//Their coffee mug reads:" nl "'WARNING[c_red]![c_white] Do not talk to programmer until they've had there coffee! [sLaughingCryingEmoji]'"),
+		TEXT("//Both the poster and the mug have the exact same typo."),
 		SPEAKER("Nils",sPortNils,3),
 		TEXT("Jesus man, was it really THAT funny??"),
 	]
@@ -181,7 +206,7 @@ global.topics[$ "yesToSave"] =
 #region rOfficeBathroom
 	global.topics[$ "officeBathroom"] = 
 	[
-		TEXT("Your creepy skeletal nostril hole is bombarded with the stench of a toilet that hasn't been cleaned in at least a dozen years."),
+		TEXT("//Your creepy skeletal nostril hole is bombarded with the stench of a toilet that hasn't been cleaned in at least a dozen years."),
 		GOTO("save"),
 	]
 #endregion
