@@ -144,12 +144,12 @@ function addItem(_item, _showMsg = true)
 	
 		array_push(global.inv[_item.category],item);
 	
-		if _showMsg { SFX snCaveStoryGetItem; shortMessage($"Found a [c_red]{_item.name}[c_white]!",TXTPOS.MID) }
+		if _showMsg { SFX snCaveStoryGetItem; shortMessage($"//Found a [c_red]{_item.name}[c_white]!",TXTPOS.MID) }
 		show_debug_message($"Added Item: {_item.name} to Inventory")
 		return true;
 	}
 	
-	shortMessage($"You don't have room for this [c_red]{_item.name}[c_white].",TXTPOS.MID)
+	shortMessage($"//You don't have room for this [c_red]{_item.name}[c_white].",TXTPOS.MID)
 	return false;
 }
 
@@ -163,7 +163,7 @@ function giveItemAction(_item,_count = 1) : dialogueAction() constructor
 		addItem(item);
 		textbox.yMode = TXTPOS.MID
 		shortMessage("",TXTPOS.MID)
-		textbox.setText($"Found a {item.name}!")
+		textbox.setText($"//Found a {item.name}!")
 	}
 }
 

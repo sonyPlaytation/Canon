@@ -7,7 +7,7 @@ function initDialogue()
 {
 	global.topics[$ "placeholder"] = 
 	[
-		TEXT("an extremely interesting placeholder text box with very funny placeholder text"),
+		TEXT("//an extremely interesting placeholder text box with very funny placeholder text"),
 	]
 
 	global.topics[$ "menuHelp"] = 
@@ -19,8 +19,8 @@ function initDialogue()
 
 	global.topics[$ "theBigWet"] = 
 	[
-		TEXT("Wait!!!"),
-		TEXT("You can't go down there! Look at that wet floor sign!"),
+		TEXT("//Wait!!!"),
+		TEXT("//You can't go down there! Look at that wet floor sign!"),
 		SPEAKER(global.playerName,sPortNils),
 		TEXT("Oh yeah, I'd better not. Lookin pretty wet!")
 	]
@@ -106,7 +106,7 @@ function initDialogue()
 		global.topics[$ "cutBathroomMirror"] = 
 		[
 			SPEAKER(global.playerName, sPortNils),
-			TEXT("Is that what I look like??"nl"I'm a chubby little skeleton guy??"),
+			TEXT("Is that what I look like??"nl"I'm a chubby little skeleton guy? Since when??"),
 			SPEAKER(),
 			TEXT("//Oh? Were you not always this way?"),
 			SPEAKER(global.playerName, sPortNils),
@@ -114,11 +114,25 @@ function initDialogue()
 			SPEAKER(global.playerName, sPortNils,4),
 			TEXT("Why don't I remember anything important??"nl"All I can remember is useless shit like the capital of Canada!!"nl"And where the fuck am I anyway?? Does Ottawa even still exist???"),
 			SPEAKER(),
-			TEXT("//Perhaps we can find someone who will help us..."nl"//For now it may be best to try and calm yourself."),
+			TEXT("//Perhaps we can find someone who can help you remember more about yourself..."nl"//Though for now it may be best to try and calm yourself."),
 			TEXT("//Maybe take some toilet time to catch your breath."),
 			SPEAKER(global.playerName, sPortNils,1),
 			TEXT("Yeah okay... worth a shot."nl"I mean who even knows if I can shit, I doubt I have internal organs anyway..."),
 		];
+		
+		global.topics[$ "cutWakeUpOffice"] = 
+		[
+			SPEAKER(global.playerName,sPortNils,1),
+			TEXT("Ugh Jesus, my head... I really overslept..."nl"What time is it?"),
+			SPEAKER(),
+			TEXT("//Suddenly you notice the state of the room."),
+			TEXT("//Every surface is caked in dust."nl"The floorboards are completely water damaged, and the windows are so thick with dirt that the light can hardly come in."),
+			TEXT("//It's plainly evident that this place has been abandoned for quite some time."),
+			SPEAKER(global.playerName,sPortNils,2),
+			TEXT("Better question is..."), 
+			SPEAKER(global.playerName,sPortNils,3),
+			TEXT("What YEAR is it??"), 
+		]
 
 	#endregion
 

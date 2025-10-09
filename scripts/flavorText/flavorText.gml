@@ -6,6 +6,7 @@ function initFlavorText() {
 
 	global.flags = 
 	{
+		cutscenes :[],
 		//permanent upgrades
 		chargeTackle : false,
 	
@@ -21,9 +22,9 @@ function initFlavorText() {
 
 	#region general reusable stuff
 
-	global.topics[$ "jammed"] = [TEXT("[snSH2DoorLocked]The lock is [c_yellow]JAMMED[c_white]!\nThis door can't be opened.")]
-	global.topics[$ "lockedGeneric"] = [TEXT("It's [c_red]LOCKED[c_white].")]
-	global.topics[$ "unlockedGeneric"] = [TEXT("You unlock the door.")]
+	global.topics[$ "jammed"] = [TEXT("[snSH2DoorLocked]//The lock is [c_yellow]JAMMED[c_white]!\nThis door can't be opened.")]
+	global.topics[$ "lockedGeneric"] = [TEXT("//It's [c_red]LOCKED[c_white].")]
+	global.topics[$ "unlockedGeneric"] = [TEXT("//You unlock the door.")]
 
 	global.topics[$ "saveFlies"] = 
 	[

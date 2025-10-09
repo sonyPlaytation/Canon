@@ -81,3 +81,15 @@ sceneAddMoment(cutBathroomMirror, 200, function()
 		cutMove = true;
 	}
 });
+
+sceneAddMoment(cutWakeUpOffice, 0, function()
+{
+	instance_deactivate_object(obj_stanncam_zone) 
+});
+
+sceneAddMoment(cutWakeUpOffice, -1, function()
+{
+	instance_activate_object(obj_stanncam_zone) 
+	oCamera.follow = oPlayer
+	oPlayer.image_index = 3;
+});

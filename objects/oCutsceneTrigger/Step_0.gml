@@ -52,6 +52,10 @@ if cutscenePlaying == noone and scene != -1 and place_meeting(x,y,oPlayer) and !
 		
 		startCutscene(scene,playX,playY);
 		
-		if selfDestruct instance_destroy();
+		if selfDestruct 
+		{
+			array_push(FLAGS.cutscenes,scene)
+			instance_destroy();
+		}
 	}
 }
