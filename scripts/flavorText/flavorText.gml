@@ -1,6 +1,8 @@
 
 #macro FLAGS global.flags
 #macro nl +"\n"+
+#macro JAMMED +"[c_red]JAMMED[c_white]"+
+#macro LOCKED +"[c_yellow]LOCKED[c_white]"+
 
 function initFlavorText() {
 
@@ -22,8 +24,8 @@ function initFlavorText() {
 
 	#region general reusable stuff
 
-	global.topics[$ "jammed"] = [TEXT("[snSH2DoorLocked]//The lock is [c_yellow]JAMMED[c_white]!\nThis door can't be opened.")]
-	global.topics[$ "lockedGeneric"] = [TEXT("//It's [c_red]LOCKED[c_white].")]
+	global.topics[$ "jammed"] = [TEXT("[snSH2DoorLocked]//The lock is "JAMMED"!\nThis door can't be opened.")]
+	global.topics[$ "lockedGeneric"] = [TEXT("//It's "LOCKED".")]
 	global.topics[$ "unlockedGeneric"] = [TEXT("//You unlock the door.")]
 
 	global.topics[$ "saveFlies"] = 
@@ -89,7 +91,7 @@ function initFlavorText() {
 				SPEAKER(global.playerName,sPortNils,1),
 				TEXT("I guess its [c_red]LOCKED[c_white]!\n[portrait,sPortNils,2]I bet something really useful or cool is in there..."),
 				SPEAKER(),
-				TEXT("//The desks drawers are [c_yellow]JAMMED[c_white], not [c_red]LOCKED[c_white].\n//This is universal shorthand for 'Give up'."),
+				TEXT("//The desks drawers are "JAMMED", not "LOCKED"."nl"//This is universal shorthand for 'Give up'."),
 			]
 
 			global.topics[$ "choice desk top"] = 

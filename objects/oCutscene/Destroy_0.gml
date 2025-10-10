@@ -1,16 +1,21 @@
-
+global.canPause = false;
 instance_destroy(oCutCam);
 
 layer_sequence_destroy(thisScene)
 if instance_exists(trigger) {trigger.cutscenePlaying = noone;}
 
-with oPlayer
+if instance_exists(oPlayer)
 {
-	hasControl = true;
-	state = stateFree;
+	with oPlayer
+	{
+		hasControl = true;
+		state = stateFree;
+	}
+	oCamera.follow = oPlayer;
+	instance_activate_object(obj_stanncam_zone)
 }
 
-for (var i = 0; i < 2; i++)
+if instance_exists(oPlayer)
 {
 	with pFollower
 	{

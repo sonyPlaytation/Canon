@@ -1,5 +1,10 @@
 frame = 0;
-sceneTitle = sequence_get(scene).name;
+sceneData = sequence_get(scene)
+sceneTitle = sceneData.name;
+length = sceneData.length;
+skipHeld = 0;
+skipThreshhold = 30;
+global.canPause = false
 
 if instance_exists(oPlayer) {depth = oPlayer.depth}
 else depth = -500
@@ -8,6 +13,7 @@ myLayer = layer_create(depth);
 
 thisScene = layer_sequence_create(myLayer, x, y,scene);
 sceneStruct = layer_sequence_get_instance(thisScene);
+
 
 actors = sequence_get_objects(scene)
 for (var i = 0; i < array_length(actors); i++)
