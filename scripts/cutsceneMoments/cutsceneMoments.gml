@@ -33,7 +33,7 @@ sceneAddMoment(cutAct1TowerFall, 1, function()
 
 sceneAddMoment(cutAct1TowerFall, -30, function()
 {
-	transition(rTest1,sqFadeOut,sqFadeIn,,,,0,true)
+	transition(rCliffs_1,sqFadeOut,sqFadeIn,,,,0,true)
 });
 
 
@@ -47,7 +47,7 @@ sceneAddMoment(cutCharlieFindsYou, 0, function()
 
 sceneAddMoment(cutCharlieFindsYou, -45, function()
 {
-	transition(rTest2,sqFadeOut,sqFadeIn,,,,0,true)
+	transition(rCliffs_2,sqFadeOut,sqFadeIn,,,,0,true)
 });
 
 

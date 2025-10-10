@@ -29,7 +29,9 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"target","filters":[],"listItems":[],"multiselect":false,"name":"target","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"room","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"target","filters":[
+        "GMRoom",
+      ],"listItems":[],"multiselect":false,"name":"target","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"rTestTest","path":"rooms/rTestTest/rTestTest.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"rTestTest","varType":5,},
     {"$GMObjectProperty":"v1","%Name":"outType","filters":[],"listItems":[],"multiselect":false,"name":"outType","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"sqFadeOut","path":"sequences/sqFadeOut/sqFadeOut.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"sqFadeOut","varType":5,},
     {"$GMObjectProperty":"v1","%Name":"inType","filters":[],"listItems":[],"multiselect":false,"name":"inType","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"sqFadeIn","path":"sequences/sqFadeIn/sqFadeIn.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"sqFadeIn","varType":5,},
     {"$GMObjectProperty":"v1","%Name":"moveX","filters":[],"listItems":[],"multiselect":false,"name":"moveX","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},

@@ -1,4 +1,4 @@
-global.canPause = false;
+global.canPause = true;
 instance_destroy(oCutCam);
 
 layer_sequence_destroy(thisScene)

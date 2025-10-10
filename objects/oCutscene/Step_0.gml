@@ -19,4 +19,3 @@ if skipHeld >= skipThreshhold
 		sceneActions[i]();
 	}
 }
-
