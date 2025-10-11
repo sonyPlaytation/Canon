@@ -299,6 +299,7 @@
     {"id":{"name":"oRopeBridge","path":"objects/oRopeBridge/oRopeBridge.yy",},},
     {"id":{"name":"oRopeRail","path":"objects/oRopeRail/oRopeRail.yy",},},
     {"id":{"name":"oSandstorm","path":"objects/oSandstorm/oSandstorm.yy",},},
+    {"id":{"name":"oSandstormScaler","path":"objects/oSandstormScaler/oSandstormScaler.yy",},},
     {"id":{"name":"oSaveFlies","path":"objects/oSaveFlies/oSaveFlies.yy",},},
     {"id":{"name":"oScreenFlash","path":"objects/oScreenFlash/oScreenFlash.yy",},},
     {"id":{"name":"oSFX","path":"objects/oSFX/oSFX.yy",},},

@@ -60,6 +60,7 @@
     {"name":"inst_75742EB5","path":"rooms/rDunesLost/rDunesLost.yy",},
     {"name":"inst_1A5F3353","path":"rooms/rDunesLost/rDunesLost.yy",},
     {"name":"inst_4880DC4D","path":"rooms/rDunesLost/rDunesLost.yy",},
+    {"name":"inst_66580899","path":"rooms/rDunesLost/rDunesLost.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -269,6 +270,10 @@
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oRoomExit","path":"objects/oRoomExit/oRoomExit.yy",},"propertyId":{"name":"target","path":"objects/oRoomExit/oRoomExit.yy",},"resource":{"name":"rDunesLost","path":"rooms/rDunesLost/rDunesLost.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"rDunesLost",},
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oRoomExit","path":"objects/oRoomExit/oRoomExit.yy",},"propertyId":{"name":"defaultSpawn","path":"objects/oRoomExit/oRoomExit.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":8.0,"x":1056.0,"y":960.0,},
+        {"$GMRInstance":"v2","%Name":"inst_66580899","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_66580899","objectId":{"name":"oSign","path":"objects/oSign/oSign.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"propertyId":{"name":"shortMsg","path":"objects/pEntity/pEntity.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"Please stay on the trail.\\n - Your grave digger.\"",},
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"propertyId":{"name":"myTopic","path":"objects/pEntity/pEntity.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"shortMessage\"",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":864.0,"y":240.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRTileLayer":"","%Name":"Tiles_1","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles_1","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":48,"SerialiseWidth":56,"TileCompressedData":[
           -33,-2147483648,-2,82,-54,-2147483648,-2,82,-54,-2147483648,-2,82,-7,-2147483648,-12,82,-18,-2147483648,

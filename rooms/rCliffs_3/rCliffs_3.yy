@@ -15,6 +15,7 @@
     {"name":"inst_7046EAC5","path":"rooms/rCliffs_3/rCliffs_3.yy",},
     {"name":"inst_124CA22D","path":"rooms/rCliffs_3/rCliffs_3.yy",},
     {"name":"inst_5744446B","path":"rooms/rCliffs_3/rCliffs_3.yy",},
+    {"name":"inst_A91A9E9","path":"rooms/rCliffs_3/rCliffs_3.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -45,6 +46,7 @@
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oRoomExit","path":"objects/oRoomExit/oRoomExit.yy",},"propertyId":{"name":"moveX","path":"objects/oRoomExit/oRoomExit.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"492",},
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oRoomExit","path":"objects/oRoomExit/oRoomExit.yy",},"propertyId":{"name":"moveY","path":"objects/oRoomExit/oRoomExit.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"48",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":3.0,"scaleY":1.5,"x":456.0,"y":516.0,},
+        {"$GMRInstance":"v2","%Name":"inst_A91A9E9","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_A91A9E9","objectId":{"name":"oSandstormScaler","path":"objects/oSandstormScaler/oSandstormScaler.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":3.0,"scaleY":10.5,"x":456.0,"y":240.0,},
       ],"layers":[],"name":"Player","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRTileLayer":"","%Name":"CollTiles","depth":100,"effectEnabled":true,"effectType":null,"gridX":12,"gridY":12,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"CollTiles","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":23,"SerialiseWidth":40,"TileCompressedData":[
           -44,-2147483648,1,0,-39,-2147483648,-31,0,-9,-2147483648,-31,0,-9,-2147483648,-31,0,-9,-2147483648,-31,
@@ -103,6 +105,9 @@
     "Width":960,
   },
   "sequenceId":null,
+  "tags":[
+    "sandstorm",
+  ],
   "views":[
     {"hborder":32,"hport":1080,"hspeed":-1,"hview":360,"inherit":false,"objectId":null,"vborder":32,"visible":true,"vspeed":-1,"wport":1920,"wview":640,"xport":0,"xview":0,"yport":0,"yview":0,},
     {"hborder":32,"hport":768,"hspeed":-1,"hview":768,"inherit":false,"objectId":null,"vborder":32,"visible":false,"vspeed":-1,"wport":1366,"wview":1366,"xport":0,"xview":0,"yport":0,"yview":0,},

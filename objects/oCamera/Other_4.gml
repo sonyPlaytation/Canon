@@ -8,6 +8,7 @@ if asset_has_tags(room,"darkRoom",asset_room) and !instance_exists(oDarkness) {
 
 if asset_has_tags(room,"sandstorm",asset_room) and !instance_exists(oSandstorm) {
 	instance_create_depth(0,0,0,oSandstorm);
+	if instance_exists(oSandstormScaler) oSandstorm.alpha = oSandstormScaler.startAlpha;
 }
 
 if layer_sequence_exists("transition",global.currentTransition)

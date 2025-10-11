@@ -47,7 +47,7 @@ if !global.pauseEvery
 	surface_reset_target();
 }
 
-draw_set_alpha(1)
+draw_set_alpha(alpha)
 draw_surface(surf,0,0)
 
 //if instance_exists(oTextBox)

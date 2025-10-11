@@ -16,3 +16,5 @@ pinSize = irandom_range(40,42)
 
 bgx = 0;
 bgspeed = 1;
+
+alpha = 1;

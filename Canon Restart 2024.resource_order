@@ -217,6 +217,7 @@
     {"name":"oRopeBridge","order":9,"path":"objects/oRopeBridge/oRopeBridge.yy",},
     {"name":"oRopeRail","order":10,"path":"objects/oRopeRail/oRopeRail.yy",},
     {"name":"oSandstorm","order":22,"path":"objects/oSandstorm/oSandstorm.yy",},
+    {"name":"oSandstormScaler","order":23,"path":"objects/oSandstormScaler/oSandstormScaler.yy",},
     {"name":"oSaveFlies","order":7,"path":"objects/oSaveFlies/oSaveFlies.yy",},
     {"name":"oScreenFlash","order":6,"path":"objects/oScreenFlash/oScreenFlash.yy",},
     {"name":"oSFX","order":7,"path":"objects/oSFX/oSFX.yy",},
