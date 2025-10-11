@@ -54,6 +54,7 @@ function transition(_roomTarget, _typeOut, _typeIn, _fight = false, _x = 0, _y =
 
 	if !global.midTransition
 	{
+		global.canPause = false;
 		global.defaultRoomPosition = _defaultPos;
 		
 		global.transitionX = _x;
@@ -109,6 +110,7 @@ function transitionEnd()
 {	
 	layer_sequence_destroy(self.elementID);
 	global.midTransition = false;
+	global.canPause = true;
 }
 
 function cameraOff()

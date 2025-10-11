@@ -47,7 +47,7 @@ sceneAddMoment(cutCharlieFindsYou, 0, function()
 
 sceneAddMoment(cutCharlieFindsYou, -45, function()
 {
-	transition(rCliffs_2,sqFadeOut,sqFadeIn,,,,0,true)
+	transition(rCliffs_3,sqFadeOut,sqFadeIn,,,,0,true)
 });
 
 
