@@ -250,6 +250,10 @@ function battleStates(){
 	
 	.add("enemyNormals",
 	{
+        enter : function()
+        {
+            textAlphaTarg = 0;
+        },
 		step : function()
 		{
 			var defender = currentTargets[0]
@@ -293,6 +297,7 @@ function battleStates(){
 		,
 		leave : function()
 		{
+            textAlphaTarg = 1;
 			currentUser.forward = false;
 		}
 	})
@@ -380,6 +385,7 @@ function battleStates(){
 			//set_song_ingame(mGameOver,,,true)
 			//BATTLE("[c_red][shake]YOU LOSE![/shake]")
 			shortMessage("you died",TXTPOS.MID)
+            global.fightStarter = noone;
 		}
 		,
 		step : function()

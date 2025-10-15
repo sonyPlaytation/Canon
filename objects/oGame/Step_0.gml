@@ -1,5 +1,7 @@
 /// @
 
+current_frame++
+
 if menuDebounce > 0 {menuDebounce--;}
 
 global.mX = global.cam.get_mouse_x()

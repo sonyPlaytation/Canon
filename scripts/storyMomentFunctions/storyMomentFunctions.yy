@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"storyMomentFunctions",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"storyMomentFunctions",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

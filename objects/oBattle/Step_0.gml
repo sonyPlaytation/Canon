@@ -1,5 +1,7 @@
 /// @
 
+textAlpha = lerp(textAlpha,textAlphaTarg,0.15);
+
 pBattleUnit.visible = false;
 
 //state();

@@ -17,7 +17,7 @@ if currentCooldown <= 0 and !pleaseWrapItUp
 	bX = lengthdir_x(dist,shotDir)
 	bY = lengthdir_y(dist,shotDir)
 	
-	instance_create_depth(x + bX, y+ bY,depth-100,oBullet,
+	instance_create_depth(x + bX, y+ bY,depth-100,obj,
 	{
 		dir : shotDir-180,
 		spd : spd,

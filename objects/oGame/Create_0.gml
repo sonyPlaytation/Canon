@@ -6,9 +6,12 @@
 
 roomsTilDoom = 3;
 roomsBeenThrough = []
+current_frame = 0
 
 global.inputDisplay = true;
 global.debug = false;
+
+lostAsFuck = 0;
 
 global.playerName = "???";
 initDialogue()

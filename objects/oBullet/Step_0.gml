@@ -3,10 +3,10 @@
 if instance_exists (oBattleDefenseManager)
 {
 	if oBattleDefenseManager.parry > 0 {exit}
-
-	x += lengthdir_x(spd,dir)
-	y += lengthdir_y(spd,dir)
 }
+
+x += lengthdir_x(spd,dir)
+y += lengthdir_y(spd,dir)
 
 if pleaseWrapItUp
 {

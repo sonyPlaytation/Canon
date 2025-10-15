@@ -7,6 +7,7 @@ playerSetup();
 global.cam.move(x,y)
 
 canDash = DEV;
+canRun = true;
 colls = [oColl,oDashGap,pNPC,tiles];
 followers = [];
 
@@ -109,7 +110,7 @@ updateFollowers = function()
 groundMove = function()
 {	
 	var spdNow;
-	if InputCheck(INPUT_VERB.RUN)
+	if InputCheck(INPUT_VERB.RUN) and canRun
 	{
 		runsp = lerp(runsp, runspMax, 0.05)
 		spdNow = runsp;

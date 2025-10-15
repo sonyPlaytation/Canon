@@ -2,20 +2,22 @@
 
 var padding = TILE_SIZE
 
+draw_set_alpha(textAlpha)
 // battle text
 var maxMessages = 2
 draw_sprite_stretched(sTextBox,0, padding*6, GAME_H - (padding * 3), GAME_W - (padding*12), padding * 3 )
 for (var i = min(array_length(btlText)-1,maxMessages); i >= 0 ; i--)
 {
-	var xx = (padding*6) + (padding/2)
-	var yy = (GAME_H  - (padding * 2.66) + (18*i)) + 8
-	
-	var alpha = 1
-	btlText[i].align(fa_left,fa_middle)
-	btlText[i].blend(c_white,alpha)
-	btlText[i].draw(xx, yy)
-	draw_set_alpha(1)
+    var xx = (padding*6) + (padding/2)
+    var yy = (GAME_H  - (padding * 2.66) + (18*i)) + 8
+    
+    var alpha = 1
+    btlText[i].align(fa_left,fa_middle)
+    btlText[i].blend(c_white,alpha*textAlpha)
+    btlText[i].draw(xx, yy)
+    draw_set_alpha(1)
 }
+draw_set_alpha(1)
 
 draw_sprite(sBattleTurnCount,0, room_width/2, 26);
 draw_set_text(global.fSF3Time,c_white,fa_center,fa_middle);

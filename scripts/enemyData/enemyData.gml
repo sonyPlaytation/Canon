@@ -1,59 +1,53 @@
 
 
+
 global.patterns = 
 {
 	def :
 	{
+        obj : oBullet,
 		dmg : 0,
 		dirs : [0,1,2,3,4,5,6,7],
 		rate : 30,
 		dist : 150,
 		spd : 2,
-		funcPerShot : function() {},
 	},
 	
 	cross :
 	{
+        obj : oBullet,
 		dmg : 0,
 		dirs : [0,2,4,6],
 		rate : 23,
 		dist : 115,
 		spd : 2.25,
-		funcPerShot : function() {},
 	},
 	
 	plus :
 	{
+        obj : oBullet,
 		dmg : 0,
 		dirs : [1,3,5,7],
 		rate : 23,
 		dist : 115,
 		spd : 2.25,
-		funcPerShot : function() {},
 	},
 	
 	spiral :
 	{
+        obj : oBulletBats,
 		dmg : 0,
-		dirs : [irandom(7)],
+		dirs : [],
 		rate : 30,
-		dist : 150,
+		dist : 100,
 		spd : 2.45,
-		funcPerShot : function() { self.dirs[0]++; self.rate -= 1.5 },
-	},
-	
-	counterspiral :
-	{
-		dmg : 0,
-		dirs : [irandom(7)],
-		rate : 30,
-		dist : 150,
-		spd : 2.45,
-		funcPerShot : function() { self.dirs[0]--; self.rate -= 1.5},
+		funcPerShot : function() { self.dirs[0]++; },
+        createFunc : function(){dirs[0] = irandom(7);}
 	},
 	
 	bursts :
 	{
+        obj : oBullet,
 		dmg : 0,
 		dirs : [irandom(7)],
 		rate : 20,
@@ -64,6 +58,7 @@ global.patterns =
 	
 	ant :
 	{
+        obj : oBullet,
 		dmg : 1,
 		dirs : [0,1,2,3,4,5,6,7],
 		rate : 20,
@@ -74,14 +69,21 @@ global.patterns =
 	
 	antDaigo :
 	{
+        obj : oBullet,
 		dmg : 1,
-		dirs : [choose(0,4)],
+		dirs : [],
 		rate : 11,
 		dist : 150,
 		spd : 4,
-		funcPerShot : function() { },
+        createFunc : function(){dirs[0] = choose(0,4);}
 	},
 }
+
+struct_foreach(global.patterns, function(_key, _val)
+{
+	if _val[$ "funcPerShot"] == undefined { _val.funcPerShot = function(){} }
+	if _val[$ "createFunc"] == undefined { _val.createFunc = function(){} }
+})
 
 
 // Enemy AI Types
@@ -154,7 +156,7 @@ global.enemyAI =
 				
 			case "attack":
 			{
-
+                randomize();
 				if action.targetAll = MODE.ALWAYS
 				{ targets = oBattle.partyUnits; return [action,targets]; }
 				else
@@ -217,7 +219,7 @@ global.enemies =
 		
 		sprites : { idle: sBat, normals: sBat, defend: sSand, down: sGrave, head: sBat},
 		actions: [global.actionLibrary.enemyNormals,global.actionLibrary.revive],
-		attacks: ["spiral","counterspiral"],
+		attacks: ["spiral"],
 		xpWorth: 4,
 		AI: function(user,targets)
 		{

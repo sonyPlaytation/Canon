@@ -193,7 +193,7 @@
               {"$Keyframe<RealKeyframe>":"","Channels":{
                   "0":{"$RealKeyframe":"","AnimCurveId":null,"EmbeddedAnimCurve":{"$GMAnimCurve":"","%Name":"Rotation","channels":[
                         {"$GMAnimCurveChannel":"","%Name":"angle","colour":4290799884,"name":"angle","points":[
-                            {"th0":0.0,"th1":0.080000006,"tv0":0.0,"tv1":0.0,"x":-0.002,"y":-90.14822,},
+                            {"th0":0.0,"th1":0.080000006,"tv0":0.0,"tv1":0.0,"x":0.0,"y":-90.14822,},
                             {"th0":-0.080000006,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":0.398,"y":-90.14822,},
                             {"th0":-0.04159999,"th1":0.009280294,"tv0":0.0,"tv1":0.0,"x":0.45,"y":-60.0,},
                             {"th0":-0.017816143,"th1":0.023035139,"tv0":2.8709707,"tv1":-3.7119827,"x":0.49528262,"y":-61.59085,},

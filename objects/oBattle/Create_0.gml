@@ -19,6 +19,8 @@ bgm = mBattleNeut
 advantage = global.advantage;
 units = [];
 btlText = [];
+textAlpha = 0;
+textAlphaTarg = 1;
 
 perfect = true;
 

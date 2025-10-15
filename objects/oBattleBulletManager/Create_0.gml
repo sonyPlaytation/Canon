@@ -7,3 +7,5 @@ currentCooldown = cooldownReset;
 
 shotsShot = 0;
 upTime = 0
+
+createFunc();
