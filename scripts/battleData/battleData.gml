@@ -174,11 +174,24 @@ global.actionLibrary =
 		hitSound : snHit6,
 		func : function(user, targets)
 		{
-			for (var i = 0; i< array_length(targets); i++)
+			if targets[0] == user
 			{
-				var damage = ceil(user.stats.exStr * random_range(1.45,2.25));
-				if array_length(targets) > 1 {damage = ceil(damage*0.75)}
-				battleChangeHP(targets[i], -damage,, self.hitSound);
+				for (var i = 0; i< array_length(targets); i++)
+				{
+					user.sprite_index = sLaughingCryingEmoji
+					var damage = ceil(user.stats.exStr * random_range(1.45,2.25));
+					battleChangeHP(targets[i], -damage/2,, self.hitSound);
+				}
+			}
+			else
+			{
+				for (var i = 0; i< array_length(targets); i++)
+				{
+					var damage = ceil(user.stats.exStr * random_range(1.45,2.25));
+					if array_length(targets) > 1 {damage = ceil(damage*0.75)}
+					battleChangeHP(targets[i], -damage,, self.hitSound);
+					battleChangeEX(user, -self.exCost);
+				}
 			}
 		}
 	},

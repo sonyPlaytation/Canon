@@ -1,5 +1,5 @@
 {
-  "$GMSprite":"",
+  "$GMSprite":"v2",
   "%Name":"bgDesertSky",
   "bboxMode":0,
   "bbox_bottom":359,
@@ -12,13 +12,13 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"c1ca1111-6b02-45b5-8caa-c7ec40edf67d","name":"c1ca1111-6b02-45b5-8caa-c7ec40edf67d","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"371045ab-f4f5-4130-82c4-dc4a7b7fdc19","name":"371045ab-f4f5-4130-82c4-dc4a7b7fdc19","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"5c0d0579-7862-4f4e-a0df-ceb4be872675","name":"5c0d0579-7862-4f4e-a0df-ceb4be872675","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"3818f450-d455-442d-b955-1368f1e28874","name":"3818f450-d455-442d-b955-1368f1e28874","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"418eedf6-161e-4304-9a5b-7d5bd2c39ad0","name":"418eedf6-161e-4304-9a5b-7d5bd2c39ad0","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"d64b33da-7014-47a0-a6f5-b21f1c77e801","name":"d64b33da-7014-47a0-a6f5-b21f1c77e801","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"f1ac7bf4-eb7b-4568-b2cc-dfa02af50686","name":"f1ac7bf4-eb7b-4568-b2cc-dfa02af50686","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"c1ca1111-6b02-45b5-8caa-c7ec40edf67d","name":"c1ca1111-6b02-45b5-8caa-c7ec40edf67d","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"371045ab-f4f5-4130-82c4-dc4a7b7fdc19","name":"371045ab-f4f5-4130-82c4-dc4a7b7fdc19","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"5c0d0579-7862-4f4e-a0df-ceb4be872675","name":"5c0d0579-7862-4f4e-a0df-ceb4be872675","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"3818f450-d455-442d-b955-1368f1e28874","name":"3818f450-d455-442d-b955-1368f1e28874","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"418eedf6-161e-4304-9a5b-7d5bd2c39ad0","name":"418eedf6-161e-4304-9a5b-7d5bd2c39ad0","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"d64b33da-7014-47a0-a6f5-b21f1c77e801","name":"d64b33da-7014-47a0-a6f5-b21f1c77e801","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"f1ac7bf4-eb7b-4568-b2cc-dfa02af50686","name":"f1ac7bf4-eb7b-4568-b2cc-dfa02af50686","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -76,27 +76,13 @@
     "timeUnits":1,
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c1ca1111-6b02-45b5-8caa-c7ec40edf67d","path":"sprites/bgDesertSky/bgDesertSky.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"b3b8f4f2-c349-4944-afaa-179e69b375dc","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"371045ab-f4f5-4130-82c4-dc4a7b7fdc19","path":"sprites/bgDesertSky/bgDesertSky.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"5149869f-1eac-4136-89d5-e50f50c20c67","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5c0d0579-7862-4f4e-a0df-ceb4be872675","path":"sprites/bgDesertSky/bgDesertSky.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"675d7c32-7f4a-408c-a877-022e2ac8b638","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"3818f450-d455-442d-b955-1368f1e28874","path":"sprites/bgDesertSky/bgDesertSky.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"0bf112b6-48b0-405d-8526-155777cd3b4f","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"418eedf6-161e-4304-9a5b-7d5bd2c39ad0","path":"sprites/bgDesertSky/bgDesertSky.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"fc459520-7bb0-4214-8b88-1ab08f04c496","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d64b33da-7014-47a0-a6f5-b21f1c77e801","path":"sprites/bgDesertSky/bgDesertSky.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"49838b82-d925-4e1f-b2b1-7cb36d6ba6f3","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f1ac7bf4-eb7b-4568-b2cc-dfa02af50686","path":"sprites/bgDesertSky/bgDesertSky.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"504ac4d9-1e45-4ec2-a633-d4f9f4279787","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{"0":{"$SpriteFrameKeyframe":"","Id":{"name":"c1ca1111-6b02-45b5-8caa-c7ec40edf67d","path":"sprites/bgDesertSky/bgDesertSky.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},},"Disabled":false,"id":"b3b8f4f2-c349-4944-afaa-179e69b375dc","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{"0":{"$SpriteFrameKeyframe":"","Id":{"name":"371045ab-f4f5-4130-82c4-dc4a7b7fdc19","path":"sprites/bgDesertSky/bgDesertSky.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},},"Disabled":false,"id":"5149869f-1eac-4136-89d5-e50f50c20c67","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{"0":{"$SpriteFrameKeyframe":"","Id":{"name":"5c0d0579-7862-4f4e-a0df-ceb4be872675","path":"sprites/bgDesertSky/bgDesertSky.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},},"Disabled":false,"id":"675d7c32-7f4a-408c-a877-022e2ac8b638","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{"0":{"$SpriteFrameKeyframe":"","Id":{"name":"3818f450-d455-442d-b955-1368f1e28874","path":"sprites/bgDesertSky/bgDesertSky.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},},"Disabled":false,"id":"0bf112b6-48b0-405d-8526-155777cd3b4f","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{"0":{"$SpriteFrameKeyframe":"","Id":{"name":"418eedf6-161e-4304-9a5b-7d5bd2c39ad0","path":"sprites/bgDesertSky/bgDesertSky.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},},"Disabled":false,"id":"fc459520-7bb0-4214-8b88-1ab08f04c496","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{"0":{"$SpriteFrameKeyframe":"","Id":{"name":"d64b33da-7014-47a0-a6f5-b21f1c77e801","path":"sprites/bgDesertSky/bgDesertSky.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},},"Disabled":false,"id":"49838b82-d925-4e1f-b2b1-7cb36d6ba6f3","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{"0":{"$SpriteFrameKeyframe":"","Id":{"name":"f1ac7bf4-eb7b-4568-b2cc-dfa02af50686","path":"sprites/bgDesertSky/bgDesertSky.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},},"Disabled":false,"id":"504ac4d9-1e45-4ec2-a633-d4f9f4279787","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

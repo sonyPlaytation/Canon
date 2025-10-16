@@ -2,9 +2,9 @@
   "$GMProject":"v1",
   "%Name":"Canon Restart 2024",
   "AudioGroups":[
-    {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
-    {"$GMAudioGroup":"","%Name":"agText","name":"agText","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
-    {"$GMAudioGroup":"","%Name":"audiogroup2","name":"audiogroup2","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMAudioGroup":"v1","%Name":"agText","exportDir":"","name":"agText","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMAudioGroup":"v1","%Name":"audiogroup2","exportDir":"","name":"audiogroup2","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
   "configs":{
     "children":[],
@@ -209,7 +209,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.13.1.193",
+    "IDEVersion":"2024.1400.0.907",
   },
   "name":"Canon Restart 2024",
   "resources":[
@@ -1088,8 +1088,8 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rMenu","path":"rooms/rMenu/rMenu.yy",},},
-    {"roomId":{"name":"rDunesLost","path":"rooms/rDunesLost/rDunesLost.yy",},},
     {"roomId":{"name":"rCliffs_2","path":"rooms/rCliffs_2/rCliffs_2.yy",},},
+    {"roomId":{"name":"rDunesLost","path":"rooms/rDunesLost/rDunesLost.yy",},},
     {"roomId":{"name":"rDunes_1","path":"rooms/rDunes_1/rDunes_1.yy",},},
     {"roomId":{"name":"rCliffs_1","path":"rooms/rCliffs_1/rCliffs_1.yy",},},
     {"roomId":{"name":"rOffice","path":"rooms/rOffice/rOffice.yy",},},
