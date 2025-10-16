@@ -56,7 +56,8 @@ function initFlavorText() {
 
 		global.topics[$ "officePhoto"] = 
 		[
-			TEXT("//On the cabinet sits a photo of several people at some kind of party."nl"//The flow of time seems to have worn the caption off of the brass placard."),
+			TEXT("//On the cabinet sits a photo of several people at some kind of party."nl"//Its placard reads 'FEESE Wrap Party 20XX'"),
+			TEXT("//It doesn't LITERALLY say 20XX, it's just scratched in such a way that you can't make out the last two digits."nl"//How inconvenient..."),
 			CHOICE("//Inspect the photo?",
 				OPTION("Sure",			"choiceOfficePhotoYes"),
 				OPTION("Don't care",	"choiceOfficePhotoNo"))
@@ -64,8 +65,8 @@ function initFlavorText() {
 
 			global.topics[$ "choiceOfficePhotoYes"] = 
 			[
-				TEXT("//The guy closest to the camera is a middle aged man with a very trendy old man moustache."),
-				TEXT("//His arms are outstretched to either side of him."nl"//His pose and facial expression give off an odd mix of conflicting emotions."),
+				TEXT("//The guy closest to the camera is a middle aged man with a very trendy old man moustache. He looks to be about 60."),
+				TEXT("//He's in the middle of stretching his arms to either side of him, but it's an intensely awkward gesture."nl"//He looks like he was probably wasted, I'd say 81% chance."),
 				TEXT("//Everyone around him seems uncomfortable."),
 				SPEAKER(global.playerName,sPortNils),
 				TEXT("Damn, they look like they're having fun..."),
@@ -80,7 +81,7 @@ function initFlavorText() {
 
 		global.topics[$ "officeDesk"] = 
 		[
-			CHOICE("//An expensive looking desk."nl"//Its surface is marked with several water rings.",
+			CHOICE("//You eye the expensive looking desk you woke up in front of."nl"//It still looks new, yet its surface is marked with several water rings.",
 				OPTION("Check the drawers", "choice desk drawers"),
 				OPTION("Check the desktop", "choice desk top"),
 				OPTION("Check nothing", "choice desk nothing"))
@@ -108,7 +109,7 @@ function initFlavorText() {
 
 			global.topics[$ "choice desk nothing"] = 
 			[
-				TEXT("//You check NOTHING. What are you, a nerd?"),
+				TEXT("//You check nothing, I guess."),
 				SPEAKER(global.playerName,sPortNils),
 				TEXT("Stupid nerd desk! I don't even care about your drawer contents or anything!")
 			]
