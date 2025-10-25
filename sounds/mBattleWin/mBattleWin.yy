@@ -1,17 +1,15 @@
 {
-  "$GMSound":"v2",
+  "$GMSound":"",
   "%Name":"mBattleWin",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
   },
   "bitDepth":1,
-  "channelFormat":1,
+  "bitRate":128,
   "compression":0,
-  "compressionQuality":4,
   "conversionMode":0,
   "duration":70.909096,
-  "exportDir":"",
   "name":"mBattleWin",
   "parent":{
     "name":"General",
@@ -22,5 +20,6 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"mBattleWin.ogg",
+  "type":1,
   "volume":0.45,
 }

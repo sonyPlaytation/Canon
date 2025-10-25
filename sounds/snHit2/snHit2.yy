@@ -1,17 +1,15 @@
 {
-  "$GMSound":"v2",
+  "$GMSound":"",
   "%Name":"snHit2",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
   },
   "bitDepth":1,
-  "channelFormat":0,
+  "bitRate":128,
   "compression":0,
-  "compressionQuality":4,
   "conversionMode":0,
   "duration":0.535714,
-  "exportDir":"",
   "name":"snHit2",
   "parent":{
     "name":"Melee",
@@ -22,5 +20,6 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"snHit2.wav",
+  "type":0,
   "volume":1.0,
 }

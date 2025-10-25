@@ -1,17 +1,15 @@
 {
-  "$GMSound":"v2",
+  "$GMSound":"",
   "%Name":"snTextNils2",
   "audioGroupId":{
     "name":"agText",
     "path":"audiogroups/agText",
   },
   "bitDepth":1,
-  "channelFormat":0,
+  "bitRate":128,
   "compression":0,
-  "compressionQuality":4,
   "conversionMode":0,
   "duration":0.084829934,
-  "exportDir":"",
   "name":"snTextNils2",
   "parent":{
     "name":"Text",
@@ -22,5 +20,6 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"snTextNils2.wav",
+  "type":0,
   "volume":1.0,
 }

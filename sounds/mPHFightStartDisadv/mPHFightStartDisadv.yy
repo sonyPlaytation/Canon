@@ -1,17 +1,15 @@
 {
-  "$GMSound":"v2",
+  "$GMSound":"",
   "%Name":"mPHFightStartDisadv",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
   },
   "bitDepth":1,
-  "channelFormat":1,
+  "bitRate":128,
   "compression":0,
-  "compressionQuality":4,
   "conversionMode":0,
   "duration":6.0875964,
-  "exportDir":"",
   "name":"mPHFightStartDisadv",
   "parent":{
     "name":"Placeholder",
@@ -22,5 +20,6 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"mPHFightStartDisadv.mp3",
+  "type":1,
   "volume":1.0,
 }

@@ -8,12 +8,14 @@ if instance_exists (oBattleDefenseManager)
         y += lengthdir_y(spd,goal)
     }
     else { 
-        circle += (2.5 * oBattleBulletManager.dir)
+        circle+=2.5
         x = oBattleDefenseStick.homeX + lengthdir_x(max(abs(x-oBattleDefenseStick.homeX),100),circle)    
         y = oBattleDefenseStick.homeY + lengthdir_y(max(abs(y-oBattleDefenseStick.homeY),100),circle)
         goal = point_direction(x,y,oBattleDefenseStick.homeX,oBattleDefenseStick.homeY)
     }
 }
+
+
 
 if pleaseWrapItUp
 {

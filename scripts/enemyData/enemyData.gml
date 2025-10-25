@@ -10,7 +10,7 @@ global.patterns =
 		dirs : [0,1,2,3,4,5,6,7],
 		rate : 30,
 		dist : 150,
-		spd : 2.5,
+		spd : 2,
 	},
 	
 	cross :
@@ -38,11 +38,11 @@ global.patterns =
         obj : oBulletBats,
 		dmg : 0,
 		dirs : [],
-		rate : 35,
+		rate : 30,
 		dist : 100,
-		spd : 3,
-		funcPerShot : function() { self.dirs[0] += oBattleBulletManager.dir; },
-        createFunc : function(){dirs[0] = irandom(7); dir = choose(1,-1)}
+		spd : 2.45,
+		funcPerShot : function() { self.dirs[0]++; },
+        createFunc : function(){dirs[0] = irandom(7);}
 	},
 	
 	bursts :
@@ -52,7 +52,7 @@ global.patterns =
 		dirs : [irandom(7)],
 		rate : 20,
 		dist : 150,
-		spd : 2.4,
+		spd : 2.3,
 		funcPerShot : function() { if oBattleBulletManager.shotsShot mod 3 == 0 {self.dirs[0] += irandom_range(2,5)} },
 	},
 	
@@ -73,7 +73,7 @@ global.patterns =
 		dmg : 1,
 		dirs : [],
 		rate : 11,
-		dist : 100,
+		dist : 150,
 		spd : 4,
         createFunc : function(){dirs[0] = choose(0,4);}
 	},
@@ -91,12 +91,13 @@ global.enemyAI =
 {
 	standard : function(user,targets)
 	{
-		var actions = user.actions;
+		var actions = oBattle.unitTurnOrder[oBattle.turn].actions;
 		var action = actions[irandom(array_length(actions)-1)];
 		var actionTypes = []
 			
 		// figure out what kinds of moves the enemy is capable of
-		for (var i = 0; i < array_length(actions); i++){
+		for (var i = 0; i < array_length(actions); i++)
+		{
 			if !array_contains(actionTypes,action.type) {array_push(actionTypes, action.type)}
 		}
 		
@@ -197,7 +198,7 @@ global.enemies =
 		xpWorth: 6,
 		AI: function(user,targets)
 		{
-			var myMove = global.enemyAI.standard(self,targets);
+			var myMove = global.enemyAI.standard(user,targets);
 			return [myMove[0],myMove[1]] 
 		}
 	},
@@ -222,7 +223,7 @@ global.enemies =
 		xpWorth: 4,
 		AI: function(user,targets)
 		{
-			var myMove = global.enemyAI.standard(self,targets);
+			var myMove = global.enemyAI.standard(user,targets);
 			return [myMove[0],myMove[1]] 
 		}
 	},

@@ -9,7 +9,7 @@ function initFlavorText() {
 	global.flags = 
 	{
 		cutscenes :[],
-        enemiesActive : DEV,
+        enemiesActive : false,
 		//permanent upgrades
 		chargeTackle : false,
 	
