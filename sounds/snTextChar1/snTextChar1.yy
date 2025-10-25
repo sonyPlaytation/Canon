@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"snTextChar1",
   "audioGroupId":{
     "name":"agText",
     "path":"audiogroups/agText",
   },
   "bitDepth":1,
-  "bitRate":128,
+  "channelFormat":0,
   "compression":0,
+  "compressionQuality":4,
   "conversionMode":0,
   "duration":0.08929705,
+  "exportDir":"",
   "name":"snTextChar1",
   "parent":{
     "name":"Text",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"snTextChar1.wav",
-  "type":0,
   "volume":1.0,
 }

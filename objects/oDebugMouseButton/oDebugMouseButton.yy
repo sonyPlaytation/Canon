@@ -28,7 +28,7 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"doThis","filters":[],"listItems":[
+    {"$GMObjectProperty":"v2","%Name":"doThis","filters":[],"listItems":[
         "\"startGame\"",
         "\"newGame\"",
         "\"loadSavefile\"",
