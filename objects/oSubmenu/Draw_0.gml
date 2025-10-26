@@ -16,6 +16,7 @@ for (var l = 0; l < visibleOptionsMax + _desc; l++)
 	if active {draw_set_color(c_white)} else draw_set_color(c_dkgrey)
 
 	var optionToShow = l - _desc + scrollPush;
+	var info = options[optionToShow][4]
 	var selected = (hover == optionToShow - _desc)
 	
 	var optY = y + (sprite_get_height(sBattleOptions)*l) + (menuGap*(l+1)) - 6
@@ -33,8 +34,16 @@ for (var l = 0; l < visibleOptionsMax + _desc; l++)
 		draw_text(optX+xmargin-1, optY+ymargin, str)
 		draw_text(optX+xmargin, optY+ymargin+1, str)
 		draw_text(optX+xmargin-1, optY+ymargin+1, str)
-		draw_set_color( #ff4194 ); 
+		
 		if active draw_sprite(sBattleMenuMainArrow, 0, optX, optY+ymargin);
+		
+		if info != undefined 
+		{ 
+			buildInfo(optX + sprite_get_width(sBattleOptionHeader), optY+ymargin, info) 
+			draw_set_valign(fa_middle)
+		}
+		
+		draw_set_color( #ff4194 ); 
 	}
 	
 	draw_text(optX+xmargin, optY+ymargin, str)	

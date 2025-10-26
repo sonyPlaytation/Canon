@@ -25,6 +25,7 @@ parry = 0;
 flash = 0;
 hit = 0;
 flashCol = c_white;
+acting = false;
 
 curve = animcurve_get_channel(acBattleSlideIn,"curve1");
 percent = 0;

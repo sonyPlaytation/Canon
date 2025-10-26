@@ -18,43 +18,36 @@ if nothing is pressed then its registered as holding neutral
 // inputs
 detectInputs();
 
-
-	
-	
 // display
-var prevInputs = inputsString;
+var prevInputs = inputsArray;
 var prevDir = dir;
 
-inputsString = "[sInputG,0][sInputL,0][sInputM,0][sInputH,0]";
+inputsArray = [0,0,0,0];
 
-if InputCheckMany(directionsToCheck)
-{ dir = InputDirection(dir,INPUT_CLUSTER.NAVIGATION) div 45; } else dir = 8;
-
-dirSprite = string($"[sInputArrows, {dir}]");
-
+dir = InputDirection(360,INPUT_CLUSTER.NAVIGATION) div 45; 
+ 
 if InputCheckMany(inputsToCheck)
 {
-	inputsString = ""
 	for (var i = 0; i < array_length(inputsToCheck); i ++)
 	{
 		var thisInput = InputCheck(inputsToCheck[i]);
-		inputsString += string($"[" + sprite_get_name(inputSprites[i]) + $", {thisInput}]");
+		inputsArray[i] = thisInput;
 	}
-} 
+}
 
-var currInputs = inputsString;
+var currInputs = inputsArray;
 var currDir = dir;
-var finalInputsString = $"{dirSprite} {inputsString}"
+var fullCurrentInputs = [currDir, currInputs]
 
-if (prevInputs != currInputs) or (prevDir != currDir) // if inputs are not the same as last frame
+if (inputs[0][1] != currDir) or !array_equals(currInputs,prevInputs)
 {
-	array_insert(inputs, 0, $"{inputsHeldTimer} {finalInputsString}");
+	array_insert(inputs, 0, [inputsHeldTimer, currDir, currInputs]);
 	inputsHeldTimer = 1;
 }
 else
 {
 	if inputsHeldTimer < 99 {inputsHeldTimer++};
-	inputs[0] = $"{inputsHeldTimer} {finalInputsString}";
+	inputs[0] = [inputsHeldTimer, currDir, currInputs]
 }
 
 if array_length(inputs) >= linesMax {array_resize(inputs,linesMax);}

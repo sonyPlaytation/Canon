@@ -10,5 +10,3 @@ if layer_sequence_exists("transition",global.currentTransition)
 }
 
 if layer_exists("CollTiles") layer_set_visible("CollTiles",global.debug);
-
-show_debug_message(follow)

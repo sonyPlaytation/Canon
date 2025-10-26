@@ -8,6 +8,7 @@ function battleStates(){
 		{
 			var unit = unitTurnOrder[turn];
 			show_debug_message($"START OF {unit.name}'S TURN")
+			unit.acting = false;
 	
 			if unit.stats.hp > 0 and variable_struct_exists(unit.sprites,"active"){ unit.sprite_index = unit.sprites.active; }
 	
@@ -47,20 +48,21 @@ function battleStates(){
 						var _action = _actionList[i];
 						var _avail = true; // check EX cost here
 						var _nameAndCount = _action.name;
+						var _info = _action[$ "info"]
 				
 						if _action.subMenu == -1 // if Top Level action, not submenu
 						{
 							// _menuOptions is the Top Level Menu
-							array_push(_menuOptions, [_nameAndCount, menuSelectAction, [unit, _action], _avail])	
+							array_push(_menuOptions, [_nameAndCount, menuSelectAction, [unit, _action], _avail, _info])	
 						}
-						else
+						else if _action.subMenu != -2
 						{
 							// if current subMenu does not exist in the struct containing all the subMenus
 							if is_undefined(_subMenus[$ _action.subMenu])
 							{	// I still dont know why this part is double arrayed? idk what thats doing for it
-								variable_struct_set(_subMenus, _action.subMenu, [[ _nameAndCount, menuSelectAction, [unit, _action], _avail ]]);
+								variable_struct_set(_subMenus, _action.subMenu, [[ _nameAndCount, menuSelectAction, [unit, _action], _avail, _info ]]);
 							}
-							else array_push(_subMenus[$ _action.subMenu], [ _nameAndCount, menuSelectAction, [unit, _action], _avail ]);
+							else array_push(_subMenus[$ _action.subMenu], [ _nameAndCount, menuSelectAction, [unit, _action], _avail, _info ]);
 						}
 					}
 			
@@ -69,9 +71,9 @@ function battleStates(){
 					for (var i = 0; i < array_length(_subMenusArray); i++)
 					{
 						//can sort submenu stuff here but i dont think i need to
-						array_push(_subMenus[$ _subMenusArray[i]], ["Back", submenuGoBack, -1, true]);
+						array_push(_subMenus[$ _subMenusArray[i]], ["Back", submenuGoBack, -1, true, undefined]);
 						// add submenus we just created into the greater menu
-						array_push(_menuOptions, [_subMenusArray[i], subMenu, [_subMenus[$ _subMenusArray[i]]], true] );
+						array_push(_menuOptions, [_subMenusArray[i], subMenu, [_subMenus[$ _subMenusArray[i]]], true, undefined] );
 					}
 			
 					var menu = Menu( _x + 24, _y + (TILE_SIZE * 5), _menuOptions, , 74, 128);
@@ -165,6 +167,7 @@ function battleStates(){
 		step : function()
 		{
 			var char = "";
+			currentUser.acting = true;
 			currentAction = -1;
 			normalsTimer--;
 			if normalsCooldown > 0 {normalsCooldown--}
@@ -182,21 +185,12 @@ function battleStates(){
 		
 				if array_length(livingTargets) >= 1 
 				{ currentTargets[0] = livingTargets[0] } 
-				else { sState.change("victoryCheck"); }
+				else if currentUser.image_index == 0 { sState.change("victoryCheck"); }
 			}
 	
 			if normalsAllowed > normalsPerformed and normalsTimer > 0
 			{
-
-				if InputPressed(INPUT_VERB.BL)		{currentAction = global.actionLibrary.light		char = "l" }
-				else if InputPressed(INPUT_VERB.BM)	{currentAction = global.actionLibrary.medium	char = "m" }
-				else if InputPressed(INPUT_VERB.BH)	{currentAction = global.actionLibrary.heavy		char = "h" }
-		
-				if char != ""
-				{
-					normalsString += char;
-					char = "";
-				}
+				checkNormalsString();
 		
 				if currentAction != -1 and normalsCooldown == 0
 				{
@@ -208,9 +202,23 @@ function battleStates(){
 						}
 						else BATTLE(currentAction.description, currentUser.name, currentTargets[0].name);
 					}
-			
+					
+					if currentAction.targetAll {currentTargets = enemyUnits}
 					currentAction.func(currentUser,currentTargets);
-					normalsCooldown = currentAction.frameCost;
+					with currentUser
+					{
+						if !is_undefined(other.currentAction[$ "userAnimation"]) and !is_undefined(other.currentUser.sprites[$ other.currentAction.userAnimation])
+						{
+							sprite_index = sprites[$ other.currentAction.userAnimation];
+							image_index = 0;
+						}
+					}
+					
+					if currentAction[$ "frameCost"] != undefined
+					{
+						normalsTimer -= currentAction.frameCost;
+						normalsCooldown = currentAction.frameCost/2;
+					}
 					normalsPerformed++;	
 			
 					if variable_struct_exists(currentAction, "fxSprite")
@@ -230,11 +238,12 @@ function battleStates(){
 					}
 			
 					currentAction = -1;
+					moveString = "";
 				}
 			}else 
 			{
-				checkNormalsString();
-				normalsString = "";
+				normalsCooldown = 0;
+				moveString = "";
 				normalsPerformed = 0
 				killsPerTurn = 0;
 				normalsTimer = normalsReset
@@ -280,7 +289,7 @@ function battleStates(){
 		
 				enemyTurnDone = false
 				checkNormalsString();
-				normalsString = "";
+				moveString = "";
 				normalsPerformed = 0
 				normalsTimer = normalsReset
 				if parriesMissed == 0 
@@ -288,7 +297,7 @@ function battleStates(){
 					BATTLE("[c_aqua]PERFECT PARRIES! Now go for a counter-attack!!");
 					postParryCounter = true;
 					sState.leave();
-					beginAction(currentTargets[0].id, global.actionLibrary.normals, currentUser.id);
+					beginAction(defender.id, global.actionLibrary.normals, currentUser.id);
 				}
 				else sState.change("victoryCheck");
 				parriesMissed = 0 

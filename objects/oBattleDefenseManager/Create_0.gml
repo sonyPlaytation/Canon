@@ -54,6 +54,8 @@ function parried()
 {
 	if variable_struct_exists(defender.sprites,"parry") {defender.sprite_index = defender.sprites.parry}
 	
+	battleChangeEX(defender,2)
+	
 	defender.parry = 18.0;
 	
 	//bulletManager.cooldownReset -= 0.25

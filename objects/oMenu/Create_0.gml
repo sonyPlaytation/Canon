@@ -1,5 +1,7 @@
 /// @
 
+//Menu()
+
 depth = oBattle.depth-10
 hover = 0;
 active = true;
@@ -14,3 +16,5 @@ menuGap = 6
 
 selectY = y;
 destroyMenu = false
+
+

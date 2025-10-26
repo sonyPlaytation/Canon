@@ -1,26 +1,24 @@
 /// @
 
-inputs = [];
+inputs = [[0,0,[0,0,0,0]]];
 inputsActionable = ""
 inputsMax = 20;
-inputsString = ""
+inputsArray = [0,0,0,0]
 inputsHeldTimer = 0;
-dirSprite = "[sInputArrows, 8]"
-dir = 5;
+dirSprite = 8
+dir = 8;
 numPadDir = -1;
 prevDir = 0;
 
 linesMax = 6;
 lineHeight = 16
-drawX = 96;
+drawX = 24;
 drawY = 12;
 alpha = 0;
 alphaTarg = 1;
 currKey = "";
 
 comboResetTime = 16;
-
-scribble_font_bake_outline_8dir("fSmart", "fSmartOut",c_black,false);
 
 inputsToCheck = 
 [
@@ -53,16 +51,6 @@ strengths =
 	"Heavy",
 	"EX"
 ]
-
-moves =
-{
-	superart1 : ["236236L", "236L236L"],
-	superart2 : ["236236M", "236M236M"],
-	superart3 : ["236236H", "236H236H"],
-	
-	fireball : ["236L","236M","236H"],
-	
-}
 
 anyInput = array_concat(inputsToCheck,directionsToCheck);
 
@@ -127,7 +115,7 @@ detectInputs = function()
 checkMoves = function(_inputString)
 {
 	inputString = _inputString
-	struct_foreach(moves,function(key,value)
+	struct_foreach(global.moves,function(key,value)
 	{
 		currKey = key;
 		if !is_array(value) {value = [value]};
@@ -136,13 +124,13 @@ checkMoves = function(_inputString)
 		{
 			if string_pos(element,inputString) != 0
 			{
+				if InputCheck(INPUT_VERB.GRUDGE) index = 3
 				
-				//show_debug_message(inputString);
 				show_debug_message($"MOVE REGISTERED: {strengths[index]} {other.currKey}!");
-			
-				// TODO: Have the motion inputs be sent to oBattle 
-			
+				if instance_exists(oBattle){ oBattle.moveString = element }
 				inputString = "";
+				
+				alarm[0] = 1
 			}
 		})
 	});	

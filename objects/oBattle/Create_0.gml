@@ -47,11 +47,12 @@ parriesMissed = 0;
 enemyMove = "";
 
 normalsPerformed = 0;
-normalsAllowed = 6;
+normalsAllowed = 5;
 normalsReset = 3 * 60
 normalsTimer = normalsReset;
-normalsString = "";
+moveString = "";
 enemyTurnDone = false;
+specialString = "";
 
 battleJustStarted = 60;
 
@@ -194,25 +195,30 @@ beginAction = function(user, action, targets) // THIS IS A FUNCTION NOT A STATE
 	}
 	
 	battleWaitTimeLeft = battleWaitTimeFrames
-	
-	with (user)
-	{
-		acting = true;
-		if !is_undefined(action[$ "userAnimation"]) and !is_undefined(user.sprites[$ action.userAnimation])
-		{
-			sprite_index = sprites[$ action.userAnimation];
-			image_index = 0;
-		}
-	}
+	user.acting = true
 	sState.change("performAction");
 }
 
 checkNormalsString = function()
 {
-	if string_pos("lmh",normalsString){show_debug_message("Plink detected")};
+	// find a move that the current user has that also is mapped to the input performed
+	for (var i = 0; i < array_length(currentUser.actions); i++)
+	{
+		if currentUser.actions[i][$ "notation"] != undefined 
+		{
+			if is_array(currentUser.actions[i][$ "notation"])
+			{
+				if array_contains( currentUser.actions[i][$ "notation"], moveString ) { currentAction = currentUser.actions[i]; }
+			}
+			else
+			{
+				if currentUser.actions[i][$ "notation"] == moveString { currentAction = currentUser.actions[i];	}
+			}
+		}
+	}
 	
 	if killsPerTurn == 2 {BATTLE("[#F16EAA]HAPPY BIRTHDAY!")}
-	else if killsPerTurn == 3 {BATTLE("[c_red]MERRY [c_green]CHRISTMAS!!")}
+	else if killsPerTurn == 3 {BATTLE("[c_red]MERRY [c_lime]CHRISTMAS!!")}
 }
 
 useCursor = function()

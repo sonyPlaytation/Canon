@@ -871,6 +871,7 @@
     {"name":"sMattWalkU","order":13,"path":"sprites/sMattWalkU/sMattWalkU.yy",},
     {"name":"sMenuArrow","order":10,"path":"sprites/sMenuArrow/sMenuArrow.yy",},
     {"name":"sNilsDash","order":19,"path":"sprites/sNilsDash/sNilsDash.yy",},
+    {"name":"sNilsGunSlide","order":2,"path":"sprites/sNilsGunSlide/sNilsGunSlide.yy",},
     {"name":"sNilsShoot1","order":1,"path":"sprites/sNilsShoot1/sNilsShoot1.yy",},
     {"name":"sNilsWalkD","order":4,"path":"sprites/sNilsWalkD/sNilsWalkD.yy",},
     {"name":"sNilsWalkL","order":9,"path":"sprites/sNilsWalkL/sNilsWalkL.yy",},

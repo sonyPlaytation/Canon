@@ -11,6 +11,7 @@ draw_set_text(fSmall,c_white,fa_left, fa_middle);
 var _desc = (desc != -1);
 var scrollPush = max(0, hover - (visibleOptionsMax-1));
 
+
 for (var l = 0; l < visibleOptionsMax + _desc; l++)
 {
 	if l >= array_length(options) {break;}
@@ -40,4 +41,5 @@ for (var l = 0; l < visibleOptionsMax + _desc; l++)
 	}
 	
 	draw_text(optX+xmargin, y+ymargin + sprite_get_height(sBattleOptionHeader) + (sprite_get_height(sBattleOptions)*l) + (menuGap*(l+1)), str)	
+
 }

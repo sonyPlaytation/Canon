@@ -4,6 +4,36 @@ global.lvlCap = 100;
 
 itemFuncs()
 
+#macro s1 "[sInputArrows, 5]"
+#macro s2 "[sInputArrows, 6]"
+#macro s3 "[sInputArrows, 7]"
+#macro s4 "[sInputArrows, 4]"
+#macro s5 "[sInputArrows, 8]"
+#macro s6 "[sInputArrows, 0]"
+#macro s7 "[sInputArrows, 3]"
+#macro s8 "[sInputArrows, 2]"
+#macro s9 "[sInputArrows, 1]"
+
+#macro sG "[sInputG, 1]"
+#macro sL "[sInputL, 1]"
+#macro sM "[sInputM, 1]"
+#macro sH "[sInputH, 1]"
+
+
+global.moves =
+{
+	superart1 : ["236236L", "236L236L"],
+	superart2 : ["236236M", "236M236M"],
+	superart3 : ["236236H", "236H236H"],
+	
+	halfCircle : ["41236L","41236M","41236H"],
+	fireball : ["236L","236M","236H"],
+	
+	uppercut : ["623L","623M","623H"],
+	
+	normal : ["L","M","H"],
+}
+
 global.actionLibrary = 
 {
 	// NOTES FOR OPERATION
@@ -49,33 +79,13 @@ global.actionLibrary =
 		}
 	},
 	
-	attack:
-	{
-		name: "Attack",
-		type : "attack",
-		description: "{0} attacks {1}!",
-		subMenu : -1,
-		targetRequired : true,
-		targetEnemyByDefault: true,
-		targetAll : MODE.NEVER,
-		userAnimation : "normals",
-		fxSprite : sPunch,
-		effectOnTarget: MODE.ALWAYS,
-		hitSound : snHit8,
-		func : function(user, targets)
-		{
-			var damage = ceil(user.stats.str + random_range(-user.stats.str/4, user.stats.str/4));
-			battleChangeHP(targets[0], -damage,, self.hitSound);
-		}
-	},
-	
 	light:
 	{
 		name: "Jab",
 		type : "attack",
-		notation: "LP",
+		notation: "L",
 		description: "{0} jabs {1}!",
-		subMenu : "Normals",
+		subMenu : -2,
 		targetRequired : true,
 		frameCost : 6,
 		targetEnemyByDefault: true,
@@ -88,6 +98,7 @@ global.actionLibrary =
 		{
 			var damage = ceil(user.stats.str * random_range(1.25,1.5));
 			battleChangeHP(targets[0], -damage,, self.hitSound);
+			battleChangeEX(user,1)
 		}
 	},
 	
@@ -95,8 +106,9 @@ global.actionLibrary =
 	{
 		name: "Straight",
 		type : "attack",
+		notation: "M",
 		description: "{0} punches {1}!",
-		subMenu : "Normals",
+		subMenu : -2,
 		targetRequired : true,
 		frameCost : 8,
 		targetEnemyByDefault: true,
@@ -109,6 +121,7 @@ global.actionLibrary =
 		{
 			var damage = ceil(user.stats.str * random_range(1.5,1.75));
 			battleChangeHP(targets[0], -damage,, self.hitSound);
+			battleChangeEX(user,2)
 		}
 	},
 	
@@ -116,8 +129,9 @@ global.actionLibrary =
 	{
 		name: "Fierce",
 		type : "attack",
+		notation: "H",
 		description: "{0} CLOBBERS {1}!",
-		subMenu : "Normals",
+		subMenu : -2,
 		frameCost : 14,
 		targetRequired : true,
 		targetEnemyByDefault: true,
@@ -130,13 +144,16 @@ global.actionLibrary =
 		{
 			var damage = ceil(user.stats.str * random_range(1.75,2));
 			battleChangeHP(targets[0], -damage,, self.hitSound);
+			battleChangeEX(user,3)
 		}
 	},
 	
-	special:
+	uppercut:
 	{
-		name: "Spinning Kick",
+		name: "Rising Upper",
 		type : "attack",
+		notation : global.moves.uppercut[2],
+		frameCost : 24,
 		description: "{0} uses their special move!",
 		subMenu : "Specials",
 		exCost : 5,
@@ -147,6 +164,11 @@ global.actionLibrary =
 		fxSprite : sPunch,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHit6,
+		info : {
+			desc : "Deal fire damage to one"nl"enemy. Can hit multiple targets.",
+			types : "Fire, Physical",
+			input : s6+ s2 + s3 + sH
+		},
 		func : function(user, targets)
 		{
 			for (var i = 0; i< array_length(targets); i++)
@@ -162,6 +184,8 @@ global.actionLibrary =
 	{
 		name: "Devil's Gun",
 		type : "attack",
+		notation : global.moves.fireball[0],
+		frameCost : 24,
 		description: "{0} fires off the Devil's Gun!",
 		subMenu : "Specials",
 		exCost : 7,
@@ -171,7 +195,12 @@ global.actionLibrary =
 		userAnimation : "shoot",
 		fxSprite : sPunch,
 		effectOnTarget: MODE.ALWAYS,
-		hitSound : snHit6,
+		hitSound : snShotDevils,
+		info : {
+			desc : "Shoot a big shot.",
+			types : "[sLaughingCryingEmoji] [sLaughingCryingEmoji] [sLaughingCryingEmoji]",
+			input : s2 + s3 + s6 + sL
+		},
 		func : function(user, targets)
 		{
 			for (var i = 0; i< array_length(targets); i++)
@@ -187,6 +216,8 @@ global.actionLibrary =
 	{
 		name: "Devil Volley",
 		type : "attack",
+		notation : global.moves.halfCircle,
+		frameCost : 45,
 		description: "{0} blasts away!",
 		subMenu : "Specials",
 		exCost : 12,
@@ -197,6 +228,11 @@ global.actionLibrary =
 		fxSprite : sPunch,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHit6,
+		info : {
+			desc : "Somehow hit everyone"nl"with one bullet.",
+			types : "plenis",
+			input : s4 + s1 + s2 + s3 + s6 + sL
+		},
 		func : function(user, targets)
 		{
 			for (var i = 0; i< array_length(targets); i++)
@@ -290,7 +326,7 @@ function initCharacters()
 				requiredEXP : 100,
 				hp: 50,
 				hpMax: 50,
-				ex: 15,
+				ex: 0,
 				exMax: 15,
 			
 				str: 3,
@@ -329,7 +365,7 @@ function initCharacters()
 				parry : sNilsParry
 			},
 		
-			actions: [global.actionLibrary.normals, global.actionLibrary.devilshot, global.actionLibrary.devilvolley],
+			actions: [global.actionLibrary.normals, global.actionLibrary.light, global.actionLibrary.medium, global.actionLibrary.heavy, global.actionLibrary.devilshot, global.actionLibrary.devilvolley],
 			battleLines : {
 				lowHP : "I could really use a hand right now...",
 				lowEX : "Runnin' low on ammo, you guys.",
@@ -363,7 +399,7 @@ function initCharacters()
 				requiredEXP : 100,
 				hp: 40,
 				hpMax: 40,
-				ex: 20,
+				ex: 0,
 				exMax: 20,
 			
 				str: 3,
@@ -418,7 +454,7 @@ function initCharacters()
 				requiredEXP : 100,
 				hp: 75,
 				hpMax: 75,
-				ex: 12,
+				ex: 0,
 				exMax: 12,
 			
 				str: 4,
@@ -441,7 +477,7 @@ function initCharacters()
 			allergies: [FOOD_TAG.DAIRY],
 		
 			sprites : { idle: sMattIdle, active: sMatthewFightActive, normals: sMattIdle,  slide: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH, parry : sMattParry},
-			actions: [global.actionLibrary.normals, global.actionLibrary.special],
+			actions: [global.actionLibrary.normals, global.actionLibrary.uppercut],
 			battleLines : {
 				lowHP : "[shake]Egh-[/shake] I've had worse... [c_dkgrey]dammit...",
 				lowEX : "Man, I have enough of an 'EX' problem as is...",

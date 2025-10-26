@@ -121,7 +121,7 @@ function overworldChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 }
 
 
-function battleChangeEX(target, amount, sound = -1)
+function battleChangeEX(target, amount, _number = false, sound = -1)
 {
 	// ADOE : 0 - ALIVE, 1 - DEAD, 2 - EITHER 	
 	// Failure is going to be kind of an edge case
@@ -130,7 +130,7 @@ function battleChangeEX(target, amount, sound = -1)
 	var failed = false;
 	
 	var col = c_white;
-	if amount > 0 col = c_lime;
+	if amount > 0 col = c_aqua;
 	if failed
 	{
 		if amount < 0 {audio_play_sound(snSwingMiss,765,false)};
@@ -143,19 +143,23 @@ function battleChangeEX(target, amount, sound = -1)
 		if ! audio_is_playing(sound) {audio_play_sound(sound,765,false);}
 	}
 	
-	instance_create_depth
-	(
-		target.x,
-		target.selfCenter,
-		target.depth-20,
-		oBattleHitText,
-		{
-			font : fSmall,
-			color : col,
-			text : string(amount)
-		}
-	)
-	if !failed {target.stats.hp = clamp(target.stats.hp + amount, 0, target.stats.hpMax)};
+	if _number
+	{
+		instance_create_depth
+		(
+			target.x,
+			target.selfCenter,
+			target.depth-20,
+			oBattleHitText,
+			{
+				font : fSmall,
+				color : col,
+				text : string(amount)
+			}
+		)
+	}
+	
+	if !failed {target.stats.ex = clamp(target.stats.ex + amount, 0, target.stats.exMax)};
 }
 
 function addEXP (EXP, character = PARTY[0])

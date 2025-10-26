@@ -46,7 +46,8 @@ if cutscenePlaying == noone and scene != -1 and place_meeting(x,y,oPlayer) and !
 	and ( !instance_exists(oMatthew) or (instance_exists(oMatthew) and oMatthew.inPosition) )
 	and ( !instance_exists(oCharlie) or (instance_exists(oCharlie) and oCharlie.inPosition) )
 	{
-		show_debug_message($"starting cutscene {string(scene)}")
+		var sceneName = string(sequence_get(scene).name)
+		show_debug_message($"starting cutscene {sceneName}")
 		cutscenePlaying = scene; 
 		oPlayer.state = oPlayer.stateInCutscene
 		
