@@ -1,6 +1,17 @@
 /// @
 
-
+overlays = [
+    {
+        tag: "darkRoom",
+        obj : oDarkness
+    },
+    
+    {
+        tag: "sandstorm",
+        obj : oSandstorm,
+        func : function(){ if instance_exists(oSandstormScaler) oSandstorm.alpha = oSandstormScaler.startAlpha; }
+    }
+]
 
 follow = noone;
 stanncam_init(GAME_W,GAME_H,RES_W,RES_H);

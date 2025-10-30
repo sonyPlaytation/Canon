@@ -72,7 +72,7 @@ options[$ "Menu"] =
 			var len = array_length(guys)
 			array_copy(other.options[$ "Equip"],0,guys,0,len);
 			array_push(other.options[$ "Equip"],variable_clone(other.goBack))
-			enterSubmenu("Equip");	
+			other.enterSubmenu("Equip");	
 		}
 	},
 	
@@ -100,7 +100,7 @@ options[$ "Menu"] =
 			var len = array_length(guys)
 			array_copy(other.options[$ label],0,guys,0,len);
 			array_push(other.options[$ label],variable_clone(other.goBack))
-			enterSubmenu(label);	
+			other.enterSubmenu(label);	
 		}
 	},
 	
@@ -121,7 +121,7 @@ array_push(options[$ "Item"],
 	allowed : true,
 	type : "submenu",
 	label : "Consumables",
-	func : function() {createItemMenu(ITEM_TYPE.CONSUMABLE)}
+	func : function() {other.createItemMenu(ITEM_TYPE.CONSUMABLE)}
 })	
 
 if array_length(global.inv[ITEM_TYPE.WEAPON]) != 0
@@ -131,7 +131,7 @@ if array_length(global.inv[ITEM_TYPE.WEAPON]) != 0
 		allowed : true,
 		type : "submenu",
 		label : "Weapons",
-		func : function() {createItemMenu(ITEM_TYPE.WEAPON)}
+		func : function() {other.createItemMenu(ITEM_TYPE.WEAPON)}
 	})	
 }
 
@@ -142,7 +142,7 @@ if array_length(global.inv[ITEM_TYPE.ARMOR]) != 0
 		allowed : true,
 		type : "submenu",
 		label : "Armor",
-		func : function() {createItemMenu(ITEM_TYPE.ARMOR)}
+		func : function() {other.createItemMenu(ITEM_TYPE.ARMOR)}
 	})	
 }
 
@@ -153,7 +153,7 @@ if array_length(global.inv[ITEM_TYPE.MOD]) != 0
 		allowed : true,
 		type : "submenu",
 		label : "Gems",
-		func : function() {createItemMenu(ITEM_TYPE.MOD)}
+		func : function() {other.createItemMenu(ITEM_TYPE.MOD)}
 	})	
 }
 
@@ -163,7 +163,7 @@ array_push(options[$ "Item"],
 	allowed : true,
 	type : "submenu",
 	label : "Key Items",
-	func : function() {createItemMenu(ITEM_TYPE.KEY)}
+	func : function() {other.createItemMenu(ITEM_TYPE.KEY)}
 })	
 
 array_push(options[$ "Item"],variable_clone(goBack))
@@ -229,7 +229,7 @@ options[$ "Settings"] =
 	variable_clone(goBack)
 ]
 
-function createItemMenu(invType = ITEM_TYPE.CONSUMABLE, key = label)
+function createItemMenu(invType = ITEM_TYPE.CONSUMABLE, key)
 {
 	items = []
 	other.options[$ key] = items

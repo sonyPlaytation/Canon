@@ -2,8 +2,6 @@
 
 //partyData
 
-//TODO: make battles happen in a room instead of an object... because this SUCKS ass
-
 createTransition(sqFightIn);
 oCamera.follow = id;
 enemies = global.fightEnemies

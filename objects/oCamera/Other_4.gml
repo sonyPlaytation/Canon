@@ -1,14 +1,12 @@
 /// @
 
-//TODO: change the overlay objects spawn methods to use structs to loop through that have each tag
 alarm[1]=1
-if asset_has_tags(room,"darkRoom",asset_room) and !instance_exists(oDarkness) {
-	instance_create_depth(0,0,0,oDarkness);
-}
 
-if asset_has_tags(room,"sandstorm",asset_room) and !instance_exists(oSandstorm) {
-	instance_create_depth(0,0,0,oSandstorm);
-	if instance_exists(oSandstormScaler) oSandstorm.alpha = oSandstormScaler.startAlpha;
+for (var i = 0; i < array_length(overlays); i++)
+{
+    var _ovr = overlays[i]
+    if asset_has_tags(room,_ovr.tag, asset_room) {instance_create_depth(0,0,0, _ovr.obj)};
+    if _ovr[$ "func"] != undefined {_ovr.func()};
 }
 
 if layer_sequence_exists("transition",global.currentTransition)

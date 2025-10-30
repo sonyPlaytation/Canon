@@ -1,4 +1,3 @@
 
-draw_trail(15,tailW,c_white,-1,true,image_alpha) 
-
-draw_self();
+draw_trail(15,tailW,color,-1,true,image_alpha) 
+event_inherited();

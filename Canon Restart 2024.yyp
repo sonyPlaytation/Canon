@@ -488,7 +488,6 @@
     {"id":{"name":"battleTexts","path":"scripts/battleTexts/battleTexts.yy",},},
     {"id":{"name":"blinkExt","path":"scripts/blinkExt/blinkExt.yy",},},
     {"id":{"name":"Cabinet","path":"scripts/Cabinet/Cabinet.yy",},},
-    {"id":{"name":"cutAct1TowerFall_Events522","path":"scripts/cutAct1TowerFall_Events522/cutAct1TowerFall_Events522.yy",},},
     {"id":{"name":"cutsceneMoments","path":"scripts/cutsceneMoments/cutsceneMoments.yy",},},
     {"id":{"name":"cutTest_Events728","path":"scripts/cutTest_Events728/cutTest_Events728.yy",},},
     {"id":{"name":"dialogue","path":"scripts/dialogue/dialogue.yy",},},

@@ -379,7 +379,6 @@
     {"name":"battleStates","order":20,"path":"scripts/battleStates/battleStates.yy",},
     {"name":"battleTexts","order":3,"path":"scripts/battleTexts/battleTexts.yy",},
     {"name":"blinkExt","order":8,"path":"scripts/blinkExt/blinkExt.yy",},
-    {"name":"cutAct1TowerFall_Events522","order":35,"path":"scripts/cutAct1TowerFall_Events522/cutAct1TowerFall_Events522.yy",},
     {"name":"cutsceneMoments","order":7,"path":"scripts/cutsceneMoments/cutsceneMoments.yy",},
     {"name":"cutTest_Events728","order":27,"path":"scripts/cutTest_Events728/cutTest_Events728.yy",},
     {"name":"dialogueFuncs","order":1,"path":"scripts/dialogueFuncs/dialogueFuncs.yy",},
