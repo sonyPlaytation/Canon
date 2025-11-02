@@ -184,7 +184,7 @@ global.actionLibrary =
 	{
 		name: "Devil's Gun",
 		type : "attack",
-		notation : global.moves.fireball[0],
+		notation : global.moves.fireball,
 		frameCost : 24,
 		description: "{0} fires off the Devil's Gun!",
 		subMenu : "Specials",
@@ -292,7 +292,13 @@ global.actionLibrary =
 	
 }
 	
-
+struct_foreach(global.actionLibrary,function(moveName, move)
+{
+    if variable_struct_exists(move, "info")
+    {
+       variable_struct_set(move[$ "info"],"exCost", move[$ "exCost"]) ;
+    }
+})
 
 struct_foreach(global.actionLibrary, function(_key, _val)
 {

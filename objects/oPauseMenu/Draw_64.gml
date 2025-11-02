@@ -1,5 +1,10 @@
 /// @
 
+draw_set_color(c_black)
+alpha = lerp(alpha, alphaTarg, 0.15);
+draw_set_alpha(alpha)
+draw_rectangle(-10,-10,GAME_W,GAME_H,false);
+draw_set_alpha(1)
 
 var optionsCount = array_length(options[$ currentMenu]);
 height = lineHeight * optionsCount;

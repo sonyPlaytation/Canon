@@ -16,7 +16,7 @@
 //	global.cam.draw_surf(pauseSurf,global.cam.get_x(),global.cam.get_y());
 //}
 
-if InputPressed(INPUT_VERB.PAUSE)
+if InputPressed(INPUT_VERB.PAUSE) and global.canPause
 {
 	switch (pause)
 	{

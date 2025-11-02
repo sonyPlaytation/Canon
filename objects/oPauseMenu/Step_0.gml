@@ -49,5 +49,5 @@ else
 {
 	if x >= 22 {alarm[0] = 5;}
 	xTarg = -175;
-
+    alphaTarg = 0
 }

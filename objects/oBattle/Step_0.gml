@@ -3,6 +3,7 @@
 textAlpha = lerp(textAlpha,textAlphaTarg,0.15);
 
 pBattleUnit.visible = false;
+global.canPause = false;
 
 //state();
 sState.step();

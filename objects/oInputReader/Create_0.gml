@@ -18,7 +18,9 @@ alpha = 0;
 alphaTarg = 1;
 currKey = "";
 
-comboResetTime = 16;
+//TODO: make spritefont for input reader frame counter
+
+comboResetTime = 24;
 
 inputsToCheck = 
 [

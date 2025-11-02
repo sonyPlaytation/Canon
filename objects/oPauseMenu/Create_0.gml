@@ -31,6 +31,9 @@ currentMenu = "Menu"
 prevMenus = []
 options = {}
 
+alpha = 0;
+alphaTarg = 0.5;
+
 goBack = 
 {
 	allowed : true,
@@ -121,7 +124,8 @@ array_push(options[$ "Item"],
 	allowed : true,
 	type : "submenu",
 	label : "Consumables",
-	func : function() {other.createItemMenu(ITEM_TYPE.CONSUMABLE)}
+    itemType : ITEM_TYPE.CONSUMABLE,
+	func : createItemMenu
 })	
 
 if array_length(global.inv[ITEM_TYPE.WEAPON]) != 0
@@ -131,7 +135,8 @@ if array_length(global.inv[ITEM_TYPE.WEAPON]) != 0
 		allowed : true,
 		type : "submenu",
 		label : "Weapons",
-		func : function() {other.createItemMenu(ITEM_TYPE.WEAPON)}
+		itemType : ITEM_TYPE.WEAPON,
+        func : createItemMenu
 	})	
 }
 
@@ -142,7 +147,8 @@ if array_length(global.inv[ITEM_TYPE.ARMOR]) != 0
 		allowed : true,
 		type : "submenu",
 		label : "Armor",
-		func : function() {other.createItemMenu(ITEM_TYPE.ARMOR)}
+		itemType : ITEM_TYPE.ARMOR,
+        func : createItemMenu
 	})	
 }
 
@@ -153,17 +159,18 @@ if array_length(global.inv[ITEM_TYPE.MOD]) != 0
 		allowed : true,
 		type : "submenu",
 		label : "Gems",
-		func : function() {other.createItemMenu(ITEM_TYPE.MOD)}
+		itemType : ITEM_TYPE.MOD,
+        func : createItemMenu
 	})	
 }
-
 
 array_push(options[$ "Item"],
 {
 	allowed : true,
 	type : "submenu",
 	label : "Key Items",
-	func : function() {other.createItemMenu(ITEM_TYPE.KEY)}
+	itemType : ITEM_TYPE.KEY,
+	func : createItemMenu
 })	
 
 array_push(options[$ "Item"],variable_clone(goBack))
@@ -212,12 +219,7 @@ options[$ "System"] =
 
 options[$ "Settings"] =
 [
-	{
-		allowed : DEV,
-		type : "submenu",
-		label : "Toggle Debug",
-		func : function(){ global.debug = !global.debug }
-	},
+	
 
 	{
 		allowed : true,
@@ -229,7 +231,16 @@ options[$ "Settings"] =
 	variable_clone(goBack)
 ]
 
-function createItemMenu(invType = ITEM_TYPE.CONSUMABLE, key)
+if DEV array_insert(options[$ "Settings"], 0,
+    {
+        allowed : DEV,
+        type : "submenu",
+        label : "Toggle Debug",
+        func : function(){ global.debug = !global.debug }
+    }
+)
+
+function createItemMenu(invType = itemType, key = label)
 {
 	items = []
 	other.options[$ key] = items

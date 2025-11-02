@@ -7,17 +7,27 @@ if global.inputDisplay and room != rMenu
 	
 	for (var i = 0; i < array_length(inputs); i++ )
 	{
-		draw_set_text(fSmart,c_white,fa_right,fa_middle)
+		draw_set_text(fSmart,c_black,fa_right,fa_middle)
 		
 		draw_set_alpha(alpha - (i * 0.15))
 		var line = inputs[i]
 		
+        // Frames
 		var LineY = drawY + (i*lineHeight)
+        
+        draw_text(drawX+1,LineY,line[0])
+        draw_text(drawX,LineY+1,line[0])
+        draw_text(drawX-1,LineY,line[0])
+        draw_text(drawX,LineY-1,line[0])
+        
+        draw_set_color(c_white)
 		draw_text(drawX,LineY,line[0])
 		
+        // Directions
 		draw_set_halign(fa_center)
 		draw_sprite(sInputArrows,line[1], drawX+9,LineY)
 		
+        // Buttons
 		var buttonsPressed = 0;
 		for (var j = 0; j < array_length(line[2]); j++)
 		{
