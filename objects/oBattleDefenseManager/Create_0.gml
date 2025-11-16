@@ -39,6 +39,7 @@ bulletManager.user = user;
 
 function bulletHit(_bullet, _blocked = false)
 {
+    if DEV and keyboard_check(vk_alt) parried();
 	var dmg = _bullet.dmg
 	if _blocked {dmg *= 0.45;}
 	

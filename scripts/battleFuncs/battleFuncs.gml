@@ -42,7 +42,7 @@ function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 	if amount > 0 col = c_lime;
 	if failed
 	{
-		if amount < 0 {audio_play_sound(snSwingMiss,765,false)};
+		if amount < 0 {SFX snSwingMiss};
 		col = c_white;
 		text = "Whiff!";
 		

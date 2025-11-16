@@ -10,6 +10,9 @@ creator = global.fightStarter
 pauseGame()
 global.canPause = false;
 
+oInputReader.drawYOffsetTarg = TILE_SIZE*11.25
+oInputReader.linesMax = 5
+
 _x = room_width/2
 _y = room_height/2
 
@@ -21,6 +24,7 @@ textAlpha = 0;
 textAlphaTarg = 1;
 
 perfect = true;
+perform = false;
 
 partyHP = 0;
 partyHPMAX = 0;
@@ -63,7 +67,7 @@ turnCount = 0;
 roundCount = 1;
 battleWaitTimeFrames = 15;
 battleWaitTimeLeft = 0;
-currentUser = 0;
+currentUser = -1;
 currentAction = -1;
 currentTargets = noone;
 

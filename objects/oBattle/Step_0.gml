@@ -7,6 +7,7 @@ global.canPause = false;
 
 //state();
 sState.step();
+perform = false;
 
 bgx[0] += 1;
 bgx[2] += 0.5

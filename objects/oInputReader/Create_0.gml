@@ -14,9 +14,16 @@ linesMax = 6;
 lineHeight = 16
 drawX = 24;
 drawY = 12;
+
+drawYOffset = 0
+drawYOffsetTarg = drawYOffset;
+
 alpha = 0;
 alphaTarg = 1;
+
 currKey = "";
+
+numFont = global.fInputNum;
 
 //TODO: make spritefont for input reader frame counter
 
@@ -69,7 +76,9 @@ detectInputs = function()
 		
 		if InputCheckMany(directionsToCheck)
 		{ 
-			dir = (InputDirection(dir,INPUT_CLUSTER.NAVIGATION) div 45); 
+            xinput  = InputCheck(INPUT_VERB.RIGHT) - InputCheck(INPUT_VERB.LEFT);
+      		yinput  = InputCheck(INPUT_VERB.DOWN) - InputCheck(INPUT_VERB.UP);
+            dir     = point_direction(0, 0, xinput, yinput) div 45;
 		} else dir = -1
 
 		switch (dir)

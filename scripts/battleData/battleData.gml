@@ -47,7 +47,7 @@ global.actionLibrary =
 		targetRequired : true,
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
-		userAnimation : "normals",
+		userAnimation : "idle",
 		//fxSprite : sPunch,
 		//effectOnTarget: MODE.ALWAYS,
 		//hitSound : snHit8,
@@ -195,11 +195,11 @@ global.actionLibrary =
 		userAnimation : "shoot",
 		fxSprite : sPunch,
 		effectOnTarget: MODE.ALWAYS,
-		hitSound : snShotDevils,
+		hitSound : snHit9,
 		info : {
 			desc : "Shoot a big shot.",
 			types : "[sLaughingCryingEmoji] [sLaughingCryingEmoji] [sLaughingCryingEmoji]",
-			input : s2 + s3 + s6 + sL
+			input : s2+s3+s6+sL
 		},
 		func : function(user, targets)
 		{
@@ -224,15 +224,15 @@ global.actionLibrary =
 		targetRequired : true,
 		targetEnemyByDefault: true,
 		targetAll : MODE.ALWAYS,
-		userAnimation : "shoot",
+		userAnimation : "volley",
 		fxSprite : sPunch,
 		effectOnTarget: MODE.ALWAYS,
 		hitSound : snHit6,
 		info : {
 			desc : "Somehow hit everyone"nl"with one bullet.",
 			types : "plenis",
-			input : s4 + s1 + s2 + s3 + s6 + sL
-		},
+			input : s4+s1+s2+s3+s6+sL
+        },
 		func : function(user, targets)
 		{
 			for (var i = 0; i< array_length(targets); i++)
@@ -332,7 +332,7 @@ function initCharacters()
 				requiredEXP : 100,
 				hp: 50,
 				hpMax: 50,
-				ex: 0,
+				ex: 50,
 				exMax: 15,
 			
 				str: 3,
@@ -358,17 +358,17 @@ function initCharacters()
 			// BATTLE
 			sprites : 
 			{ 
-				idle: sNilsIdle, 
+				idle: sNilsBattleIdle, 
 				active: sNilsWalkD, 
 				slide: sNilsDash, 
-				normals: sNilsDash,
-				specials : sNilsShoot1,
-				shoot : sNilsShoot1,
+				normals: sNilsBattlePunchL,
+				shoot : sNilsBattleShot,
+				volley : sNilsBattleVolley,
 				defend: sNilsIdle, 
 				down: sGrave, 
 				head: sHeadNils, 
 				portrait: sBattlePort, 
-				parry : sNilsParry
+				parry : sNilsBattleParry
 			},
 		
 			actions: [global.actionLibrary.normals, global.actionLibrary.light, global.actionLibrary.medium, global.actionLibrary.heavy, global.actionLibrary.devilshot, global.actionLibrary.devilvolley],
