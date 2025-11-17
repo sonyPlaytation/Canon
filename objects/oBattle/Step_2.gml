@@ -14,3 +14,4 @@ array_foreach(enemyUnits,function(element,index)
 	enemyHP += enemyUnits[index].stats.hp
 })
 enemyHPPercent = enemyHP/enemyHPMAX
+

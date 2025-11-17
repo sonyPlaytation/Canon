@@ -30,7 +30,7 @@ for (var l = 0; l < visibleOptionsMax + _desc; l++)
 	var str = options[optionToShow][0];
 		
     //available or not
-    if info != undefined and oBattle.currentUser.EX < info.exCost { options[optionToShow][3] = false }
+    if info != undefined and oBattle.currentUser.stats.ex < info.exCost { options[optionToShow][3] = false }
 	if options[optionToShow][3] == false {draw_set_color(c_grey);}
 	
 	if selected 

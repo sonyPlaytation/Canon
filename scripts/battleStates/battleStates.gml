@@ -7,6 +7,7 @@ function battleStates(){
 		enter : function()
 		{
 			var unit = unitTurnOrder[turn];
+            currentUser = unit;
 			show_debug_message($"START OF {unit.name}'S TURN")
 			unit.acting = false;
 	
@@ -102,8 +103,9 @@ function battleStates(){
 		,
 		step : function()
 		{
-			if currentUser.percent >= currentUser.percentTarg
+			if currentUser.percent >= currentUser.percentTarg 
 			{
+                    
 				if variable_struct_exists(currentAction, "userAnimation")
 				{
 					var anim = struct_get(currentAction, "userAnimation");
@@ -111,8 +113,9 @@ function battleStates(){
 					{ currentUser.image_index = 0; currentUser.sprite_index = currentUser.sprites[$ anim ];  }
 				}
 				
-				if currentUser.acting
+				if currentUser.acting 
 				{
+                    if !perform exit;
 					if sprite_get_speed(currentUser.sprite_index) < 1 or (currentUser.image_index >= (currentUser.image_number-1)/2)
 					{ 
 						if (currentUser.image_index >= (currentUser.image_number-1)) { currentUser.image_speed = 0; }
@@ -134,7 +137,8 @@ function battleStates(){
 						}
 					
 						currentUser.acting = false;
-						currentAction.func(currentUser,currentTargets) 
+						if perform { currentAction.func(currentUser,currentTargets) }
+                        perform = false;
 					}
 					
 				}
@@ -352,6 +356,7 @@ function battleStates(){
 			{
 				if partyUnits[i].stats.hp <= 0 {battleChangeHP(partyUnits[i], 1, 1)};
 				partyUnits[i].sprite_index = partyUnits[i].sprites.active
+                partyUnits[i].acting = false;
 			}
 			
 			for (var i = 0; i < array_length(partyUnits); i++) 

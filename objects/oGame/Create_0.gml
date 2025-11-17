@@ -45,6 +45,8 @@ scribble_anim_shake(0.5,0.75);
 
 //window_set_cursor(cr_none)
 
+global.fInputNum = font_add_sprite_ext(sInputNums,"1234567890",true,0);
+
 noSpawnRooms =
 [
 	rMenu,
