@@ -197,7 +197,6 @@ beginAction = function(user, action, targets) // THIS IS A FUNCTION NOT A STATE
 	}
 	
 	battleWaitTimeLeft = battleWaitTimeFrames
-	user.acting = true
 	sState.change("performAction");
 }
 
