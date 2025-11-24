@@ -793,6 +793,7 @@
     {"name":"inst_211EBAF","path":"rooms/rDunes_2/rDunes_2.yy",},
     {"name":"inst_36FB3474","path":"rooms/rDunes_2/rDunes_2.yy",},
     {"name":"inst_9F2B4A5","path":"rooms/rDunes_2/rDunes_2.yy",},
+    {"name":"inst_35F3B7F7","path":"rooms/rDunes_2/rDunes_2.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -1971,6 +1972,7 @@
         {"$GMRInstance":"v4","%Name":"inst_9AB43EF","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_9AB43EF","objectId":{"name":"oLineDef","path":"objects/oLineDef/oLineDef.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oLineDef","path":"objects/oLineDef/oLineDef.yy",},"propertyId":{"name":"myScript","path":"objects/oLineDef/oLineDef.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"function(){lostInDesert()}",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":26.666668,"scaleY":15.0,"x":8960.0,"y":9360.0,},
+        {"$GMRInstance":"v4","%Name":"inst_35F3B7F7","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_35F3B7F7","objectId":{"name":"oPixel","path":"objects/oPixel/oPixel.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":-640.0,"y":-360.0,},
       ],"layers":[],"name":"Player","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Instances_1","depth":100,"effectEnabled":true,"effectType":null,"gridX":640,"gridY":360,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_187B4C2_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_187B4C2_1","objectId":{"name":"obj_stanncam_zone","path":"objects/obj_stanncam_zone/obj_stanncam_zone.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":26.666672,"scaleY":14.999997,"x":1280.0,"y":1792.0,},

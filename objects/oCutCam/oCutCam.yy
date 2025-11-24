@@ -9,7 +9,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Cutscene Tools",
-    "path":"folders/Objects/Cutscene Tools.yy",
+    "path":"folders/Cutscenes/Cutscene Tools.yy",
   },
   "parentObjectId":{
     "name":"pDebugDraw",

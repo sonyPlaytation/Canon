@@ -49,8 +49,8 @@
   },
   "name":"cutTest",
   "parent":{
-    "name":"Cutscenes",
-    "path":"folders/Sequences/Cutscenes.yy",
+    "name":"Scenes",
+    "path":"folders/Cutscenes/Scenes.yy",
   },
   "playback":0,
   "playbackSpeed":60.0,
