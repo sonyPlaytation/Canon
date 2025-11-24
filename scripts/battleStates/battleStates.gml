@@ -105,7 +105,7 @@ function battleStates(){
 		{
 			if currentUser.percent >= currentUser.percentTarg 
 			{
-                    
+                currentUser.acting = true
 				if variable_struct_exists(currentAction, "userAnimation")
 				{
 					var anim = struct_get(currentAction, "userAnimation");
@@ -162,6 +162,7 @@ function battleStates(){
 		{
 			currentUser.sprite_index = currentUser.sprites.idle;
 			currentUser.image_speed = 1;
+            currentUser.acting = false;
 		}
 	})
 
@@ -246,12 +247,16 @@ function battleStates(){
 				}
 			}else 
 			{
-				normalsCooldown = 0;
-				moveString = "";
-				normalsPerformed = 0
-				killsPerTurn = 0;
-				normalsTimer = normalsReset
-				sState.change("victoryCheck");
+                if currentUser.image_number < 2 or (currentUser.image_index >= currentUser.image_number)
+                {
+                    normalsCooldown = 0;
+    				moveString = "";
+    				normalsPerformed = 0
+    				killsPerTurn = 0;
+    				normalsTimer = normalsReset
+    				sState.change("victoryCheck");
+                }
+				
 			}
 		}
 		,

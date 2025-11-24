@@ -1,4 +1,22 @@
 /// @
+/// 
+/// 
+
+// cool looking line that im proably not gonna use
+//if instance_exists(currentUser) draw_arrow(x,0,currentUser.x,currentUser.y,5); 
+//if is_array(currentTargets) and currentUser.acting 
+//{
+    //for (var i = 0; i < array_length(currentTargets); i++) {
+        //
+        //var arrowDir = point_direction(currentUser.x,currentUser.y,currentTargets[i].x,currentTargets[i].y)
+        //var arrowDist = point_distance(currentUser.x,currentUser.y,currentTargets[i].x,currentTargets[i].y) * 0.75
+        //var arrowX = lengthdir_x(arrowDist,arrowDir)
+        //var arrowY = lengthdir_y(arrowDist,arrowDir)
+        //
+        //draw_arrow(currentUser.x,currentUser.y,currentUser.x+arrowX,currentUser.y+arrowY,5); 
+    //}    
+//}
+
 
 var padding = TILE_SIZE
 
