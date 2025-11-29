@@ -29,7 +29,7 @@
   "origin":9,
   "parent":{
     "name":"Nils",
-    "path":"folders/Sprites/Battles/Party/Nils.yy",
+    "path":"folders/Battles/Sprites/Party/Nils.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

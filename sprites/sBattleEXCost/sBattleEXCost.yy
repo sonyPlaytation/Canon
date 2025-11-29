@@ -27,7 +27,7 @@
   "origin":9,
   "parent":{
     "name":"UI",
-    "path":"folders/Sprites/Battles/UI.yy",
+    "path":"folders/Battles/Sprites/UI.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"battleData",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Scripts.yy",
+    "name":"Battles",
+    "path":"folders/Battles.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

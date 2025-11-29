@@ -9,7 +9,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Defense",
-    "path":"folders/Objects/Battles/Defense.yy",
+    "path":"folders/Battles/Defense.yy",
   },
   "parentObjectId":null,
   "persistent":false,

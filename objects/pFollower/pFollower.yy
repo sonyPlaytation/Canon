@@ -11,8 +11,8 @@
   "name":"pFollower",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Overworld Entities",
+    "path":"folders/Overworld Entities.yy",
   },
   "parentObjectId":{
     "name":"pProtag",

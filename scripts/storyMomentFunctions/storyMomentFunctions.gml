@@ -1,3 +1,7 @@
+
+// This script is for lightweight functions that are used probably only a handful of times at specific story moments
+
+//rDunes_2
 function lostInDesert(){
     if instance_exists(oPlayer)
     {

@@ -12,7 +12,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Battles",
-    "path":"folders/Objects/Battles.yy",
+    "path":"folders/Battles.yy",
   },
   "parentObjectId":null,
   "persistent":false,

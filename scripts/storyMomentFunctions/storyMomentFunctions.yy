@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"storyMomentFunctions",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Scripts.yy",
+    "name":"Narrative",
+    "path":"folders/Narrative.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

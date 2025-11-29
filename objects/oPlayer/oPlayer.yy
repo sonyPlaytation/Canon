@@ -16,8 +16,8 @@
   "name":"oPlayer",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"!Special",
+    "path":"folders/Overworld Entities/Objects/!Special.yy",
   },
   "parentObjectId":{
     "name":"pProtag",

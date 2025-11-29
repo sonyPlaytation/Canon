@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Bullets",
-    "path":"folders/Objects/Battles/Defense/Bullets.yy",
+    "path":"folders/Battles/Defense/Bullets.yy",
   },
   "parentObjectId":{
     "name":"pEnemyAttack",

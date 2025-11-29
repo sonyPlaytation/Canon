@@ -13,8 +13,8 @@
   "name":"oMusic",
   "overriddenProperties":[],
   "parent":{
-    "name":"System",
-    "path":"folders/Objects/System.yy",
+    "name":"Narrative",
+    "path":"folders/Narrative.yy",
   },
   "parentObjectId":null,
   "persistent":true,

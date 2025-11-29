@@ -1,2 +1,2 @@
 
-draw_text(100,124,shotsShot)
+//draw_text(100,124,shotsShot)
