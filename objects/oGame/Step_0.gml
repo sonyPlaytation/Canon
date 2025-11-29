@@ -17,8 +17,8 @@ if DEV{
     if listActive{
         if InputPressedMany([INPUT_VERB.CANCEL, INPUT_VERB.SKIP]) {listActive = false;}
         if instance_exists(oPlayer){oPlayer.hasControl = false}
-        if cursorPos < listLength-1 and down {cursorPos++} else
-        if cursorPos > 0 and up {cursorPos--}
+        if cursorPos < listLength-1 and down {cursorPos++;} else
+        if cursorPos > 0 and up {cursorPos--;};
         
         if InputPressed(INPUT_VERB.ACCEPT){
             transition(roomList[cursorPos],sqFadeOut,sqFadeIn,,,,,true)

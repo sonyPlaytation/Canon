@@ -72,6 +72,7 @@ roomList = array_filter(roomList,function(element, index){
     
     return !array_contains(noSpawnRooms,element);
 })
+//RoomLoader.DataInitArray(roomList)
 cursorPos = 0;
 listLength = array_length(roomList);
 listActive = false;
