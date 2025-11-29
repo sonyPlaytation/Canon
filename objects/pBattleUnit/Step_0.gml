@@ -26,6 +26,8 @@ else
 
 if forward
 {
+    if sprites[$ "slide"] != undefined and percent < percentTarg {sprite_index = sprites.slide}
+    
 	percent += 1/60
 	var position = animcurve_channel_evaluate(curve,percent);
 			

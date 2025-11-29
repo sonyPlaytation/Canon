@@ -2,8 +2,8 @@
   "$GMSound":"v2",
   "%Name":"snHitArmor",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"agSFX",
+    "path":"audiogroups/agSFX",
   },
   "bitDepth":1,
   "channelFormat":0,

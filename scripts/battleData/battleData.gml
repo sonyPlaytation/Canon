@@ -436,12 +436,14 @@ function initCharacters()
 				justEXed : "I feel way more magical now :)",
 				justLeveled :
 				[
-					"Hey Matthew, I have a new spell I really wanna try out!"nl"Wait, where are you going?",
-					""
+					"Oh Matthew, I have a new spell I really wanna try out!"nl"Hey, where are you going?",
+					"I feel a little stuffy, maybe that's just what learning spells feels like.",
+                    "So this is what crystals is!",
+                    "When I get home I'm gonna cast so many freaking spells"
 				],
 				winQuotes : 
 				[
-					"I wish we could have spared them...",
+					"I hope they aren't hurt too bad...",
 					"That was fun!",
 					"I hope this moment of friendship will bring you many happy memories!",
 					"Would you like to meet my friends? Or are you too injured?"
@@ -493,13 +495,16 @@ function initCharacters()
 				[
 					"Hey man, don't take it personally. It's not easy being this much better than you.",
 					"I'm gonna need all the defense I can get if Charlie's gonna keep testing his spells out on me...",
-					"OOOOOH I'll givem wunna these! and wunna those! And wunna-"nl"And wunna these, and wunna those! And I'll choke 'em!!"nl"And givem wunna these! and I'll..."
+					"OOOOOH I'll givem wunna these! and wunna those! And wunna-"nl"And wunna these, and wunna those! And I'll choke 'em!!"nl"And givem wunna these! and I'll...",
+                    "Mad gains",
+                    ""
 				],
 				winQuotes : 
 				[
 					"Wubba, wubba. I'm in the pink today, boys!",
 					"Don't you want a rematch...?",
-					"You don't have to be big, to look like a big loser."
+					"You don't have to be big, to look like a big loser.",
+                    "Oh god dammit, I creased my freakin' shoes!"
 				]
 			},
 		}

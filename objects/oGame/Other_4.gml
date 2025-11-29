@@ -2,12 +2,13 @@
 
 if !array_contains(noSpawnRooms,room) { array_insert(roomsBeenThrough, 0, room); }
 
+// gather collisions
 var tiles = layer_get_id("CollTiles");
 var coll = layer_get_id("Coll");
-
 if layer_exists(tiles) layer_set_visible(tiles, false);
 if layer_exists(coll) layer_set_visible(coll, false);
 
+// spawn player code
 if !instance_exists(oPlayer) and !array_contains(noSpawnRooms, room)
 {
 	var _x, _y;

@@ -1,6 +1,6 @@
 {
   "$GMSound":"v2",
-  "%Name":"snChestOpen",
+  "%Name":"sn3sCrash",
   "audioGroupId":{
     "name":"agSFX",
     "path":"audiogroups/agSFX",
@@ -10,17 +10,17 @@
   "compression":0,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":0.9173016,
+  "duration":0.4270068,
   "exportDir":"",
-  "name":"snChestOpen",
+  "name":"sn3sCrash",
   "parent":{
-    "name":"General",
-    "path":"folders/Sounds/SFX/General.yy",
+    "name":"From Something",
+    "path":"folders/Sounds/SFX/From Something.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"snChestOpen.wav",
-  "volume":1.0,
+  "soundFile":"sn3sCrash.wav",
+  "volume":0.51,
 }

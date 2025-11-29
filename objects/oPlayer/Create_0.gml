@@ -35,6 +35,7 @@ stateFree = function()
 	
 	if canDash and dashCharge == dashFrames and InputPressed(INPUT_VERB.DASH)
 	{
+        SFX sn3sDash;
 		dashTime = dashReset;
 		dashSpd = 6;
 		dashCharge = 0
@@ -175,9 +176,9 @@ stateDash = function()
 	
 	if dashSpd > 2.5 and place_meeting(x+hsp, y+vsp, colls) 
 	{
+        SFX sn3sCrash;
 		zsp = 4;
 		state = stateCrash
-		oSFX.battlehit = snHit7
 		global.cam.shake_screen(5,3);	
 	}
 	
@@ -294,6 +295,7 @@ animate = function()
 
 backToSolidGround = function()
 {
+    SFX sn3sRespawn
 	blinkExt(alpha,"alpha",1,30)
 	x = global.solidGroundX;
 	y = global.solidGroundY;	

@@ -99,13 +99,16 @@ function battleStates(){
 			currentUser.forward = true;
 			currentUser.image_index = 0;
 			if currentUser.sprites[$ "slide"] != undefined { currentUser.sprite_index = currentUser.sprites.slide}
+            currentUser.acting = true
 		}
 		,
 		step : function()
 		{
+            show_debug_message($"Acting: {currentUser.acting}")
+            show_debug_message($"Percent: {currentUser.percent}/{currentUser.percentTarg}")
 			if currentUser.percent >= currentUser.percentTarg 
 			{
-                currentUser.acting = true
+               // go into attack anim
 				if variable_struct_exists(currentAction, "userAnimation")
 				{
 					var anim = struct_get(currentAction, "userAnimation");
@@ -143,10 +146,11 @@ function battleStates(){
 					
 				}
 				else
-				{
+				{ 
 					if !instance_exists(oBattleEffect)
 					{
 						battleWaitTimeLeft--;
+						show_debug_message($"Wait Time Left {battleWaitTimeLeft}");
 						if battleWaitTimeLeft <= 0
 						{
 							currentUser.forward = false;

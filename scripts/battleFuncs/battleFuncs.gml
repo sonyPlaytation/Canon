@@ -60,7 +60,7 @@ function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 			target.hit += 5;
 			amount = min(amount + target.stats.def, 0)
 			text = amount;
-			//global.cam.shake_screen(amount/2,abs(amount))	
+			global.cam.shake_screen(amount/2,abs(amount))	
 		}
 		
 		if sound != -1 { oSFX.battlehit = sound; } 
