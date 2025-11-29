@@ -1,6 +1,15 @@
 /// @
+/// 
+
+
 
 if DEV{
+    
+    var closeList = function(){
+        listActive = false;
+        if instance_exists(oPlayer){oPlayer.hasControl = true}
+    }
+    
     var menuToggle = keyboard_check_pressed(vk_alt);
     var down = InputPressed(INPUT_VERB.DOWN);
     var up = InputPressed(INPUT_VERB.UP);
@@ -12,21 +21,30 @@ if DEV{
     if downFrames == frameTarg {down = true; downFrames = frameTarg*0.75}
     if upFrames == frameTarg {up = true; upFrames = frameTarg*0.75}
     
-    if menuToggle {listActive = !listActive};
+    if menuToggle {
+        listActive = !listActive;
+        if !listActive closeList();
+    };
         
     if listActive{
-        if InputPressedMany([INPUT_VERB.CANCEL, INPUT_VERB.SKIP]) {listActive = false;}
+        
         if instance_exists(oPlayer){oPlayer.hasControl = false}
-        if cursorPos < listLength-1 and down {cursorPos++;} else
-        if cursorPos > 0 and up {cursorPos--;};
+        if InputPressedMany([INPUT_VERB.CANCEL, INPUT_VERB.SKIP]) {closeList();}
+            
+        if down {
+            
+            if cursorPos < listLength-1 {cursorPos++} else cursorPos = 0;
+        }
+        else if up{
+            
+            if cursorPos > 0 {cursorPos--} else cursorPos = listLength-1;
+        }
         
         if InputPressed(INPUT_VERB.ACCEPT){
             transition(roomList[cursorPos],sqFadeOut,sqFadeIn,,,,,true)
-            listActive = false;
+            show_debug_message($"DEBUG ROOM MOVE: {room_get_name(roomList[cursorPos])}")
+            closeList();
         }    
-        
-    } else{
-        if instance_exists(oPlayer){oPlayer.hasControl = true}
     }
 }
 

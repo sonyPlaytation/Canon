@@ -64,17 +64,21 @@ noSpawnRooms =
 [
 	rMenu,
 	rBattle,
-    gspl_test_room
+    gspl_test_room,
+    prOffice
 ]
 
-roomList = asset_get_ids(asset_room);
-roomList = array_filter(roomList,function(element, index){
-    
-    return !array_contains(noSpawnRooms,element);
-})
-//RoomLoader.DataInitArray(roomList)
-cursorPos = 0;
-listLength = array_length(roomList);
-listActive = false;
-upFrames = 0;
-downFrames = 0;
+if DEV {
+    roomList = asset_get_ids(asset_room);
+    roomList = array_filter(roomList,function(element, index){
+        
+        return !array_contains(noSpawnRooms,element);
+    })
+    RoomLoader.DataInitArray(roomList)
+    screeny = RoomLoader.Screenshot(rOffice);
+    cursorPos = 0;
+    listLength = array_length(roomList);
+    listActive = false;
+    upFrames = 0;
+    downFrames = 0;
+}

@@ -11,6 +11,7 @@ function initFlavorText() {
         playerName : "???",
         cutscenes :[],
         enemiesActive : DEV,
+        canDash : true,
         
         // act flags in rough chronological order
         act1 : {

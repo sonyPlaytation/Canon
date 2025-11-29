@@ -6,7 +6,7 @@ playerSetup();
 
 global.cam.move(x,y)
 
-canDash = DEV;
+canDash = (FLAGS.canDash or DEV)
 canRun = true;
 colls = [oColl,oDashGap,pNPC,tiles];
 followers = [];

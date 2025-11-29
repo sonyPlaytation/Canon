@@ -4,6 +4,8 @@ if nowSaving
 	draw_sprite(sSaveIcon,0,GAME_W-24,GAME_H-24)
 }
 
+if !DEV exit;
+    
 if listActive {
     
     draw_set_color(c_black)
@@ -16,19 +18,22 @@ if listActive {
     
     for(var i = 0; i < listLength; i++) {
         
-        draw_set_text(fSmall,c_white,fa_left,fa_middle)
-     
         var drawX = (GAME_W/3) + 6;
         var drawy = 48 + (i*14);
         
+        draw_set_text(fSmall,c_black,fa_left,fa_middle)
+        draw_text(drawX-1,drawy+1,room_get_name(roomList[i]))
+        
         if cursorPos == i {
+            
+            draw_sprite(screeny,1,GAME_W * 0.66, GAME_H/3);
+            
             draw_sprite(sOptionArrow, 0, drawX, drawy)
             draw_set_color(c_yellow)
         } else{
             draw_set_color(c_dkgrey)
         }
         
-        draw_text(drawX,drawy,room_get_name(roomList[i]))
         draw_text(drawX,drawy,room_get_name(roomList[i]))
         
     }

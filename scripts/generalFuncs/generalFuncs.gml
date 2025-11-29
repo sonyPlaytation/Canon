@@ -119,8 +119,8 @@ function playerSetup(){
 	diagFix = false;
 	
 	// State Specific
-	dashCharge = 0;
 	dashFrames = 20;
+    dashCharge = dashFrames; // how 'Charged' is your dash. Kind of a shitty variable name tbh
 	dashReset = 8
 	if FLAGS.act1.chargeTackle {dashReset *= 2}
 	dashTime = dashReset;
