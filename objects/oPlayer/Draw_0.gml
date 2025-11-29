@@ -3,7 +3,7 @@
 // Inherit the parent event
 event_inherited();
 
-draw_sprite_ext(sprite_index,image_index,round(x),round(y-z),drawXScale,drawYScale,rot,color,alpha);
+//drawCharacter(sprite_index,image_index,x,y,z,drawXScale,drawYScale,rot,color,alpha,fogColor,fogAlpha);
 
 if global.debug
 {
@@ -22,3 +22,4 @@ if global.debug
 	
 	draw_line(x,y,x+xTo,y+yTo) 
 }
+

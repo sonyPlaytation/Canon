@@ -1,3 +1,3 @@
 
 
-loadGame(true)
+if DEV loadGame(true)

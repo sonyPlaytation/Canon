@@ -36,7 +36,7 @@ with pProtag
 
 font = fSmall;
 color = c_white;
-spd = global.textSpeed;
+spd = SETTINGS.other.textspeed;
 txtX = padding;
 txtY = padding/2;
 txtW = width - (padding * 2);

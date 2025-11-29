@@ -57,3 +57,10 @@ function end_temp_song(_fadeOut = 10, _fadeIn = oMusic.fadeInTime)
 		}	
 	}
 }
+
+function updatevolume()
+{
+    global.musVol = SETTINGS.sound.musicVolume * SETTINGS.sound.masterVolume * SETTINGS.sound.mute;
+    global.sfxVol = SETTINGS.sound.sfxVolume * SETTINGS.sound.masterVolume * SETTINGS.sound.mute;
+    global.voiceVol = SETTINGS.sound.voiceVolume * SETTINGS.sound.masterVolume * SETTINGS.sound.mute;
+}

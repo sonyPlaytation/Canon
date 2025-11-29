@@ -15,6 +15,23 @@ function parryFlash(_frame)
 	}
 }
 
+function drawCharacter(_sprite = sprite_index, _frame = image_index, _x = x, _y = y, _z = 0, _xscale = image_xscale , _yscale = image_yscale, _rot = image_angle, _color = image_blend, _alpha = image_alpha, _fogCol = undefined, _fogAlpha = 0){
+    
+    if drawShadow draw_character_shadow(sprite_width, sprite_height);
+    draw_sprite_ext(_sprite,_frame,round(_x),round(_y-_z),_xscale,_yscale,_rot,_color,_alpha);
+    
+    if _fogAlpha > 0
+    {
+    	draw_set_alpha(_fogAlpha)
+    	
+    	gpu_set_fog((_fogCol != undefined),_fogCol,0,1);
+    	draw_sprite_ext(_sprite,_frame,round(_x),round(_y-_z),_xscale,_yscale,_rot,_color,_alpha);
+    	gpu_set_fog(false,c_white,bbox_top,bbox_bottom);
+    	
+    	draw_set_alpha(1)
+    }
+}
+
 function flashScreen(_color = c_white, _sound = -1, _fadeRate = 0.1)
 {
 	if _sound != -1
@@ -105,7 +122,7 @@ function playerSetup(){
 	dashCharge = 0;
 	dashFrames = 20;
 	dashReset = 8
-	if FLAGS.chargeTackle {dashReset *= 2}
+	if FLAGS.act1.chargeTackle {dashReset *= 2}
 	dashTime = dashReset;
 	dashH = 0;
 	dashV = 0;

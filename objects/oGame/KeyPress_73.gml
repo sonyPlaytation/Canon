@@ -1,3 +1,3 @@
 
 
-global.inputDisplay = !global.inputDisplay
+SETTINGS.other.inputDisplay = !SETTINGS.other.inputDisplay

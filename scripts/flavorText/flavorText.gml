@@ -8,17 +8,19 @@ function initFlavorText() {
 
 	global.flags = 
 	{
-		cutscenes :[],
+        playerName : "???",
+        cutscenes :[],
         enemiesActive : DEV,
-		//permanent upgrades
-		chargeTackle : false,
-	
-		//running jokes
-		solitaire: 0,
-	
-		//scenario items
-		officeBathroomKey : false
+        
+        // act flags in rough chronological order
+        act1 : {
+            solitaire: 0,
+            officeBathroomKey : false,
+            lostAsFuck : 0,
+            chargeTackle : false,
+        },
 	}
+    
 	//dialogue
 	//textSoundLUT()
 	//dialogueFuncs
@@ -29,16 +31,25 @@ function initFlavorText() {
 	global.topics[$ "lockedGeneric"] = [TEXT("//It's "LOCKED".")]
 	global.topics[$ "unlockedGeneric"] = [TEXT("//You unlock the door.")]
 
+    global.topics[$ "voiceTest"] = [
+        SPEAKER(FLAGS.playerName,sPortNils),
+        TEXT("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+        SPEAKER("Charlie",sPortChar),
+        TEXT("Borem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+        SPEAKER("Matthew",sPortMatt),
+        TEXT("Gorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+        SPEAKER("Gwen",sPortGwen),   
+        TEXT("Snorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."), 
+    ]
+    
 	global.topics[$ "saveFlies"] = 
 	[
 		TEXT("//A group of smelly flies buzz around you, each one chasing anothers smell."nl"//They are caught in an unending ouroboruos of stench..."),
 		GOTO("save")
-	
 	]
 
 	global.topics[$ "save"] = 
 	[
-
 		CHOICE("//Would you like to save your progress?",
 			OPTION("Yes","yesToSave"),
 			OPTION("No",""))
@@ -68,14 +79,14 @@ function initFlavorText() {
 				TEXT("//The guy closest to the camera is a middle aged man with a very trendy old man moustache. He looks to be about 60."),
 				TEXT("//He's in the middle of stretching his arms to either side of him, but it's an intensely awkward gesture."nl"//He looks like he was probably wasted, I'd say 81% chance."),
 				TEXT("//Everyone around him seems uncomfortable."),
-				SPEAKER(global.playerName,sPortNils),
+				SPEAKER(FLAGS.playerName,sPortNils),
 				TEXT("Damn, they look like they're having fun..."),
 			]
 	
 			global.topics[$ "choiceOfficePhotoNo"] = 
 			[
 				TEXT("//The photo likely depicts something very important..."nl"//I guess it doesn't interest you."),
-				SPEAKER(global.playerName,sPortNils),
+				SPEAKER(FLAGS.playerName,sPortNils),
 				TEXT("Booooriiiiing!"),
 			]
 
@@ -90,7 +101,7 @@ function initFlavorText() {
 			global.topics[$ "choice desk drawers"] = 
 			[
 				TEXT("//Despite your wimpiest tug, the desks drawers will not budge. "),
-				SPEAKER(global.playerName,sPortNils,1),
+				SPEAKER(FLAGS.playerName,sPortNils,1),
 				TEXT("I guess its [c_red]LOCKED[c_white]!\n[portrait,sPortNils,2]I bet something really useful or cool is in there..."),
 				SPEAKER(),
 				TEXT("//The desks drawers are "JAMMED", not "LOCKED"."nl"//This is universal shorthand for 'Give up'."),
@@ -100,9 +111,9 @@ function initFlavorText() {
 			[
 				TEXT("//The desktop is made of a very dark brown wood."),
 				TEXT("//You know Jack Shit about wood so that's the most you can discern."),
-				SPEAKER(global.playerName,sPortNils),
+				SPEAKER(FLAGS.playerName,sPortNils),
 				TEXT("The perfect arena for a blistering round of solitaire!"),
-				SPEAKER(global.playerName,sPortNils,2),
+				SPEAKER(FLAGS.playerName,sPortNils,2),
 				TEXT("Not sure why I remember what solitaire is though..."),
 				SET(FLAGS,"solitaire", 1)
 			]
@@ -110,7 +121,7 @@ function initFlavorText() {
 			global.topics[$ "choice desk nothing"] = 
 			[
 				TEXT("//You check nothing, I guess."),
-				SPEAKER(global.playerName,sPortNils),
+				SPEAKER(FLAGS.playerName,sPortNils),
 				TEXT("Stupid nerd desk! I don't even care about your drawer contents or anything!")
 			]
 
@@ -124,24 +135,24 @@ function initFlavorText() {
 
 		global.topics[$ "officeFilingCabinet Choice1"] = 
 		[
-			SPEAKER(global.playerName,sPortNils,2),
+			SPEAKER(FLAGS.playerName,sPortNils,2),
 			TEXT("Perhaps I am a sick pervert, what do I know?"),
-			SPEAKER(global.playerName,sPortNils,0),
+			SPEAKER(FLAGS.playerName,sPortNils,0),
 			TEXT("Time to yank this bad boy wide open!"),
 			SPEAKER(),
 			TEXT("//You begin to yank it, revealing a plethora of manilla folders grouped by year."nl"//The years range from 2085 to 2093, the last of which is comparably much lighter."),
 			TEXT("//Your ass is NOT reading these."),
-			SPEAKER(global.playerName,sPortNils,1),
+			SPEAKER(FLAGS.playerName,sPortNils,1),
 			TEXT("2093... that means..."),
-			SPEAKER(global.playerName,sPortNils,0),
+			SPEAKER(FLAGS.playerName,sPortNils,0),
 			TEXT("HOLY CRAP I'M IN THE FUTURE!!!"),
-			SPEAKER(global.playerName,sPortNils,1),
+			SPEAKER(FLAGS.playerName,sPortNils,1),
 			TEXT("Or actually..."nl"No that doesn't really tell me anything. Damn!"),
 		]
 
 		global.topics[$ "officeFilingCabinet Choice2"] = 
 		[
-			SPEAKER(global.playerName,sPortNils),
+			SPEAKER(FLAGS.playerName,sPortNils),
 			TEXT("Nice try, idiot! "nl"These Sexy Secrets are to be kept between a cabinet and its zero to one hundred manilla folder wives!"),
 			SPEAKER(),
 			TEXT("//Your will-power is truly outstanding."nl"//These hallowed aluminum handles remain un-yanked... for now...")
@@ -190,13 +201,13 @@ function initFlavorText() {
 	
 		global.topics[$ "cubicleSolitaire"] = 
 		[
-			SPEAKER(global.playerName,sPortNils),
+			SPEAKER(FLAGS.playerName,sPortNils),
 			TEXT("[shake]I KNEW IT![/shake] How deep does this Solitaire Conspiracy run..."),
 		]
 	
 		global.topics[$ "cubicle1Nothing"] = 
 		[
-			SPEAKER(global.playerName,sPortNils),
+			SPEAKER(FLAGS.playerName,sPortNils),
 			TEXT("Who cares..."),
 		]
 	
@@ -204,13 +215,13 @@ function initFlavorText() {
 		[
 			TEXT("//This cubicle is littered with personal adornments."),
 			TEXT("//A poster reads:" nl "'WARNING[c_red]![c_white] Do not talk to programmer until they've had there coffee! [sLaughingCryingEmoji]'"),
-			SPEAKER(global.playerName,sPortNils,1),
+			SPEAKER(FLAGS.playerName,sPortNils,1),
 			TEXT("Ugh, lame!"),
 			SPEAKER(),
 			TEXT("//That's not all!"),
 			TEXT("//Their coffee mug reads:" nl "'WARNING[c_red]![c_white] Do not talk to programmer until they've had there coffee! [sLaughingCryingEmoji]'"),
 			TEXT("//Both the poster and the mug have the exact same typo."),
-			SPEAKER(global.playerName,sPortNils,3),
+			SPEAKER(FLAGS.playerName,sPortNils,3),
 			TEXT("Jesus man, was it really THAT funny??"),
 		]
 	#endregion

@@ -8,8 +8,8 @@
   "name":"oCharlie",
   "overriddenProperties":[],
   "parent":{
-    "name":"!Special",
-    "path":"folders/Overworld Entities/Objects/!Special.yy",
+    "name":"!Party",
+    "path":"folders/Overworld Entities/!Party.yy",
   },
   "parentObjectId":{
     "name":"pFollower",

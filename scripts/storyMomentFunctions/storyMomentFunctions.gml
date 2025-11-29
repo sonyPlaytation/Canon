@@ -5,7 +5,7 @@
 function lostInDesert(){
     if instance_exists(oPlayer)
     {
-        if oGame.lostAsFuck >= 5{
+        if FLAGS.act1.lostAsFuck >= 5{
             audio_stop_sound(global.songPlaying);
             oPlayer.walksp = 0.5;
             
@@ -20,8 +20,8 @@ function lostInDesert(){
             
         } else {
             global.canPause = false;
-            global.musicVolume -= 0.15
-        	oGame.lostAsFuck++; 
+            SETTINGS.sound.musicVolume -= 0.15
+        	FLAGS.act1.lostAsFuck++; 
             oPlayer.canDash = false; 
             oPlayer.canRun = false; 
             oPlayer.walksp -= 0.1;

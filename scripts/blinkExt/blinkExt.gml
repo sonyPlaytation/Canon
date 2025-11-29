@@ -1,9 +1,9 @@
+
 ///@args variable
 ///@args variableString
 ///@args endVar
 ///@args duration
 ///@args [pulseFactor]
-
 function blinkExt()
 {
 	var _id = id;

@@ -328,7 +328,7 @@ function initCharacters()
     global.characters[CHAR.NILS] =	
     {
         // BASIC
-        name: global.playerName,
+        name: FLAGS.playerName,
         job : "Fool",
 
         // STATS

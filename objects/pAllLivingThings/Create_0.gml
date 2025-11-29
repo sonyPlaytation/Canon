@@ -2,6 +2,12 @@
 
 selfCenter = y - (sprite_height/2);
 
+z = 0;
+drawXScale = 1;
+drawYScale = 1;
+rot = 0;
+color = c_white;
+alpha = 1;
 fogColor = c_white;
 fogAlpha = 0;
 

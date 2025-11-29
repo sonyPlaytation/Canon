@@ -1,7 +1,7 @@
 /// @
 
 
-if global.inputDisplay and room != rMenu
+if SETTINGS.other.inputDisplay and room != rMenu
 {
 	alpha = lerp(alpha,alphaTarg,0.1);
 	drawYOffset = lerp(drawYOffset,drawYOffsetTarg,0.1);

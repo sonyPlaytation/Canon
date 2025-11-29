@@ -1,3 +1,3 @@
 
 
-saveGame()
+if DEV saveGame()
