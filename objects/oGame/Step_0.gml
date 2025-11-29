@@ -18,3 +18,12 @@ if window_mouse_get_x() > (window_get_width()-100) and window_mouse_get_y() < 10
 
 //show_debug_message(room_get_name(room))
 
+
+if InputPressed(INPUT_VERB.SKIP) and global.canPause and !instance_exists(oPauseMenu) and !instance_exists(oTextBox)
+{
+	if !instance_exists(oPauseMenu)
+	{
+		InputVerbConsume(INPUT_VERB.SKIP)
+		instance_create_depth(global.cam.get_x(),global.cam.get_y(),-9999,oPauseMenu)	
+	}
+}

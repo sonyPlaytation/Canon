@@ -1,5 +1,6 @@
 #macro TEXT			new textAction
 #macro SPEAKER		new speakerAction
+#macro PARTYSPEAK	new speakersAddParty
 #macro CHOICE		new choiceAction
 #macro OPTION		new optionAction
 #macro GOTO			new gotoAction
@@ -167,6 +168,46 @@
 				}
 			} else textbox.activeSpeaker = -1;
 		
+			textbox.name = name;
+			textbox.sound = sound;
+		
+			textbox.next();
+		}
+	}
+
+    function speakersAddParty( _side = PORT_SIDE.L ) : dialogueAction() constructor
+	{
+        name = "Nils"
+		side = _side;
+		sound = textSoundLUT(name);
+        ports = 
+        [
+            sPortNils,
+            sPortChar,
+            sPortMatt
+        ]
+			
+		act = function(textbox)
+		{
+			textbox.activeSpeaker = side;
+			textbox.speakersVisible = true;
+		
+			entry = {}
+
+            for (var i = array_length(PARTY)-1; i > 0 ; i--) {
+            	
+                var _name = PARTY[i].name
+                entry[$ _name] = 
+                {
+                    sprite : ports[i],
+                    emotion : 0,
+                    alpha : 0,
+                    y : TILE_SIZE
+                }
+                
+                array_insert(textbox.speaker[side],0,entry[$ _name]);
+            }
+
 			textbox.name = name;
 			textbox.sound = sound;
 		

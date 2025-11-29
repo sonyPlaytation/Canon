@@ -1,1 +1,1 @@
-draw_text(100,100,perform);
+draw_text(100,100,sState.get_current_state());

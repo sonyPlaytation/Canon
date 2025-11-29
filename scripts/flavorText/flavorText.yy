@@ -6,7 +6,7 @@
   "name":"flavorText",
   "parent":{
     "name":"Dialogues",
-    "path":"folders/Scripts/Dialogues.yy",
+    "path":"folders/Narrative/Dialogues.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

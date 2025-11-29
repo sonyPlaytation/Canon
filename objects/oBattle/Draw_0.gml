@@ -51,8 +51,9 @@ for (var i = 0; i < array_length(unitRenderOrder); i++)
 	}
 }
 
-if sState.get_current_state() == "victory" 
-exit;
+draw_text(x,y,"PENIS")
+
+if sState.get_current_state() == "victory" {exit;}
 
 // the cursor
 if cursor.active 
@@ -85,7 +86,8 @@ if cursor.active
 if global.debug
 {
 	draw_text(GAME_W/3,GAME_H/3, normalsTimer)	
-	draw_text(100,100,sState.get_current_state())
+	
 }
+
 
 //draw_text(_x +100,_y +100,enemyMove)

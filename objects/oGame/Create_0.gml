@@ -8,6 +8,10 @@ roomsTilDoom = 3;
 roomsBeenThrough = []
 current_frame = 0
 
+global.piratedCopy = true;
+
+if "pirated" != true {global.piratedCopy = false;}
+
 global.inputDisplay = true;
 global.debug = false;
 

@@ -12,5 +12,4 @@ perform = false;
 bgx[0] += 1;
 bgx[2] += 0.5
 
-
-
+show_debug_message(sState.get_current_state())

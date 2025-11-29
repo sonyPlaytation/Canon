@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Units",
-    "path":"folders/Objects/Battles/Units.yy",
+    "path":"folders/Battles/Units.yy",
   },
   "parentObjectId":{
     "name":"pBattleUnit",

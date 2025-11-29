@@ -88,7 +88,7 @@ global.items =
 			} 
 			else 
 			{
-				battleChangeHP(oPlayer,heal,0)
+				overworldChangeHP(oPlayer,heal,0)
 				with oPauseMenu {destroyMenu = true}
 			}
 			

@@ -14,7 +14,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"UI",
-    "path":"folders/Objects/Battles/UI.yy",
+    "path":"folders/Battles/UI.yy",
   },
   "parentObjectId":null,
   "persistent":false,
