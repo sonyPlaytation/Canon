@@ -51,7 +51,7 @@ for (var i = 0; i < array_length(unitRenderOrder); i++)
 	}
 }
 
-draw_text(x,y,"PENIS")
+//draw_text(x,y,"PENIS")
 
 if sState.get_current_state() == "victory" {exit;}
 

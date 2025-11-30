@@ -25,8 +25,6 @@ currKey = "";
 
 numFont = global.fInputNum;
 
-//TODO: make spritefont for input reader frame counter
-
 comboResetTime = 24;
 
 inputsToCheck = 

@@ -32,18 +32,18 @@ if DEV{
         if InputPressedMany([INPUT_VERB.CANCEL, INPUT_VERB.SKIP]) {closeList();}
             
         if down {
-            
+            sprite_delete(screeny)
             if cursorPos < listLength-1 {cursorPos++} else cursorPos = 0;
         }
         else if up{
-            
+            sprite_delete(screeny)
             if cursorPos > 0 {cursorPos--} else cursorPos = listLength-1;
         }
         
         if InputPressed(INPUT_VERB.ACCEPT){
+            show_debug_message($"DEBUG ROOM MOVE: {room_get_name(roomList[cursorPos])}")
             InputVerbConsume(INPUT_VERB.ACTION)
             transition(roomList[cursorPos],sqFadeOut,sqFadeIn,,,,,true)
-            show_debug_message($"DEBUG ROOM MOVE: {room_get_name(roomList[cursorPos])}")
             closeList();
         }    
     }
@@ -65,7 +65,7 @@ if window_mouse_get_x() > (window_get_width()-100) and window_mouse_get_y() < 10
 
 //show_debug_message(room_get_name(room))
 
-if InputPressed(INPUT_VERB.SKIP) and global.canPause and !instance_exists(oPauseMenu) and !instance_exists(oTextBox)
+if !array_contains(noSpawnRooms,room) and InputPressed(INPUT_VERB.SKIP) and global.canPause and !instance_exists(oPauseMenu) and !instance_exists(oTextBox)
 {
 	if !instance_exists(oPauseMenu)
 	{

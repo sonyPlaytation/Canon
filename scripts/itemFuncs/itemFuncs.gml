@@ -63,6 +63,37 @@ global.items =
 			}
 		}
 	},
+	
+	armorTest:
+	{
+		category : ITEM_TYPE.ARMOR,
+		usedBy : [CHAR.NILS], 
+		sprite : sHeadNils,
+		name: "ARMOR",
+		desc: "INVENTORY DESCRIPTION",
+		stats : 
+        {
+            lvl : 1, // level requirement
+            EXP : 0, // passive exp bonus 
+            hp: 0, // passive extra hp gained
+            hpMax: 50, // passive extra max health
+			// ex equivalents are in int stat (see below)
+        
+			// Stats below are self explanatory
+            str: 0,
+            def: 4,
+            exStr: 0,
+            exDef: 1,
+            int: 0, // intelligence governs the amount of EX you have, and how fast your meter builds
+            spd: 5, // speed is turn order and also move timer bonus time
+            cha: 0,
+            luk: 5
+        },
+		atkTypes: [],
+		defTypes: [MOVE_TYPE.PHYS],
+		tags:[],
+		func : equipArmor
+	},
 		
 	burger:
 	{
@@ -89,7 +120,8 @@ global.items =
 			else 
 			{
 				overworldChangeHP(oPlayer,heal,0)
-				with oPauseMenu {destroyMenu = true}
+				//with oPauseMenu {destroyMenu = true}
+				//TODO: figure out how to refresh item lists in pause menu
 			}
 			
 			var me = array_get_index(global.inv[category],self)
@@ -108,6 +140,20 @@ struct_foreach(global.items, function(_key, _val){
   _val[$ "key"] = _key  
   if _val[$ "category"] == ITEM_TYPE.CONSUMABLE {_val[$ "subMenu"] = "Items"}
 })
+
+function equipArmor(user, targets, source = -1)
+{
+	var me = global.items[$ self.key ]
+	if array_contains(me.usedBy,array_get_index(global.characters,user)){
+		
+		if user.equips.armor != noone{
+			addItem(global.items[$ user.equips.armor ]);
+			user.equips.armor = noone;
+		}
+		user.equips.armor = self.key;
+		shortMessage($"//Equipped [c_red]{me.label}!",TXTPOS.MID)
+	}
+}
 
 function openChest(_chest)
 {
@@ -142,7 +188,7 @@ function addItem(_item, _showMsg = true)
 		item = _item
 		var itemKey = item.key;
 	
-		array_push(global.inv[_item.category],item);
+		array_push(global.inv[_item.category],itemKey);
 	
 		if _showMsg { SFX snCaveStoryGetItem; shortMessage($"//Found a [c_red]{_item.name}[c_white]!",TXTPOS.MID) }
 		show_debug_message($"Added Item: {_item.name} to Inventory")

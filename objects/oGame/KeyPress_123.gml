@@ -1,7 +1,6 @@
 /// @
 
-if DEV
-{
+if DEV{
 	global.debug = !global.debug
 
 	if global.debug 

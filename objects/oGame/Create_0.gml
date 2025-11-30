@@ -11,6 +11,7 @@ global.settings = {
     
     video : {
         fullscreen : false,
+        scale : 3,
     },
     
     sound : {
@@ -26,8 +27,8 @@ global.settings = {
         inputDisplay : true,
         dashCooldown : true
     },
-    
-}
+}	
+loadSettings()
 
 global.serious = true;
 
@@ -45,7 +46,6 @@ global.piratedCopy = true;
 if "pirated" != true {global.piratedCopy = false;}
 
 initDialogue()
-initFlavorText()
 initCharacters()
 
 global.fightEnemies = [global.enemies.sand];
@@ -78,11 +78,11 @@ if DEV {
         return !array_contains(noSpawnRooms,element);
     })
     RoomLoader.DataInitArray(roomList)
-    //screeny = RoomLoader.Screenshot(rOffice);
     cursorPos = 0;
     listLength = array_length(roomList);
     listActive = false;
     upFrames = 0;
     downFrames = 0;
     menuXoffset = 150;
+    screeny = noone;
 }

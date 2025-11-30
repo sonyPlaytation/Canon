@@ -116,7 +116,6 @@ function battleStates(){
 					{ currentUser.image_index = 0; currentUser.sprite_index = currentUser.sprites[$ anim ];  }
 				}
 				
-                //TODO: fix enemies using non-normals spells getting stuck in performAction
 				if currentUser.acting 
 				{
                     if !perform exit;

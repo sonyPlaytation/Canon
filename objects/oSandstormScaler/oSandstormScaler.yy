@@ -12,7 +12,10 @@
     "name":"System",
     "path":"folders/Objects/System.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"pDebugDraw",
+    "path":"objects/pDebugDraw/pDebugDraw.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

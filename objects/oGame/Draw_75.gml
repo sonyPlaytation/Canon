@@ -8,6 +8,13 @@ if !DEV exit;
     
 if listActive {
     
+    if sprite_exists(screeny){
+        
+        var w = sprite_get_width(screeny)
+        var h = sprite_get_height(screeny)
+        draw_sprite_part(screeny,0,0,0,500,500,(GAME_W*0.66) - w/2, (GAME_H/2) - h/2);
+    } 
+    
     draw_set_color(c_black)
     draw_set_alpha(0.85)
     draw_rectangle((GAME_W/3)-menuXoffset,0,(GAME_W * 0.66)-menuXoffset,GAME_H,false)
@@ -31,6 +38,8 @@ if listActive {
         
         if cursorPos == i {
             
+            if !sprite_exists(screeny) {screeny = RoomLoader.Screenshot(roomList[i],0.5,0.5,,0.25,0.25);}
+            
             // tags
             var tags = asset_get_tags(thisroom)
             array_sort(tags,true)
@@ -50,9 +59,8 @@ if listActive {
                 draw_set_color(c_grey)
                 draw_text(tagsX-6,48 + ((j+1)*14),tags[j])
             }
-            //draw_sprite(screeny,1,GAME_W * 0.66, GAME_H/3);
             
-            draw_sprite(sOptionArrow, 0, drawX, drawy)
+            draw_sprite(sInputArrows, 0, drawX-6, drawy+1)
             draw_set_color(c_yellow)
         } else{
             draw_set_color(c_dkgrey)
@@ -63,4 +71,5 @@ if listActive {
         draw_text(drawX,drawy,room_get_name(thisroom))
         
     }
+    
 }

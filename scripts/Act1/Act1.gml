@@ -3,10 +3,8 @@
 //textSoundLUT()
 global.topics = {};
 
-function initDialogue()
+function initDialogueAct1()
 {
-    
-    initFlavorText()
     
 	global.topics[$ "placeholder"] = 
 	[

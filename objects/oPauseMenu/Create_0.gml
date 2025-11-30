@@ -1,5 +1,6 @@
 /// @
 global.pauseEvery = true;
+loadSettings()
 oPlayer.JustHitEnemyButCanStillMoveALittle = 0;
 oInputReader.alphaTarg = 0;
 depth = -9999
@@ -33,6 +34,20 @@ options = {}
 
 alpha = 0;
 alphaTarg = 0.5;
+
+down = InputPressed(INPUT_VERB.DOWN);
+up = InputPressed(INPUT_VERB.UP);
+left = InputPressed(INPUT_VERB.LEFT);
+right = InputPressed(INPUT_VERB.RIGHT);
+accept = InputPressed(INPUT_VERB.ACCEPT);
+
+vert = down - up;
+hort = right - left;
+
+downFrames = 0;
+upFrames = 0;
+leftFrames = 0;
+rightFrames = 0;
 
 goBack = 
 {
@@ -219,13 +234,175 @@ options[$ "System"] =
 
 options[$ "Settings"] =
 [
-	
-
+    {
+		allowed : true,
+		type : "submenu",
+		label : "Audio",
+		func : enterSubmenu
+	},
+    
 	{
 		allowed : true,
 		type : "submenu",
+		label : "Video",
+		func : enterSubmenu
+	},
+    
+    {
+		allowed : true,
+		type : "submenu",
+		label : "Other",
+		func : enterSubmenu
+	},
+
+	variable_clone(goBack)
+]
+
+options[$ "Audio"] =
+[
+    {
+		allowed : true,
+		type : "toggle",
 		label : "Toggle Mute",
-		func : function(){ global.mute = !global.mute }
+        value : global.settings.sound.mute,
+		func : function(){ 
+            global.settings.sound.mute = !global.settings.sound.mute; 
+            value = global.settings.sound.mute 
+        },
+        draw : toggle
+	},
+    
+	{
+		allowed : true,
+		type : "slider",
+		label : "Master Volume",
+        value : global.settings.sound.masterVolume,
+		func : function(){ 
+            value = clamp(global.settings.sound.masterVolume+(other.hort/10),0,1)
+            global.settings.sound.masterVolume = value;
+        },
+        scale : 10,
+        draw : slider
+	},
+    
+    {
+		allowed : true,
+		type : "slider",
+		label : "Music Volume",
+        value : global.settings.sound.musicVolume,
+		func : function(){ 
+            value = clamp(global.settings.sound.musicVolume+(other.hort/10),0,1)
+            global.settings.sound.musicVolume = value;
+        },
+        scale : 10,
+        draw : slider
+	},
+    
+    {
+		allowed : true,
+		type : "slider",
+		label : "SFX Volume",
+        value : global.settings.sound.sfxVolume,
+		func : function(){ 
+            value = clamp(global.settings.sound.sfxVolume+(other.hort/10),0,1)
+            global.settings.sound.sfxVolume = value;
+        },
+        scale : 10,
+        draw : slider
+	},
+    
+    {
+		allowed : true,
+		type : "slider",
+		label : "Voice Volume",
+        value : global.settings.sound.voiceVolume,
+		func : function(){ 
+            value = clamp(global.settings.sound.voiceVolume+(other.hort/10),0,1)
+            global.settings.sound.voiceVolume = value;
+        },
+        scale : 10,
+        draw : slider
+	},
+
+	variable_clone(goBack)
+]
+
+options[$ "Video"] =
+[
+    {
+		allowed : true,
+		type : "toggle",
+		label : "Fullscreen",
+        value : global.window_mode == STANNCAM_WINDOW_MODE.BORDERLESS,
+		func : function(){ 
+            
+            SETTINGS.video.fullscreen = toggleFullscreen(); 
+            value = SETTINGS.video.fullscreen
+            other.options[$ "Video"][1].allowed = !SETTINGS.video.fullscreen
+        },
+        draw : toggle
+	},
+    
+    {
+		allowed : !SETTINGS.video.fullscreen,
+		type : "slider",
+		label : "Int Scale",
+        value : stanncam_get_res_scale_x(),
+		func : function(){ 
+            
+            SETTINGS.video.scale = clamp(SETTINGS.video.scale+(other.hort),1,6)
+            value = SETTINGS.video.scale
+            if other.hort != 0 {
+                stanncam_set_resolution(GAME_W*SETTINGS.video.scale,GAME_H*SETTINGS.video.scale);
+                window_center()
+            }
+        },
+        scale : 1,
+        draw : slider
+	},
+
+	variable_clone(goBack)
+]
+
+options[$ "Other"] =
+[
+    {
+		allowed : true,
+		type : "slider",
+		label : "Text Speed",
+        value : SETTINGS.other.textspeed,
+		func : function(){ 
+            value = clamp(SETTINGS.other.textspeed+(other.hort/10),0,1)
+            SETTINGS.other.textspeed = value;
+        },
+        scale : 10,
+        draw : slider
+	},
+    
+    {
+		allowed : true,
+		type : "toggle",
+		label : "Input Display",
+        value : SETTINGS.other.inputDisplay,
+		func : function(){ 
+            
+            SETTINGS.other.inputDisplay = !SETTINGS.other.inputDisplay; 
+            value = SETTINGS.other.inputDisplay
+        },
+        draw : toggle
+	},
+    
+    {
+		allowed : true,
+		type : "toggle",
+		label : "Dash Alert",
+        value : SETTINGS.other.dashCooldown,
+		func : function(){ 
+            
+            SETTINGS.other.dashCooldown = !SETTINGS.other.dashCooldown; 
+            value = SETTINGS.other.dashCooldown
+        },
+        draw : toggle
 	},
 
 	variable_clone(goBack)
@@ -246,12 +423,14 @@ function createItemMenu(invType = itemType, key = label)
 	other.options[$ key] = items
 	array_foreach(global.inv[invType],function(element, index)
 	{
+		var theItem = global.items[$ element];
 		var _item =
 		{
+			key : element,
 			allowed : true,
 			type : "item",
-			label : element.name,
-			func : element.func // TODO: change pause menu to tak references to structs
+			label : theItem.name,
+			func : theItem.func // TODO: change pause menu to tak references to structs
 		}
 				
 		array_push(other.items,_item)
@@ -276,7 +455,49 @@ function enterSubmenu(_menuName = label)
 
 function doGoBack()
 {
+    saveSettings()
 	var _struct = array_pop(other.prevMenus)
 	other.currentMenu = _struct.menu;
 	other.hover = _struct.hover;
+}
+
+function toggle(_x, _y, _active = false, _value = value){
+    
+    var xx = _x + (TILE_SIZE*5);
+    var yy = _y;
+    
+    draw_text(xx,yy,_value)
+    
+    updatevolume()
+}
+
+function slider(_x, _y, active = false, _value = value, _scale = scale){
+    
+    draw_set_halign(fa_middle)
+    
+    var xx = _x + (TILE_SIZE*5);
+    var yy = _y;
+    var space = TILE_SIZE*0.75
+    var val = round(_value*_scale)/_scale
+    
+    var col = c_dkgrey
+    if active {col = c_white}
+    
+    // backing box
+    draw_set_color(col)
+    draw_sprite_ext(sBattleEXCost,active,xx+space-10,yy-8,1,1,0,col,1)
+    draw_sprite_ext(sSettingsArrow,0,xx - (3*active*other.left),yy+1,1,1,0,col,1)
+    draw_sprite_ext(sSettingsArrow,1,xx+(space*2) + (3*active*other.right),yy+1,1,1,0,col,1)
+    
+    // text
+    draw_set_color(c_black)
+    draw_text(xx+space-1,yy,floor(val*_scale))
+    draw_text(xx+space,yy+1,floor(val*_scale))
+    draw_text(xx+space-1,yy+1,floor(val*_scale))
+    
+    if active {col = c_highlight} else col = c_white
+    draw_set_color(col)
+    draw_text(xx+space,yy,val*_scale)
+    
+    updatevolume()
 }

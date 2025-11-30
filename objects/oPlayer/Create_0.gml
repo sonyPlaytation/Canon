@@ -20,7 +20,6 @@ partType = part_type_create();
 partDashSys = part_system_create(partDash);
 partDashEmit = part_emitter_create(partDashSys);
 
-
 enum FACING
 {
 	RIGHT	= 0,
@@ -46,9 +45,12 @@ stateFree = function()
         fogAlpha = approach(fogAlpha,0,0.15);
         if InputPressed(INPUT_VERB.DASH)
         {
-            fogAlpha = 1;
-            blinkExt(fogAlpha, "fogAlpha", 0, dashFrames)
-            SFX sn3sDash;
+			if FLAGS.act1.chargeTackle{
+				fogAlpha = 1;
+	            blinkExt(fogAlpha, "fogAlpha", 0, dashFrames)
+	            SFX sn3sDash;
+			}
+            
             dashTime = dashReset;
             dashSpd = 6;
             dashCharge = 0
@@ -58,7 +60,7 @@ stateFree = function()
 	} else if dashCharge < dashFrames 
     {
         dashCharge++
-        if dashCharge == dashFrames {SFX sn3sRespawn; fogColor = c_yellow; fogAlpha = 0.25;}
+        if SETTINGS.other.dashCooldown and dashCharge == dashFrames {SFX sn3sRespawn; fogColor = c_yellow; fogAlpha = 0.25;}
             
     }
 	
@@ -178,8 +180,10 @@ groundMove = function()
 
 stateDash = function()
 {
-    fogColor = c_yellow
-    if TIME mod 2 == 0 {part_particles_burst(partDashSys,x,y,partDash);} 
+	if FLAGS.act1.chargeTackle{
+	    fogColor = c_yellow
+	    if TIME mod 2 == 0 {part_particles_burst(partDashSys,x,y,partDash);} 
+	}
 	colls = [oColl,pNPC,tiles];
 	
 	var dx = lengthdir_x(TILE_SIZE*5.5,dir);

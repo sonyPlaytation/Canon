@@ -1,6 +1,6 @@
 /// @description
 
-var _currPitch = audio_sound_get_pitch(songInstance);
+if songInstance != noone { var _currPitch = audio_sound_get_pitch(songInstance); }
 
 //if instance_exists(oDead) or instance_exists(oAreYouSure)
 //{

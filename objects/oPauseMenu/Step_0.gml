@@ -1,23 +1,45 @@
 /// @
 
+down = InputPressed(INPUT_VERB.DOWN);
+up = InputPressed(INPUT_VERB.UP);
+left = InputPressed(INPUT_VERB.LEFT);
+right = InputPressed(INPUT_VERB.RIGHT);
+accept = InputPressed(INPUT_VERB.ACCEPT);
+
+if InputCheck(INPUT_VERB.DOWN) {downFrames++} else downFrames = 0;
+if InputCheck(INPUT_VERB.UP) {upFrames++} else upFrames = 0;
+if InputCheck(INPUT_VERB.LEFT) {leftFrames++} else leftFrames = 0;
+if InputCheck(INPUT_VERB.RIGHT) {rightFrames++} else rightFrames = 0;
+
+var frameTarg = 20;
+if downFrames == frameTarg {down = true; downFrames = frameTarg*0.75}
+if upFrames == frameTarg {up = true; upFrames = frameTarg*0.75}
+if leftFrames == frameTarg {left = true; leftFrames = frameTarg*0.75}
+if rightFrames == frameTarg {right = true; rightFrames = frameTarg*0.75}
+
+vert = down - up;
+hort = right - left;
+
 x = lerp(x,xTarg,lerpSpd);
 
 if active 
 {
 	//if InputPressed(INPUT_VERB.DOWN) or InputPressed(INPUT_VERB.UP){SFX sNarr}
 	
-	hover += InputPressed(INPUT_VERB.DOWN) - InputPressed(INPUT_VERB.UP);
-	if hover > array_length(options[$ currentMenu])-1 {hover = 0;}
-	if (hover < 0 ) { hover = array_length(options[$ currentMenu])-1; }
+    var item = options[$ currentMenu]
+    
+	hover += vert;
+	if hover > array_length(item)-1 {hover = 0;}
+	if (hover < 0 ) { hover = array_length(item)-1; }
 	
-	if InputPressed(INPUT_VERB.ACCEPT) and options[$ currentMenu] != undefined
+	if (accept or item[hover].type == "slider") and item != undefined
 	{
-		if options[$ currentMenu][hover].allowed
+		if item[hover].allowed
 		{
-			if options[$ currentMenu][hover].func != undefined
+			if item[hover].func != undefined
 			{
-				show_debug_message("Selected Option: "+options[$ currentMenu][hover].label)
-				options[$ currentMenu][hover].func();
+				show_debug_message("Selected Option: "+item[hover].label)
+				item[hover].func();
 				InputVerbConsume(INPUT_VERB.ACCEPT);
 			}
 		}

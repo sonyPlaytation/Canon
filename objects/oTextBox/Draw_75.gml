@@ -1,8 +1,6 @@
 /// @
 
 if onHold or !drawNow {exit}
-    
-
 
 if yMode == TXTPOS.BTM 
 {
@@ -10,7 +8,6 @@ if yMode == TXTPOS.BTM
 	draw_sprite_ext(sTextBgGradient,0,0,GAME_H,GAME_W,1,0,c_white,alpha/2)
 	draw_set_alpha(alpha)
 }
-
 
 var xscale;
 var portcolor = c_dkgrey;
@@ -88,7 +85,7 @@ if (yMode == TXTPOS.BTM and alpha == alphaTarg) or yMode != TXTPOS.BTM
 {
 	draw_set_font(font);
 	var nameY = y - 24
-	if name != "" and activeSpeaker != -1
+	if string_trim(name) != "" and activeSpeaker != -1
 	{
 		var _txtXFinal;
 		switch (activeSpeaker)

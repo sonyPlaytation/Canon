@@ -56,7 +56,7 @@ function saveGame()
 	{
 		for (var j = 0; j < array_length(global.inv[i]); j++)
 		{
-			array_push( mainStruct.inv[i], global.inv[i][j].key)
+			array_push( mainStruct.inv[i], global.inv[i][j])
 		}
 	}
 	
@@ -67,17 +67,18 @@ function saveGame()
 	}
 	
 	var _json = json_stringify(mainStruct, DEV);
-	SaveString(_json, SAVEFILE);
+	SaveString(_json, SAVEFILE,true);
 }
 
-function SaveString( _str, _filename)
+function SaveString( _str, _filename, _message = false)
 {
 	var _buffer = buffer_create(string_byte_length(_str)+1,buffer_fixed,1);
 	buffer_write(_buffer, buffer_string, _str);
 	buffer_save(_buffer, _filename);
 	show_debug_message("Successfully wrote file: "+_filename);
 	buffer_delete(_buffer);
-	shortMessage("//Game Saved",TXTPOS.MID)
+    
+	if _message shortMessage("//Game Saved",TXTPOS.MID)
 	oGame.nowSaving = false;
 }
 
@@ -117,9 +118,10 @@ function loadGame(roomChange = false){
 	
 	for (var i = 0; i < array_length(mainStruct.inv); i++)
 	{
+		global.inv[i] = []
 		for (var j = 0; j < array_length(mainStruct.inv[i]); j++)
 		{
-			array_push(global.inv[i], global.items[$ mainStruct.inv[i][j] ])
+			array_push(global.inv[i], mainStruct.inv[i][j] )
 		}
 	}
 	
@@ -129,50 +131,18 @@ function loadGame(roomChange = false){
 
 function saveSettings()
 {
-	var settingsStruct = 
-	{
-		settings : {
-			mute : global.mute,
-			masterVol : global.masterVolume,
-			musicVol : global.musicVolume,
-			sfxVol : global.sfxVolume,
-			scrShake : global.screenShakeMod,
-			mouselock : global.mouselock,
-			hudOffset : global.hudOffset,
-			itemHud : global.itemtracker,
-			statHud : global.stattracker,
-			pauseFocus : global.pauseFocusLost,
-			fullscreen : global.fullscreen
-		},
-
-		padCont : InputBindingsExport(true),
-		kbmCont : InputBindingsExport(false)
-	};
-	
-	var _string = json_stringify(settingsStruct, true);
-	SaveString(_string,"NEWTsett");
+    show_debug_message("Saved Settings!");
+	var _string = json_stringify(SETTINGS, true);
+	SaveString(_string,"Canon.ini");
 }
 
 function loadSettings()
 {
-	if !file_exists("NEWTsett") return;
+	if !file_exists("Canon.ini") return;
 	
-	var _json = LoadString("NEWTsett");
+    show_debug_message("Loaded Settings!");
+	var _json = LoadString("Canon.ini");
 	var mainStruct = json_parse(_json);
 	
-	global.mute				=	mainStruct.settings.mute	
-	global.masterVolume		=	mainStruct.settings.masterVol
-	global.musicVolume		=	mainStruct.settings.musicVol
-	global.sfxVolume		=	mainStruct.settings.sfxVol	
-	global.screenShakeMod	=	mainStruct.settings.scrShake
-	global.mouselock		=	mainStruct.settings.mouselock
-	global.hudOffset		=	mainStruct.settings.hudOffset
-	global.itemtracker		=   mainStruct.settings.itemHud	
-	global.stattracker		=   mainStruct.settings.statHud	
-	global.pauseFocusLost	=	mainStruct.settings.pauseFocus
-	
-	InputBindingsImport(true, mainStruct.padCont);
-	InputBindingsImport(false, mainStruct.kbmCont);
-	
-	if mainStruct.settings.fullscreen {toggleFullscreen();}
+    SETTINGS = variable_clone(mainStruct);
 }

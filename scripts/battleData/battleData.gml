@@ -19,6 +19,25 @@ itemFuncs()
 #macro sM "[sInputM, 1]"
 #macro sH "[sInputH, 1]"
 
+enum MOVE_TYPE{
+	PHYS,
+	STUN,
+	FIRE,
+	ICE,
+	DARK,
+	LIGHT,
+	ELEC,
+	HEAL,
+	REVIVE,
+	BLOOD,
+	BILE,
+	PALE,
+	PHLEGM,
+	SLEEP,
+	RADS,
+	WORM,
+	ENTROPY
+}
 
 global.moves =
 {
@@ -515,8 +534,8 @@ function initCharacters()
 	global.party = 
 	[
 		global.characters[CHAR.NILS],
-		//global.characters[CHAR.CHARLIE],
-		//global.characters[CHAR.MATTHEW],
+		global.characters[CHAR.CHARLIE],
+		global.characters[CHAR.MATTHEW],
 	]
 
 }

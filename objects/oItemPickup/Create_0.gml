@@ -5,7 +5,8 @@ canPickup = true;
 
 myScript = function()
 {
-	if addItem(item){ saveRoomObjectFlag(flagID,true) instance_destroy() }
+	var myItem = global.items[$ item ]
+	if addItem(myItem){ saveRoomObjectFlag(flagID,true) instance_destroy() }
 	else canPickup = false;
 	alarm[0] = 5
 }

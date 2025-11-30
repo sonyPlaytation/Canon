@@ -5,6 +5,7 @@
 #macro RES_H 1080
 #macro TILE_SIZE 24
 #macro c_reddish #FF2347
+#macro c_highlight #ff4194
 
 
 global.sfxVol = 1;

@@ -15,6 +15,23 @@ function parryFlash(_frame)
 	}
 }
 
+function toggleFullscreen(){
+    
+    if global.window_mode == STANNCAM_WINDOW_MODE.WINDOWED { 
+        
+        stanncam_set_borderless();
+        window_set_cursor(cr_none);
+        return true;
+    } 
+    else { 
+        
+        stanncam_set_windowed(); 
+        window_set_cursor(cr_default); 
+        window_center(); 
+        return false;
+    }
+}
+
 function drawCharacter(_sprite = sprite_index, _frame = image_index, _x = x, _y = y, _z = 0, _xscale = image_xscale , _yscale = image_yscale, _rot = image_angle, _color = image_blend, _alpha = image_alpha, _fogCol = undefined, _fogAlpha = 0){
     
     if drawShadow draw_character_shadow(sprite_width, sprite_height);
