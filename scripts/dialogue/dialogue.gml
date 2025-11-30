@@ -5,8 +5,6 @@ global.topics = {};
 
 function initDialogue()
 {
-    ChatterboxLoadFromFile("dialogue/test.yarn", "test");
-    global.chatter = ChatterboxCreate("test");
     
     initFlavorText()
     
