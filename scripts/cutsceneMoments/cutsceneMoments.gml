@@ -85,6 +85,7 @@ sceneAddMoment(cutBathroomMirror, 200, function()
 sceneAddMoment(cutWakeUpOffice, 0, function()
 {
 	instance_deactivate_object(obj_stanncam_zone) 
+    SETTINGS.sound.musicVolume = 0.45;
 });
 
 sceneAddMoment(cutWakeUpOffice, -1, function()
@@ -92,4 +93,6 @@ sceneAddMoment(cutWakeUpOffice, -1, function()
 	instance_activate_object(obj_stanncam_zone) 
 	oCamera.follow = oPlayer
 	oPlayer.image_index = 3;
+    SETTINGS.sound.musicVolume = 1;
 });
+

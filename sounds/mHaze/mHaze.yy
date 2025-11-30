@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"mHaze",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":1,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":158.92857,
+  "exportDir":"",
+  "name":"mHaze",
+  "parent":{
+    "name":"Act 1",
+    "path":"folders/Sounds/Music/Act 1.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"mHaze.wav",
+  "volume":0.35,
+}

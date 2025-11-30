@@ -13,8 +13,8 @@ followers = [];
 
 cutMove = false;
 
-if !layer_exists("Particles") {layer_create(depth-10,"Particles")}
-partLayer = part_system_create_layer("Particles", false);
+//if !layer_exists("Particles") {layer_create(depth-1,"Particles")}
+partLayer = part_system_create_layer("Instances", false);
 partDash = psDashTrail;
 partType = part_type_create();
 partDashSys = part_system_create(partDash);

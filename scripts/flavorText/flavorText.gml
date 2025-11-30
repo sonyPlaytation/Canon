@@ -205,7 +205,7 @@ function initFlavorText() {
                 TEXT("(The desk I woke up behind.)"nl"(A solemn monolith of industry, reigned in by errant water rings.)"),
                 CHOICE("(It totally dwarfs me...)",
                     OPTION("(A high plinth of authority...)", "..."),
-                    OPTION("(A grand canvas of kings...)", "..."))
+                    OPTION("(A renaissance man's blank canvas...)", "..."))
               ];
        
                global.topics[$ "officeFilingCabinet"] = 

@@ -1,6 +1,6 @@
 
 
-if place_meeting(x,y,oPlayer) and !active
+if place_meeting(x,y,oPlayer) and (rapidFire or !active)
 {
 	active = true
 	myScript()

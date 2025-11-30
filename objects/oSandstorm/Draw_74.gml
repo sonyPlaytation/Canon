@@ -9,7 +9,7 @@ if !surface_exists(surf) {surf = surface_create(RES_W,RES_H);}
 	
 if !global.pauseEvery 
 {
-	
+	if fade {alpha = lerp(alpha,0,0.01)}
 	var targX, targY
 	if instance_exists(follow)
 	{
