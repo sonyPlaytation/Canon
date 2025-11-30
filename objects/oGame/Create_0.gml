@@ -29,6 +29,8 @@ global.settings = {
     
 }
 
+global.serious = true;
+
 global.current_frame = 0;
 
 roomsTilDoom = 3;
@@ -65,7 +67,8 @@ noSpawnRooms =
 	rMenu,
 	rBattle,
     gspl_test_room,
-    prOffice
+    prOffice,
+    rParent
 ]
 
 if DEV {
@@ -75,10 +78,11 @@ if DEV {
         return !array_contains(noSpawnRooms,element);
     })
     RoomLoader.DataInitArray(roomList)
-    screeny = RoomLoader.Screenshot(rOffice);
+    //screeny = RoomLoader.Screenshot(rOffice);
     cursorPos = 0;
     listLength = array_length(roomList);
     listActive = false;
     upFrames = 0;
     downFrames = 0;
+    menuXoffset = 150;
 }

@@ -329,8 +329,11 @@
 	{
 		if instance_exists(oTextBox){return};	
 	
-		var inst = instance_create_depth(0,0,-999,oTextBox);
-		inst.yMode = yMode
+		var inst = instance_create_depth(0,0,-999,oTextBox,{
+            yMode
+        });
+        ChatterboxJump(global.chatter,topic);
+        
 		inst.setTopic(topic);
 		show_debug_message($"Set topic: {topic}");
 	}

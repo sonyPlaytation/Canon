@@ -25,7 +25,6 @@ enum TXTPOS
 x = (display_get_gui_width() - width) /2;
 y = display_get_gui_height() - height - padding; 
 
-yMode = -1
 drawNow = false;
 
 with pProtag
@@ -103,10 +102,7 @@ optCount = 0;
 optSpacing = txtW/optCount;
 
 dialogueResponse = -1
-postDialogue = function()
-{
-	
-}
+postDialogue = function(){}
 
 // Methods
 setTopic = function(topic)
@@ -136,7 +132,7 @@ setText = function(newText)
 	scribb = scribble(text)
 		.wrap(txtW)
 		.starting_format(font_get_name(font),color)
-		.fit_to_box(txtW,height);
+		.fit_to_box(txtW,height-8);
 		
 	myName = scribble(name)
 		.starting_format(font_get_name(font),nameColor)
@@ -145,3 +141,4 @@ setText = function(newText)
 	length = string_length_scribble(newText);
 	progress = 0;
 }
+

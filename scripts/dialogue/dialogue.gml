@@ -5,6 +5,9 @@ global.topics = {};
 
 function initDialogue()
 {
+    ChatterboxLoadFromFile("dialogue/test.yarn", "test");
+    global.chatter = ChatterboxCreate("test");
+    
     initFlavorText()
     
 	global.topics[$ "placeholder"] = 
@@ -128,12 +131,12 @@ function initDialogue()
 			TEXT("Ugh Jesus, my head... I really overslept..."nl"What time is it?"),
 			SPEAKER(),
 			TEXT("//Suddenly you notice the state of the room."),
-			TEXT("//Every surface is caked in dust."nl"The floorboards are completely water damaged, and the windows are so thick with dirt that the light can hardly come in."),
-			TEXT("//It's plainly evident that this place has been abandoned for quite some time."),
+			TEXT("//This may just be the cleanest room ever."nl"//The walls are a crisp eggshell, the floor boards look and feel brand new, and the chair you're in feels straight from the factory."),
+			TEXT("//For some reason you feel disturbed."),
 			SPEAKER(FLAGS.playerName,sPortNils,2),
 			TEXT("Better question is..."), 
 			SPEAKER(FLAGS.playerName,sPortNils,3),
-			TEXT("What YEAR is it??"), 
+			TEXT("Where the hell am I??"), 
 		]
 
 	#endregion

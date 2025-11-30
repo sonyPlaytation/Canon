@@ -15,6 +15,8 @@ myScript = function()
 	{
 		if dialogueResponse
 		{
+            FLAGS.act1.narratorFunny = true;
+            initFlavorText();
 			oPlayer.hasControl = false
 			if oBathroomStall.image_index == 1 {SFX snDoorClose}
 			oBathroomStall.image_index = 0;	

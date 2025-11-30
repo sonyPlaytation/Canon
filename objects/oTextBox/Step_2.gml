@@ -1,10 +1,9 @@
-
 switch (yMode)
 {
-	//case TXTPOS.TOP: 
-	//	y = 0; 
-	//	portraitY = display_get_gui_height()
-	//break;
+	case TXTPOS.TOP: 
+		y = 0; 
+		portraitY = display_get_gui_height()
+	break;
 	
 	default:
 	case TXTPOS.MID:

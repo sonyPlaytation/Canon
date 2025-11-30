@@ -41,6 +41,7 @@ if DEV{
         }
         
         if InputPressed(INPUT_VERB.ACCEPT){
+            InputVerbConsume(INPUT_VERB.ACTION)
             transition(roomList[cursorPos],sqFadeOut,sqFadeIn,,,,,true)
             show_debug_message($"DEBUG ROOM MOVE: {room_get_name(roomList[cursorPos])}")
             closeList();

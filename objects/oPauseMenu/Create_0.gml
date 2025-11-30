@@ -52,7 +52,7 @@ options[$ "Menu"] =
 	},
 	
 	{
-		allowed : true,
+		allowed : FLAGS.playerName != "???",
 		type : "submenu",
 		label : "Equip",
 		func : function(){
@@ -80,7 +80,7 @@ options[$ "Menu"] =
 	},
 	
 	{
-		allowed : true,
+		allowed : FLAGS.playerName != "???",
 		type : "submenu",
 		label : "Party",
 		func : function(){
