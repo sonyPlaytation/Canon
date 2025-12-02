@@ -1,7 +1,9 @@
-
+if array_contains(FLAGS.cutscenes,scene) instance_destroy()
 
 if cutscenePlaying == noone and scene != -1 and place_meeting(x,y,oPlayer) and !instance_exists(oCutscene)
 { 
+	if array_contains(FLAGS.cutscenes,scene) {instance_destroy() exit;}
+		
 	with oPlayer 
 	{
 		state = stateStartCutscene;

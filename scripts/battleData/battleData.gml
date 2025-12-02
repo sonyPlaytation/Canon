@@ -534,8 +534,8 @@ function initCharacters()
 	global.party = 
 	[
 		global.characters[CHAR.NILS],
-		global.characters[CHAR.CHARLIE],
-		global.characters[CHAR.MATTHEW],
+		//global.characters[CHAR.CHARLIE],
+		//global.characters[CHAR.MATTHEW],
 	]
 
 }

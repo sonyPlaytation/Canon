@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"dialogueFuncs",
   "parent":{
-    "name":"Dialogues",
-    "path":"folders/Narrative/Dialogues.yy",
+    "name":"Narrative",
+    "path":"folders/Narrative.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

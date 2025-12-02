@@ -19,6 +19,7 @@ global.cam = new stanncam(x,y);
 global.cam.smooth_draw = true;
 global.cam.bounds_w = 0;
 global.cam.bounds_h = 0;
+global.cam.room_constrain = true;
 
 global.screenHalfX = global.cam.get_x()+(GAME_W/2)
 global.screenHalfY = global.cam.get_y()+(GAME_H/2)

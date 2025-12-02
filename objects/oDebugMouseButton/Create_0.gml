@@ -12,7 +12,7 @@ options =
 	newGame : 
 	{
 		label : "New Game",
-		func : function() { file_delete(SAVEFILE); transition(rOffice,sqFadeOut,sqFadeIn,,,,,true) }
+		func : function() { deleteSave() initFlags(); transition(rOffice,sqFadeOut,sqFadeIn,,,,,true) }
 	},
 	
 	loadSavefile : 
@@ -30,7 +30,7 @@ options =
 	wipeSave : 
 	{
 		label : "Wipe Save",
-		func :  function() { file_delete(SAVEFILE);  }
+		func :  function() { deleteSave() }
 	},
 }
 

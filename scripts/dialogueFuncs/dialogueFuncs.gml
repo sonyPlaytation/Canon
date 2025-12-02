@@ -12,11 +12,11 @@
 #macro PLAY			new playAction
 #macro GIVE			new giveItemAction
 #macro BEGINSAVE	new saveAction
+#macro CALL			new callAction
 #macro AFTERTEXT	with (oTextBox) postDialogue = function()
 
 function initDialogue(){
     
-    initFlags()
     initDialogueAct1()
     initFlavorTextAct1()
 }
@@ -73,9 +73,8 @@ function textAction(_text) : dialogueAction() constructor
     }
 }
 
-function saveAction(_text) : dialogueAction() constructor
+function saveAction() : dialogueAction() constructor
 {		
-    text = _text
     act = function(textbox)
     {
         textbox.next();
@@ -110,6 +109,19 @@ function playAction() : dialogueAction() constructor
         textbox.onHold = false;	
     }
 }
+
+function callAction(_func = function(){}, _afterText): dialogueAction() constructor {
+	
+	global.dialoguefunc = _func;
+	after = _afterText;
+	
+	act = function(textbox)
+    {
+        if after {AFTERTEXT{global.dialoguefunc()}} else global.dialoguefunc();
+		textbox.next();
+    }
+}
+
 
 function endHold()
 {

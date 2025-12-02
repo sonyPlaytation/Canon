@@ -146,3 +146,29 @@ function loadSettings()
 	
     SETTINGS = variable_clone(mainStruct);
 }
+
+function initFlags(){
+    
+    global.flags = 
+    {
+        playerName : DEV ? "Nils" : "???",
+        cutscenes :[],
+        enemiesActive : DEV,
+        canDash : true,
+        
+        // act flags in rough chronological order
+        act1 : {
+            solitaire: 0,
+            officeBathroomKey : false,
+            narratorFunny : false,
+            lostAsFuck : 0,
+            chargeTackle : false,
+        },
+    }
+}
+
+function deleteSave(){
+	
+	file_delete(SAVEFILE); 
+	initFlags();
+}

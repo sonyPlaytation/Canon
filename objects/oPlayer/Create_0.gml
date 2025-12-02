@@ -284,6 +284,29 @@ stateInCutscene = function()
 	rot = image_angle;
 }
 
+stateTransition = function(){
+	
+	image_speed = 1.5;
+	dir = facing*90
+	going = true;
+	
+	animate();
+		
+	if point_distance(x,y,gotoX,gotoY) < 2 
+	{
+		x = gotoX;
+		y = gotoY;
+		inPosition = true;
+	}
+	else
+	{
+		hsp = lengthdir_x(walksp/2,dir);
+		vsp = lengthdir_y(walksp/2,dir);	
+
+		move_and_collide(hsp,vsp,colls);
+	}
+}
+
 animate = function()
 {
 

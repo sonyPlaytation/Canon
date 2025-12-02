@@ -47,6 +47,7 @@ function battleStates(){
 					for (var i = 0; i < array_length(_actionList); i++)
 					{
 						var _action = _actionList[i];
+						if is_string(_action){_action = global.items[$ _action]}
 						var _avail = true; // check EX cost here
 						var _nameAndCount = _action.name;
 						var _info = _action[$ "info"]

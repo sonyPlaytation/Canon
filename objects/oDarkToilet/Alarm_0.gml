@@ -1,4 +1,4 @@
 
 SFX snToiletFlush
-oPlayer.hasControl = true
+//oPlayer.hasControl = true
 oPlayer.facing = 3

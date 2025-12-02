@@ -4,26 +4,6 @@
 #macro JAMMED +"[c_red]JAMMED[c_white]"+
 #macro LOCKED +"[c_yellow]LOCKED[c_white]"+
 
-function initFlags(){
-    
-    global.flags = 
-    {
-        playerName : DEV ? "Nils" : "???",
-        cutscenes :[],
-        enemiesActive : DEV,
-        canDash : true,
-        
-        // act flags in rough chronological order
-        act1 : {
-            solitaire: 0,
-            officeBathroomKey : false,
-            narratorFunny : false,
-            lostAsFuck : 0,
-            chargeTackle : false,
-        },
-    }
-}
-
 initFlags()
 
 function initFlavorTextAct1() {
@@ -63,6 +43,14 @@ function initFlavorTextAct1() {
 		CHOICE("//Would you like to save your progress?",
 			OPTION("Yes","yesToSave"),
 			OPTION("No",""))
+	]
+	
+	global.topics[$ "optionsTest"] = 
+	[
+		TEXT("When this box is destroyed it should alert saying 'Wee'"),
+		CALL(function(){oPlayer.facing = 0}),
+		TEXT("Prepare for Wee"),
+		
 	]
 
 	global.topics[$ "yesToSave"] = 
