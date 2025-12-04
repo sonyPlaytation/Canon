@@ -9,8 +9,8 @@
   "name":"oDebugOptionSelector",
   "overriddenProperties":[],
   "parent":{
-    "name":"System",
-    "path":"folders/Objects/System.yy",
+    "name":"Menus",
+    "path":"folders/Menus.yy",
   },
   "parentObjectId":null,
   "persistent":false,

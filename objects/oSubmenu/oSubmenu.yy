@@ -11,8 +11,8 @@
   "name":"oSubmenu",
   "overriddenProperties":[],
   "parent":{
-    "name":"UI",
-    "path":"folders/Battles/UI.yy",
+    "name":"Menus",
+    "path":"folders/Menus.yy",
   },
   "parentObjectId":{
     "name":"oMenu",

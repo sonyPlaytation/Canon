@@ -1,4 +1,5 @@
 /// @
+
 global.pauseEvery = true;
 loadSettings()
 oPlayer.JustHitEnemyButCanStillMoveALittle = 0;
@@ -76,12 +77,13 @@ options[$ "Menu"] =
 			other.options[$ "Equip"] = guys
 			array_foreach(PARTY,function(element, index)
 			{
+				oPauseMenu.CurrentElement = element
 				var _guy =
 				{
 					allowed : true,
 					type : "submenu",
 					label : element.name,
-					func : undefined
+					func : createEquipSlotMenu
 				}
 				
 				array_push(other.guys,_guy)
@@ -89,8 +91,8 @@ options[$ "Menu"] =
 	
 			var len = array_length(guys)
 			array_copy(other.options[$ "Equip"],0,guys,0,len);
-			array_push(other.options[$ "Equip"],variable_clone(other.goBack))
-			other.enterSubmenu("Equip");	
+			array_push(other.options[$ "Equip"],variable_clone(oPauseMenu.goBack))
+			with oPauseMenu enterSubmenu("Equip");	
 		}
 	},
 	
@@ -117,8 +119,8 @@ options[$ "Menu"] =
 	
 			var len = array_length(guys)
 			array_copy(other.options[$ label],0,guys,0,len);
-			array_push(other.options[$ label],variable_clone(other.goBack))
-			other.enterSubmenu(label);	
+			array_push(other.options[$ label],variable_clone(oPauseMenu.goBack))
+			enterSubmenu(label);	
 		}
 	},
 	
@@ -142,42 +144,42 @@ array_push(options[$ "Item"],
     itemType : ITEM_TYPE.CONSUMABLE,
 	func : createItemMenu
 })	
-
-if array_length(global.inv[ITEM_TYPE.WEAPON]) != 0
-{
-	array_push(options[$ "Item"],
-	{
-		allowed : true,
-		type : "submenu",
-		label : "Weapons",
-		itemType : ITEM_TYPE.WEAPON,
-        func : createItemMenu
-	})	
-}
-
-if array_length(global.inv[ITEM_TYPE.ARMOR]) != 0
-{
-	array_push(options[$ "Item"],
-	{
-		allowed : true,
-		type : "submenu",
-		label : "Armor",
-		itemType : ITEM_TYPE.ARMOR,
-        func : createItemMenu
-	})	
-}
-
-if array_length(global.inv[ITEM_TYPE.MOD]) != 0
-{
-	array_push(options[$ "Item"],
-	{
-		allowed : true,
-		type : "submenu",
-		label : "Gems",
-		itemType : ITEM_TYPE.MOD,
-        func : createItemMenu
-	})	
-}
+//
+//if array_length(global.inv[ITEM_TYPE.WEAPON]) != 0
+//{
+	//array_push(options[$ "Item"],
+	//{
+		//allowed : true,
+		//type : "submenu",
+		//label : "Weapons",
+		//itemType : ITEM_TYPE.WEAPON,
+        //func : createItemMenu
+	//})	
+//}
+//
+//if array_length(global.inv[ITEM_TYPE.ARMOR]) != 0
+//{
+	//array_push(options[$ "Item"],
+	//{
+		//allowed : true,
+		//type : "submenu",
+		//label : "Armor",
+		//itemType : ITEM_TYPE.ARMOR,
+        //func : createItemMenu
+	//})	
+//}
+//
+//if array_length(global.inv[ITEM_TYPE.MOD]) != 0
+//{
+	//array_push(options[$ "Item"],
+	//{
+		//allowed : true,
+		//type : "submenu",
+		//label : "Gems",
+		//itemType : ITEM_TYPE.MOD,
+        //func : createItemMenu
+	//})	
+//}
 
 array_push(options[$ "Item"],
 {
@@ -269,7 +271,7 @@ options[$ "Audio"] =
             global.settings.sound.mute = !global.settings.sound.mute; 
             value = global.settings.sound.mute 
         },
-        draw : toggle
+        draw : drawToggle
 	},
     
 	{
@@ -282,7 +284,7 @@ options[$ "Audio"] =
             global.settings.sound.masterVolume = value;
         },
         scale : 10,
-        draw : slider
+        draw : drawSlider
 	},
     
     {
@@ -295,7 +297,7 @@ options[$ "Audio"] =
             global.settings.sound.musicVolume = value;
         },
         scale : 10,
-        draw : slider
+        draw : drawSlider
 	},
     
     {
@@ -308,7 +310,7 @@ options[$ "Audio"] =
             global.settings.sound.sfxVolume = value;
         },
         scale : 10,
-        draw : slider
+        draw : drawSlider
 	},
     
     {
@@ -321,7 +323,7 @@ options[$ "Audio"] =
             global.settings.sound.voiceVolume = value;
         },
         scale : 10,
-        draw : slider
+        draw : drawSlider
 	},
 
 	variable_clone(goBack)
@@ -340,7 +342,7 @@ options[$ "Video"] =
             value = SETTINGS.video.fullscreen
             other.options[$ "Video"][1].allowed = !SETTINGS.video.fullscreen
         },
-        draw : toggle
+        draw : drawToggle
 	},
     
     {
@@ -358,7 +360,7 @@ options[$ "Video"] =
             }
         },
         scale : 1,
-        draw : slider
+        draw : drawSlider
 	},
 
 	variable_clone(goBack)
@@ -376,7 +378,7 @@ options[$ "Other"] =
             SETTINGS.other.textspeed = value;
         },
         scale : 10,
-        draw : slider
+        draw : drawSlider
 	},
     
     {
@@ -389,7 +391,7 @@ options[$ "Other"] =
             SETTINGS.other.inputDisplay = !SETTINGS.other.inputDisplay; 
             value = SETTINGS.other.inputDisplay
         },
-        draw : toggle
+        draw : drawToggle
 	},
     
     {
@@ -402,7 +404,7 @@ options[$ "Other"] =
             SETTINGS.other.dashCooldown = !SETTINGS.other.dashCooldown; 
             value = SETTINGS.other.dashCooldown
         },
-        draw : toggle
+        draw : drawToggle
 	},
 
 	variable_clone(goBack)
@@ -417,87 +419,39 @@ if DEV array_insert(options[$ "Settings"], 0,
     }
 )
 
-function createItemMenu(invType = itemType, key = label)
-{
-	items = []
-	other.options[$ key] = items
-	array_foreach(global.inv[invType],function(element, index)
-	{
-		var theItem = global.items[$ element];
-		var _item =
-		{
-			key : element,
-			allowed : true,
-			type : "item",
-			label : theItem.name,
-			func : theItem.func // TODO: change pause menu to tak references to structs
-		}
-				
-		array_push(other.items,_item)
-	})
+controls = function(){
 	
-	var len = array_length(items)
-	array_copy(other.options[$ key],0,items,0,len);
-	array_push(other.options[$ key],variable_clone(other.goBack))
-	enterSubmenu(key);
-}
-
-function enterSubmenu(_menuName = label)
-{
-	array_push(other.prevMenus,
-	{
-		menu : other.currentMenu,
-		hover : other.hover
-	}) 
-	other.currentMenu = _menuName	
-	other.hover = 0;
-}
-
-function doGoBack()
-{
-    saveSettings()
-	var _struct = array_pop(other.prevMenus)
-	other.currentMenu = _struct.menu;
-	other.hover = _struct.hover;
-}
-
-function toggle(_x, _y, _active = false, _value = value){
-    
-    var xx = _x + (TILE_SIZE*5);
-    var yy = _y;
-    
-    draw_text(xx,yy,_value)
-    
-    updatevolume()
-}
-
-function slider(_x, _y, active = false, _value = value, _scale = scale){
-    
-    draw_set_halign(fa_middle)
-    
-    var xx = _x + (TILE_SIZE*5);
-    var yy = _y;
-    var space = TILE_SIZE*0.75
-    var val = round(_value*_scale)/_scale
-    
-    var col = c_dkgrey
-    if active {col = c_white}
-    
-    // backing box
-    draw_set_color(col)
-    draw_sprite_ext(sBattleEXCost,active,xx+space-10,yy-8,1,1,0,col,1)
-    draw_sprite_ext(sSettingsArrow,0,xx - (3*active*other.left),yy+1,1,1,0,col,1)
-    draw_sprite_ext(sSettingsArrow,1,xx+(space*2) + (3*active*other.right),yy+1,1,1,0,col,1)
-    
-    // text
-    draw_set_color(c_black)
-    draw_text(xx+space-1,yy,floor(val*_scale))
-    draw_text(xx+space,yy+1,floor(val*_scale))
-    draw_text(xx+space-1,yy+1,floor(val*_scale))
-    
-    if active {col = c_highlight} else col = c_white
-    draw_set_color(col)
-    draw_text(xx+space,yy,val*_scale)
-    
-    updatevolume()
+	if instance_exists(oTextBox){
+		
+		down = false
+		up = false
+		left = false
+		right = false
+		accept = false
+		back = false
+		close = false
+		exit;
+	} 
+		
+	down = InputPressed(INPUT_VERB.DOWN);
+	up = InputPressed(INPUT_VERB.UP);
+	left = InputPressed(INPUT_VERB.LEFT);
+	right = InputPressed(INPUT_VERB.RIGHT);
+	accept = InputPressed(INPUT_VERB.ACCEPT);
+	back = InputPressed(INPUT_VERB.CANCEL)
+	close = (InputPressed(INPUT_VERB.PAUSE) or InputPressed(INPUT_VERB.SKIP))
+	
+	if InputCheck(INPUT_VERB.DOWN) {downFrames++} else downFrames = 0;
+	if InputCheck(INPUT_VERB.UP) {upFrames++} else upFrames = 0;
+	if InputCheck(INPUT_VERB.LEFT) {leftFrames++} else leftFrames = 0;
+	if InputCheck(INPUT_VERB.RIGHT) {rightFrames++} else rightFrames = 0;
+	
+	var frameTarg = 20;
+	if downFrames == frameTarg {down = true; downFrames = frameTarg*0.75}
+	if upFrames == frameTarg {up = true; upFrames = frameTarg*0.75}
+	if leftFrames == frameTarg {left = true; leftFrames = frameTarg*0.75}
+	if rightFrames == frameTarg {right = true; rightFrames = frameTarg*0.75}
+	
+	vert = down - up;
+	hort = right - left;
 }

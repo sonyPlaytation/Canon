@@ -4,6 +4,8 @@ if nowSaving
 	draw_sprite(sSaveIcon,0,GAME_W-24,GAME_H-24)
 }
 
+draw_text(100,100,global.characters[0].equips[0])
+
 if !DEV exit;
     
 if listActive {

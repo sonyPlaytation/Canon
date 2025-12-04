@@ -2,6 +2,7 @@
 
 oInputReader.alphaTarg = 1;
 InputVerbConsume(INPUT_VERB.ACTION);
+InputVerbConsume(INPUT_VERB.ACCEPT);
 
 if instance_exists(oCutscene)
 {

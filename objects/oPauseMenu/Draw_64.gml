@@ -45,7 +45,9 @@ for (var l = 0; l < optionsCount ; l++)
 	}
 	
 	draw_text(optX+xmargin, optY+ymargin, str)	
-    if listItem[$ "draw"] != undefined {listItem.draw(optX+xmargin - (12*selected), optY+ymargin, selected, listItem.value)};
+    if listItem[$ "draw"] != undefined {
+		listItem.draw(optX+xmargin - (12*selected), optY+ymargin, selected, listItem.value)
+	};
 	
 }
 

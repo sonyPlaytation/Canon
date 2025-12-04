@@ -1,24 +1,6 @@
 /// @
 
-down = InputPressed(INPUT_VERB.DOWN);
-up = InputPressed(INPUT_VERB.UP);
-left = InputPressed(INPUT_VERB.LEFT);
-right = InputPressed(INPUT_VERB.RIGHT);
-accept = InputPressed(INPUT_VERB.ACCEPT);
-
-if InputCheck(INPUT_VERB.DOWN) {downFrames++} else downFrames = 0;
-if InputCheck(INPUT_VERB.UP) {upFrames++} else upFrames = 0;
-if InputCheck(INPUT_VERB.LEFT) {leftFrames++} else leftFrames = 0;
-if InputCheck(INPUT_VERB.RIGHT) {rightFrames++} else rightFrames = 0;
-
-var frameTarg = 20;
-if downFrames == frameTarg {down = true; downFrames = frameTarg*0.75}
-if upFrames == frameTarg {up = true; upFrames = frameTarg*0.75}
-if leftFrames == frameTarg {left = true; leftFrames = frameTarg*0.75}
-if rightFrames == frameTarg {right = true; rightFrames = frameTarg*0.75}
-
-vert = down - up;
-hort = right - left;
+controls();
 
 x = lerp(x,xTarg,lerpSpd);
 
@@ -46,7 +28,7 @@ if active
 	}
 }
 
-if canDestroy and InputPressed(INPUT_VERB.CANCEL)
+if canDestroy and back
 {
 	//show_debug_message("Return to MenuLayer: "+options[$ currentMenu][hover].label)
 	if currentMenu == "Menu" 
@@ -61,7 +43,7 @@ if canDestroy and InputPressed(INPUT_VERB.CANCEL)
 	}
 }
 
-if canDestroy and (InputPressed(INPUT_VERB.PAUSE) or InputPressed(INPUT_VERB.SKIP)) {destroyMenu = true;}
+if canDestroy and (close) {destroyMenu = true;}
 
 if !destroyMenu 
 { 

@@ -13,8 +13,8 @@
   "name":"oMenu",
   "overriddenProperties":[],
   "parent":{
-    "name":"UI",
-    "path":"folders/Battles/UI.yy",
+    "name":"Menus",
+    "path":"folders/Menus.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -14,6 +14,7 @@ function Menu(_x, _y, _options, _desc = -1, _w = undefined, _h = undefined, _sel
 		xmargin = 12;
 		ymargin = 8;
 		draw_set_font(fSmall);
+		
 		lineHeight = 16;
 		
 		if _w == undefined
@@ -36,7 +37,7 @@ function Menu(_x, _y, _options, _desc = -1, _w = undefined, _h = undefined, _sel
 		{
 			heightFull = _h	
 			//scrolling
-			if (lineHeight * (optionsCount + (desc != 1))) > _h - (ymargin/2)
+			if (lineHeight * (optionsCount + desc != 1)) > _h - (ymargin/2)
 			{
 				scrolling = true;
 				visibleOptionsMax = (_h - ymargin*2) div lineHeight;

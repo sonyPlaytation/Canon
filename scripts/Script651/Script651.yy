@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"battleMenuFuncs",
+  "%Name":"Script651",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"battleMenuFuncs",
+  "name":"Script651",
   "parent":{
-    "name":"Menus",
-    "path":"folders/Menus.yy",
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

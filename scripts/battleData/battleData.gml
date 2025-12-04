@@ -2,7 +2,9 @@
 global.advantage = 0;
 global.lvlCap = 100;
 
-itemFuncs()
+initItems()
+
+#region battle definitions
 
 #macro s1 "[sInputArrows, 5]"
 #macro s2 "[sInputArrows, 6]"
@@ -331,14 +333,17 @@ enum MODE
 	VARIES = 2
 }
 
+#endregion
+
+#region character data
+
+#macro PARTY global.party
 enum CHAR
 {
 	NILS,
 	CHARLIE,
 	MATTHEW
 }
-
-#macro PARTY global.party
 
 function initCharacters()
 {
@@ -372,12 +377,28 @@ function initCharacters()
         
         },
 
-        equips : {
-            armor : noone,
-            weapon : noone,
-            gem1 : noone,
-            gem2 : noone
-        },
+        equips : [
+            {
+				label : "Armor", 
+				type : ITEM_TYPE.ARMOR,
+				equip : "armorTest"
+			},
+            {
+				label : "Weapon", 
+				type : ITEM_TYPE.WEAPON,
+				equip : noone
+			},
+            {
+				label : "Mod", 
+				type : ITEM_TYPE.MOD,
+				equip : noone
+			},
+            {
+				label : "Mod", 
+				type : ITEM_TYPE.MOD,
+				equip : noone
+			},
+        ],
 
         allergies: [FOOD_TAG.SPICY, FOOD_TAG.SWEETS],
     
@@ -444,12 +465,28 @@ function initCharacters()
             luk: 4
         },
     
-        equips : {
-            armor : noone,
-            weapon : noone,
-            gem1 : noone,
-            gem2 : noone
-        },
+        equips : [
+            {
+				label : "Armor", 
+				type : ITEM_TYPE.ARMOR,
+				equip : noone
+			},
+            {
+				label : "Weapon", 
+				type : ITEM_TYPE.WEAPON,
+				equip : noone
+			},
+            {
+				label : "Mod", 
+				type : ITEM_TYPE.MOD,
+				equip : noone
+			},
+            {
+				label : "Mod", 
+				type : ITEM_TYPE.MOD,
+				equip : noone
+			},
+        ],
     
         allergies: [FOOD_TAG.SHELLFISH],
     
@@ -500,12 +537,28 @@ function initCharacters()
             luk: 3
         },
     
-        equips : {
-            armor : noone,
-            weapon : noone,
-            gem1 : noone,
-            gem2 : noone
-        },
+        equips : [
+            {
+				label : "Armor", 
+				type : ITEM_TYPE.ARMOR,
+				equip : noone
+			},
+            {
+				label : "Weapon", 
+				type : ITEM_TYPE.WEAPON,
+				equip : noone
+			},
+            {
+				label : "Mod", 
+				type : ITEM_TYPE.MOD,
+				equip : noone
+			},
+            {
+				label : "Mod", 
+				type : ITEM_TYPE.MOD,
+				equip : noone
+			},
+        ],
     
         allergies: [FOOD_TAG.DAIRY],
     
@@ -540,3 +593,4 @@ function initCharacters()
 
 }
 
+#endregion

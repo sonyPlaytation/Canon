@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"battleMenuFuncs",
+  "%Name":"invMenuFuncs",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"battleMenuFuncs",
+  "name":"invMenuFuncs",
   "parent":{
     "name":"Menus",
     "path":"folders/Menus.yy",
