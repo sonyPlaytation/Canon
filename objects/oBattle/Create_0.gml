@@ -1,6 +1,7 @@
 /// @
 
 //partyData
+//TODO: please add a button to skip enemy turns oh my goddd
 
 createTransition(sqFightIn);
 oCamera.follow = id;

@@ -59,13 +59,13 @@ global.actionLibrary =
 {
 	// NOTES FOR OPERATION:
 	
-	// subMenu sets the menu a move is grouped to. 
+	// submenu sets the menu a move is grouped to. 
 	// -1 is for top level actions, -2 is for moves you don't want to show up in menus (ie normals)
 	
 	normals:
 	{
 		name: "Normals",
-		subMenu : -1,
+		submenu : -1,
 		type : MOVE_TYPE.PHYS,
 		targetRequired : true,
 		targetEnemyByDefault: true,
@@ -83,7 +83,7 @@ global.actionLibrary =
 	enemyNormals:
 	{
 		name: "Normals",
-		subMenu : -1,
+		submenu : -1,
 		type : "attack",
 		targetRequired : true,
 		targetEnemyByDefault: true,
@@ -101,7 +101,7 @@ global.actionLibrary =
 		name: "Jab",
 		type : "attack",
 		notation: "L",
-		subMenu : -2,
+		submenu : -2,
 		targetRequired : true,
 		frameCost : 6,
 		targetEnemyByDefault: true,
@@ -123,7 +123,7 @@ global.actionLibrary =
 		name: "Straight",
 		type : "attack",
 		notation: "M",
-		subMenu : -2,
+		submenu : -2,
 		targetRequired : true,
 		frameCost : 8,
 		targetEnemyByDefault: true,
@@ -145,7 +145,7 @@ global.actionLibrary =
 		name: "Fierce",
 		type : "attack",
 		notation: "H",
-		subMenu : -2,
+		submenu : -2,
 		frameCost : 14,
 		targetRequired : true,
 		targetEnemyByDefault: true,
@@ -168,7 +168,7 @@ global.actionLibrary =
 		type : "attack",
 		notation : global.moves.uppercut[2],
 		frameCost : 24,
-		subMenu : "Specials",
+		submenu : "Specials",
 		exCost : 5,
 		targetRequired : true,
 		targetEnemyByDefault: true,
@@ -199,7 +199,7 @@ global.actionLibrary =
 		type : "attack",
 		notation : global.moves.fireball,
 		frameCost : 24,
-		subMenu : "Specials",
+		submenu : "Specials",
 		exCost : 7,
 		targetRequired : true,
 		targetEnemyByDefault: true,
@@ -230,7 +230,7 @@ global.actionLibrary =
 		type : "attack",
 		notation : global.moves.halfCircle,
 		frameCost : 45,
-		subMenu : "Specials",
+		submenu : "Specials",
 		exCost : 12,
 		targetRequired : true,
 		targetEnemyByDefault: true,
@@ -259,7 +259,7 @@ global.actionLibrary =
 	{
 		name: "Heal",
 		type : "heal",
-		subMenu : "Specials",
+		submenu : "Specials",
 		exCost : 4,
 		targetRequired : true,
 		targetEnemyByDefault: false,
@@ -283,7 +283,7 @@ global.actionLibrary =
 	{
 		name: "Revive",
 		type : "revive",
-		subMenu : "Specials",
+		submenu : "Specials",
 		exCost : 8,
 		targetRequired : true,
 		targetEnemyByDefault: false,
@@ -311,7 +311,7 @@ struct_foreach(global.actionLibrary,function(moveName, move)
 
 struct_foreach(global.actionLibrary, function(_key, _val)
 {
-	if _val[$ "category"] == ITEM_TYPE.CONSUMABLE {_val[$ "subMenu"] = "Items"}
+	if _val[$ "category"] == ITEM_TYPE.CONSUMABLE {_val[$ "submenu"] = "Items"}
 })
 
 enum MODE

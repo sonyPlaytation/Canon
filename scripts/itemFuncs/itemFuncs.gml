@@ -38,7 +38,8 @@ function Item(_name, _type, _desc = "") constructor {
 	info = {
 		desc : "",
 		types : [],
-		input : ""
+		input : "",
+		exCost : 0
 	};
 	
 	// Attacks
@@ -112,7 +113,7 @@ function Item(_name, _type, _desc = "") constructor {
 
 	static setAtkTypes = function(v){ atkTypes = v; return self; };
 	static setDefTypes = function(v){ defTypes = v; return self; };
-	static setTags = function(v){ tags = v; return self; };
+	static setTags = function(v){ tags = v; info.tags = v; return self; };
 	
 	static setInfoDesc = function(v){ info.desc = v; return self; };
 	static setInfoTypes = function(v){ info.types = v; return self; };
@@ -120,7 +121,7 @@ function Item(_name, _type, _desc = "") constructor {
 	
 	static setNotation = function(v){ notation = v; return self; };
 	static setSubmenu = function(v){ submenu = v; return self; };
-	static setExCost = function(v){ exCost = v; return self; };
+	static setExCost = function(v){ exCost = v; info.exCost = v; return self; };
 	static setFrameCost = function(v){ frameCost = v; return self; };
 	
 	static setTargetRequired = function(v){ targetRequired = v; return self; };
@@ -161,7 +162,7 @@ enum FOOD_TAG
 
 #region item function archetypes
 
-	function consume(targets = [global.characters[CHAR.NILS]], _val) { 
+	function consume(user, targets = [global.characters[CHAR.NILS]], _val) { 
 		
 		item = global.items[$ self.key];
 		if is_undefined(_val) _val = item.value;
