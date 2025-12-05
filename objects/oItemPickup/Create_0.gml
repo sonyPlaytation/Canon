@@ -3,6 +3,8 @@ event_inherited()
 
 canPickup = true;
 
+itemStruct = global.items[$ item ]
+
 myScript = function()
 {
 	var myItem = global.items[$ item ]

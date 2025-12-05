@@ -20,7 +20,7 @@ if active
 		{
 			if item[hover].func != undefined
 			{
-				show_debug_message("Selected Option: "+item[hover].label)
+				//show_debug_message("Selected Option: "+item[hover].label)
 				item[hover].func();
 				InputVerbConsume(INPUT_VERB.ACCEPT);
 			}

@@ -310,7 +310,6 @@ function checkFlagAction(_source, _flag, _operator, _check, _ifTrue, _ifFalse = 
 function checkItemAction(_item, _ifTrue, _ifFalse = -1, _has = true, _remove = false) : dialogueAction() constructor {
     
     item = _item
-    inv = _inv;
     has = _has;
     remove = _remove;
 
@@ -355,7 +354,7 @@ function nextAction() : dialogueAction() constructor
 
 function startDialogue(topic,yMode = TXTPOS.BTM)
 {
-    //if instance_exists(oTextBox){return};	
+    if instance_exists(oTextBox) and !instance_exists(oPauseMenu) {return};	
 
     var inst = instance_create_depth(0,0,-999,oTextBox,{
         yMode

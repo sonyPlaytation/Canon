@@ -57,21 +57,20 @@ global.moves =
 
 global.actionLibrary = 
 {
-	// NOTES FOR OPERATION
-	// subMenu can be -1 to be a top level action, otherwise it MUST have subMenu
+	// NOTES FOR OPERATION:
+	
+	// subMenu sets the menu a move is grouped to. 
+	// -1 is for top level actions, -2 is for moves you don't want to show up in menus (ie normals)
 	
 	normals:
 	{
 		name: "Normals",
 		subMenu : -1,
-		type : "attack",
+		type : MOVE_TYPE.PHYS,
 		targetRequired : true,
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
 		userAnimation : "idle",
-		//fxSprite : sPunch,
-		//effectOnTarget: MODE.ALWAYS,
-		//hitSound : snHit8,
 		func : function(user, targets)
 		{
 			with oBattle 
@@ -90,9 +89,6 @@ global.actionLibrary =
 		targetEnemyByDefault: true,
 		targetAll : MODE.NEVER,
 		userAnimation : "normals",
-		//fxSprite : sPunch,
-		//effectOnTarget: MODE.ALWAYS,
-		//hitSound : snHit8,
 		func : function(user, targets)
 		{
 			oBattle.sState.change("enemyNormals");
@@ -105,7 +101,6 @@ global.actionLibrary =
 		name: "Jab",
 		type : "attack",
 		notation: "L",
-		description: "{0} jabs {1}!",
 		subMenu : -2,
 		targetRequired : true,
 		frameCost : 6,
@@ -128,7 +123,6 @@ global.actionLibrary =
 		name: "Straight",
 		type : "attack",
 		notation: "M",
-		description: "{0} punches {1}!",
 		subMenu : -2,
 		targetRequired : true,
 		frameCost : 8,
@@ -151,7 +145,6 @@ global.actionLibrary =
 		name: "Fierce",
 		type : "attack",
 		notation: "H",
-		description: "{0} CLOBBERS {1}!",
 		subMenu : -2,
 		frameCost : 14,
 		targetRequired : true,
@@ -175,7 +168,6 @@ global.actionLibrary =
 		type : "attack",
 		notation : global.moves.uppercut[2],
 		frameCost : 24,
-		description: "{0} uses their special move!",
 		subMenu : "Specials",
 		exCost : 5,
 		targetRequired : true,
@@ -207,7 +199,6 @@ global.actionLibrary =
 		type : "attack",
 		notation : global.moves.fireball,
 		frameCost : 24,
-		description: "{0} fires off the Devil's Gun!",
 		subMenu : "Specials",
 		exCost : 7,
 		targetRequired : true,
@@ -239,7 +230,6 @@ global.actionLibrary =
 		type : "attack",
 		notation : global.moves.halfCircle,
 		frameCost : 45,
-		description: "{0} blasts away!",
 		subMenu : "Specials",
 		exCost : 12,
 		targetRequired : true,
@@ -269,7 +259,6 @@ global.actionLibrary =
 	{
 		name: "Heal",
 		type : "heal",
-		description: "{0} casts heal on {1}!",
 		subMenu : "Specials",
 		exCost : 4,
 		targetRequired : true,
@@ -294,7 +283,6 @@ global.actionLibrary =
 	{
 		name: "Revive",
 		type : "revive",
-		description: "{0} revives {1}!",
 		subMenu : "Specials",
 		exCost : 8,
 		targetRequired : true,
@@ -349,6 +337,30 @@ function initCharacters()
 {
 	global.characters = []
 	
+	global.equipSlotsTemplate = 
+	[
+		{
+			label : "Armor", 
+			type : ITEM_TYPE.ARMOR,
+			equip : noone
+		},
+		{
+			label : "Weapon", 
+			type : ITEM_TYPE.WEAPON,
+			equip : noone
+		},
+		{
+			label : "Mod Slot 1", 
+			type : ITEM_TYPE.MOD,
+			equip : noone
+		},
+		{
+			label : "Mod Slot 2", 
+			type : ITEM_TYPE.MOD,
+			equip : noone
+		},
+	]
+	
     global.characters[CHAR.NILS] =	
     {
         // BASIC
@@ -377,28 +389,7 @@ function initCharacters()
         
         },
 
-        equips : [
-            {
-				label : "Armor", 
-				type : ITEM_TYPE.ARMOR,
-				equip : "armorTest"
-			},
-            {
-				label : "Weapon", 
-				type : ITEM_TYPE.WEAPON,
-				equip : noone
-			},
-            {
-				label : "Mod", 
-				type : ITEM_TYPE.MOD,
-				equip : noone
-			},
-            {
-				label : "Mod", 
-				type : ITEM_TYPE.MOD,
-				equip : noone
-			},
-        ],
+        equips : variable_clone(global.equipSlotsTemplate),
 
         allergies: [FOOD_TAG.SPICY, FOOD_TAG.SWEETS],
     
@@ -465,28 +456,7 @@ function initCharacters()
             luk: 4
         },
     
-        equips : [
-            {
-				label : "Armor", 
-				type : ITEM_TYPE.ARMOR,
-				equip : noone
-			},
-            {
-				label : "Weapon", 
-				type : ITEM_TYPE.WEAPON,
-				equip : noone
-			},
-            {
-				label : "Mod", 
-				type : ITEM_TYPE.MOD,
-				equip : noone
-			},
-            {
-				label : "Mod", 
-				type : ITEM_TYPE.MOD,
-				equip : noone
-			},
-        ],
+        equips : variable_clone(global.equipSlotsTemplate),
     
         allergies: [FOOD_TAG.SHELLFISH],
     
@@ -537,28 +507,7 @@ function initCharacters()
             luk: 3
         },
     
-        equips : [
-            {
-				label : "Armor", 
-				type : ITEM_TYPE.ARMOR,
-				equip : noone
-			},
-            {
-				label : "Weapon", 
-				type : ITEM_TYPE.WEAPON,
-				equip : noone
-			},
-            {
-				label : "Mod", 
-				type : ITEM_TYPE.MOD,
-				equip : noone
-			},
-            {
-				label : "Mod", 
-				type : ITEM_TYPE.MOD,
-				equip : noone
-			},
-        ],
+        equips : variable_clone(global.equipSlotsTemplate),
     
         allergies: [FOOD_TAG.DAIRY],
     

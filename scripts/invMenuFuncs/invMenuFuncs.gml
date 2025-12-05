@@ -12,7 +12,7 @@ function createItemMenu(invType = itemType, key = label)
 			allowed : true,
 			type : "item",
 			label : theItem.name,
-			func : theItem.func // TODO: change pause menu to tak references to structs
+			func : theItem.func
 		}
 				
 		array_push(other.items,_item)
@@ -152,14 +152,15 @@ function drawSlider(_x, _y, active = false, _value = value, _scale = scale){
 
 function drawItem(_x, _y, _active = false, _value = value){
 	
+	var xx = _x + (TILE_SIZE*5);
+    var yy = _y;
+    var space = TILE_SIZE*0.75
+	
+	draw_sprite_ext(sBattleEXCost,_active,xx,yy-8,1,1,0, _active ? c_white : c_dkgrey, 1)
+	
 	if is_undefined(_value) or _value == noone exit;
 	
 	var sprite = global.items[$ _value].sprite
-	var xx = _x + (TILE_SIZE*5);
-    var yy = _y;
-    
-    if sprite != undefined 
-	{
-		draw_sprite(sprite, 0, xx, yy)
-	}
+	draw_sprite(sprite, 0, xx + (sprite_get_width(sBattleEXCost)/2)-1 + (sprite_get_width(sprite)mod 2 == 0), yy)
+	
 }

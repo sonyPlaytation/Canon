@@ -4,7 +4,7 @@ event_inherited()
 
 if forDebug and !global.debug {instance_deactivate_object(id)}
 
-sprite_index = global.items[$ item ].sprite;
+sprite_index = itemStruct.sprite;
 
 if place_meeting(x,y,oPlayer)
 {
