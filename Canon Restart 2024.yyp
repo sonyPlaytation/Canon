@@ -655,6 +655,7 @@
     {"id":{"name":"draw_trail_ext","path":"scripts/draw_trail_ext/draw_trail_ext.yy",},},
     {"id":{"name":"draw_trail","path":"scripts/draw_trail/draw_trail.yy",},},
     {"id":{"name":"enemyData","path":"scripts/enemyData/enemyData.yy",},},
+    {"id":{"name":"example","path":"scripts/example/example.yy",},},
     {"id":{"name":"flavorText","path":"scripts/flavorText/flavorText.yy",},},
     {"id":{"name":"generalFuncs","path":"scripts/generalFuncs/generalFuncs.yy",},},
     {"id":{"name":"gspl_define_clock","path":"scripts/gspl_define_clock/gspl_define_clock.yy",},},

@@ -2,6 +2,8 @@
 
 global.invSize = 24;
 
+///@param {string} Name 
+
 function Item(_name, _type, _desc = "") constructor {
 	
 	// Universal 
@@ -45,7 +47,7 @@ function Item(_name, _type, _desc = "") constructor {
 	// Attacks
 	notation = ""; //global.moves 
 	submenu = -2;
-	exCost = 0;
+	exCost = -1;
 	frameCost = 0;
 	
 	targetRequired = true;
@@ -62,16 +64,41 @@ function Item(_name, _type, _desc = "") constructor {
 	value = 0;
 	args = [];
 	
+	///@param {string} Name Object display name
 	static setName = function(v){ name = v; return self; };
-	static setDesc = function(v){ desc = v; return self; };
+	
+	///@param {string} Desc Object inventory description
+	static setDesc = function(v){ desc = v; info.desc = v; return self; };
+	
+	///@param {Enum.CHAR,array<Enum.CHAR>} Users Characters object is equippable by. 
+	///@desc Sets constraint of which party members can equip item. 
+	/// Takes either a CHAR enum or array of CHAR enums.
+	/// Can be left empty to not set a User constraint.
 	static setUsedBy = function(v){ usedBy = v; return self; };
+	
+	///@param {asset} Sprite Object sprite
 	static setSprite = function(v){ sprite = v; return self; };
 		
+	///@param {real} Lvl Level Requirement
+	///@param {real} Exp Bonus Exp Gain (percentage)
+	///@param {real} Hp Bonus Hp Gain (percentage)
+	///@param {real} HpMax Bonus Max Health
+	///@param {real} Str Adds To Stat
+	///@param {real} Def Adds To Stat
+	///@param {real} ExStr Adds To Stat
+	///@param {real} ExDef Adds To Stat
+	///@param {real} Int Adds To Stat
+	///@param {real} Spd Adds To Stat
+	///@param {real} Cha Adds To Stat
+	///@param {real} Luck Adds To Stat
+	
+	///@desc Sets all stat bonuses.
 	static setStats = function(
 		lvl = 0,
 		EXP = 0,
 		hp = 0,
 		hpMax = 0,
+		
 		str = 0,
 		def = 0,
 		exStr = 0,
@@ -81,20 +108,20 @@ function Item(_name, _type, _desc = "") constructor {
 		cha = 0,
 		luk = 0
 	){
-		stats.lvl = lvl;
-		stats.EXP = EXP;
-		stats.hp = hp;
-		stats.hpMax = hpMax;
+		setLvl(lvl);
+		setEXP(EXP);
+		setHp(hp);
+		setHpMax(hpMax);
 	
-		stats.str = str;
-		stats.def = def;
-		stats.exStr = exStr;
-		stats.exDef = exDef;
+		setStr(str);
+		setDef(def);
+		setExStr(exStr);
+		setExDef(exDef);
 	
-		stats.int = int;
-		stats.spd = spd;
-		stats.cha = cha;
-		stats.luk = luk;
+		setInt(int);
+		setSpd(spd);
+		setCha(cha);
+		setLuk(luk);
 		return self;
 	};
 	
@@ -111,23 +138,76 @@ function Item(_name, _type, _desc = "") constructor {
 	static setCha = function(v){ stats.cha = v; return self; };
 	static setLuk = function(v){ stats.luk = v; return self; };
 
-	static setAtkTypes = function(v){ atkTypes = v; return self; };
+	/// @param {Enum.MOVE_TYPE,array<Enum.MOVE_TYPE>} Type Damage type
+	/// @desc Sets damage type of Move, or damage type bonus of Equip.
+	/// Takes either a MOVE_TYPE enum or array of MOVE_TYPE enums.
+	static setAtkTypes = function(v){ atkTypes = v; info.types = v; return self; };
+	
+	/// @param {Enum.MOVE_TYPE,array<Enum.MOVE_TYPE>} Type Damage type resistance
+	/// @desc Sets resistance to damage type for Equip.
+	/// Takes either a MOVE_TYPE enum or array of MOVE_TYPE enums.
 	static setDefTypes = function(v){ defTypes = v; return self; };
+	
+	/// @param {Enum.FOOD_TAG,array<Enum.FOOD_TAG>} Type Consumable food type
+	/// @desc Sets food type of consumable.
+	/// Takes either a FOOD_TAG enum or array of FOOD_TAG enums.
 	static setTags = function(v){ tags = v; info.tags = v; return self; };
+	
+	///@param {string} Desc
+	///@param {string} Type
+	///@param {string} Desc
+	static setInfoCard = function(_desc, _types, _input, _exCost = -1){ 
+		
+		info = {
+			desc : _desc,
+			types : _types,
+			input : _input,
+		}
+		
+		if self.exCost == -1 and _exCost > -1 setExCost(_exCost);
+		return self; 
+	};
 	
 	static setInfoDesc = function(v){ info.desc = v; return self; };
 	static setInfoTypes = function(v){ info.types = v; return self; };
 	static setInfoInput = function(v){ info.input = v; return self; };
 	
-	static setNotation = function(v){ notation = v; return self; };
+	///@param {string,array<string>} Notation Input string
+	///@desc Sets input string for the move (eg: "236L")
+	/// Alternatively takes an array of strings (eg: global.moves.fireball)
+	static setNotation = function(v){ notation = v; info.input = v; return self; };
+	
+	///@param {real|string} Submenu Submenu for object to be sorted into
+	/// @desc String: sorts into submenu of given key.
+	/// -1: Top level menu
+	/// -2: Do not sort (hidden)
 	static setSubmenu = function(v){ submenu = v; return self; };
+	
+	///@param {real} Cost
+	/// @desc Set EX cost of move.
 	static setExCost = function(v){ exCost = v; info.exCost = v; return self; };
+	
+	///@param {real} Cost
+	/// @desc Set how many frames the Move lasts
 	static setFrameCost = function(v){ frameCost = v; return self; };
 	
+	///@param {bool} Target_Requirement
+	/// @desc True: Attacks regardless of target.
+	/// False: Requires target to be set before use.
 	static setTargetRequired = function(v){ targetRequired = v; return self; };
+	
+	///@param {bool} Target_Side
+	/// @desc True: Sets cursor to auto target other side by default.
+	/// False: Doesn't.
 	static setTargetEnemyByDefault = function(v){ targetEnemyByDefault = v; return self; };
+	
+	///@param {Enum.MODE} Target_Mode 
+	/// @desc MODE.NEVER: Single target attack only.
+	/// MODE.ALWAYS: AOE attack only.
+	/// MODE.VARIES: Choose between target grouping.
 	static setTargetAll = function(v){ targetAll = v; return self; };
 	
+	///@param {asset} Animation 
 	static setUserAnimation = function(v){ userAnimation = v; return self; };
 	static setFxSprite = function(v){ fxSprite = v; return self; };
 	static setEffectOnTarget = function(v){ effectOnTarget = v; return self; };
