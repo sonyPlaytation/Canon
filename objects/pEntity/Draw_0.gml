@@ -1,9 +1,7 @@
 /// @
 
 // Inherit the parent event
-if drawShadow {draw_character_shadow()}
-
-draw_sprite_ext(sprite_index,image_index,x,y-z,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
+drawCharacter();
 
 if global.debug 
 {
@@ -31,14 +29,4 @@ if global.debug
 	
 		draw_set_alpha(1)
 	}
-	
-	draw_set_color(c_black)
-	draw_circle(x,y,6,false)
-	draw_set_color(c_white)
-	draw_circle(x,y,5,false)
-	
-	draw_set_color(c_lime)
-	draw_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,true)
-	
-	
 }

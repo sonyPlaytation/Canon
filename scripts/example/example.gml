@@ -39,4 +39,4 @@ function rngDoRolls(){
     // i just did this part because i made it into a function. 
     //this way when you call rngDoRolls you can get the rewards back in the form of an array
 }
-rngDoRolls()
+//rngDoRolls()

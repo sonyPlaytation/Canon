@@ -32,6 +32,20 @@ function toggleFullscreen(){
     }
 }
 
+function drawBbox(){
+	if global.debug 
+	{
+	
+		draw_set_color(c_black)
+		draw_circle(x,y,6,false)
+		draw_set_color(c_white)
+		draw_circle(x,y,5,false)
+		
+		draw_set_color(c_lime)
+		draw_rectangle(bbox_left,bbox_top+1,bbox_right-1,bbox_bottom-1,true)
+	}
+}
+
 function drawCharacter(_sprite = sprite_index, _frame = image_index, _x = x, _y = y, _z = 0, _xscale = image_xscale , _yscale = image_yscale, _rot = image_angle, _color = image_blend, _alpha = image_alpha, _fogCol = undefined, _fogAlpha = 0){
     
     if drawShadow draw_character_shadow(sprite_width, sprite_height);
@@ -47,6 +61,8 @@ function drawCharacter(_sprite = sprite_index, _frame = image_index, _x = x, _y 
     	
     	draw_set_alpha(1)
     }
+	
+	drawBbox()
 }
 
 function flashScreen(_color = c_white, _sound = -1, _fadeRate = 0.1)

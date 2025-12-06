@@ -307,6 +307,8 @@ function initItems(){
 			.setFunc(consume)
 			.setValue(20)
 		,
+		
+		keyGeneric: new Item("Small Key", ITEM_TYPE.KEY)
 			
 		//burgerOLD:
 		//{

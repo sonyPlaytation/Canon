@@ -46,6 +46,7 @@
     {"$GMObjectProperty":"v2","%Name":"chaseRange","filters":[],"listItems":[],"multiselect":false,"name":"chaseRange","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"72","varType":1,},
     {"$GMObjectProperty":"v2","%Name":"scuttleHome","filters":[],"listItems":[],"multiselect":false,"name":"scuttleHome","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
     {"$GMObjectProperty":"v2","%Name":"walkSpd","filters":[],"listItems":[],"multiselect":false,"name":"walkSpd","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"unserious","filters":[],"listItems":[],"multiselect":false,"name":"unserious","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

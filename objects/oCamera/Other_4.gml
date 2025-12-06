@@ -9,8 +9,8 @@ for (var i = 0; i < array_length(overlays); i++)
     if _ovr[$ "func"] != undefined {_ovr.func()};
 }
 
-if layer_sequence_exists("transition",global.currentTransition)
-{
-	layer_sequence_x(global.currentTransition,global.screenHalfX)	
-	layer_sequence_y(global.currentTransition,global.screenHalfY)	
-}
+//if layer_sequence_exists("transition",global.currentTransition)
+//{
+	//layer_sequence_x(global.currentTransition,global.screenHalfX)	
+	//layer_sequence_y(global.currentTransition,global.screenHalfY)	
+//}

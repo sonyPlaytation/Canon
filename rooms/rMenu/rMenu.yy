@@ -7,7 +7,6 @@
   "inheritLayers":false,
   "instanceCreationOrder":[
     {"name":"inst_51E60606","path":"rooms/rMenu/rMenu.yy",},
-    {"name":"inst_179C1B3","path":"rooms/rMenu/rMenu.yy",},
     {"name":"inst_61B60352","path":"rooms/rMenu/rMenu.yy",},
     {"name":"inst_52E0FE22","path":"rooms/rMenu/rMenu.yy",},
     {"name":"inst_3900BAB3","path":"rooms/rMenu/rMenu.yy",},
@@ -33,7 +32,6 @@
         {"$GMRInstance":"v4","%Name":"inst_666C6870","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_666C6870","objectId":{"name":"oDebugMouseButton","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oDebugMouseButton","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"propertyId":{"name":"doThis","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"newGame\"",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":9.0,"scaleY":1.0,"x":216.0,"y":168.0,},
-        {"$GMRInstance":"v4","%Name":"inst_179C1B3","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_179C1B3","objectId":{"name":"oCamera","path":"objects/oCamera/oCamera.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":324.0,"y":192.0,},
         {"$GMRInstance":"v4","%Name":"inst_15FD8768","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_15FD8768","objectId":{"name":"oDebugMouseButton","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oDebugMouseButton","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"propertyId":{"name":"doThis","path":"objects/oDebugMouseButton/oDebugMouseButton.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"loadSavefile\"",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":9.0,"scaleY":1.0,"x":216.0,"y":216.0,},

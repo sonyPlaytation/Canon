@@ -13,6 +13,8 @@ var xscale;
 var portcolor = c_dkgrey;
 var shrinkSize = 0.15
 
+
+
 if speakersVisible
 {
 	var _side = PORT_SIDE.L
@@ -21,8 +23,15 @@ if speakersVisible
 	xscale = 1
 	for (var l = array_length(speaker[_side])-1; l >= 0 ; l--)
 	{
+		var _squish
 		var _spkr = speaker[_side][l]
-		if l == 0 and activeSpeaker == _side {portcolor = c_white} else portcolor = c_dkgrey;
+		if l == 0 and activeSpeaker == _side {
+			portcolor = c_white; 
+			_squish = speakerSquish
+		} else {
+			portcolor = c_dkgrey; 
+			_squish = 1
+		}
 		
 		portSlide[_side] = lerp(portSlide[_side],0,0.1);
 		if l != 0 
@@ -39,7 +48,7 @@ if speakersVisible
 		if speaker[_side][l] != noone 
 		{	
 			_spkr.alpha = approach(_spkr.alpha,1,alphaSpeed)
-			draw_sprite_ext(_spkr.sprite, _spkr.emotion, portX, portraitY + _spkr.y,xscale - (shrinkSize*(l-portSlide[_side])),1 - (shrinkSize*(l-portSlide[_side])),0,portcolor,speaker[_side][l].alpha);
+			draw_sprite_ext(_spkr.sprite, _spkr.emotion, portX, portraitY + _spkr.y - (_squish*2),xscale - (shrinkSize*(l-portSlide[_side])),(1*_squish) - (shrinkSize*(l-portSlide[_side])),0,portcolor,speaker[_side][l].alpha);
 		}
 	}
 
@@ -74,7 +83,7 @@ if speakersVisible
 		if speaker[_side][r] != noone 
 		{
 			_spkr.alpha = approach(_spkr.alpha,1,alphaSpeed)
-			draw_sprite_ext(_spkr.sprite, _spkr.emotion, portX, portraitY + _spkr.y,xscale + (shrinkSize*(r-portSlide[_side])),1 - (shrinkSize*(r-portSlide[_side])),0,portcolor,speaker[_side][r].alpha);
+			draw_sprite_ext(_spkr.sprite, _spkr.emotion, portX, portraitY + _spkr.y,xscale + (shrinkSize*(r-portSlide[_side])),1 - (shrinkSize*(r-portSlide[_side]))*speakerSquish,0,portcolor,speaker[_side][r].alpha);
 		}
 	}
 }

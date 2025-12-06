@@ -12,6 +12,7 @@ if collide
 
 myScript = function(myTopic)
 {
+	if global.serious and unserious exit;
 	if myTopic != "" { startDialogue(myTopic) }
 	else if shortMsg != "" { shortMessage(shortMsg) }
 }

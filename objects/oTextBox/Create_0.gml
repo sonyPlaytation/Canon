@@ -54,6 +54,7 @@ nameFont = fQuit;
 nameColor = c_white;
 sound = [snNarr];
 activeSpeaker = noone;
+speakerSquish = 1;
 
 // Options
 optX = padding*6;

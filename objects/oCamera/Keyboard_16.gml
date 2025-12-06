@@ -1,0 +1,1 @@
+if global.debug {global.cam.spd += InputPressed(INPUT_VERB.UP) - InputPressed(INPUT_VERB.DOWN)}

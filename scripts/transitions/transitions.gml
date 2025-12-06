@@ -16,9 +16,8 @@ global.defaultRoomPosition = false
 
 function createTransition(_type)
 {
-	if layer_exists("transition") layer_destroy("transition");
-	var _layer = layer_create(-9999, "transition");
-	global.currentTransition = layer_sequence_create(_layer,global.cam.get_x()+(GAME_W/2),global.cam.get_y()+(GAME_H/2),_type);
+	var _layer = layer_get_id("transition");
+	global.currentTransition = layer_sequence_create(_layer,GAME_W/2,GAME_H/2,_type);
 }
 
 //function transition(_roomTarget, _typeOut, _typeIn, _fight = false, _x = 0, _y = 0, face = 0, _defaultPos = false)
@@ -71,9 +70,7 @@ function transition(_roomTarget, _typeOut, _typeIn, _fight = false, _x = 0, _y =
 		global.midTransition = true;
 		createTransition(_typeOut);
 
-		layer_set_target_room(_roomTarget);
-		createTransition(_typeIn);
-		layer_reset_target_room();	
+		global.typeIn = _typeIn
 		
 		return true;
 	} else return false;
@@ -104,6 +101,8 @@ function transitionChangeRoom()
 {	
 	//oCamera.drawNothing = true
 	room_goto(global.roomTarget);	
+	layer_sequence_destroy(self.elementID);
+	createTransition(global.typeIn); 
 }
 
 function transitionEnd()

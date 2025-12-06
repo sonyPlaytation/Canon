@@ -138,13 +138,33 @@ function saveSettings()
 
 function loadSettings()
 {
-	if !file_exists("Canon.ini") return;
+	var file = "Canon.ini"
+	if !file_exists(file) return;
 	
-    show_debug_message("Loaded Settings!");
-	var _json = LoadString("Canon.ini");
-	var mainStruct = json_parse(_json);
-	
-    SETTINGS = variable_clone(mainStruct);
+	try{
+		
+		show_debug_message("Loaded Settings!");
+		var _json = LoadString(file);
+		var mainStruct = json_parse(_json);
+		
+		// if i have added new settings since the last boot, merge the two to avoid a crash
+		if !array_equals(struct_get_names(mainStruct),struct_get_names(SETTINGS)) {
+			
+			var newSettings = variable_clone(SETTINGS)
+			array_foreach(struct_get_names(mainStruct),function(element,index){
+				
+				if struct_exists(SETTINGS,element){
+					SETTINGS[$ element] = mainStruct[$ element];
+				};
+			})
+			
+			exit;
+		} else SETTINGS = variable_clone(mainStruct);
+		
+	} catch(ex){
+		file_delete(file)
+	}
+    
 }
 
 function initFlags(){

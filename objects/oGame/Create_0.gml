@@ -12,6 +12,7 @@ global.settings = {
     video : {
         fullscreen : false,
         scale : 3,
+		camSpd : 3 // 3 gets added to it so 3 would actually be 6
     },
     
     sound : {

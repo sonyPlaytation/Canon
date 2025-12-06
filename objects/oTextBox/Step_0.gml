@@ -1,5 +1,11 @@
 /// @
 
+for (var i = 0; i < array_length(sound); i++) {
+	if audio_is_playing(sound[i]) {speakerSquish = 1.05;}
+}
+
+speakerSquish = lerp(speakerSquish,1,0.15)
+
 var confirm = InputPressed(INPUT_VERB.ACCEPT);
 var skipLess = InputPressed(INPUT_VERB.RUN);
 var skip = InputCheck(INPUT_VERB.SKIP)

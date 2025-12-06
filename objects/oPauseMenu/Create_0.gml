@@ -349,7 +349,7 @@ options[$ "Video"] =
 		allowed : !SETTINGS.video.fullscreen,
 		type : "slider",
 		label : "Int Scale",
-        value : stanncam_get_res_scale_x(),
+        value : SETTINGS.video.scale,
 		func : function(){ 
             
             SETTINGS.video.scale = clamp(SETTINGS.video.scale+(other.hort),1,6)
@@ -358,6 +358,21 @@ options[$ "Video"] =
                 stanncam_set_resolution(GAME_W*SETTINGS.video.scale,GAME_H*SETTINGS.video.scale);
                 window_center()
             }
+        },
+        scale : 1,
+        draw : drawSlider
+	},
+	
+	{
+		allowed : true,
+		type : "slider",
+		label : "Camera Spd",
+        value : SETTINGS.video.camSpd,
+		func : function(){ 
+            
+            SETTINGS.video.camSpd = clamp(SETTINGS.video.camSpd+(other.hort),1,5)
+            value = SETTINGS.video.camSpd;
+			global.cam.spd = SETTINGS.video.camSpd+3;
         },
         scale : 1,
         draw : drawSlider
