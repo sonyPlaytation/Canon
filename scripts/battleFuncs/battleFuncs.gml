@@ -3,6 +3,8 @@ global.fightStarter = noone
 function startFight(_enemies = global.fightEnemies, _creator = global.fightStarter, _battleBG = global.fightBG)
 {
 	room_goto(rBattle)
+	layer_sequence_destroy(self.elementID);
+	createTransition(global.typeIn); 
 };
 
 function leaveBattle()

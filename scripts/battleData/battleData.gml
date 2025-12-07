@@ -1,4 +1,4 @@
-
+// Feather disable all
 global.advantage = 0;
 global.lvlCap = 100;
 
@@ -79,6 +79,19 @@ global.actionLibrary =
 			}
 		}
 	},
+	
+	normals : new Item("Normals")
+		.setSubmenu(-1)
+		.setUserAnimation("idle")
+		.setFunc(function(user, targets)
+		{
+			with oBattle 
+			{
+				sState.change("doNormals");
+			}
+		})
+		
+	,
 	
 	enemyNormals:
 	{

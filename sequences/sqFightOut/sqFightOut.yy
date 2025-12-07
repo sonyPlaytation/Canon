@@ -23,14 +23,9 @@
     "Keyframes":[
       {"$Keyframe<MomentsEventKeyframe>":"","Channels":{
           "0":{"$MomentsEventKeyframe":"","Events":[
-              "cameraOff",
-            ],"resourceType":"MomentsEventKeyframe","resourceVersion":"2.0",},
-        },"Disabled":false,"id":"883e8b52-b27d-4ad8-9ad9-a0d63c0987ce","IsCreationKey":false,"Key":18.0,"Length":1.0,"resourceType":"Keyframe<MomentsEventKeyframe>","resourceVersion":"2.0","Stretch":false,},
-      {"$Keyframe<MomentsEventKeyframe>":"","Channels":{
-          "0":{"$MomentsEventKeyframe":"","Events":[
               "startFight",
             ],"resourceType":"MomentsEventKeyframe","resourceVersion":"2.0",},
-        },"Disabled":false,"id":"8c9414b0-4ec3-4164-a289-cbb92ed4a043","IsCreationKey":false,"Key":27.0,"Length":1.0,"resourceType":"Keyframe<MomentsEventKeyframe>","resourceVersion":"2.0","Stretch":false,},
+        },"Disabled":false,"id":"0b13d10c-9d25-46da-b4d6-46ba5b5f5b90","IsCreationKey":false,"Key":27.0,"Length":1.0,"resourceType":"Keyframe<MomentsEventKeyframe>","resourceVersion":"2.0","Stretch":false,},
     ],
     "resourceType":"KeyframeStore<MomentsEventKeyframe>",
     "resourceVersion":"2.0",

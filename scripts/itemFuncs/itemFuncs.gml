@@ -4,7 +4,7 @@ global.invSize = 24;
 
 ///@param {string} Name 
 
-function Item(_name, _type, _desc = "") constructor {
+function Item(_name = "", _type = "", _desc = "") constructor {
 	
 	// Universal 
 	category = _type;
@@ -207,8 +207,9 @@ function Item(_name, _type, _desc = "") constructor {
 	/// MODE.VARIES: Choose between target grouping.
 	static setTargetAll = function(v){ targetAll = v; return self; };
 	
-	///@param {asset} Animation 
+	///@param {string} Animation 
 	static setUserAnimation = function(v){ userAnimation = v; return self; };
+	
 	static setFxSprite = function(v){ fxSprite = v; return self; };
 	static setEffectOnTarget = function(v){ effectOnTarget = v; return self; };
 	static setHitSound = function(v){ hitSound = v; return self; };

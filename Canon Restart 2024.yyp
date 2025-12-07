@@ -1267,8 +1267,8 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rMenu","path":"rooms/rMenu/rMenu.yy",},},
-    {"roomId":{"name":"rTestTest","path":"rooms/rTestTest/rTestTest.yy",},},
     {"roomId":{"name":"rCliffs_2","path":"rooms/rCliffs_2/rCliffs_2.yy",},},
+    {"roomId":{"name":"rTestTest","path":"rooms/rTestTest/rTestTest.yy",},},
     {"roomId":{"name":"rOffice","path":"rooms/rOffice/rOffice.yy",},},
     {"roomId":{"name":"rDunesLost","path":"rooms/rDunesLost/rDunesLost.yy",},},
     {"roomId":{"name":"rDunes_1","path":"rooms/rDunes_1/rDunes_1.yy",},},
