@@ -318,7 +318,7 @@ function checkItemAction(_item, _ifTrue, _ifFalse = -1, _has = true, _remove = f
 
     act = function(textbox)
     {
-        if has {isTrue = array_contains(global.inv[item.category],item)} else isTrue = !array_contains(global.inv[item.category],item)
+        if has {isTrue = array_contains(global.inv[item.type],item)} else isTrue = !array_contains(global.inv[item.type],item)
 
         if isTrue {textbox.setTopic(ifTrue);} 
         else if ifFalse = -1 {textbox.next();}

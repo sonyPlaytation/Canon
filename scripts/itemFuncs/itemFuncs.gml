@@ -3,17 +3,62 @@
 global.invSize = 24;
 
 ///@param {string} Name 
-
-function Item(_name = "", _type = "", _desc = "") constructor {
+///@param {string} Desc 
+function IMenuable(_name = "", _desc = "") constructor{
 	
 	// Universal 
-	category = _type;
+    allowed = true;
 	name = _name;
 	desc = _desc;
+	sprite = sBlank;
+	value = {};
+	
+	infoCard = {
+		desc,
+		types : [],
+		input : undefined,
+		exCost : undefined
+	};
+	
+	func = function(){show_message($"FUNCTION OF {self.name} NOT DECLARED BEFORE CALLING.")};
+	draw = function(){};
+	
+	///@param {asset} Sprite Object sprite
+	static setSprite = function(v){ sprite = v; return self; };
+	static setFunc = function(v){ func = variable_clone(v); return self; };
+	static setDraw = function(v){ draw = v; return self; };
+	static setValue = function(v){ value = v; return self; };
+	
+	///@param {string} Desc
+	///@param {string} Type
+	///@param {string} Desc
+	static setInfoCard = function(_desc = "", _types = [], _input = undefined, _exCost = undefined){ 
+		
+		info = {
+			desc : _desc,
+			types : _types,
+			input : _input,
+			exCost : _exCost
+		}
+
+		return self; 
+	};
+	
+	static setInfoDesc = function(v){ info.desc = v; return self; };
+	static setInfoTypes = function(v){ info.types = v; return self; };
+	static setInfoInput = function(v){ info.input = v; return self; };
+}
+
+///@param {string} Name 
+///@param {string} Desc 
+///@param {Enum.ITEM_TYPE} Type 
+function Item(_name = "", _desc = "", _type = ITEM_TYPE.KEY) : IMenuable() constructor {
 	
 	//ARMOR
+	name = _name;
+	desc = _desc;
+	itemType = _type;
 	usedBy = [];
-	sprite = sBlank;
 	stats =  {
 		
 		lvl : 0, // level requirement
@@ -36,48 +81,14 @@ function Item(_name = "", _type = "", _desc = "") constructor {
 	atkTypes = [];
 	defTypes = [];
 	tags = [];
-	
-	info = {
-		desc : "",
-		types : [],
-		input : "",
-		exCost : 0
-	};
-	
-	// Attacks
-	notation = ""; //global.moves 
-	submenu = -2;
-	exCost = -1;
-	frameCost = 0;
-	
-	targetRequired = true;
-	targetEnemyByDefault = true;
-	targetAll = MODE.NEVER;
-	
-	userAnimation = "idle";
-	fxSprite = sPunch;
-	effectOnTarget = MODE.ALWAYS;
-	hitSound = snHit8;
-	
-	func = function(){};
-	draw = function(){};
-	value = 0;
-	args = [];
-	
-	///@param {string} Name Object display name
-	static setName = function(v){ name = v; return self; };
-	
-	///@param {string} Desc Object inventory description
-	static setDesc = function(v){ desc = v; info.desc = v; return self; };
-	
+
+	static setSprite = function(v){ sprite = v; return self; };
+
 	///@param {Enum.CHAR,array<Enum.CHAR>} Users Characters object is equippable by. 
 	///@desc Sets constraint of which party members can equip item. 
 	/// Takes either a CHAR enum or array of CHAR enums.
 	/// Can be left empty to not set a User constraint.
 	static setUsedBy = function(v){ usedBy = v; return self; };
-	
-	///@param {asset} Sprite Object sprite
-	static setSprite = function(v){ sprite = v; return self; };
 		
 	///@param {real} Lvl Level Requirement
 	///@param {real} Exp Bonus Exp Gain (percentage)
@@ -152,30 +163,42 @@ function Item(_name = "", _type = "", _desc = "") constructor {
 	/// @desc Sets food type of consumable.
 	/// Takes either a FOOD_TAG enum or array of FOOD_TAG enums.
 	static setTags = function(v){ tags = v; info.tags = v; return self; };
+
+}
+
+///@param {string} Name 
+///@param {string} Desc 
+///@param {string} Type Move type used for Enemy AI decision-making 
+function Attack(_name = "", _type = "attack") : IMenuable() constructor {
 	
-	///@param {string} Desc
-	///@param {string} Type
-	///@param {string} Desc
-	static setInfoCard = function(_desc, _types, _input, _exCost = -1){ 
-		
-		info = {
-			desc : _desc,
-			types : _types,
-			input : _input,
-		}
-		
-		if self.exCost == -1 and _exCost > -1 setExCost(_exCost);
-		return self; 
-	};
+	name = _name;
+	atkType = _type;
 	
-	static setInfoDesc = function(v){ info.desc = v; return self; };
-	static setInfoTypes = function(v){ info.types = v; return self; };
-	static setInfoInput = function(v){ info.input = v; return self; };
+	notation = noone; //global.moves 
+	submenu = -2;
+	exCost = undefined;
+	frameCost = undefined;
+	atkTypes = [];
+	
+	targetRequired = true;
+	targetEnemyByDefault = true;
+	targetAll = MODE.NEVER;
+	
+	userAnimation = "idle";
+	fxSprite = sBlank;
+	effectOnTarget = MODE.ALWAYS;
+	hitSound = noone;
+	
+	
+	/// @param {Enum.MOVE_TYPE,array<Enum.MOVE_TYPE>} Type Damage type
+	/// @desc Sets damage type of Move, or damage type bonus of Equip.
+	/// Takes either a MOVE_TYPE enum or array of MOVE_TYPE enums.
+	static setAtkTypes = function(v){ atkTypes = v; infoCard.types = v; return self; };
 	
 	///@param {string,array<string>} Notation Input string
 	///@desc Sets input string for the move (eg: "236L")
 	/// Alternatively takes an array of strings (eg: global.moves.fireball)
-	static setNotation = function(v){ notation = v; info.input = v; return self; };
+	static setNotation = function(v){ notation = v; infoCard.input = v; return self; };
 	
 	///@param {real|string} Submenu Submenu for object to be sorted into
 	/// @desc String: sorts into submenu of given key.
@@ -185,7 +208,7 @@ function Item(_name = "", _type = "", _desc = "") constructor {
 	
 	///@param {real} Cost
 	/// @desc Set EX cost of move.
-	static setExCost = function(v){ exCost = v; info.exCost = v; return self; };
+	static setExCost = function(v){ exCost = v; infoCard.exCost = v; return self; };
 	
 	///@param {real} Cost
 	/// @desc Set how many frames the Move lasts
@@ -208,16 +231,10 @@ function Item(_name = "", _type = "", _desc = "") constructor {
 	static setTargetAll = function(v){ targetAll = v; return self; };
 	
 	///@param {string} Animation 
-	static setUserAnimation = function(v){ userAnimation = v; return self; };
-	
+	static setUserAnim = function(v){ userAnimation = v; return self; };
 	static setFxSprite = function(v){ fxSprite = v; return self; };
 	static setEffectOnTarget = function(v){ effectOnTarget = v; return self; };
 	static setHitSound = function(v){ hitSound = v; return self; };
-	
-	static setFunc = function(v){ func = v; return self; };
-	static setDraw = function(v){ draw = v; return self; };
-	static setValue = function(v){ value = v; return self; };
-	static setArgs = function(v){ args = v; return self; };
 
 }
 
@@ -247,7 +264,7 @@ enum FOOD_TAG
 		
 		item = global.items[$ self.key];
 		if is_undefined(_val) _val = item.value;
-		category = item.category;
+		var _type = item.itemType;
 		
 		if instance_exists(oBattle) {
 			battleChangeHP(targets[0],_val,0)
@@ -266,8 +283,8 @@ enum FOOD_TAG
 			if other.hover == array_length(other.options[$ "Consumables"])-1 {other.hover--}
 		}
 		
-		var me = array_get_index(global.inv[category],item);
-		array_delete(global.inv[category],me,1);
+		var me = array_get_index(global.inv[_type],item);
+		array_delete(global.inv[_type],me,1);
 	}
 
 #endregion
@@ -283,27 +300,25 @@ function initItems(){
 	//TODO: change items to be constructors
 	global.items = 
 	{
-		armorTest: new Item("Basic Armor", ITEM_TYPE.ARMOR)
+		armorTest: new Item("Basic Armor", "SHITTY ASS ARMOR", ITEM_TYPE.ARMOR)
 			.setUsedBy(CHAR.NILS)
 			.setSprite(sHeadNils)
-			.setDesc("SHITTY ASS ARMOR")
 			.setStats(1,,,,,4,,1)
 			.setDefTypes([MOVE_TYPE.PHYS])
 			.setFunc(equipArmor)
 			.setDraw(drawItem)
 		,
 		
-		armorTest2: new Item("Stupid Armor", ITEM_TYPE.ARMOR)
+		armorTest2: new Item("Stupid Armor", "POOPY ASS ARMOR", ITEM_TYPE.ARMOR)
 			.setUsedBy(CHAR.NILS)
 			.setSprite(sLaughingCryingEmoji)
-			.setDesc("POOPY ASS ARMOR")
 			.setStats(1,,,,,4,,1)
 			.setDefTypes([MOVE_TYPE.PHYS])
 			.setFunc(equipArmor)
 			.setDraw(drawItem)
 		,
 		
-		burger: new Item("Burger", ITEM_TYPE.CONSUMABLE)
+		burger: new Item("Burger", "Heals you 20 hp", ITEM_TYPE.CONSUMABLE)
 			.setSprite(sItemBurger)
 			.setFunc(consume)
 			.setValue(20)
@@ -313,7 +328,7 @@ function initItems(){
 			
 		//burgerOLD:
 		//{
-			//category : ITEM_TYPE.CONSUMABLE,
+			//type : ITEM_TYPE.CONSUMABLE,
 			//heal : 20,
 			//sprite : sItemBurger,
 			//name: "Cheeseburger",
@@ -339,7 +354,7 @@ function initItems(){
 	
 	struct_foreach(global.items, function(_key, _val){
 	  _val[$ "key"] = _key  
-	  if _val[$ "category"] == ITEM_TYPE.CONSUMABLE {_val[$ "submenu"] = "Items"}
+	  if _val[$ "type"] == ITEM_TYPE.CONSUMABLE {_val[$ "submenu"] = "Items"}
 	})
 	
 }
@@ -367,6 +382,7 @@ function equipArmor(user = global.characters[CHAR.NILS], targets = global.charac
 		menuItem.value = self.key
 		
 		shortMessage($"//Equipped [c_red]{me.name}!",TXTPOS.MID)
+		AFTERTEXT{with oPauseMenu doGoBack()}
 		show_debug_message($"{user.name} EQUIPPED {me.name}.");
 	}
 }
@@ -399,12 +415,12 @@ function unlockDoor(_locked, _unlocked)
 
 function addItem(_item, _showMsg = true)
 {
-	if array_length(global.inv[_item.category]) < global.invSize
+	if array_length(global.inv[_item.itemType]) < global.invSize
 	{
 		item = _item
 		var itemKey = item.key;
 	
-		array_push(global.inv[_item.category],itemKey);
+		array_push(global.inv[_item.itemType],itemKey);
 	
 		if _showMsg { SFX snCaveStoryGetItem; shortMessage($"//Found a [c_red]{_item.name}[c_white]!",TXTPOS.MID) }
 		show_debug_message($"Added Item: {_item.name} to Inventory")

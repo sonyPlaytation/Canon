@@ -70,7 +70,7 @@ function transition(_roomTarget, _typeOut, _typeIn, _fight = false, _x = 0, _y =
 		global.midTransition = true;
 		createTransition(_typeOut);
 
-		global.typeIn = _typeIn
+		global.typeIn = _typeIn;
 		
 		return true;
 	} else return false;
@@ -88,10 +88,8 @@ function returnToPrevRoom(_typeOut = sqBattleEnd, _typeIn = sqFadeIn)
 		global.roomTarget = oRoomCapture.returnRoom;
 		global.midTransition = true;
 		createTransition(_typeOut);
-
-		layer_set_target_room(global.roomTarget);
-		createTransition(_typeIn);
-		layer_reset_target_room();	
+		
+		global.typeIn = _typeIn
 		
 		return true;
 	} else return false;

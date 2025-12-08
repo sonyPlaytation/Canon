@@ -132,7 +132,12 @@ function battleChangeEX(target, amount, _number = false, sound = -1)
 	var failed = false;
 	
 	var col = c_white;
-	if amount > 0 col = c_aqua;
+	if amount > 0 
+    {
+        col = c_aqua;
+        //amount *= ceil(user.stats.int/100)
+    }
+    
 	if failed
 	{
 		if amount < 0 {audio_play_sound(snSwingMiss,765,false)};

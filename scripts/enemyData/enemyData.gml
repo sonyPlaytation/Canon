@@ -1,6 +1,4 @@
 
-
-
 global.patterns = 
 {
 	def :
@@ -98,7 +96,7 @@ global.enemyAI =
 		// figure out what kinds of moves the enemy is capable of
 		for (var i = 0; i < array_length(actions); i++)
 		{
-			if !array_contains(actionTypes,action.type) {array_push(actionTypes, action.type)}
+			if !array_contains(actionTypes,action.atkType) {array_push(actionTypes, action.atkType)}
 		}
 		
 		// HEAL
@@ -114,7 +112,7 @@ global.enemyAI =
 			{
 				var attacks = array_filter(actions,function(action)
 				{
-					return action.type == "attack";
+					return action.atkType == "attack";
 				});
 				action = attacks[irandom(array_length(attacks)-1)];
 			}
@@ -133,14 +131,14 @@ global.enemyAI =
 			{
 				var attacks = array_filter(actions,function(action)
 				{
-					return action.type == "attack"
+					return action.atkType == "attack"
 				});
 				action = attacks[irandom(array_length(attacks)-1)];
 			}
 		}
 			
 		// do action
-		switch (action.type)
+		switch (action.atkType)
 		{
 			case "heal":
 			{

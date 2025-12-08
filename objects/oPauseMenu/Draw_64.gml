@@ -12,6 +12,13 @@ heightFull = height + (ymargin * 2);
 
 draw_sprite(sBattleOptionHeader, 0, x,y); 
 draw_set_text(fSmart,c_white,fa_left, fa_middle);
+
+var menuHeaders = 3
+for (var i = min(array_length(prevMenus)-1,menuHeaders); i >= 0; i--) {
+	draw_set_alpha((0.65/(i+1)))
+	{draw_text_transformed(x+xmargin, (sprite_get_height(sBattleOptionHeader)-26) - (14*i) , prevMenus[array_length(prevMenus)-i-1].menu,1,1,0); }
+	draw_set_alpha(1)
+}
 draw_text(x+xmargin, sprite_get_height(sBattleOptionHeader)-12, currentMenu ); 
 
 for (var l = 0; l < optionsCount ; l++)

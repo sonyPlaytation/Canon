@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Protags",
-    "path":"folders/Sprites/Characters/Protags.yy",
+    "name":"Sprites",
+    "path":"folders/Overworld Entities/!Party/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

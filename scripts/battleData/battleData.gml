@@ -62,27 +62,9 @@ global.actionLibrary =
 	// submenu sets the menu a move is grouped to. 
 	// -1 is for top level actions, -2 is for moves you don't want to show up in menus (ie normals)
 	
-	normals:
-	{
-		name: "Normals",
-		submenu : -1,
-		type : MOVE_TYPE.PHYS,
-		targetRequired : true,
-		targetEnemyByDefault: true,
-		targetAll : MODE.NEVER,
-		userAnimation : "idle",
-		func : function(user, targets)
-		{
-			with oBattle 
-			{
-				sState.change("doNormals");
-			}
-		}
-	},
-	
-	normals : new Item("Normals")
-		.setSubmenu(-1)
-		.setUserAnimation("idle")
+	normals : new Attack("Normals")
+		.setSubmenu(-1)	
+		.setUserAnim("idle")
 		.setFunc(function(user, targets)
 		{
 			with oBattle 
@@ -90,112 +72,81 @@ global.actionLibrary =
 				sState.change("doNormals");
 			}
 		})
-		
 	,
 	
-	enemyNormals:
-	{
-		name: "Normals",
-		submenu : -1,
-		type : "attack",
-		targetRequired : true,
-		targetEnemyByDefault: true,
-		targetAll : MODE.NEVER,
-		userAnimation : "normals",
-		func : function(user, targets)
+	enemyNormals : new Attack("enemyNormals")
+		.setUserAnim("idle")
+		.setFunc(function(user, targets)
 		{
-			oBattle.sState.change("enemyNormals");
-			oBattle.enemyMove = user.attacks[irandom(array_length(user.attacks)-1)];
-		}
-	},
+			with oBattle 
+			{
+				oBattle.sState.change("enemyNormals");
+				oBattle.enemyMove = user.attacks[irandom(array_length(user.attacks)-1)];
+			}
+		})
+	,
 	
-	light:
-	{
-		name: "Jab",
-		type : "attack",
-		notation: "L",
-		submenu : -2,
-		targetRequired : true,
-		frameCost : 6,
-		targetEnemyByDefault: true,
-		targetAll : MODE.NEVER,
-		userAnimation : "normals",
-		fxSprite : sPunch,
-		effectOnTarget: MODE.ALWAYS,
-		hitSound : snHit8,
-		func : function(user, targets)
+	light : new Attack("Jab")
+		.setNotation("L")
+		.setUserAnim("normals")
+        .setHitSound(snHit8)
+        .setFrameCost(6)
+        .setFxSprite(sPunch)
+		.setFunc(function(user, targets)
 		{
-			var damage = ceil(user.stats.str * random_range(1.25,1.5));
-			battleChangeHP(targets[0], -damage,, self.hitSound);
-			battleChangeEX(user,1)
-		}
-	},
-	
-	medium:
-	{
-		name: "Straight",
-		type : "attack",
-		notation: "M",
-		submenu : -2,
-		targetRequired : true,
-		frameCost : 8,
-		targetEnemyByDefault: true,
-		targetAll : MODE.NEVER,
-		userAnimation : "normals",
-		fxSprite : sPunch,
-		effectOnTarget: MODE.ALWAYS,
-		hitSound : snHit7,
-		func : function(user, targets)
+            with oBattle 
+			{
+     			var damage = ceil(user.stats.str * random_range(1.25,1.5));
+     			battleChangeHP(targets[0], -damage,, self.hitSound);
+     			battleChangeEX(user,1)
+            }
+		})
+	,
+    
+    medium : new Attack("Straight")
+		.setNotation("M")
+		.setUserAnim("normals")
+        .setHitSound(snHit7)
+        .setFrameCost(8)
+        .setFxSprite(sPunch)
+		.setFunc(function(user, targets)
 		{
 			var damage = ceil(user.stats.str * random_range(1.5,1.75));
-			battleChangeHP(targets[0], -damage,, self.hitSound);
+			battleChangeHP(targets[0], -damage,, hitSound);
 			battleChangeEX(user,2)
-		}
-	},
-	
-	heavy:
-	{
-		name: "Fierce",
-		type : "attack",
-		notation: "H",
-		submenu : -2,
-		frameCost : 14,
-		targetRequired : true,
-		targetEnemyByDefault: true,
-		targetAll : MODE.NEVER,
-		userAnimation : "normals",
-		fxSprite : sPunch,
-		effectOnTarget: MODE.ALWAYS,
-		hitSound : snHit9,
-		func : function(user, targets)
+		})
+	,
+    
+    heavy : new Attack("Fierce")
+		.setNotation("H")
+		.setUserAnim("normals")
+        .setHitSound(snHit9)
+        .setFrameCost(14)
+        .setFxSprite(sPunch)
+		.setFunc(function(user, targets)
 		{
 			var damage = ceil(user.stats.str * random_range(1.75,2));
-			battleChangeHP(targets[0], -damage,, self.hitSound);
+			battleChangeHP(targets[0], -damage,, hitSound);
 			battleChangeEX(user,3)
-		}
-	},
-	
-	uppercut:
-	{
-		name: "Rising Upper",
-		type : "attack",
-		notation : global.moves.uppercut[2],
-		frameCost : 24,
-		submenu : "Specials",
-		exCost : 5,
-		targetRequired : true,
-		targetEnemyByDefault: true,
-		targetAll : MODE.VARIES,
-		userAnimation : "specials",
-		fxSprite : sPunch,
-		effectOnTarget: MODE.ALWAYS,
-		hitSound : snHit6,
-		info : {
-			desc : "Deal fire damage to one"nl"enemy. Can hit multiple targets.",
-			types : "Fire, Physical",
-			input : s6+ s2 + s3 + sH
-		},
-		func : function(user, targets)
+		})
+	,
+    
+    uppercut : new Attack("Rising Upper")
+		.setNotation(global.moves.uppercut)
+		.setUserAnim("specials")
+        .setHitSound(snHit6)
+        .setFrameCost(24)
+        .setExCost(5)
+        .setFxSprite(sPunch)
+        .setTargetAll(MODE.VARIES)
+    
+        .setInfoCard(
+            "Deal fire damage to one"nl"enemy. Can hit multiple targets.",
+            [MOVE_TYPE.PHYS,MOVE_TYPE.FIRE,MOVE_TYPE.STUN],
+            s6+ s2 + s3 + sH
+        )
+    
+		.setFunc(function(user, targets)
 		{
 			for (var i = 0; i< array_length(targets); i++)
 			{
@@ -203,8 +154,8 @@ global.actionLibrary =
 				if array_length(targets) > 1 {damage = ceil(damage*0.75)}
 				battleChangeHP(targets[i], -damage,, self.hitSound);
 			}
-		}
-	},
+		})
+	,
 	
 	devilshot:
 	{
@@ -324,7 +275,7 @@ struct_foreach(global.actionLibrary,function(moveName, move)
 
 struct_foreach(global.actionLibrary, function(_key, _val)
 {
-	if _val[$ "category"] == ITEM_TYPE.CONSUMABLE {_val[$ "submenu"] = "Items"}
+	if _val[$ "type"] == ITEM_TYPE.CONSUMABLE {_val[$ "submenu"] = "Items"}
 })
 
 enum MODE
@@ -473,7 +424,7 @@ function initCharacters()
     
         allergies: [FOOD_TAG.SHELLFISH],
     
-        sprites : { idle: sCharIdle, active: sCharFightActive, normals: sCharIdle, slide: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH, parry : sCharParry},
+        sprites : { idle: sCharIdle, active: sCharFightActive, normals: sCharParry, slide: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH, parry : sCharParry},
         actions: [global.actionLibrary.normals, global.actionLibrary.heal, global.actionLibrary.revive],
         battleLines : {
             lowHP : "I told grandpa I wouldn't cry anymore...",
@@ -524,7 +475,7 @@ function initCharacters()
     
         allergies: [FOOD_TAG.DAIRY],
     
-        sprites : { idle: sMattIdle, active: sMatthewFightActive, normals: sMattIdle,  slide: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH, parry : sMattParry},
+        sprites : { idle: sMattIdle, active: sMatthewFightActive, normals: sMattParry,  slide: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH, parry : sMattParry},
         actions: [global.actionLibrary.normals, global.actionLibrary.uppercut],
         battleLines : {
             lowHP : "[shake]Egh-[/shake] I've had worse... [c_dkgrey]dammit...",
