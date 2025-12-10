@@ -1,4 +1,4 @@
-// Feather disable all
+
 
 initFlags();
 initItems();
@@ -31,7 +31,8 @@ initItems();
             SLEEP,
             RADS,
             WORM,
-            ENTROPY
+            ENTROPY,
+            DEVIL
         }
         
         enum CHAR
@@ -61,13 +62,24 @@ initItems();
         lvlCap = 99;
         areaLevel = 1;
 		characters = []
+
+        moves =
+	    {
+	    	superart : ["236236L", "236236M", "236236H"],
+	    	
+	    	halfCircle : ["41236L","41236M","41236H"],
+	    	fireball : ["236L","236M","236H"],
+	    	
+	    	dp : ["623L","623M","623H"],
+	    	
+	    	normal : ["L","M","H"],
+	    }
     
     #endregion
 
 	#region attacks
 
 		///@param {string} Name 
-		///@param {string} Desc 
 		///@param {string} Type Move type used for Enemy AI decision-making 
 		function Attack(_name = "", _type = "attack") : IMenuable() constructor {
 			
@@ -137,20 +149,6 @@ initItems();
 			static setHitSound = function(v){ hitSound = v; return self; };
 		
 		}
-	    
-		global.moves =
-	    {
-	    	superart1 : ["236236L", "236L236L"],
-	    	superart2 : ["236236M", "236M236M"],
-	    	superart3 : ["236236H", "236H236H"],
-	    	
-	    	halfCircle : ["41236L","41236M","41236H"],
-	    	fireball : ["236L","236M","236H"],
-	    	
-	    	uppercut : ["623L","623M","623H"],
-	    	
-	    	normal : ["L","M","H"],
-	    }
 	    
 	    global.actionLibrary = 
 	    {
@@ -225,9 +223,10 @@ initItems();
 	    		})
 	    	,
 	        
-	        uppercut : new Attack("Rising Upper")
-	    		.setNotation(global.moves.uppercut)
+	        dp : new Attack("Rising Upper")
+	    		.setNotation(global.moves.dp)
 	    		.setUserAnim("specials")
+                .setHitSound(snHit8)
 	            .setFrameCost(24)
 	            .setExCost(5)
 	            .setFxSprite(sPunch)
@@ -249,28 +248,23 @@ initItems();
 	    			}
 	    		})
 	    	,
-	    	
-	    	devilshot:
-	    	{
-	    		name: "Devil's Gun",
-	    		atkType : "attack",
-	    		notation : global.moves.fireball,
-	    		frameCost : 24,
-	    		submenu : "Specials",
-	    		exCost : 7,
-	    		targetRequired : true,
-	    		targetEnemyByDefault: true,
-	    		targetAll : MODE.NEVER,
-	    		userAnimation : "shoot",
-	    		fxSprite : sPunch,
-	    		effectOnTarget: MODE.ALWAYS,
-	    		hitSound : snHit9,
-	    		info : {
-	    			desc : "Shoot a big shot.",
-	    			types : "[sLaughingCryingEmoji] [sLaughingCryingEmoji] [sLaughingCryingEmoji]",
-	    			input : s2+s3+s6+sL
-	    		},
-	    		func : function(user, targets)
+            
+            devilshot : new Attack("Devil's Gun")
+	    		.setNotation(global.moves.fireball)
+	    		.setUserAnim("shoot")
+                .setSubmenu("Specials")
+                .setHitSound(snHit9)
+	            .setFrameCost(24)
+	            .setExCost(7)
+	            .setFxSprite(sPunch)
+	        
+	            .setInfoCard(
+	                "Shoot a big shot of 'Devil Energy'.",
+	                [MOVE_TYPE.DEVIL],
+	                s2+s3+s6+sL
+	            )
+	        
+	    		.setFunc(function(user, targets)
 	    		{
 	    			for (var i = 0; i< array_length(targets); i++)
 	    			{
@@ -278,83 +272,124 @@ initItems();
 	    				if array_length(targets) > 1 {damage = ceil(damage*0.75)}
 	    				battleChangeHP(targets[i], -damage,, self.hitSound);
 	    			}
-	    		}
-	    	},
-	    	
-	    	devilvolley:
-	    	{
-	    		name: "Devil Volley",
-	    		atkType : "attack",
-	    		notation : global.moves.halfCircle,
-	    		frameCost : 45,
-	    		submenu : "Specials",
-	    		exCost : 12,
-	    		targetRequired : true,
-	    		targetEnemyByDefault: true,
-	    		targetAll : MODE.ALWAYS,
-	    		userAnimation : "volley",
-	    		fxSprite : sPunch,
-	    		effectOnTarget: MODE.ALWAYS,
-	    		hitSound : snHit6,
-	    		info : {
-	    			desc : "Somehow hit everyone"nl"with one bullet.",
-	    			types : "plenis",
-	    			input : s4+s1+s2+s3+s6+sL
-	            },
-	    		func : function(user, targets)
+	    		})
+	    	,
+            
+            devilVolley : new Attack("Fan Hammer")
+	    		.setNotation(global.moves.halfCircle)
+	    		.setUserAnim("volley")
+                .setSubmenu("Specials")
+                .setHitSound(snHit9)
+	            .setFrameCost(36)
+	            .setExCost(12)
+	            .setFxSprite(sPunch)
+                .setTargetRequired(false)
+	            .setTargetAll(MODE.ALWAYS)
+	        
+	            .setInfoCard(
+	                "Somehow hit everyone"nl"with one bullet.",
+	                [MOVE_TYPE.DEVIL],
+	                s4+s1+s2+s3+s6+sL
+	            )
+	        
+	    		.setFunc(function(user, targets)
 	    		{
 	    			for (var i = 0; i< array_length(targets); i++)
 	    			{
-	    				var damage = ceil(user.stats.exStr * random_range(1.25,1.65));
-	    				if array_length(targets) > 1 {damage = ceil(damage*0.75)}
-	    				battleChangeHP(targets[i], -damage,, self.hitSound);
+	    				var damage = ceil((user.stats.exStr * random_range(1.25,1.65))*(0.65 + (user.stats.int/global.lvlCap)));
+	    				battleChangeHP(targets[i], -damage, 0, self.hitSound);
 	    			}
-	    		}
-	    	},
-	    	
-	    	heal:
-	    	{
-	    		name: "Heal",
-	    		atkType : "heal",
-	    		submenu : "Specials",
-	    		exCost : 4,
-	    		targetRequired : true,
-	    		targetEnemyByDefault: false,
-	    		targetAll : MODE.NEVER,
-	    		userAnimation : "normals",
-	    		fxSprite : sHeal,
-	    		effectOnTarget: MODE.ALWAYS,
-	    		hitSound : snHealMinor,
-	    		func : function(user, targets)
+	    		})
+	    	,
+            
+            heal : new Attack("Healing!","heal")
+	    		.setNotation(global.moves.fireball)
+	    		.setUserAnim("normals")
+                .setSubmenu("Specials")
+                .setHitSound(snHealMinor)
+	            .setFrameCost(24)
+	            .setExCost(10)
+	            .setFxSprite(sHeal)
+                    
+                .setTargetRequired(false)
+	            .setTargetAll(MODE.ALWAYS)
+                .setTargetEnemyByDefault(false)
+	        
+	            .setInfoCard(
+	                "Heal whoevers health is lowest.",
+	                [MOVE_TYPE.HEAL, MOVE_TYPE.LIGHT],
+	                s2+s3+s6+sL
+	            )
+	        
+	    		.setFunc(function(user, targets)
 	    		{
-	    			for (var i = 0; i< array_length(targets); i++)
-	    			{
-	    				var damage = ceil((user.stats.exStr*3) + random_range(-user.stats.exStr/3, user.stats.exStr/2));
-	    				if array_length(targets) > 1 {damage = ceil(damage*0.75)}
-	    				battleChangeHP(targets[i], damage, 0, self.hitSound);
-	    			}
-	    		}
-	    	},
-	    	
-	    	revive:
-	    	{
-	    		name: "Revive",
-	    		atkType : "revive",
-	    		submenu : "Specials",
-	    		exCost : 8,
-	    		targetRequired : true,
-	    		targetEnemyByDefault: false,
-	    		targetAll : MODE.NEVER,
-	    		userAnimation : "normals",
-	    		fxSprite : sHeal,
-	    		effectOnTarget: MODE.ALWAYS,
-	    		hitSound : snHealMinor,
-	    		func : function(user, targets)
+                    array_sort(targets,function(e1,e2){
+                        return  e1.stats.hpMax/e1.stats.hp - e2.stats.hpMax/e2.stats.hp; // should sort whoever in the list has the lowest hp percent? havent tested it yet
+                    })
+                    var damage = ceil((user.stats.exStr*3) + random_range(-user.stats.exStr/3, user.stats.exStr/2));
+                    battleChangeHP(targets[0], damage, 0, self.hitSound);
+	    			
+	    		})
+	    	,
+            
+            healMany : new Attack("Healing Wave","heal")
+	    		.setNotation(global.moves.dp)
+	    		.setUserAnim("normals")
+                .setSubmenu("Specials")
+                .setHitSound(snHealMinor)
+	            .setFrameCost(24)
+	            .setExCost(10)
+	            .setFxSprite(sHeal)
+                    
+                .setTargetRequired(false)
+	            .setTargetAll(MODE.ALWAYS)
+                .setTargetEnemyByDefault(false)
+	        
+	            .setInfoCard(
+	                "Small heal to all targets.",
+	                [MOVE_TYPE.HEAL, MOVE_TYPE.LIGHT],
+	                s6+s2+s3+sL // Make a generic "P" input icon for moves that accept any punch
+	            )
+	        
+	    		.setFunc(function(user, targets)
 	    		{
-	    			var damage = ceil(targets[0].stats.hpMax * 0.66)
+                    array_sort(targets,function(e1,e2){
+                        return  e1.stats.hpMax/e1.stats.hp - e2.stats.hpMax/e2.stats.hp; // should sort whoever in the list has the lowest hp percent? havent tested it yet
+                    })
+                    var damage = ceil((user.stats.exStr*3) + random_range(-user.stats.exStr/3, user.stats.exStr/2)*(0.65 + (user.stats.int/global.lvlCap)));
+                    battleChangeHP(targets[0], damage, 0, self.hitSound);
+	    			
+	    		})
+	    	,
+            
+            revive : new Attack("Resurrection!","revive")
+	    		.setNotation(global.moves.superart)
+	    		.setUserAnim("normals")
+                .setSubmenu("Specials")
+                .setHitSound(snHealMinor)
+	            .setFrameCost(48)
+	            .setExCost(16)
+	            .setFxSprite(sHeal)
+                    
+                .setTargetRequired(false)
+	            .setTargetAll(MODE.ALWAYS)
+                .setTargetEnemyByDefault(false)
+	        
+	            .setInfoCard(
+	                "Revive a dead teammate.",
+	                [MOVE_TYPE.REVIVE, MOVE_TYPE.HEAL, MOVE_TYPE.LIGHT],
+	                s2+s3+s6+s2+s3+s6+sL
+	            )
+	        
+	    		.setFunc(function(user, targets)
+	    		{
+                    array_sort(targets,function(e1,e2){
+                        return  e1.stats.hpMax/e1.stats.hp - e2.stats.hpMax/e2.stats.hp; // should sort whoever in the list has the lowest hp percent? havent tested it yet
+                    })
+                    var damage = ceil(targets[0].stats.hpMax *(0.66 + (user.stats.int/global.lvlCap)))
 	    			battleChangeHP(targets[0], damage, 1, self.hitSound);
-	    		}
-	    	}
+	    			
+	    		})
 	    	
 	    }
 	#endregion 	
@@ -631,7 +666,7 @@ initItems();
             portrait: sBattlePort, 
             parry : sNilsBattleParry })
         .setAllergy([FOOD_TAG.SPICY, FOOD_TAG.SWEETS])
-        .addAction([global.actionLibrary.devilshot, global.actionLibrary.devilvolley])
+        .addAction([global.actionLibrary.devilshot, global.actionLibrary.devilVolley])
 		.setDefType({type : MOVE_TYPE.FIRE, amnt: 72});
     	
 		global.characters[CHAR.NILS].battleLines = {
@@ -685,7 +720,7 @@ initItems();
         allergies: [FOOD_TAG.SHELLFISH],
     
         sprites : { idle: sCharIdle, active: sCharFightActive, normals: sCharParry, slide: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH, parry : sCharParry},
-        actions: [global.actionLibrary.normals, global.actionLibrary.heal, global.actionLibrary.revive],
+        actions: [global.actionLibrary.normals, global.actionLibrary.heal, global.actionLibrary.healMany, global.actionLibrary.revive],
         battleLines : {
             lowHP : "I told grandpa I wouldn't cry anymore...",
             lowEX : "Better hope this next spell works!",
@@ -736,7 +771,7 @@ initItems();
         allergies: [FOOD_TAG.DAIRY],
     
         sprites : { idle: sMattIdle, active: sMatthewFightActive, normals: sMattParry,  slide: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH, parry : sMattParry},
-        actions: [global.actionLibrary.normals, global.actionLibrary.uppercut],
+        actions: [global.actionLibrary.normals, global.actionLibrary.dp],
         battleLines : {
             lowHP : "[shake]Egh-[/shake] I've had worse... [c_dkgrey]dammit...",
             lowEX : "Man, I have enough of an 'EX' problem as is...",
