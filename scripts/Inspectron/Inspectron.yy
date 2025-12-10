@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"Inspectron",
   "parent":{
-    "name":"Canon Restart 2024",
-    "path":"Canon Restart 2024.yyp",
+    "name":"Libraries",
+    "path":"folders/Libraries.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

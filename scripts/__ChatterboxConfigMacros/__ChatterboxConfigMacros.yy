@@ -6,7 +6,7 @@
   "name":"__ChatterboxConfigMacros",
   "parent":{
     "name":"Chatterbox",
-    "path":"folders/Chatterbox.yy",
+    "path":"folders/Libraries/Chatterbox.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

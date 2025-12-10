@@ -26,6 +26,7 @@ if !instance_exists(oPlayer) and !array_contains(noSpawnRooms, room)
 	
 	if !layer_exists("Player") layer_create(100,"Player");
 	
+    var char = global.characters[0];
 	var player = instance_create_layer(_x,_y,"Player",oPlayer,global.characters[0]);
 	player.cFollow = array_contains(PARTY,global.characters[1]);
 	player.mFollow = array_contains(PARTY,global.characters[2]);

@@ -8,8 +8,8 @@
   "name":"oInspect",
   "overriddenProperties":[],
   "parent":{
-    "name":"Overworld Entities",
-    "path":"folders/Overworld Entities.yy",
+    "name":"Interactive",
+    "path":"folders/Interactive.yy",
   },
   "parentObjectId":{
     "name":"pNPC",

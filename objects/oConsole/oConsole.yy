@@ -15,8 +15,8 @@
   "name":"oConsole",
   "overriddenProperties":[],
   "parent":{
-    "name":"System",
-    "path":"folders/Objects/System.yy",
+    "name":"Objects",
+    "path":"folders/Menus and UI/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":true,

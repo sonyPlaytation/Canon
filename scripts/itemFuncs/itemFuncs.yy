@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"itemFuncs",
   "parent":{
-    "name":"Battles",
-    "path":"folders/Battles.yy",
+    "name":"Items",
+    "path":"folders/Items.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

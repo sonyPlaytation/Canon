@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Parallaxes",
-    "path":"folders/Objects/Level Design/Parallaxes.yy",
+    "path":"folders/Mapping/Parallaxes.yy",
   },
   "parentObjectId":null,
   "persistent":false,

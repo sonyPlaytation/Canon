@@ -6,7 +6,7 @@
   "name":"SnapStringify",
   "parent":{
     "name":"Utility",
-    "path":"folders/SNAP/Utility.yy",
+    "path":"folders/Libraries/SNAP/Utility.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

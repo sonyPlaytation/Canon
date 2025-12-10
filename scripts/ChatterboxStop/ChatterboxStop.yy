@@ -6,7 +6,7 @@
   "name":"ChatterboxStop",
   "parent":{
     "name":"Flow",
-    "path":"folders/Chatterbox/Flow.yy",
+    "path":"folders/Libraries/Chatterbox/Flow.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

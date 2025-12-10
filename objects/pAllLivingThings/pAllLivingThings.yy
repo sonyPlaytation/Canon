@@ -13,8 +13,8 @@
   "name":"pAllLivingThings",
   "overriddenProperties":[],
   "parent":{
-    "name":"Overworld Entities",
-    "path":"folders/Overworld Entities.yy",
+    "name":"Interactive",
+    "path":"folders/Interactive.yy",
   },
   "parentObjectId":null,
   "persistent":false,

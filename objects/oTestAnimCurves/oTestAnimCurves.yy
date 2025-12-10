@@ -9,8 +9,8 @@
   "name":"oTestAnimCurves",
   "overriddenProperties":[],
   "parent":{
-    "name":"Test",
-    "path":"folders/Objects/System/Test.yy",
+    "name":"Debug and Dev",
+    "path":"folders/Debug and Dev.yy",
   },
   "parentObjectId":null,
   "persistent":false,

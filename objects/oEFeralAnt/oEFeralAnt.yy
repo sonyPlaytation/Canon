@@ -17,7 +17,7 @@
   ],
   "parent":{
     "name":"Enemies",
-    "path":"folders/Overworld Entities/Objects/Enemies.yy",
+    "path":"folders/Interactive/Objects/Enemies.yy",
   },
   "parentObjectId":{
     "name":"pEnemy",
@@ -41,8 +41,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sFeralAnt",
-    "path":"sprites/sFeralAnt/sFeralAnt.yy",
+    "name":"sAnt",
+    "path":"sprites/sAnt/sAnt.yy",
   },
   "spriteMaskId":null,
   "visible":true,

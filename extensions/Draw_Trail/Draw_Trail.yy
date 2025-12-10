@@ -56,7 +56,7 @@
   "packageId":"com.killer.drawtrail",
   "parent":{
     "name":"Extensions",
-    "path":"folders/Extensions.yy",
+    "path":"folders/Libraries/Extensions.yy",
   },
   "productId":"ACBD3CFF4E539AD869A0E8E3B4B022DD",
   "resourceType":"GMExtension",

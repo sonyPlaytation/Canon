@@ -6,7 +6,7 @@
   "name":"ChatterboxVariableSet",
   "parent":{
     "name":"Variables and Constants",
-    "path":"folders/Chatterbox/Variables and Constants.yy",
+    "path":"folders/Libraries/Chatterbox/Variables and Constants.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

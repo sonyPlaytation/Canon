@@ -8,8 +8,8 @@
   "name":"oPlayerSpawner",
   "overriddenProperties":[],
   "parent":{
-    "name":"Overworld Entities",
-    "path":"folders/Overworld Entities.yy",
+    "name":"Mapping",
+    "path":"folders/Mapping.yy",
   },
   "parentObjectId":{
     "name":"pDebugDraw",

@@ -12,7 +12,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"STANNcam",
-    "path":"folders/STANNcam.yy",
+    "path":"folders/Libraries/STANNcam.yy",
   },
   "parentObjectId":null,
   "persistent":true,

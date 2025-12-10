@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"transitions",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Scripts.yy",
+    "name":"Mapping",
+    "path":"folders/Mapping.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

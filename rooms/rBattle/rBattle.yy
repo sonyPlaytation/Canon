@@ -31,8 +31,8 @@
   ],
   "name":"rBattle",
   "parent":{
-    "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "name":"!Rooms",
+    "path":"folders/Mapping/!Rooms.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

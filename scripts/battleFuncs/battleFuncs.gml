@@ -169,35 +169,3 @@ function battleChangeEX(target, amount, _number = false, sound = -1)
 	if !failed {target.stats.ex = clamp(target.stats.ex + amount, 0, target.stats.exMax)};
 }
 
-function addEXP (EXP, character = PARTY[0])
-{
-	character.stats.EXP += EXP;
-	show_debug_message($"{character.name} recieves {EXP} EXP! {character.stats.EXP}/{character.stats.requiredEXP}")
-	
-	if character.stats.EXP >= character.stats.requiredEXP
-	{
-		levelUp(character);
-	}
-}
- 
-function levelUp(character)
-{
-	var STATS = character.stats
-	STATS.EXP -= STATS.requiredEXP;
-	STATS.lvl++;
-	show_debug_message($"{character.name} is now Level {STATS.lvl}!")
-	
-	var curve = animcurve_get_channel(acExpCurve,"curve1")
-	STATS.requiredEXP = ceil(clamp(STATS.requiredEXP * animcurve_channel_evaluate(curve,STATS.lvl/global.lvlCap),0,99999))
-	
-	STATS.hpMax = ceil(STATS.hpMax * animcurve_channel_evaluate(curve,STATS.lvl/global.lvlCap))
-	STATS.exMax = ceil(STATS.exMax * animcurve_channel_evaluate(curve,STATS.lvl/global.lvlCap))
-	
-	if instance_exists(oBattleResults)
-	{
-		array_push(oBattleResults.level,character)
-		array_push(oBattleResults.stats, [STATS.str,STATS.def,STATS.exStr,STATS.exDef,STATS.int,STATS.spd,STATS.cha,STATS.luk] )
-		array_push(oBattleResults.baseStats, [STATS.str,STATS.def,STATS.exStr,STATS.exDef,STATS.int,STATS.spd,STATS.cha,STATS.luk] )
-	}
-}
-

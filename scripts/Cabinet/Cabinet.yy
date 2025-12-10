@@ -6,7 +6,7 @@
   "name":"Cabinet",
   "parent":{
     "name":"Cabinet",
-    "path":"folders/Cabinet.yy",
+    "path":"folders/Libraries/Cabinet.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -6,7 +6,7 @@
   "name":"SnowState",
   "parent":{
     "name":"SnowState",
-    "path":"folders/SnowState.yy",
+    "path":"folders/Libraries/SnowState.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -141,7 +141,7 @@
   "name":"rOffice_3",
   "parent":{
     "name":"Act 1",
-    "path":"folders/Rooms/Act 1.yy",
+    "path":"folders/Mapping/!Rooms/Act 1.yy",
   },
   "parentRoom":{
     "name":"rParent",

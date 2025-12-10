@@ -6,7 +6,7 @@
   "name":"stanncam_animcurve",
   "parent":{
     "name":"Miscellaneous",
-    "path":"folders/STANNcam/Miscellaneous.yy",
+    "path":"folders/Libraries/STANNcam/Miscellaneous.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

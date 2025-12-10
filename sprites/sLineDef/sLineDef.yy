@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Canon Restart 2024",
-    "path":"Canon Restart 2024.yyp",
+    "name":"Dev Art",
+    "path":"folders/Debug and Dev/Dev Art.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

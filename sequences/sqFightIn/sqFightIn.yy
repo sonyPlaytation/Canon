@@ -38,7 +38,7 @@
   "name":"sqFightIn",
   "parent":{
     "name":"Transitions",
-    "path":"folders/Transitions.yy",
+    "path":"folders/Cutscenes/Transitions.yy",
   },
   "playback":0,
   "playbackSpeed":60.0,

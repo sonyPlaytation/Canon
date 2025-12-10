@@ -46,8 +46,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"UI",
-    "path":"folders/Sprites/UI.yy",
+    "name":"UI Sprites",
+    "path":"folders/Menus and UI/UI Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -14,8 +14,8 @@
   "name":"oPauseMenu",
   "overriddenProperties":[],
   "parent":{
-    "name":"Menus",
-    "path":"folders/Menus.yy",
+    "name":"Objects",
+    "path":"folders/Menus and UI/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

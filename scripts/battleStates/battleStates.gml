@@ -52,12 +52,12 @@ function battleStates(){
 						var _nameAndCount = _action.name;
 						var _info = _action[$ "info"]
 				
-						if _action.submenu == -1 // if Top Level action, not submenu
+						if _action[$ "submenu"] != undefined and _action.submenu == -1 // if Top Level action, not submenu
 						{
 							// _menuOptions is the Top Level Menu
 							array_push(_menuOptions, [_nameAndCount, menuSelectAction, [unit, _action], _avail, _info])	
 						}
-						else if _action.submenu != -2
+						else if _action[$ "submenu"] != undefined and _action.submenu != -2
 						{
 							// if current submenu does not exist in the struct containing all the subMenus
 							if is_undefined(_subMenus[$ _action.submenu])

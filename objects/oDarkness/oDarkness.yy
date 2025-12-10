@@ -9,8 +9,8 @@
   "name":"oDarkness",
   "overriddenProperties":[],
   "parent":{
-    "name":"System",
-    "path":"folders/Objects/System.yy",
+    "name":"Overlays",
+    "path":"folders/Mapping/Overlays.yy",
   },
   "parentObjectId":null,
   "persistent":false,

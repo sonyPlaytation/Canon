@@ -6,7 +6,7 @@
   "name":"__RoomLoaderDataLayerParent",
   "parent":{
     "name":"02. Data",
-    "path":"folders/GMRoomLoader/03. Private/02. Data.yy",
+    "path":"folders/Libraries/GMRoomLoader/03. Private/02. Data.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

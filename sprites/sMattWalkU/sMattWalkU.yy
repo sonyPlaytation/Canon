@@ -26,7 +26,7 @@
   "origin":9,
   "parent":{
     "name":"Sprites",
-    "path":"folders/Overworld Entities/!Party/Sprites.yy",
+    "path":"folders/!Party/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

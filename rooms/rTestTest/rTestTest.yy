@@ -7,10 +7,6 @@
   "inheritLayers":false,
   "instanceCreationOrder":[
     {"name":"inst_5DACBBFA","path":"rooms/rTestTest/rTestTest.yy",},
-    {"name":"inst_718B4A2F","path":"rooms/rTestTest/rTestTest.yy",},
-    {"name":"inst_10951229","path":"rooms/rTestTest/rTestTest.yy",},
-    {"name":"inst_70405399","path":"rooms/rTestTest/rTestTest.yy",},
-    {"name":"inst_C36C151","path":"rooms/rTestTest/rTestTest.yy",},
     {"name":"inst_94F18FB","path":"rooms/rTestTest/rTestTest.yy",},
     {"name":"inst_45E1509B","path":"rooms/rTestTest/rTestTest.yy",},
     {"name":"inst_7312CF87","path":"rooms/rTestTest/rTestTest.yy",},
@@ -66,10 +62,6 @@
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oPlayerSpawner","path":"objects/oPlayerSpawner/oPlayerSpawner.yy",},"propertyId":{"name":"cFollow","path":"objects/oPlayerSpawner/oPlayerSpawner.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"true",},
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oPlayerSpawner","path":"objects/oPlayerSpawner/oPlayerSpawner.yy",},"propertyId":{"name":"mFollow","path":"objects/oPlayerSpawner/oPlayerSpawner.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":648.0,"y":312.0,},
-        {"$GMRInstance":"v4","%Name":"inst_718B4A2F","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_718B4A2F","objectId":{"name":"oColl","path":"objects/oColl/oColl.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":26.0,"x":336.0,"y":144.0,},
-        {"$GMRInstance":"v4","%Name":"inst_10951229","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_10951229","objectId":{"name":"oColl","path":"objects/oColl/oColl.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":28.0,"scaleY":1.0,"x":336.0,"y":120.0,},
-        {"$GMRInstance":"v4","%Name":"inst_70405399","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_70405399","objectId":{"name":"oColl","path":"objects/oColl/oColl.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":16.0,"x":984.0,"y":144.0,},
-        {"$GMRInstance":"v4","%Name":"inst_C36C151","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_C36C151","objectId":{"name":"oColl","path":"objects/oColl/oColl.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":26.0,"scaleY":1.0,"x":360.0,"y":480.0,},
         {"$GMRInstance":"v4","%Name":"inst_94F18FB","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_94F18FB","objectId":{"name":"obj_stanncam_zone","path":"objects/obj_stanncam_zone/obj_stanncam_zone.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":40.0,"scaleY":24.0,"x":192.0,"y":0.0,},
         {"$GMRInstance":"v4","%Name":"inst_45E1509B","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_45E1509B","objectId":{"name":"oTestAnimCurves","path":"objects/oTestAnimCurves/oTestAnimCurves.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":576.0,"y":96.0,},
         {"$GMRInstance":"v4","%Name":"inst_7312CF87","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":true,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7312CF87","objectId":{"name":"oMusicPlay","path":"objects/oMusicPlay/oMusicPlay.yy",},"properties":[
@@ -138,7 +130,7 @@
   "name":"rTestTest",
   "parent":{
     "name":"Test",
-    "path":"folders/Rooms/Test.yy",
+    "path":"folders/Mapping/!Rooms/Test.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

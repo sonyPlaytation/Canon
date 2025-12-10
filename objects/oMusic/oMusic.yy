@@ -13,8 +13,8 @@
   "name":"oMusic",
   "overriddenProperties":[],
   "parent":{
-    "name":"Narrative",
-    "path":"folders/Narrative.yy",
+    "name":"Managers",
+    "path":"folders/Managers.yy",
   },
   "parentObjectId":null,
   "persistent":true,

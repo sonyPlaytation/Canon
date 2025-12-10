@@ -6,7 +6,7 @@
   "name":"SnapBufferWriteJSON",
   "parent":{
     "name":"JSON",
-    "path":"folders/SNAP/JSON.yy",
+    "path":"folders/Libraries/SNAP/JSON.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

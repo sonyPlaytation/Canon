@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"!Special",
-    "path":"folders/Overworld Entities/Objects/!Special.yy",
+    "path":"folders/Interactive/Objects/!Special.yy",
   },
   "parentObjectId":{
     "name":"pNPC",

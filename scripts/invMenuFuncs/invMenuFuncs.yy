@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"invMenuFuncs",
   "parent":{
-    "name":"Menus",
-    "path":"folders/Menus.yy",
+    "name":"Menus and UI",
+    "path":"folders/Menus and UI.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

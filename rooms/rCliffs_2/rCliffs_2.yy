@@ -163,7 +163,7 @@
   "name":"rCliffs_2",
   "parent":{
     "name":"Act 1",
-    "path":"folders/Rooms/Act 1.yy",
+    "path":"folders/Mapping/!Rooms/Act 1.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

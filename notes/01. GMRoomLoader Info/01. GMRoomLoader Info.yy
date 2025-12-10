@@ -4,7 +4,7 @@
   "name":"01. GMRoomLoader Info",
   "parent":{
     "name":"GMRoomLoader",
-    "path":"folders/GMRoomLoader.yy",
+    "path":"folders/Libraries/GMRoomLoader.yy",
   },
   "resourceType":"GMNotes",
   "resourceVersion":"2.0",

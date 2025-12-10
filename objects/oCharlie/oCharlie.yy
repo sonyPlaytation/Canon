@@ -9,7 +9,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"!Party",
-    "path":"folders/Overworld Entities/!Party.yy",
+    "path":"folders/!Party.yy",
   },
   "parentObjectId":{
     "name":"pFollower",

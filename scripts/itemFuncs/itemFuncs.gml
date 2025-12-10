@@ -25,8 +25,8 @@ function IMenuable(_name = "", _desc = "") constructor{
 	
 	///@param {asset} Sprite Object sprite
 	static setSprite = function(v){ sprite = v; return self; };
-	static setFunc = function(v){ func = variable_clone(v); return self; };
-	static setDraw = function(v){ draw = v; return self; };
+	static setFunc = function(v){ func = method(self, v); return self; };
+	static setDraw = function(v){ draw = method(self, v); return self; };
 	static setValue = function(v){ value = v; return self; };
 	
 	///@param {string} Desc
@@ -166,77 +166,7 @@ function Item(_name = "", _desc = "", _type = ITEM_TYPE.KEY) : IMenuable() const
 
 }
 
-///@param {string} Name 
-///@param {string} Desc 
-///@param {string} Type Move type used for Enemy AI decision-making 
-function Attack(_name = "", _type = "attack") : IMenuable() constructor {
-	
-	name = _name;
-	atkType = _type;
-	
-	notation = noone; //global.moves 
-	submenu = -2;
-	exCost = undefined;
-	frameCost = undefined;
-	atkTypes = [];
-	
-	targetRequired = true;
-	targetEnemyByDefault = true;
-	targetAll = MODE.NEVER;
-	
-	userAnimation = "idle";
-	fxSprite = sBlank;
-	effectOnTarget = MODE.ALWAYS;
-	hitSound = noone;
-	
-	
-	/// @param {Enum.MOVE_TYPE,array<Enum.MOVE_TYPE>} Type Damage type
-	/// @desc Sets damage type of Move, or damage type bonus of Equip.
-	/// Takes either a MOVE_TYPE enum or array of MOVE_TYPE enums.
-	static setAtkTypes = function(v){ atkTypes = v; infoCard.types = v; return self; };
-	
-	///@param {string,array<string>} Notation Input string
-	///@desc Sets input string for the move (eg: "236L")
-	/// Alternatively takes an array of strings (eg: global.moves.fireball)
-	static setNotation = function(v){ notation = v; infoCard.input = v; return self; };
-	
-	///@param {real|string} Submenu Submenu for object to be sorted into
-	/// @desc String: sorts into submenu of given key.
-	/// -1: Top level menu
-	/// -2: Do not sort (hidden)
-	static setSubmenu = function(v){ submenu = v; return self; };
-	
-	///@param {real} Cost
-	/// @desc Set EX cost of move.
-	static setExCost = function(v){ exCost = v; infoCard.exCost = v; return self; };
-	
-	///@param {real} Cost
-	/// @desc Set how many frames the Move lasts
-	static setFrameCost = function(v){ frameCost = v; return self; };
-	
-	///@param {bool} Target_Requirement
-	/// @desc True: Attacks regardless of target.
-	/// False: Requires target to be set before use.
-	static setTargetRequired = function(v){ targetRequired = v; return self; };
-	
-	///@param {bool} Target_Side
-	/// @desc True: Sets cursor to auto target other side by default.
-	/// False: Doesn't.
-	static setTargetEnemyByDefault = function(v){ targetEnemyByDefault = v; return self; };
-	
-	///@param {Enum.MODE} Target_Mode 
-	/// @desc MODE.NEVER: Single target attack only.
-	/// MODE.ALWAYS: AOE attack only.
-	/// MODE.VARIES: Choose between target grouping.
-	static setTargetAll = function(v){ targetAll = v; return self; };
-	
-	///@param {string} Animation 
-	static setUserAnim = function(v){ userAnimation = v; return self; };
-	static setFxSprite = function(v){ fxSprite = v; return self; };
-	static setEffectOnTarget = function(v){ effectOnTarget = v; return self; };
-	static setHitSound = function(v){ hitSound = v; return self; };
 
-}
 
 enum ITEM_TYPE
 {
@@ -325,31 +255,6 @@ function initItems(){
 		,
 		
 		keyGeneric: new Item("Small Key", ITEM_TYPE.KEY)
-			
-		//burgerOLD:
-		//{
-			//type : ITEM_TYPE.CONSUMABLE,
-			//heal : 20,
-			//sprite : sItemBurger,
-			//name: "Cheeseburger",
-			//type : "item",
-			//desc: "Heals 20 hp to one target",
-			//targetRequired : true,
-			//targetEnemyByDefault: false,
-			//targetAll : MODE.NEVER,
-			//userAnimation : "attack",
-			//fxSprite : sHeal,
-			//effectOnTarget: MODE.ALWAYS,
-			//hitSound : snHealMinor,
-			//tags : [FOOD_TAG.DAIRY,FOOD_TAG.GRAIN,FOOD_TAG.MEAT],
-			//func : heal
-		//},
-			
-		//keyGeneric	: new create_item(
-			//ITEM_TYPE.KEY,
-			//"Small Key", 
-			//"Unlocks regular doors.", 
-			//sItemKeyGeneric),
 	}
 	
 	struct_foreach(global.items, function(_key, _val){
@@ -359,8 +264,10 @@ function initItems(){
 	
 }
 	
-function equipArmor(user = global.characters[CHAR.NILS], targets = global.characters[CHAR.NILS], source = -1)
+function equipArmor(user = global.characters[CHAR.NILS], source = -1, _message = true)
 {
+    if !instance_exists(oPauseMenu){ if _message {shortMessage("//You can't do that right now.", TXTPOS.MID)}; return false;}
+    
 	var me = global.items[$ self.key ]
 	var users = me[$ "usedBy"];
 	
@@ -385,6 +292,8 @@ function equipArmor(user = global.characters[CHAR.NILS], targets = global.charac
 		AFTERTEXT{with oPauseMenu doGoBack()}
 		show_debug_message($"{user.name} EQUIPPED {me.name}.");
 	}
+    
+    return true;
 }
 
 function openChest(_chest)

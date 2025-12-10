@@ -8,8 +8,8 @@
   "name":"pDebugDraw",
   "overriddenProperties":[],
   "parent":{
-    "name":"System",
-    "path":"folders/Objects/System.yy",
+    "name":"Debug and Dev",
+    "path":"folders/Debug and Dev.yy",
   },
   "parentObjectId":null,
   "persistent":false,

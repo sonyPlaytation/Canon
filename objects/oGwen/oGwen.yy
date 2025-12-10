@@ -13,7 +13,7 @@
   ],
   "parent":{
     "name":"NPC",
-    "path":"folders/Overworld Entities/Objects/NPC.yy",
+    "path":"folders/Interactive/Objects/NPC.yy",
   },
   "parentObjectId":{
     "name":"pNPC",

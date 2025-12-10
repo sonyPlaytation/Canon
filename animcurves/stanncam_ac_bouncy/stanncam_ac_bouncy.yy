@@ -12,7 +12,7 @@
   "name":"stanncam_ac_bouncy",
   "parent":{
     "name":"Animation Curves - Add more as needed",
-    "path":"folders/STANNcam/Miscellaneous/Animation Curves - Add more as needed.yy",
+    "path":"folders/Libraries/STANNcam/Miscellaneous/Animation Curves - Add more as needed.yy",
   },
   "resourceType":"GMAnimCurve",
   "resourceVersion":"2.0",

@@ -36,7 +36,7 @@ guyToLevel = 0;
 
 array_foreach(PARTY,function(_element,_index)
 {
-	addEXP(encounterEXP,_element)
+	with _element {addEXP(other.encounterEXP)}
 })
 
 bgAlpha = 0;

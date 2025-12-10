@@ -9,7 +9,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Zones",
-    "path":"folders/STANNcam/Zones.yy",
+    "path":"folders/Libraries/STANNcam/Zones.yy",
   },
   "parentObjectId":{
     "name":"obj_stanncam_zone",

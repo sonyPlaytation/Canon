@@ -16,7 +16,7 @@
   ],
   "parent":{
     "name":"Enemies",
-    "path":"folders/Overworld Entities/Objects/Enemies.yy",
+    "path":"folders/Interactive/Objects/Enemies.yy",
   },
   "parentObjectId":{
     "name":"pEnemy",

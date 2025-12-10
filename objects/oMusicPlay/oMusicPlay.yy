@@ -8,8 +8,8 @@
   "name":"oMusicPlay",
   "overriddenProperties":[],
   "parent":{
-    "name":"Narrative",
-    "path":"folders/Narrative.yy",
+    "name":"Objects",
+    "path":"folders/Mapping/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

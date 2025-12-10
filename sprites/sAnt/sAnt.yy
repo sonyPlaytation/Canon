@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"sFeralAnt",
+  "%Name":"sAnt",
   "bboxMode":0,
   "bbox_bottom":4,
   "bbox_left":0,
@@ -21,19 +21,19 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"870b3430-dd6c-4cd2-b0e6-cf6f9f7b666d","blendMode":0,"displayName":"default","isLocked":false,"name":"870b3430-dd6c-4cd2-b0e6-cf6f9f7b666d","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"sFeralAnt",
+  "name":"sAnt",
   "nineSlice":null,
   "origin":9,
   "parent":{
     "name":"Enemies",
-    "path":"folders/Overworld Entities/Sprites/Enemies.yy",
+    "path":"folders/Interactive/Sprites/Enemies.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"sFeralAnt",
+    "%Name":"sAnt",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -63,7 +63,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"sFeralAnt",
+    "name":"sAnt",
     "playback":1,
     "playbackSpeed":30.0,
     "playbackSpeedType":0,
@@ -77,7 +77,7 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9a727b85-2809-4dad-9894-50d0c6db342c","path":"sprites/sFeralAnt/sFeralAnt.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9a727b85-2809-4dad-9894-50d0c6db342c","path":"sprites/sAnt/sAnt.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"ccc31ddd-d7cc-484f-9a52-0a60bb2ae069","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],

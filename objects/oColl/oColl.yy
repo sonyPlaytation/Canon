@@ -6,8 +6,8 @@
   "name":"oColl",
   "overriddenProperties":[],
   "parent":{
-    "name":"Level Design",
-    "path":"folders/Objects/Level Design.yy",
+    "name":"Objects",
+    "path":"folders/Mapping/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

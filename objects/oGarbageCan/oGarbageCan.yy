@@ -9,7 +9,7 @@
   ],
   "parent":{
     "name":"Props",
-    "path":"folders/Overworld Entities/Objects/Props.yy",
+    "path":"folders/Interactive/Objects/Props.yy",
   },
   "parentObjectId":{
     "name":"pNPC",

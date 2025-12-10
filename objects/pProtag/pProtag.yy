@@ -10,8 +10,8 @@
   "name":"pProtag",
   "overriddenProperties":[],
   "parent":{
-    "name":"Overworld Entities",
-    "path":"folders/Overworld Entities.yy",
+    "name":"!Party",
+    "path":"folders/!Party.yy",
   },
   "parentObjectId":{
     "name":"pAllLivingThings",

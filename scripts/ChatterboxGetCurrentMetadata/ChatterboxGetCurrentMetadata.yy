@@ -6,7 +6,7 @@
   "name":"ChatterboxGetCurrentMetadata",
   "parent":{
     "name":"Chatterboxes",
-    "path":"folders/Chatterbox/Chatterboxes.yy",
+    "path":"folders/Libraries/Chatterbox/Chatterboxes.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

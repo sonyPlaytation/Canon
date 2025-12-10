@@ -42,6 +42,8 @@ function dialogueAction() constructor {
     act = function() { };
 }
 
+///@param{string} Message
+///@param{Enum.TXTPOS} textPosition
 function shortMessage(_text,yMode = TXTPOS.BTM)
 {
     global.topics[$ "shortMessage"] = 

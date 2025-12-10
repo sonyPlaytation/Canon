@@ -13,8 +13,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"propertyId":{"name":"isEnemy","path":"objects/pEntity/pEntity.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
   ],
   "parent":{
-    "name":"Overworld Entities",
-    "path":"folders/Overworld Entities.yy",
+    "name":"Interactive",
+    "path":"folders/Interactive.yy",
   },
   "parentObjectId":{
     "name":"pEntity",
