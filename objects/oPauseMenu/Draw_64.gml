@@ -37,7 +37,7 @@ for (var l = 0; l < optionsCount ; l++)
 	
 	draw_sprite(sBattleOptions,selected, optX, optY);
 	
-	var str = listItem.label;	
+	var str = listItem.name;	
 	if !listItem.allowed {draw_set_color(c_grey);}
 	
 	if selected 

@@ -14,13 +14,13 @@ if active
 	if hover > array_length(item)-1 {hover = 0;}
 	if (hover < 0 ) { hover = array_length(item)-1; }
 	
-	if (accept or item[hover].type == "slider") and item != undefined
+	if (accept or item[hover].menuType == "slider") and item != undefined
 	{
 		if item[hover].allowed
 		{
 			if item[hover].func != undefined
 			{
-				//show_debug_message("Selected Option: "+item[hover].label)
+				//show_debug_message("Selected Option: "+item[hover].name)
 				item[hover].func();
 				InputVerbConsume(INPUT_VERB.ACCEPT);
 			}
@@ -30,7 +30,7 @@ if active
 
 if canDestroy and back
 {
-	//show_debug_message("Return to MenuLayer: "+options[$ currentMenu][hover].label)
+	//show_debug_message("Return to MenuLayer: "+options[$ currentMenu][hover].name)
 	if currentMenu == "Menu" 
 	{
 		destroyMenu = true;

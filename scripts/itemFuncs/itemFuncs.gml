@@ -8,6 +8,7 @@ function IMenuable(_name = "", _desc = "") constructor{
 	
 	// Universal 
     allowed = true;
+	menuType = "submenu";
 	name = _name;
 	desc = _desc;
 	sprite = sBlank;
@@ -43,6 +44,9 @@ function IMenuable(_name = "", _desc = "") constructor{
 
 		return self; 
 	};
+	static setType = function(v){ menuType = v; return self; }
+	static setAllowed = function(v){ allowed = v; return self; };
+	static toggleAllowed = function(){ allowed = !allowed; return self; };
 	
 	static setInfoDesc = function(v){ info.desc = v; return self; };
 	static setInfoTypes = function(v){ info.types = v; return self; };

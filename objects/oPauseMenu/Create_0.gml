@@ -1,5 +1,7 @@
 /// @
 
+#macro MENU new IMenuable
+
 global.pauseEvery = true;
 loadSettings()
 oPlayer.JustHitEnemyButCanStillMoveALittle = 0;
@@ -50,67 +52,32 @@ upFrames = 0;
 leftFrames = 0;
 rightFrames = 0;
 
-goBack = 
-{
-	allowed : true,
-	type : "submenu",
-	label : "Back",
-	func : doGoBack
-}
+goBack = new IMenuable("Back").setFunc(doGoBack);
 
 options[$ "Menu"] = 
 [
-	{
-		allowed : true,
-		type : "submenu",
-		label : "Item",
-		func : enterSubmenu
-	},
+	MENU("Item")
+	.setFunc(enterSubmenu),
 	
+	MENU("Equip")
+	.setAllowed(FLAGS.playerName != "???")
+	.setFunc(createPartyNamesMenu),
+
 	{
 		allowed : FLAGS.playerName != "???",
-		type : "submenu",
-		label : "Equip",
+		menuType : "submenu",
+		name : "Party",
 		func : function(){
 			
 			guys = []
-			other.options[$ "Equip"] = guys
-			array_foreach(PARTY,function(element, index)
-			{
-				oPauseMenu.CurrentElement = element
-				var _guy =
-				{
-					allowed : true,
-					type : "submenu",
-					label : element.name,
-					func : createEquipSlotMenu
-				}
-				
-				array_push(other.guys,_guy)
-			})
-	
-			var len = array_length(guys)
-			array_copy(other.options[$ "Equip"],0,guys,0,len);
-			array_push(other.options[$ "Equip"],variable_clone(oPauseMenu.goBack))
-			with oPauseMenu enterSubmenu("Equip");	
-		}
-	},
-	
-	{
-		allowed : FLAGS.playerName != "???",
-		type : "submenu",
-		label : "Party",
-		func : function(){
-			
-			guys = []
-			other.options[$ label] = guys
+			other.options[$ name] = guys
 			array_foreach(PARTY,function(element, index)
 			{
 				var _guy =
 				{
 					allowed : true,
-					type : "submenu",
-					label : element.name,
+					menuType : "submenu",
+					name : element.name,
 					func : undefined
 				}
 				
@@ -118,16 +85,16 @@ options[$ "Menu"] =
 			})
 	
 			var len = array_length(guys)
-			array_copy(other.options[$ label],0,guys,0,len);
-			array_push(other.options[$ label],variable_clone(oPauseMenu.goBack))
-			enterSubmenu(label);	
+			array_copy(other.options[$ name],0,guys,0,len);
+			array_push(other.options[$ name],variable_clone(oPauseMenu.goBack))
+			enterSubmenu(name);	
 		}
 	},
 	
 	{
 		allowed : true,
-		type : "submenu",
-		label : "System",
+		menuType : "submenu",
+		name : "System",
 		func : enterSubmenu
 	},
 ]
@@ -139,8 +106,8 @@ options[$ "Item"] =  []
 array_push(options[$ "Item"],
 {
 	allowed : true,
-	type : "submenu",
-	label : "Consumables",
+	menuType : "submenu",
+	name : "Consumables",
     itemType : ITEM_TYPE.CONSUMABLE,
 	func : createItemMenu
 })	
@@ -150,8 +117,8 @@ array_push(options[$ "Item"],
 	//array_push(options[$ "Item"],
 	//{
 		//allowed : true,
-		//type : "submenu",
-		//label : "Weapons",
+		//menuType : "submenu",
+		//name : "Weapons",
 		//itemType : ITEM_TYPE.WEAPON,
         //func : createItemMenu
 	//})	
@@ -162,8 +129,8 @@ array_push(options[$ "Item"],
 	//array_push(options[$ "Item"],
 	//{
 		//allowed : true,
-		//type : "submenu",
-		//label : "Armor",
+		//menuType : "submenu",
+		//name : "Armor",
 		//itemType : ITEM_TYPE.ARMOR,
         //func : createItemMenu
 	//})	
@@ -174,8 +141,8 @@ array_push(options[$ "Item"],
 	//array_push(options[$ "Item"],
 	//{
 		//allowed : true,
-		//type : "submenu",
-		//label : "Gems",
+		//menuType : "submenu",
+		//name : "Gems",
 		//itemType : ITEM_TYPE.MOD,
         //func : createItemMenu
 	//})	
@@ -184,8 +151,8 @@ array_push(options[$ "Item"],
 array_push(options[$ "Item"],
 {
 	allowed : true,
-	type : "submenu",
-	label : "Key Items",
+	menuType : "submenu",
+	name : "Key Items",
 	itemType : ITEM_TYPE.KEY,
 	func : createItemMenu
 })	
@@ -197,36 +164,36 @@ options[$ "System"] =
 [
 	{
 		allowed : true,
-		type : "submenu",
-		label : "Save",
+		menuType : "submenu",
+		name : "Save",
 		func : function(){ instance_destroy(other) saveGame()}
 	},
 
 	{
 		allowed : true,
-		type : "submenu",
-		label : "Load",
+		menuType : "submenu",
+		name : "Load",
 		func : function(){ instance_destroy(other) loadGame(true)}
 	},
 
 	{
 		allowed : true,
-		type : "submenu",
-		label : "Settings",
+		menuType : "submenu",
+		name : "Settings",
 		func : enterSubmenu
 	},
 
 	{
 		allowed : true,
-		type : "submenu",
-		label : "Main Menu",
+		menuType : "submenu",
+		name : "Main Menu",
 		func : function(){ if show_question("Are you sure?") global.pauseEvery = false; game_restart() }
 	},
 
 	{
 		allowed : true,
-		type : "submenu",
-		label : "Close Game",
+		menuType : "submenu",
+		name : "Close Game",
 		func : function(){ if show_question("Are you sure?") game_end() }
 	},
 
@@ -238,22 +205,22 @@ options[$ "Settings"] =
 [
     {
 		allowed : true,
-		type : "submenu",
-		label : "Audio",
+		menuType : "submenu",
+		name : "Audio",
 		func : enterSubmenu
 	},
     
 	{
 		allowed : true,
-		type : "submenu",
-		label : "Video",
+		menuType : "submenu",
+		name : "Video",
 		func : enterSubmenu
 	},
     
     {
 		allowed : true,
-		type : "submenu",
-		label : "Other",
+		menuType : "submenu",
+		name : "Other",
 		func : enterSubmenu
 	},
 
@@ -264,8 +231,8 @@ options[$ "Audio"] =
 [
     {
 		allowed : true,
-		type : "toggle",
-		label : "Toggle Mute",
+		menuType : "toggle",
+		name : "Toggle Mute",
         value : global.settings.sound.mute,
 		func : function(){ 
             global.settings.sound.mute = !global.settings.sound.mute; 
@@ -276,8 +243,8 @@ options[$ "Audio"] =
     
 	{
 		allowed : true,
-		type : "slider",
-		label : "Master Volume",
+		menuType : "slider",
+		name : "Master Volume",
         value : global.settings.sound.masterVolume,
 		func : function(){ 
             value = clamp(global.settings.sound.masterVolume+(other.hort/10),0,1)
@@ -289,8 +256,8 @@ options[$ "Audio"] =
     
     {
 		allowed : true,
-		type : "slider",
-		label : "Music Volume",
+		menuType : "slider",
+		name : "Music Volume",
         value : global.settings.sound.musicVolume,
 		func : function(){ 
             value = clamp(global.settings.sound.musicVolume+(other.hort/10),0,1)
@@ -302,8 +269,8 @@ options[$ "Audio"] =
     
     {
 		allowed : true,
-		type : "slider",
-		label : "SFX Volume",
+		menuType : "slider",
+		name : "SFX Volume",
         value : global.settings.sound.sfxVolume,
 		func : function(){ 
             value = clamp(global.settings.sound.sfxVolume+(other.hort/10),0,1)
@@ -315,8 +282,8 @@ options[$ "Audio"] =
     
     {
 		allowed : true,
-		type : "slider",
-		label : "Voice Volume",
+		menuType : "slider",
+		name : "Voice Volume",
         value : global.settings.sound.voiceVolume,
 		func : function(){ 
             value = clamp(global.settings.sound.voiceVolume+(other.hort/10),0,1)
@@ -333,8 +300,8 @@ options[$ "Video"] =
 [
     {
 		allowed : true,
-		type : "toggle",
-		label : "Fullscreen",
+		menuType : "toggle",
+		name : "Fullscreen",
         value : global.window_mode == STANNCAM_WINDOW_MODE.BORDERLESS,
 		func : function(){ 
             
@@ -347,8 +314,8 @@ options[$ "Video"] =
     
     {
 		allowed : !SETTINGS.video.fullscreen,
-		type : "slider",
-		label : "Int Scale",
+		menuType : "slider",
+		name : "Int Scale",
         value : SETTINGS.video.scale,
 		func : function(){ 
             
@@ -365,8 +332,8 @@ options[$ "Video"] =
 	
 	{
 		allowed : true,
-		type : "slider",
-		label : "Camera Spd",
+		menuType : "slider",
+		name : "Camera Spd",
         value : SETTINGS.video.camSpd,
 		func : function(){ 
             
@@ -385,8 +352,8 @@ options[$ "Other"] =
 [
     {
 		allowed : true,
-		type : "slider",
-		label : "Text Speed",
+		menuType : "slider",
+		name : "Text Speed",
         value : SETTINGS.other.textspeed,
 		func : function(){ 
             value = clamp(SETTINGS.other.textspeed+(other.hort/10),0,1)
@@ -398,8 +365,8 @@ options[$ "Other"] =
     
     {
 		allowed : true,
-		type : "toggle",
-		label : "Input Display",
+		menuType : "toggle",
+		name : "Input Display",
         value : SETTINGS.other.inputDisplay,
 		func : function(){ 
             
@@ -411,8 +378,8 @@ options[$ "Other"] =
     
     {
 		allowed : true,
-		type : "toggle",
-		label : "Dash Alert",
+		menuType : "toggle",
+		name : "Dash Alert",
         value : SETTINGS.other.dashCooldown,
 		func : function(){ 
             
@@ -428,8 +395,8 @@ options[$ "Other"] =
 if DEV array_insert(options[$ "Settings"], 0,
     {
         allowed : DEV,
-        type : "submenu",
-        label : "Toggle Debug",
+        menuType : "submenu",
+        name : "Toggle Debug",
         func : function(){ global.debug = !global.debug }
     }
 )

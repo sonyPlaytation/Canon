@@ -1,27 +1,40 @@
 
-function createItemMenu(invType = itemType, key = label)
+function createItemMenu(invType = itemType, key = name)
 {
 	items = []
 	other.options[$ key] = []
 	array_foreach(global.inv[invType],function(element, index)
 	{
 		var theItem = global.items[$ element];
-		var _item =
-		{
-			key : element,
-			allowed : true,
-			type : "item",
-			label : theItem.name,
-			func : theItem.func
-		}
-				
-		array_push(other.items,_item)
+
+		array_push(other.items,theItem)
 	})
 	
 	var len = array_length(items)
 	array_copy(other.options[$ key],0,items,0,len);
 	array_push(other.options[$ key],variable_clone(other.goBack))
 	enterSubmenu(key);
+}
+
+function createPartyNamesMenu()
+{
+	guys = []
+	other.options[$ "Equip"] = guys
+	array_foreach(PARTY,function(element, index)
+	{
+		oPauseMenu.CurrentElement = element
+		var _guy = new IMenuable(element.name)
+			.setType("submenu")
+			.setFunc(function(){createEquipSlotMenu(oPauseMenu.CurrentElement)})
+		;
+		
+		array_push(other.guys,_guy)
+	})
+
+	var len = array_length(guys)
+	array_copy(other.options[$ "Equip"],0,guys,0,len);
+	array_push(other.options[$ "Equip"],variable_clone(oPauseMenu.goBack))
+	with oPauseMenu enterSubmenu("Equip");
 }
 
 // entering character equip slots menu. itemizes slots for use in menu page
@@ -35,16 +48,17 @@ function createEquipSlotMenu(guy = global.characters[CHAR.NILS])
 	array_foreach(guy.equips,function(element, index)
 	{
 		global.currentlyEquipped[index] = global.items[$ element.equip]
-		var _slot =
-		{
+		var _slot = 
+		{ //TODO fix this shit im fuckin fdrunk
 			key : nameof(element),
 			allowed : true,
-			type : "submenu",
+			menuType : "submenu",
 			itemType : element.type,
-			label : element.label,
+			name : element.label,
 			slotIndex : index,
-			func : function(){ createItemMenu(itemType,label); global.currentEquipMenu = slotIndex },
+			func : function(){ createItemMenu(itemType,name); global.currentEquipMenu = slotIndex },
 			value : element.equip,
+			sprite : global.items[$ element.equip][$ "sprite"],
 			draw : drawItem
 		}
 		_slot.value = element.equip;
@@ -84,7 +98,7 @@ function createEquipSlotMenu(guy = global.characters[CHAR.NILS])
 	//enterSubmenu(key);
 //}
 
-function enterSubmenu(_menuName = label)
+function enterSubmenu(_menuName = name)
 {
 	with oPauseMenu
 	{
@@ -160,7 +174,7 @@ function drawItem(_x, _y, _active = false, _value = value){
 	
 	if is_undefined(_value) or _value == noone exit;
 	
-	var sprite = global.items[$ _value].sprite
-	draw_sprite(sprite, 0, xx + (sprite_get_width(sBattleEXCost)/2)-1 + (sprite_get_width(sprite)mod 2 == 0), yy)
+	var sprite = self.sprite
+	if !is_undefined(sprite) draw_sprite(sprite, 0, xx + (sprite_get_width(sBattleEXCost)/2)-1 + (sprite_get_width(sprite)mod 2 == 0), yy)
 	
 }
