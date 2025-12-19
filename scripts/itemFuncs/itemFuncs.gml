@@ -62,7 +62,7 @@ function Item(_name = "", _desc = "", _type = ITEM_TYPE.KEY) : IMenuable() const
 	name = _name;
 	desc = _desc;
 	itemType = _type;
-	usedBy = [];
+	usedBy = global.party;
 	stats =  {
 		
 		lvl : 0, // level requirement
@@ -170,8 +170,6 @@ function Item(_name = "", _desc = "", _type = ITEM_TYPE.KEY) : IMenuable() const
 
 }
 
-
-
 enum ITEM_TYPE
 {
 	CONSUMABLE,
@@ -194,7 +192,7 @@ enum FOOD_TAG
 
 #region item function archetypes
 
-	function consume(user, targets = [global.characters[CHAR.NILS]], _val) { 
+	function consume(user, targets = [NILS], _val) { 
 		
 		item = global.items[$ self.key];
 		if is_undefined(_val) _val = item.value;
@@ -231,11 +229,13 @@ function initItems(){
 	global.inv[ITEM_TYPE.WEAPON] = [];
 	global.inv[ITEM_TYPE.KEY] = [];
 	
-	//TODO: change items to be constructors
 	global.items = 
 	{
+		unequip: new Item("None")
+			.setFunc(function(){equipArmor(,,false)})
+		,
 		armorTest: new Item("Basic Armor", "SHITTY ASS ARMOR", ITEM_TYPE.ARMOR)
-			.setUsedBy(CHAR.NILS)
+			.setUsedBy(NILS)
 			.setSprite(sHeadNils)
 			.setStats(1,,,,,4,,1)
 			.setDefTypes([MOVE_TYPE.PHYS])
@@ -244,7 +244,7 @@ function initItems(){
 		,
 		
 		armorTest2: new Item("Stupid Armor", "POOPY ASS ARMOR", ITEM_TYPE.ARMOR)
-			.setUsedBy(CHAR.NILS)
+			.setUsedBy(NILS)
 			.setSprite(sLaughingCryingEmoji)
 			.setStats(1,,,,,4,,1)
 			.setDefTypes([MOVE_TYPE.PHYS])
@@ -258,17 +258,17 @@ function initItems(){
 			.setValue(20)
 		,
 		
-		keyGeneric: new Item("Small Key", ITEM_TYPE.KEY)
+		keyGeneric: new Item("Small Key")
 	}
 	
 	struct_foreach(global.items, function(_key, _val){
-	  _val[$ "key"] = _key  
-	  if _val[$ "type"] == ITEM_TYPE.CONSUMABLE {_val[$ "submenu"] = "Items"}
+		_val[$ "key"] = _key  
+		if _val[$ "type"] == ITEM_TYPE.CONSUMABLE {_val[$ "submenu"] = "Items"}
 	})
 	
 }
 	
-function equipArmor(user = global.characters[CHAR.NILS], source = -1, _message = true)
+function equipArmor(user = NILS, source = -1, _message = true)
 {
     if !instance_exists(oPauseMenu){ if _message {shortMessage("//You can't do that right now.", TXTPOS.MID)}; return false;}
     
@@ -277,13 +277,9 @@ function equipArmor(user = global.characters[CHAR.NILS], source = -1, _message =
 	
 	if users != undefined { if !is_array(users){ users = [users]} }
 	
-	if users == undefined or array_contains(users,array_get_index(global.characters,user)){
+	if users == undefined or array_contains(users,user){
 		
 		var slot = global.currentEquipMenu
-		//if slot.equip != noone{ // Replace equip slot with new one
-			//addItem(global.items[$ user.equips.armor ], false);
-			//user.equips.armor = noone;
-		//}
 		
 		//equip item as key
 		user.equips[slot].equip = self.key;
@@ -291,9 +287,15 @@ function equipArmor(user = global.characters[CHAR.NILS], source = -1, _message =
 		// update the sprite in the equip menu slots
 		var menuItem = other.options[$ user.name][global.currentEquipMenu]
 		menuItem.value = self.key
+		menuItem.sprite = self.sprite
 		
-		shortMessage($"//Equipped [c_red]{me.name}!",TXTPOS.MID)
-		AFTERTEXT{with oPauseMenu doGoBack()}
+		if _message {
+			shortMessage($"//Equipped [c_red]{me.name}!",TXTPOS.MID)
+			AFTERTEXT{with oPauseMenu doGoBack()}
+		} else {
+			with oPauseMenu {doGoBack()}
+		}
+		
 		show_debug_message($"{user.name} EQUIPPED {me.name}.");
 	}
     

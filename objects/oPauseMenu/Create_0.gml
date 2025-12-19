@@ -402,7 +402,7 @@ if DEV array_insert(options[$ "Settings"], 0,
 )
 
 controls = function(){
-	
+	//TODO: make this a global function?
 	if instance_exists(oTextBox){
 		
 		down = false
@@ -436,4 +436,8 @@ controls = function(){
 	
 	vert = down - up;
 	hort = right - left;
+	
+	if hort != 0 or vert != 0 SFX snNarr
+	else if accept SFX snHealMinor
+	else if back or close SFX choose(snHit1,snHit2,snHit3)
 }

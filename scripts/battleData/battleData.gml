@@ -1,7 +1,7 @@
 
 
 initFlags();
-initItems();
+//
 
 #region battle definitions
 
@@ -37,9 +37,9 @@ initItems();
         
         enum CHAR
         {
-        	NILS,
-        	CHARLIE,
-        	MATTHEW
+        	Nils,
+        	Charlie,
+        	Matthew
         }
         
         #macro s1 "[sInputArrows, 5]"
@@ -58,10 +58,13 @@ initItems();
         #macro sH "[sInputH, 1]"
 
         #macro PARTY global.party
+		#macro NILS global.characters[$ "Nils"]
+		#macro CHARLIE global.characters[$ "Charlie"]
+		#macro MATTHEW global.characters[$ "Matthew"]
         advantage = 0;
         lvlCap = 99;
         areaLevel = 1;
-		characters = []
+		characters = {}
 
         moves =
 	    {
@@ -160,9 +163,9 @@ initItems();
 	    	normals : new Attack("Normals")
 	    		.setSubmenu(-1)	
 	    		.setUserAnim("idle")
-	    		.setFunc(function(user, targets)
-	    		{
-	    			with oBattle 
+	    		.setFunc(function(user, targets) {
+	    			
+					with oBattle 
 	    			{
 	    				sState.change("doNormals");
 	    			}
@@ -171,8 +174,8 @@ initItems();
 	    	
 	    	enemyNormals : new Attack("enemyNormals")
 	    		.setUserAnim("idle")
-	    		.setFunc(function(user, targets)
-	    		{
+	    		.setFunc(function(user, targets){
+					
 	    			with oBattle 
 	    			{
 	    				oBattle.sState.change("enemyNormals");
@@ -187,8 +190,7 @@ initItems();
 	            .setHitSound(snHit8)
 	            .setFrameCost(6)
 	            .setFxSprite(sPunch)
-	    		.setFunc(function(user, targets)
-	    		{
+	    		.setFunc(function(user, targets) {
 	                var damage = ceil(user.stats.str * random_range(1.25,1.5));
 	                battleChangeHP(targets[0], -damage,, self.hitSound);
 	                battleChangeEX(user,1)
@@ -549,6 +551,9 @@ initItems();
         }
         
         static removeAction = function(v){ array_delete(actions, array_get_index(actions,v), 1) ; return self; }
+		
+		static setAtkType = function(v){ atkTypes = is_array(v) ? v : [v]; return self; }
+		static setDefType = function(v){ defTypes = is_array(v) ? v : [v]; return self; }
         
         static addEXP = function(v)
         {
@@ -559,7 +564,6 @@ initItems();
         		levelUp(self);
         	}
         }
-        
         static levelUp = function()
         {
         	var STATS = stats
@@ -580,9 +584,6 @@ initItems();
         		array_push(oBattleResults.baseStats, [STATS.str,STATS.def,STATS.exStr,STATS.exDef,STATS.int,STATS.spd,STATS.cha,STATS.luk] )
         	}
         }
-		
-		static setAtkType = function(v){ atkTypes = is_array(v) ? v : [v]; return self; }
-		static setDefType = function(v){ defTypes = is_array(v) ? v : [v]; return self; }
   
     };
 
@@ -621,11 +622,12 @@ initItems();
         actions = [ global.actionLibrary.normals, global.actionLibrary.light, global.actionLibrary.medium, global.actionLibrary.heavy ]
         equips = variable_clone(global.equipSlotsTemplate);
         
-        allergies = [];
+        allergies = []; //TODO: food effects should be a struct of functions slash statuseffects
         sprites = {};
         battleLines = {};
         
         static setJob = function(v){ job = v; return self; }
+        static setBattleLines = function(v){ battleLines = v; return self; }
         
         static setAllergy = function(v){ allergies = is_array(v) ? v : [v]; return self; }
         static addAllergy = function(v){ array_push(allergies, v); return self; }
@@ -635,167 +637,165 @@ initItems();
         static setSprite = function(key, val){ sprites[$ key] = val; return self; } 
     }
     
-    global.characters[CHAR.NILS] = new Cowboy(FLAGS.playerName, "Fool")
-        .setStats({
-            lvl : 1,
-            EXP : 0,
-            requiredEXP : 100,
-            hp: 50,
-            hpMax: 50,
-            ex: 50,
-            exMax: 15,
-        
-            str: 3,
-            def: 4,
-            exStr: 8,
-            exDef: 5,
-            int: 0,
-            spd: 5,
-            cha: 0,
-            luk: 5 })
-        .setSpriteStruct({ 
-            idle: sNilsBattleIdle, 
-            active: sNilsWalkD, 
-            slide: sNilsDash, 
-            normals: sNilsBattlePunchL,
-            shoot : sNilsBattleShot,
-            volley : sNilsBattleVolley,
-            defend: sNilsIdle, 
-            down: sGrave, 
-            head: sHeadNils, 
-            portrait: sBattlePort, 
-            parry : sNilsBattleParry })
-        .setAllergy([FOOD_TAG.SPICY, FOOD_TAG.SWEETS])
-        .addAction([global.actionLibrary.devilshot, global.actionLibrary.devilVolley])
-		.setDefType({type : MOVE_TYPE.FIRE, amnt: 72});
-    	
-		global.characters[CHAR.NILS].battleLines = {
-	        lowHP : "I could really use a hand right now...",
-	        lowEX : "Runnin' low on ammo, you guys.",
-	        justHealed : "Okay, that's so much better.",
-	        justEXed : "More scary evil bullets, comin' right up!",
-	        justLeveled :
-	        [
-	            "I can already feel this thing getting stronger..."nl" That's a good thing, right?",
-	            "This prophecy business wouldn't be so bad if I were jacked as shit.",
-	            "Maybe I don't need to hold back as much."nl"Maybe... maybe this power is good for me..."
-	        ],
-	        winQuotes : 
-	        [ 
-	            "I almost had a heart attack!",
-	            "Think that was the last of 'em.",
-	            "If we went home right now, would anyone really care? Probably not.",
-	            "...but my aim is gettin' better!"
-	        ]
-	    }
-    
+    NILS = new Cowboy(FLAGS.playerName, "Fool")
+	.setStats({
+		lvl : 1,
+		EXP : 0,
+		requiredEXP : 100,
+		hp: 50,
+		hpMax: 50,
+		ex: 50,
+		exMax: 15,
+	
+		str: 3,
+		def: 4,
+		exStr: 8,
+		exDef: 5,
+		int: 0,
+		spd: 5,
+		cha: 0,
+		luk: 5 })
+	.setSpriteStruct({ 
+		idle: sNilsBattleIdle, 
+		active: sNilsWalkD, 
+		slide: sNilsDash, 
+		normals: sNilsBattlePunchL,
+		shoot : sNilsBattleShot,
+		volley : sNilsBattleVolley,
+		defend: sNilsIdle, 
+		down: sGrave, 
+		head: sHeadNils, 
+		portrait: sBattlePort, 
+		parry : sNilsBattleParry })
+	.setBattleLines({
+		lowHP : "I could really use a hand right now...",
+		lowEX : "Runnin' low on ammo, you guys.",
+		justHealed : "Okay, that's so much better.",
+		justEXed : "More scary evil bullets, comin' right up!",
+		justLeveled :
+		[
+			"I can already feel this thing getting stronger..."nl" That's a good thing, right?",
+			"This prophecy business wouldn't be so bad if I were jacked as shit.",
+			"Maybe I don't need to hold back as much."nl"Maybe... maybe this power is good for me..."
+		],
+		winQuotes : 
+		[ 
+			"I almost had a heart attack!",
+			"Think that was the last of 'em.",
+			"If we went home right now, would anyone really care? Probably not.",
+			"...but my aim is gettin' better!"
+		]
+	})
+	.setAllergy([FOOD_TAG.SPICY, FOOD_TAG.SWEETS])
+	.addAction([global.actionLibrary.devilshot, global.actionLibrary.devilVolley])
+	.setDefType({type : MOVE_TYPE.FIRE, amnt: 60});
+	
+	CHARLIE = new Cowboy("Charlie", "Magician")
+	.setStats({
+		lvl : 2,
+		EXP : 0,
+		requiredEXP : 100,
+		hp: 40,
+		hpMax: 40,
+		ex: 0,
+		exMax: 20,
+	
+		str: 3,
+		def: 4,
+		exStr: 6,
+		exDef: 6,
+		int: 4,
+		spd: 3,
+		cha: 0,
+		luk: 4
+	})
+	.setSpriteStruct({ 
+		idle: sCharIdle, 
+		active: sCharFightActive, 
+		normals: sCharParry, 
+		slide: sCharIdle, 
+		defend: sCharIdle, 
+		down: sGrave, 
+		head: sHeadChar, 
+		portrait: sBattlePortPH, 
+		parry : sCharParry})
+	.setBattleLines({
+		lowHP : "I told grandpa I wouldn't cry anymore...",
+		lowEX : "Better hope this next spell works!",
+		justHealed : "Only a scrape after all!",
+		justEXed : "I feel way more magical now :)",
+		justLeveled :
+		[
+			"Hey Matthew, I have a new spell I really wanna try out!"nl"Wait, where are you going?",
+			""
+		],
+		winQuotes : 
+		[
+			"I wish we could have spared them...",
+			"That was fun!",
+			"I hope this moment of friendship will bring you many happy memories!",
+			"Would you like to meet my friends? Or are you too injured?"
+		]
+	})
+	.setAllergy([FOOD_TAG.SHELLFISH])
+	.addAction([global.actionLibrary.heal, global.actionLibrary.healMany, global.actionLibrary.revive])
 
-    global.characters[CHAR.CHARLIE] =
-    {
-        name: "Charlie",
-        job : "Magician",
+	MATTHEW = new Cowboy("Matthew", "Hermit")
+	.setStats({
+		lvl : 1,
+		EXP : 0,
+		requiredEXP : 100,
+		hp: 75,
+		hpMax: 75,
+		ex: 0,
+		exMax: 12,
+	
+		str: 4,
+		def: 6,
+		exStr: 5,
+		exDef: 4,
+		int: 2,
+		spd: 5,
+		cha: 0,
+		luk: 3
+	})
+	.setSpriteStruct({ 
+		idle: sMattIdle, 
+		active: sMatthewFightActive, 
+		normals: sMattParry,  
+		slide: sMattIdle, 
+		defend: sMattIdle, 
+		down: sGrave, 
+		head: sHeadMatt, 
+		portrait: sBattlePortPH, 
+		parry : sMattParry
+	})
+	.setBattleLines({
+		lowHP : "[shake]ugh-[/shake] I've had worse... [c_dkgrey]dammit...",
+		lowEX : "Man, I have enough of an 'EX' problem as is...",
+		justHealed : "I could've toughed it out...",
+		justEXed : "Who wants some?",
+		justLeveled :
+		[
+			"Hey man, don't take it personally. It's not easy being this much better than you.",
+			"I'm gonna need all the defense I can get if Charlie's gonna keep testing his spells out on me...",
+			"OOOOOH I'll givem wunna these! and wunna those! And wunna-"nl"And wunna these, and wunna those! And I'll choke 'em!!"nl"And givem wunna these! and I'll..."
+		],
+		winQuotes : 
+		[
+			"Wubba, wubba. I'm in the pink today, boys!",
+			"Don't you want a rematch...?",
+			"You don't have to be big, to look like a big loser."
+		]
+	})
+	.setAllergy([FOOD_TAG.DAIRY])
+	.addAction(global.actionLibrary.dp)
+	.setDefType({type : MOVE_TYPE.PHYS, amnt: 25});
     
-        stats : 
-        {
-            lvl : 1,
-            EXP : 0,
-            requiredEXP : 100,
-            hp: 40,
-            hpMax: 40,
-            ex: 0,
-            exMax: 20,
-        
-            str: 3,
-            def: 4,
-            exStr: 6,
-            exDef: 6,
-            int: 4, // intelligence governs the amount of EX you have, and how fast your meter builds
-            spd: 3, // speed is turn order and also move timer bonus time
-            cha: 0,
-            luk: 4
-        },
-    
-        equips : variable_clone(global.equipSlotsTemplate),
-    
-        allergies: [FOOD_TAG.SHELLFISH],
-    
-        sprites : { idle: sCharIdle, active: sCharFightActive, normals: sCharParry, slide: sCharIdle, defend: sCharIdle, down: sGrave, head: sHeadChar, portrait: sBattlePortPH, parry : sCharParry},
-        actions: [global.actionLibrary.normals, global.actionLibrary.heal, global.actionLibrary.healMany, global.actionLibrary.revive],
-        battleLines : {
-            lowHP : "I told grandpa I wouldn't cry anymore...",
-            lowEX : "Better hope this next spell works!",
-            justHealed : "Only a scrape after all!",
-            justEXed : "I feel way more magical now :)",
-            justLeveled :
-            [
-                "Hey Matthew, I have a new spell I really wanna try out!"nl"Wait, where are you going?",
-                ""
-            ],
-            winQuotes : 
-            [
-                "I wish we could have spared them...",
-                "That was fun!",
-                "I hope this moment of friendship will bring you many happy memories!",
-                "Would you like to meet my friends? Or are you too injured?"
-            ]
-        },
-    }
-    
-    global.characters[CHAR.MATTHEW] =		
-    {
-        name: "Matthew",
-        job : "Hermit",
-    
-        stats : 
-        {
-            lvl : 1,
-            EXP : 0,
-            requiredEXP : 100,
-            hp: 75,
-            hpMax: 75,
-            ex: 0,
-            exMax: 12,
-        
-            str: 4,
-            def: 6,
-            exStr: 5,
-            exDef: 4,
-            int: 2, // intelligence governs the amount of EX you have, and how fast your meter builds
-            spd: 5, // speed is turn order and also move timer bonus time
-            cha: 0,
-            luk: 3
-        },
-    
-        equips : variable_clone(global.equipSlotsTemplate),
-    
-        allergies: [FOOD_TAG.DAIRY],
-    
-        sprites : { idle: sMattIdle, active: sMatthewFightActive, normals: sMattParry,  slide: sMattIdle, defend: sMattIdle, down: sGrave, head: sHeadMatt, portrait: sBattlePortPH, parry : sMattParry},
-        actions: [global.actionLibrary.normals, global.actionLibrary.dp],
-        battleLines : {
-            lowHP : "[shake]Egh-[/shake] I've had worse... [c_dkgrey]dammit...",
-            lowEX : "Man, I have enough of an 'EX' problem as is...",
-            justHealed : "I could've toughed it out...",
-            justEXed : "Who wants some?",
-            justLeveled :
-            [
-                "Hey man, don't take it personally. It's not easy being this much better than you.",
-                "I'm gonna need all the defense I can get if Charlie's gonna keep testing his spells out on me...",
-                "OOOOOH I'll givem wunna these! and wunna those! And wunna-"nl"And wunna these, and wunna those! And I'll choke 'em!!"nl"And givem wunna these! and I'll..."
-            ],
-            winQuotes : 
-            [
-                "Wubba, wubba. I'm in the pink today, boys!",
-                "Don't you want a rematch...?",
-                "You don't have to be big, to look like a big loser."
-            ]
-        },
-    }
-
     global.party = [
-        global.characters[CHAR.NILS],
-        //global.characters[CHAR.CHARLIE],
-        //global.characters[CHAR.MATTHEW],
+        NILS,
+        CHARLIE,
+        MATTHEW,
     ]
 
 #endregion
@@ -892,10 +892,9 @@ initItems();
         	}	
         }
         
-        global.patterns = 
-        {
-        	def :
-        	{
+        global.patterns = { //TODO: Maybe turn enemy patterns into constructor structs? idk how broad its gonna get but i can just do functions for that i guess.
+        	
+			def : {
                 obj : oBullet,
         		dmg : 0,
         		dirs : [0,1,2,3,4,5,6,7],
@@ -904,8 +903,7 @@ initItems();
         		spd : 2,
         	},
         	
-        	cross :
-        	{
+        	cross : {
                 obj : oBullet,
         		dmg : 0,
         		dirs : [0,2,4,6],
@@ -914,8 +912,7 @@ initItems();
         		spd : 2.25,
         	},
         	
-        	plus :
-        	{
+        	plus : {
                 obj : oBullet,
         		dmg : 0,
         		dirs : [1,3,5,7],
@@ -924,8 +921,7 @@ initItems();
         		spd : 2.25,
         	},
         	
-        	spiral :
-        	{
+        	spiral : {
                 obj : oBulletBats,
         		dmg : 0,
         		dirs : [],
@@ -936,8 +932,7 @@ initItems();
                 createFunc : function(){dirs[0] = irandom(7);}
         	},
         	
-        	bursts :
-        	{
+        	bursts : {
                 obj : oBullet,
         		dmg : 0,
         		dirs : [irandom(7)],
@@ -947,8 +942,7 @@ initItems();
         		funcPerShot : function() { if oBattleBulletManager.shotsShot mod 3 == 0 {self.dirs[0] += irandom_range(2,5)} },
         	},
         	
-        	ant :
-        	{
+        	ant : {
                 obj : oBullet,
         		dmg : 1,
         		dirs : [0,1,2,3,4,5,6,7],
@@ -958,8 +952,7 @@ initItems();
         		funcPerShot : function() { oBattle.normalsTimer -= 10},
         	},
         	
-        	antDaigo :
-        	{
+        	antDaigo : {
                 obj : oBullet,
         		dmg : 1,
         		dirs : [],
@@ -1081,3 +1074,5 @@ initItems();
     }
 
 #endregion
+
+initItems();

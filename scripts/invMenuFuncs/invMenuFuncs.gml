@@ -23,42 +23,45 @@ function createPartyNamesMenu()
 	array_foreach(PARTY,function(element, index)
 	{
 		oPauseMenu.CurrentElement = element
+		oPauseMenu.CurrentIndex = index
 		var _guy = new IMenuable(element.name)
 			.setType("submenu")
-			.setFunc(function(){createEquipSlotMenu(oPauseMenu.CurrentElement)})
+			.setFunc(function(){createEquipSlotMenu(self.name)})
 		;
 		
 		array_push(other.guys,_guy)
 	})
 
 	var len = array_length(guys)
-	array_copy(other.options[$ "Equip"],0,guys,0,len);
+	//array_copy(other.options[$ "Equip"],0,guys,0,len);
 	array_push(other.options[$ "Equip"],variable_clone(oPauseMenu.goBack))
 	with oPauseMenu enterSubmenu("Equip");
 }
 
 // entering character equip slots menu. itemizes slots for use in menu page
-function createEquipSlotMenu(guy = global.characters[CHAR.NILS])
+function createEquipSlotMenu(_key = "Nils")
 {
+	//TODO: When party members are more than just Nils, equip menu selection always defaults to last in list. Pls Fix
+	var key = _key;
+	var guy = global.characters[$ key]
 	other.currentUser = guy
-	var key = guy.name;
-
+	
 	equipslots = [];
 	other.options[$ key] = []
 	array_foreach(guy.equips,function(element, index)
 	{
 		global.currentlyEquipped[index] = global.items[$ element.equip]
 		var _slot = 
-		{ //TODO fix this shit im fuckin fdrunk
+		{
 			key : nameof(element),
 			allowed : true,
 			menuType : "submenu",
 			itemType : element.type,
 			name : element.label,
 			slotIndex : index,
-			func : function(){ createItemMenu(itemType,name); global.currentEquipMenu = slotIndex },
-			value : element.equip,
-			sprite : global.items[$ element.equip][$ "sprite"],
+			func : function(){ createEquipMenu(itemType,name); global.currentEquipMenu = slotIndex },
+			value : element[$ "equip"],
+			sprite : (element.equip == noone) ? sBlank : global.items[$ element.equip][$ "sprite"],
 			draw : drawItem
 		}
 		_slot.value = element.equip;
@@ -71,32 +74,23 @@ function createEquipSlotMenu(guy = global.characters[CHAR.NILS])
 	enterSubmenu(key);
 }
 
-//function createEquipMenu(invType = itemType)
-//{
-	//// turn character equip struct into an array for compatability with menu system
-	//equips = [];
-	//equipslots = [];
-	//
-	//other.options[$ guy.name] = equips
-	//array_foreach(equips,function(element, index)
-	//{
-		//var _item =
-		//{
-			//key : element.key,
-			//allowed : true,
-			//type : "equipment",
-			//label : element.name,
-			//func : equipArmor
-		//}
-				//
-		//array_push(other.items,_item)
-	//})
-	//
-	//var len = array_length(items)
+function createEquipMenu(invType = itemType, key = name)
+{
+	items = []
+	other.options[$ key] = []
+	array_foreach(global.inv[invType],function(element, index)
+	{
+		var theItem = global.items[$ element];
+
+		array_push(other.items,theItem)
+	})
+	
+	var len = array_length(items)
 	//array_copy(other.options[$ key],0,items,0,len);
-	//array_push(other.options[$ key],variable_clone(other.goBack))
-	//enterSubmenu(key);
-//}
+	array_push(other.options[$ key],variable_clone(other.goBack))
+	array_insert(other.options[$ key],0, global.items.unequip)
+	enterSubmenu(key);
+}
 
 function enterSubmenu(_menuName = name)
 {
@@ -172,9 +166,10 @@ function drawItem(_x, _y, _active = false, _value = value){
 	
 	draw_sprite_ext(sBattleEXCost,_active,xx,yy-8,1,1,0, _active ? c_white : c_dkgrey, 1)
 	
+	
 	if is_undefined(_value) or _value == noone exit;
 	
-	var sprite = self.sprite
+	var sprite = self[$ "sprite"]
 	if !is_undefined(sprite) draw_sprite(sprite, 0, xx + (sprite_get_width(sBattleEXCost)/2)-1 + (sprite_get_width(sprite)mod 2 == 0), yy)
 	
 }

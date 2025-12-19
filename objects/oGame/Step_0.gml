@@ -23,6 +23,7 @@ if DEV{
     
     if menuToggle {
         listActive = !listActive;
+		if instance_exists(oPauseMenu){ with oPauseMenu {destroyMenu = true}}
         if !listActive closeList();
     };
         
