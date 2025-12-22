@@ -128,7 +128,7 @@ setText = function(newText)
 	sound = textSoundLUT(name);
 	text = newText;
 
-	typist.sound(sound,0.1,0.9,1.1,global.sfxVol);
+	typist.sound(sound,0.1,0.9,1.1,global.voiceVol);
 	
 	scribb = scribble(text)
 		.wrap(txtW)

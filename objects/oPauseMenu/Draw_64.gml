@@ -38,7 +38,6 @@ for (var l = 0; l < optionsCount ; l++)
 	draw_sprite(sBattleOptions,selected, optX, optY);
 	
 	var str = listItem.name;	
-	if !listItem.allowed {draw_set_color(c_grey);}
 	
 	if selected 
 	{ 
@@ -50,7 +49,8 @@ for (var l = 0; l < optionsCount ; l++)
 		if active draw_sprite(sBattleMenuMainArrow, 0, optX, optY+ymargin);
 		selectY = optY;
 	}
-	
+    
+	if !listItem.allowed {draw_set_color(c_grey);}
 	draw_text(optX+xmargin, optY+ymargin, str)	
     if listItem[$ "draw"] != undefined {
 		listItem.draw(optX+xmargin - (12*selected), optY+ymargin, selected, listItem.value)

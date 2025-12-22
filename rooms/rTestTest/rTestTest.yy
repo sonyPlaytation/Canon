@@ -7,7 +7,6 @@
   "inheritLayers":false,
   "instanceCreationOrder":[
     {"name":"inst_5DACBBFA","path":"rooms/rTestTest/rTestTest.yy",},
-    {"name":"inst_94F18FB","path":"rooms/rTestTest/rTestTest.yy",},
     {"name":"inst_45E1509B","path":"rooms/rTestTest/rTestTest.yy",},
     {"name":"inst_7312CF87","path":"rooms/rTestTest/rTestTest.yy",},
     {"name":"inst_168A57F5","path":"rooms/rTestTest/rTestTest.yy",},
@@ -54,6 +53,8 @@
     {"name":"inst_2B7AB2AE","path":"rooms/rTestTest/rTestTest.yy",},
     {"name":"inst_15A4D03E","path":"rooms/rTestTest/rTestTest.yy",},
     {"name":"inst_BB0754B","path":"rooms/rTestTest/rTestTest.yy",},
+    {"name":"inst_6F3BAAE6","path":"rooms/rTestTest/rTestTest.yy",},
+    {"name":"inst_2BB4DF7D","path":"rooms/rTestTest/rTestTest.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -62,7 +63,6 @@
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oPlayerSpawner","path":"objects/oPlayerSpawner/oPlayerSpawner.yy",},"propertyId":{"name":"cFollow","path":"objects/oPlayerSpawner/oPlayerSpawner.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"true",},
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oPlayerSpawner","path":"objects/oPlayerSpawner/oPlayerSpawner.yy",},"propertyId":{"name":"mFollow","path":"objects/oPlayerSpawner/oPlayerSpawner.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":648.0,"y":312.0,},
-        {"$GMRInstance":"v4","%Name":"inst_94F18FB","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_94F18FB","objectId":{"name":"obj_stanncam_zone","path":"objects/obj_stanncam_zone/obj_stanncam_zone.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":40.0,"scaleY":24.0,"x":192.0,"y":0.0,},
         {"$GMRInstance":"v4","%Name":"inst_45E1509B","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_45E1509B","objectId":{"name":"oTestAnimCurves","path":"objects/oTestAnimCurves/oTestAnimCurves.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":576.0,"y":96.0,},
         {"$GMRInstance":"v4","%Name":"inst_7312CF87","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":true,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7312CF87","objectId":{"name":"oMusicPlay","path":"objects/oMusicPlay/oMusicPlay.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oMusicPlay","path":"objects/oMusicPlay/oMusicPlay.yy",},"propertyId":{"name":"song","path":"objects/oMusicPlay/oMusicPlay.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"m2093",},
@@ -120,6 +120,12 @@
         {"$GMRInstance":"v4","%Name":"inst_BB0754B","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_BB0754B","objectId":{"name":"oItemPickup","path":"objects/oItemPickup/oItemPickup.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oItemPickup","path":"objects/oItemPickup/oItemPickup.yy",},"propertyId":{"name":"item","path":"objects/oItemPickup/oItemPickup.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"armorTest2\"",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":624.0,"y":264.0,},
+        {"$GMRInstance":"v4","%Name":"inst_6F3BAAE6","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6F3BAAE6","objectId":{"name":"oItemPickup","path":"objects/oItemPickup/oItemPickup.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oItemPickup","path":"objects/oItemPickup/oItemPickup.yy",},"propertyId":{"name":"item","path":"objects/oItemPickup/oItemPickup.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"weaponTest\"",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":552.0,"y":240.0,},
+        {"$GMRInstance":"v4","%Name":"inst_2BB4DF7D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_2BB4DF7D","objectId":{"name":"oItemPickup","path":"objects/oItemPickup/oItemPickup.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oItemPickup","path":"objects/oItemPickup/oItemPickup.yy",},"propertyId":{"name":"item","path":"objects/oItemPickup/oItemPickup.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"weaponTest2\"",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":600.0,"y":240.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRAssetLayer":"","%Name":"Assets_1","assets":[
         {"$GMRSpriteGraphic":"v1","%Name":"graphic_651F27D2","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":2.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"name":"graphic_651F27D2","resourceType":"GMRSpriteGraphic","resourceVersion":"2.0","rotation":0.0,"scaleX":26.0,"scaleY":14.0,"spriteId":{"name":"sTextBox","path":"sprites/sTextBox/sTextBox.yy",},"x":360.0,"y":456.0,},

@@ -41,28 +41,27 @@ function createPartyNamesMenu()
 // entering character equip slots menu. itemizes slots for use in menu page
 function createEquipSlotMenu(_key = "Nils")
 {
-	//TODO: When party members are more than just Nils, equip menu selection always defaults to last in list. Pls Fix
 	var key = _key;
 	var guy = global.characters[$ key]
-	other.currentUser = guy
+	global.currentMenuUser = guy
 	
 	equipslots = [];
 	other.options[$ key] = []
 	array_foreach(guy.equips,function(element, index)
 	{
 		global.currentlyEquipped[index] = global.items[$ element.equip]
-		var _slot = 
-		{
+		var _slot = {
+
 			key : nameof(element),
 			allowed : true,
 			menuType : "submenu",
 			itemType : element.type,
 			name : element.label,
 			slotIndex : index,
-			func : function(){ createEquipMenu(itemType,name); global.currentEquipMenu = slotIndex },
+			func : function(){ createEquipMenu(self.itemType,self.name); global.currentEquipMenu = self.slotIndex },
 			value : element[$ "equip"],
 			sprite : (element.equip == noone) ? sBlank : global.items[$ element.equip][$ "sprite"],
-			draw : drawItem
+			draw : drawSlot
 		}
 		_slot.value = element.equip;
 		equipslots[index] = _slot;
@@ -81,12 +80,13 @@ function createEquipMenu(invType = itemType, key = name)
 	array_foreach(global.inv[invType],function(element, index)
 	{
 		var theItem = global.items[$ element];
+        with theItem { setAllowed((stats.lvl <= global.currentMenuUser.stats.lvl) and array_contains(usedBy,global.currentMenuUser)) }
 
 		array_push(other.items,theItem)
 	})
 	
 	var len = array_length(items)
-	//array_copy(other.options[$ key],0,items,0,len);
+	array_copy(other.options[$ key],0,items,0,len);
 	array_push(other.options[$ key],variable_clone(other.goBack))
 	array_insert(other.options[$ key],0, global.items.unequip)
 	enterSubmenu(key);
@@ -165,11 +165,23 @@ function drawItem(_x, _y, _active = false, _value = value){
     var space = TILE_SIZE*0.75
 	
 	draw_sprite_ext(sBattleEXCost,_active,xx,yy-8,1,1,0, _active ? c_white : c_dkgrey, 1)
-	
-	
 	if is_undefined(_value) or _value == noone exit;
 	
 	var sprite = self[$ "sprite"]
 	if !is_undefined(sprite) draw_sprite(sprite, 0, xx + (sprite_get_width(sBattleEXCost)/2)-1 + (sprite_get_width(sprite)mod 2 == 0), yy)
+	
+}
+
+function drawSlot(_x, _y, _active = false, _value = value){
+	
+	var xx = _x + (TILE_SIZE*5);
+    var yy = _y;
+    var space = TILE_SIZE*0.75
+	
+	draw_sprite_ext(sMenuItemFrame,_active,xx,yy-8,1,1,0, _active ? c_white : c_dkgrey, 1)
+	if is_undefined(_value) or _value == noone exit;
+	
+	var sprite = self[$ "sprite"]
+	if !is_undefined(sprite) draw_sprite(sprite, 0, xx + (sprite_get_width(sBattleEXCost)/2) + (sprite_get_width(sprite)mod 2 == 0), yy)
 	
 }

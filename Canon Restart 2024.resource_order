@@ -1019,6 +1019,7 @@
     {"name":"sMattWalkR","order":8,"path":"sprites/sMattWalkR/sMattWalkR.yy",},
     {"name":"sMattWalkU","order":13,"path":"sprites/sMattWalkU/sMattWalkU.yy",},
     {"name":"sMenuArrow","order":7,"path":"sprites/sMenuArrow/sMenuArrow.yy",},
+    {"name":"sMenuItemFrame","order":17,"path":"sprites/sMenuItemFrame/sMenuItemFrame.yy",},
     {"name":"sNilsBattleGunSlide","order":2,"path":"sprites/sNilsBattleGunSlide/sNilsBattleGunSlide.yy",},
     {"name":"sNilsBattleIdle","order":3,"path":"sprites/sNilsBattleIdle/sNilsBattleIdle.yy",},
     {"name":"sNilsBattlePunchL","order":5,"path":"sprites/sNilsBattlePunchL/sNilsBattlePunchL.yy",},

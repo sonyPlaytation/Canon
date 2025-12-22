@@ -1,7 +1,6 @@
 
 
 initFlags();
-//
 
 #region battle definitions
 
@@ -68,12 +67,22 @@ initFlags();
 
         moves =
 	    {
-	    	superart : ["236236L", "236236M", "236236H"],
-	    	
-	    	halfCircle : ["41236L","41236M","41236H"],
-	    	fireball : ["236L","236M","236H"],
-	    	
-	    	dp : ["623L","623M","623H"],
+	    	superart : [
+                "236236L", 
+                "236236M", 
+                "236236H"],
+	    	halfCircle : [
+                "41236L",
+                "41236M",
+                "41236H"],
+	    	fireball : [
+                "236L",
+                "236M",
+                "236H"],
+	    	dp : [
+                "623L",
+                "623M",
+                "623H"],
 	    	
 	    	normal : ["L","M","H"],
 	    }
@@ -330,6 +339,26 @@ initFlags();
                     })
                     var damage = ceil((user.stats.exStr*3) + random_range(-user.stats.exStr/3, user.stats.exStr/2));
                     battleChangeHP(targets[0], damage, 0, self.hitSound);
+	    			
+	    		})
+	    	,
+            
+            lifesteal : new Attack("Trepanation","heal")
+	    		.setUserAnim("normals")
+                .setSubmenu("Specials")
+                .setHitSound(snHit4)
+	            .setFrameCost(24)
+	            .setExCost(16)
+	            .setFxSprite(sPunch)
+                    
+                .setTargetRequired(true)
+	            .setTargetAll(MODE.NEVER)
+	        
+	    		.setFunc(function(user, targets)
+	    		{
+                    var damage = ceil((user.stats.exStr*3) + random_range(-user.stats.exStr/3, user.stats.exStr/2));
+                    battleChangeHP(targets[0], damage, 0, self.hitSound);
+                    battleChangeHP(user, -damage, 0);
 	    			
 	    		})
 	    	,
@@ -805,10 +834,9 @@ initFlags();
     #region definitions 
 
         // Enemy AI Types
-        global.enemyAI = 
-        {
-        	standard : function(user,targets)
-        	{
+        global.enemyAI = {
+        	standard : function(user,targets) {
+                
         		var actions = oBattle.unitTurnOrder[oBattle.turn].actions;
         		var action = actions[irandom(array_length(actions)-1)];
         		var actionTypes = []
@@ -1019,8 +1047,8 @@ initFlags();
     };
     
     // Enemies
-    global.enemies = 
-    {
+    global.enemies = {
+        
     sand: new Enemy("Sand",sSand,6)
         .addAttack("bursts")
         .setStats({
@@ -1035,7 +1063,7 @@ initFlags();
     ,
     
     bat: new Enemy("Swoopty",sBat,6)
-        .addAction(global.actionLibrary.revive)
+        .addAction([global.actionLibrary.revive,global.actionLibrary.lifesteal])
         .setAttacks("spiral")
         .setStats({
             hpMax: 25,
@@ -1048,8 +1076,7 @@ initFlags();
         })
     ,
     
-    ant: new Enemy("Feral Ant",sAnt,4)
-        .setAttacks(["ant","antDaigo"])
+    ant: new Enemy("Feral Ant",sAnt,4,,["ant","antDaigo"])
         .setStats({
             hpMax: 15,
             ex: 15,

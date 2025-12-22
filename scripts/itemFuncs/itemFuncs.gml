@@ -85,6 +85,15 @@ function Item(_name = "", _desc = "", _type = ITEM_TYPE.KEY) : IMenuable() const
 	atkTypes = [];
 	defTypes = [];
 	tags = [];
+    
+    draw = drawItem;
+    switch(itemType){
+        case ITEM_TYPE.CONSUMABLE: func = consume break;
+        case ITEM_TYPE.ARMOR: func = equipArmor break;
+        case ITEM_TYPE.WEAPON: func = equipArmor break;
+        case ITEM_TYPE.MOD: func = equipArmor break;
+        case ITEM_TYPE.KEY: break;
+    }
 
 	static setSprite = function(v){ sprite = v; return self; };
 
@@ -92,7 +101,7 @@ function Item(_name = "", _desc = "", _type = ITEM_TYPE.KEY) : IMenuable() const
 	///@desc Sets constraint of which party members can equip item. 
 	/// Takes either a CHAR enum or array of CHAR enums.
 	/// Can be left empty to not set a User constraint.
-	static setUsedBy = function(v){ usedBy = v; return self; };
+	static setUsedBy = function(v){ usedBy = is_array(v) ? v : [v]; return self; };
 		
 	///@param {real} Lvl Level Requirement
 	///@param {real} Exp Bonus Exp Gain (percentage)
@@ -123,6 +132,13 @@ function Item(_name = "", _desc = "", _type = ITEM_TYPE.KEY) : IMenuable() const
 		cha = 0,
 		luk = 0
 	){
+        
+        if is_struct(lvl){
+                
+            stats = variable_clone(lvl);
+            return self;
+        }
+        
 		setLvl(lvl);
 		setEXP(EXP);
 		setHp(hp);
@@ -233,14 +249,13 @@ function initItems(){
 	{
 		unequip: new Item("None")
 			.setFunc(function(){equipArmor(,,false)})
+            .setDraw(function(){})
 		,
 		armorTest: new Item("Basic Armor", "SHITTY ASS ARMOR", ITEM_TYPE.ARMOR)
 			.setUsedBy(NILS)
 			.setSprite(sHeadNils)
 			.setStats(1,,,,,4,,1)
 			.setDefTypes([MOVE_TYPE.PHYS])
-			.setFunc(equipArmor)
-			.setDraw(drawItem)
 		,
 		
 		armorTest2: new Item("Stupid Armor", "POOPY ASS ARMOR", ITEM_TYPE.ARMOR)
@@ -248,13 +263,20 @@ function initItems(){
 			.setSprite(sLaughingCryingEmoji)
 			.setStats(1,,,,,4,,1)
 			.setDefTypes([MOVE_TYPE.PHYS])
-			.setFunc(equipArmor)
-			.setDraw(drawItem)
+		,
+        
+        weaponTest: new Item("Basic Weapon", "SHITTY ASS WEAPON", ITEM_TYPE.WEAPON)
+			.setSprite(sBattleEnemySkull)
+			.setStr(4)
+		,
+        
+        weaponTest2: new Item("Dumb Weapon", "SHITTY ASS WEAPON", ITEM_TYPE.WEAPON)
+			.setSprite(sCharWalkD)
+			.setStr(6)
 		,
 		
 		burger: new Item("Burger", "Heals you 20 hp", ITEM_TYPE.CONSUMABLE)
 			.setSprite(sItemBurger)
-			.setFunc(consume)
 			.setValue(20)
 		,
 		
@@ -268,7 +290,7 @@ function initItems(){
 	
 }
 	
-function equipArmor(user = NILS, source = -1, _message = true)
+function equipArmor(user = global.currentMenuUser, source = -1, _message = true)
 {
     if !instance_exists(oPauseMenu){ if _message {shortMessage("//You can't do that right now.", TXTPOS.MID)}; return false;}
     

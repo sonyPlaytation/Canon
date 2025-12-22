@@ -243,7 +243,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.2.212",
+    "IDEVersion":"2024.1400.2.941",
   },
   "name":"Canon Restart 2024",
   "resources":[
@@ -1209,6 +1209,7 @@
     {"id":{"name":"sMattWalkR","path":"sprites/sMattWalkR/sMattWalkR.yy",},},
     {"id":{"name":"sMattWalkU","path":"sprites/sMattWalkU/sMattWalkU.yy",},},
     {"id":{"name":"sMenuArrow","path":"sprites/sMenuArrow/sMenuArrow.yy",},},
+    {"id":{"name":"sMenuItemFrame","path":"sprites/sMenuItemFrame/sMenuItemFrame.yy",},},
     {"id":{"name":"sNilsBattleGunSlide","path":"sprites/sNilsBattleGunSlide/sNilsBattleGunSlide.yy",},},
     {"id":{"name":"sNilsBattleIdle","path":"sprites/sNilsBattleIdle/sNilsBattleIdle.yy",},},
     {"id":{"name":"sNilsBattleParry","path":"sprites/sNilsBattleParry/sNilsBattleParry.yy",},},
@@ -1263,8 +1264,8 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rMenu","path":"rooms/rMenu/rMenu.yy",},},
-    {"roomId":{"name":"rCliffs_2","path":"rooms/rCliffs_2/rCliffs_2.yy",},},
     {"roomId":{"name":"rTestTest","path":"rooms/rTestTest/rTestTest.yy",},},
+    {"roomId":{"name":"rCliffs_2","path":"rooms/rCliffs_2/rCliffs_2.yy",},},
     {"roomId":{"name":"rOffice","path":"rooms/rOffice/rOffice.yy",},},
     {"roomId":{"name":"rDunesLost","path":"rooms/rDunesLost/rDunesLost.yy",},},
     {"roomId":{"name":"rDunes_1","path":"rooms/rDunes_1/rDunes_1.yy",},},
