@@ -1,6 +1,6 @@
 /// @
 
-controls();
+menuControls()
 
 x = lerp(x,xTarg,lerpSpd);
 

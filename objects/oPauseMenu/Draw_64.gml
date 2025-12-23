@@ -1,5 +1,7 @@
 /// @
 
+//TODO: Figure out scrolling pages in menu
+
 draw_set_color(c_black)
 alpha = lerp(alpha, alphaTarg, 0.15);
 draw_set_alpha(alpha)
@@ -39,8 +41,8 @@ for (var l = 0; l < optionsCount ; l++)
 	
 	var str = listItem.name;	
 	
-	if selected 
-	{ 
+	if selected { 
+        
 		draw_set_color(c_black)
 		draw_text(optX+xmargin-1, optY+ymargin, str)
 		draw_text(optX+xmargin, optY+ymargin+1, str)

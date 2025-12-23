@@ -62,41 +62,12 @@ options[$ "Menu"] =
 	MENU("Equip")
 	.setAllowed(FLAGS.playerName != "???")
 	.setFunc(createPartyNamesMenu),
-
-	{
-		allowed : FLAGS.playerName != "???",
-		menuType : "submenu",
-		name : "Party",
-		func : function(){
-			
-			guys = []
-			other.options[$ name] = guys
-			array_foreach(PARTY,function(element, index)
-			{
-				var _guy =
-				{
-					allowed : true,
-					menuType : "submenu",
-					name : element.name,
-					func : undefined
-				}
-				
-				array_push(other.guys,_guy)
-			})
+    
+	MENU("Party")
+	.setAllowed(FLAGS.playerName != "???"),
 	
-			var len = array_length(guys)
-			array_copy(other.options[$ name],0,guys,0,len);
-			array_push(other.options[$ name],variable_clone(oPauseMenu.goBack))
-			enterSubmenu(name);	
-		}
-	},
-	
-	{
-		allowed : true,
-		menuType : "submenu",
-		name : "System",
-		func : enterSubmenu
-	},
+	MENU("System")
+	.setFunc(enterSubmenu),
 ]
 
 #region set items menu based on which items you have currently
@@ -104,13 +75,12 @@ options[$ "Menu"] =
 options[$ "Item"] =  []
 
 array_push(options[$ "Item"],
-{
-	allowed : true,
-	menuType : "submenu",
-	name : "Consumables",
-    itemType : ITEM_TYPE.CONSUMABLE,
-	func : createItemMenu
-})	
+MENU("Consumables")
+.setType("submenu")
+.setItemType(ITEM_TYPE.CONSUMABLE)
+.setFunc(createItemMenu)
+)	
+
 //
 //if array_length(global.inv[ITEM_TYPE.WEAPON]) != 0
 //{
@@ -401,43 +371,4 @@ if DEV array_insert(options[$ "Settings"], 0,
     }
 )
 
-controls = function(){
-	//TODO: make this a global function?
-	if instance_exists(oTextBox){
-		
-		down = false
-		up = false
-		left = false
-		right = false
-		accept = false
-		back = false
-		close = false
-		exit;
-	} 
-		
-	down = InputPressed(INPUT_VERB.DOWN);
-	up = InputPressed(INPUT_VERB.UP);
-	left = InputPressed(INPUT_VERB.LEFT);
-	right = InputPressed(INPUT_VERB.RIGHT);
-	accept = InputPressed(INPUT_VERB.ACCEPT);
-	back = InputPressed(INPUT_VERB.CANCEL)
-	close = (InputPressed(INPUT_VERB.PAUSE) or InputPressed(INPUT_VERB.SKIP))
-	
-	if InputCheck(INPUT_VERB.DOWN) {downFrames++} else downFrames = 0;
-	if InputCheck(INPUT_VERB.UP) {upFrames++} else upFrames = 0;
-	if InputCheck(INPUT_VERB.LEFT) {leftFrames++} else leftFrames = 0;
-	if InputCheck(INPUT_VERB.RIGHT) {rightFrames++} else rightFrames = 0;
-	
-	var frameTarg = 20;
-	if downFrames == frameTarg {down = true; downFrames = frameTarg*0.75}
-	if upFrames == frameTarg {up = true; upFrames = frameTarg*0.75}
-	if leftFrames == frameTarg {left = true; leftFrames = frameTarg*0.75}
-	if rightFrames == frameTarg {right = true; rightFrames = frameTarg*0.75}
-	
-	vert = down - up;
-	hort = right - left;
-	
-	if hort != 0 or vert != 0 SFX snNarr
-	else if accept SFX snHealMinor
-	else if back or close SFX choose(snHit1,snHit2,snHit3)
-}
+menuControls()

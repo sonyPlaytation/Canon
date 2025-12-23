@@ -93,7 +93,7 @@ function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 	if is_numeric(amount) and !failed {target.stats.hp = clamp(target.stats.hp + amount, 0, target.stats.hpMax)};
 }
 
-function overworldChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
+function overworldChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1, goBack = true)
 {
 	// ADOE : 
 	// 0 - ALIVE, 
@@ -130,7 +130,7 @@ function overworldChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
         
         var me = array_get_index(options[$ "Consumables"],global.CurrentConsumable);
         array_delete(options[$ "Consumables"],me,1);
-        doGoBack()
+        if goBack { doGoBack() }
         if hover == array_length(options[$ "Consumables"])-1 {hover--}
     }
 }

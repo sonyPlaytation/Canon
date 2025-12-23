@@ -1,7 +1,5 @@
 /// @
-draw_set_font(font)
-draw_set_alpha(alpha)
-draw_set_color(c_black)
+draw_set_text(font,c_black,fa_middle,fa_center)
 
 if is_numeric(text){text = abs(text)}
 draw_text(x+1,y+1,text)

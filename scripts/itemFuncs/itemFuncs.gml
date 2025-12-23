@@ -9,6 +9,7 @@ function IMenuable(_name = "", _desc = "") constructor{
 	// Universal 
     allowed = true;
 	menuType = "submenu";
+    itemType = noone;
 	name = _name;
 	desc = _desc;
 	sprite = sBlank;
@@ -45,6 +46,7 @@ function IMenuable(_name = "", _desc = "") constructor{
 		return self; 
 	};
 	static setType = function(v){ menuType = v; return self; }
+	static setItemType = function(v){ itemType = v; return self; }
 	static setAllowed = function(v){ allowed = v; return self; };
 	static toggleAllowed = function(){ allowed = !allowed; return self; };
 	
@@ -64,6 +66,7 @@ function Item(_name = "", _desc = "", _type = ITEM_TYPE.KEY) : IMenuable() const
 	itemType = _type;
 	usedBy = global.party;
     equipped = noone;
+    sound = snHealMinor;
 	stats =  {
 		
 		lvl : 0, // level requirement
@@ -184,6 +187,8 @@ function Item(_name = "", _desc = "", _type = ITEM_TYPE.KEY) : IMenuable() const
 	/// @desc Sets food type of consumable.
 	/// Takes either a FOOD_TAG enum or array of FOOD_TAG enums.
 	static setTags = function(v){ tags = v; info.tags = v; return self; };
+	
+    static setSound = function(v){ sound = v; return self; };
 
 }
 
@@ -216,15 +221,13 @@ enum FOOD_TAG
 		var _type = item.itemType;
 		
 		if instance_exists(oBattle) {
-			battleChangeHP(targets[0],_val,0)
-		} 
-		else 
-		{
-            
-			// TODO: need to figure out how to discern or otherwise select user and target from within menu
-			global.CurrentConsumable = item;
-            createConsumeMenu()
 			
+            battleChangeHP(targets[0],_val,0)
+		} 
+		else {
+            
+			global.CurrentConsumable = item;
+            if array_length(PARTY) > 1 { createConsumeMenu() } else overworldChangeHP(PARTY[0].name, global.CurrentConsumable.value,,global.CurrentConsumable.sound,false)
 		}
 		
 		var me = array_get_index(global.inv[_type],item);
@@ -267,7 +270,7 @@ function initItems(){
 			.setStr(4)
 		,
         
-        weaponTest2: new Item("Dumb Weapon", "SHITTY ASS WEAPON", ITEM_TYPE.WEAPON)
+        weaponTest2: new Item("Dumb Weapon", "POOPY ASS WEAPON", ITEM_TYPE.WEAPON)
 			.setSprite(sCharWalkD)
 			.setStr(6)
 		,

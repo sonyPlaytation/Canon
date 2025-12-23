@@ -34,13 +34,6 @@ initFlags();
             DEVIL
         }
         
-        enum CHAR
-        {
-        	Nils,
-        	Charlie,
-        	Matthew
-        }
-        
         #macro s1 "[sInputArrows, 5]"
         #macro s2 "[sInputArrows, 6]"
         #macro s3 "[sInputArrows, 7]"
@@ -70,8 +63,7 @@ initFlags();
             Matthew : oMatthew
         }
 
-        moves =
-	    {
+        moves = {
 	    	superart : [
                 "236236L", 
                 "236236M", 
