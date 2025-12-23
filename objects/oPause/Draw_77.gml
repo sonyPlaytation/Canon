@@ -18,17 +18,18 @@
 
 if InputPressed(INPUT_VERB.PAUSE) and global.canPause
 {
-	switch (pause)
-	{
-		case false:
-			oPlayer.JustHitEnemyButCanStillMoveALittle = 0
-			pauseGame();
-		break;
-
-		case true:
-			unpauseGame();
-		break;
-	}
+    game_end()
+	//switch (pause)
+	//{
+		//case false:
+			//oPlayer.JustHitEnemyButCanStillMoveALittle = 0
+			//pauseGame();
+		//break;
+//
+		//case true:
+			//unpauseGame();
+		//break;
+	//}
 }
 
 //gpu_set_blendenable(true);

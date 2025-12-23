@@ -98,7 +98,11 @@ function overworldChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 	// ADOE : 
 	// 0 - ALIVE, 
 	// 1 - DEAD, 
-	// 2 - EITHER 	
+	// 2 - EITHER 	'
+    
+    var targ = global.actors[$ target];
+    target = global.characters[$ target];
+    
 	text = abs(amount);
 	
 	var col = c_white;
@@ -109,9 +113,9 @@ function overworldChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 	
 	instance_create_depth
 	(
-		target.x,
-		target.selfCenter,
-		target.depth-20,
+		targ.x,
+		targ.selfCenter,
+		targ.depth-20,
 		oBattleHitText,
 		{
 			font : fSmall,
@@ -120,6 +124,15 @@ function overworldChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
 		}
 	)
 	if is_numeric(amount) {target.stats.hp = clamp(target.stats.hp + amount, 0, target.stats.hpMax)};
+        
+    
+    with oPauseMenu {
+        
+        var me = array_get_index(options[$ "Consumables"],global.CurrentConsumable);
+        array_delete(options[$ "Consumables"],me,1);
+        doGoBack()
+        if hover == array_length(options[$ "Consumables"])-1 {hover--}
+    }
 }
 
 

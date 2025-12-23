@@ -21,10 +21,11 @@
     {"name":"inst_7C0417DD","path":"rooms/rOfficeBathroom/rOfficeBathroom.yy",},
     {"name":"inst_667B2C9C","path":"rooms/rOfficeBathroom/rOfficeBathroom.yy",},
     {"name":"inst_59F798C5","path":"rooms/rOfficeBathroom/rOfficeBathroom.yy",},
+    {"name":"inst_45A49CB0","path":"rooms/rOfficeBathroom/rOfficeBathroom.yy",},
   ],
   "isDnd":false,
   "layers":[
-    {"$GMRInstanceLayer":"","%Name":"Player","depth":0,"effectEnabled":true,"effectType":null,"gridX":24,"gridY":24,"hierarchyFrozen":false,"inheritLayerDepth":true,"inheritLayerSettings":true,"inheritSubLayers":true,"inheritVisibility":false,"instances":[
+    {"$GMRInstanceLayer":"","%Name":"Player","depth":0,"effectEnabled":true,"effectType":null,"gridX":12,"gridY":12,"hierarchyFrozen":false,"inheritLayerDepth":true,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":false,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_960A339","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_960A339","objectId":{"name":"obj_stanncam_zone","path":"objects/obj_stanncam_zone/obj_stanncam_zone.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":24.0,"scaleY":13.0,"x":168.0,"y":168.0,},
         {"$GMRInstance":"v4","%Name":"inst_59F798C5","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_59F798C5","objectId":{"name":"oLineDef","path":"objects/oLineDef/oLineDef.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oLineDef","path":"objects/oLineDef/oLineDef.yy",},"propertyId":{"name":"rapidFire","path":"objects/oLineDef/oLineDef.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
@@ -53,6 +54,9 @@
         {"$GMRInstance":"v4","%Name":"inst_667B2C9C","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_667B2C9C","objectId":{"name":"oCutsceneTrigger","path":"objects/oCutsceneTrigger/oCutsceneTrigger.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oCutsceneTrigger","path":"objects/oCutsceneTrigger/oCutsceneTrigger.yy",},"propertyId":{"name":"scene","path":"objects/oCutsceneTrigger/oCutsceneTrigger.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"cutBathroomMirror",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":2.0,"x":264.0,"y":384.0,},
+        {"$GMRInstance":"v4","%Name":"inst_45A49CB0","colour":4294967295,"frozen":false,"hasCreationCode":true,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_45A49CB0","objectId":{"name":"oLineDef","path":"objects/oLineDef/oLineDef.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oLineDef","path":"objects/oLineDef/oLineDef.yy",},"propertyId":{"name":"rapidFire","path":"objects/oLineDef/oLineDef.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":0.5,"x":564.0,"y":353.0,},
       ],"layers":[],"name":"Player","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRTileLayer":"","%Name":"CollTiles","depth":100,"effectEnabled":true,"effectType":null,"gridX":12,"gridY":12,"hierarchyFrozen":false,"inheritLayerDepth":true,"inheritLayerSettings":true,"inheritSubLayers":true,"inheritVisibility":false,"layers":[],"name":"CollTiles","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":23,"SerialiseWidth":40,"TileCompressedData":[
           -44,-2147483648,3,0,-2147483648,-2147483648,-26,0,-11,-2147483648,-31,0,-9,-2147483648,-31,0,-9,-2147483648,

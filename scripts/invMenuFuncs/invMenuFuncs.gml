@@ -26,7 +26,7 @@ function createPartyNamesMenu()
 		oPauseMenu.CurrentIndex = index
 		var _guy = new IMenuable(element.name)
 			.setType("submenu")
-			.setFunc(function(){createEquipSlotMenu(self.name)})
+			.setFunc(function(){createEquipSlotMenu(name)})
 		;
 		
 		array_push(other.guys,_guy)
@@ -36,6 +36,30 @@ function createPartyNamesMenu()
 	//array_copy(other.options[$ "Equip"],0,guys,0,len);
 	array_push(other.options[$ "Equip"],variable_clone(oPauseMenu.goBack))
 	with oPauseMenu enterSubmenu("Equip");
+}
+
+function createConsumeMenu()
+{
+	guys = []
+    menu = "Consume"
+	other.options[$ menu] = guys
+	array_foreach(PARTY,function(element, index)
+	{
+		oPauseMenu.CurrentElement = element
+		oPauseMenu.CurrentIndex = index
+		var _guy = new IMenuable(element.name)
+			.setType("submenu")
+			.setFunc(function(){overworldChangeHP(name,global.CurrentConsumable.value)})
+            .setDraw(drawHead)
+		;
+		
+		array_push(other.guys,_guy)
+	})
+
+	var len = array_length(guys)
+	array_copy(other.options[$ menu],0,guys,0,len);
+	array_push(other.options[$ menu],variable_clone(oPauseMenu.goBack))
+	with oPauseMenu enterSubmenu(other.menu);
 }
 
 // entering character equip slots menu. itemizes slots for use in menu page
@@ -170,6 +194,18 @@ function drawItem(_x, _y, _active = false){
 	if !is_undefined(sprite) draw_sprite(sprite, 0, xx + (sprite_get_width(sBattleEXCost)/2)-1 + (sprite_get_width(sprite)mod 2 == 0), yy)
         
     if equipped != noone draw_sprite(global.characters[$ equipped].sprites.head,0,xx + 36 ,yy)
+	
+}
+
+function drawHead(_x, _y, _active = false){
+	
+	var xx = _x + (TILE_SIZE*5);
+    var yy = _y;
+    var space = TILE_SIZE*0.75
+    
+    var sprite = global.characters[$ name].sprites.head;
+	
+	if !is_undefined(sprite) draw_sprite_ext(sprite, 0, xx + (sprite_get_width(sBattleEXCost)/2)-1 + (sprite_get_width(sprite)mod 2 == 0), yy,1,1,0,_active ? c_white : c_dkgrey, 1)
 	
 }
 

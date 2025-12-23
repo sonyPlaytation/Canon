@@ -74,3 +74,9 @@ if !array_contains(noSpawnRooms,room) and InputPressed(INPUT_VERB.SKIP) and glob
 		instance_create_depth(global.cam.get_x(),global.cam.get_y(),-9999,oPauseMenu)	
 	}
 }
+
+if InputPressed(INPUT_VERB.PAUSE) {
+    escFrames++
+} else escFrames = 0
+    
+if escFrames >= escTarg {game_end()};

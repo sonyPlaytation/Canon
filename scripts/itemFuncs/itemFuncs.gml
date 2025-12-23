@@ -220,21 +220,17 @@ enum FOOD_TAG
 		} 
 		else 
 		{
+            
 			// TODO: need to figure out how to discern or otherwise select user and target from within menu
-			overworldChangeHP(oPlayer,_val,0)
-			show_debug_message(self);
-			show_debug_message(targets);
-			show_debug_message(_val);
+			global.CurrentConsumable = item;
+            createConsumeMenu()
 			
-			var me = array_get_index(other.options[$ "Consumables"],self);
-			array_delete(other.options[$ "Consumables"],me,1);
-			
-			if other.hover == array_length(other.options[$ "Consumables"])-1 {other.hover--}
 		}
 		
 		var me = array_get_index(global.inv[_type],item);
 		array_delete(global.inv[_type],me,1);
 	}
+
 
 #endregion
 
@@ -282,6 +278,7 @@ function initItems(){
 		,
 		
 		keyGeneric: new Item("Small Key")
+            .setSprite(sItemKeyGeneric)
 	}
 	
 	struct_foreach(global.items, function(_key, _val){
@@ -305,6 +302,7 @@ function equipArmor(user = global.currentMenuUser, source = -1, _message = true)
 		var slot = global.currentEquipMenu
 		var equipment = global.items[$ user.equips[slot].equip ]
         
+        //TODO: Make equip stripping work
         // if you take an equip that someone else was using, strip it from them
         if equipment != undefined and global.characters[$ equipment.equipped].equips != noone {
             global.characters[$ equipment.equipped].equips[global.currentEquipMenu].equip = global.items.unequip;

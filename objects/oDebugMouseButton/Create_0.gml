@@ -12,7 +12,7 @@ options =
 	newGame : 
 	{
 		label : "New Game",
-		func : function() { deleteSave() initFlags(); transition(rOffice,sqFadeOut,sqFadeIn,,,,,true) }
+		func : function() { global.party = [NILS]; deleteSave() initFlags(); transition(rOffice,sqFadeOut,sqFadeIn,,,,,true) }
 	},
 	
 	loadSavefile : 

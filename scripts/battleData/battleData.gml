@@ -64,6 +64,11 @@ initFlags();
         lvlCap = 99;
         areaLevel = 1;
 		characters = {}
+        actors = {
+            Nils : oPlayer,
+            Charlie : oCharlie,
+            Matthew : oMatthew
+        }
 
         moves =
 	    {
@@ -718,117 +723,114 @@ initFlags();
         .setAllergy([FOOD_TAG.SPICY, FOOD_TAG.SWEETS])
         .addAction([global.actionLibrary.devilshot, global.actionLibrary.devilVolley])
         .setDefType({type : MOVE_TYPE.FIRE, amnt: 60})
+        ,
+        Charlie : new Cowboy("Charlie", "Magician")
+    	.setStats({
+    		lvl : 2,
+    		EXP : 0,
+    		requiredEXP : 100,
+    		hp: 40,
+    		hpMax: 40,
+    		ex: 0,
+    		exMax: 20,
+    	
+    		str: 3,
+    		def: 4,
+    		exStr: 6,
+    		exDef: 6,
+    		int: 4,
+    		spd: 3,
+    		cha: 0,
+    		luk: 4
+    	})
+    	.setSpriteStruct({ 
+    		idle: sCharIdle, 
+    		active: sCharFightActive, 
+    		normals: sCharParry, 
+    		slide: sCharIdle, 
+    		defend: sCharIdle, 
+    		down: sGrave, 
+    		head: sHeadChar, 
+    		portrait: sBattlePortPH, 
+    		parry : sCharParry})
+    	.setBattleLines({
+    		lowHP : "I told grandpa I wouldn't cry anymore...",
+    		lowEX : "Better hope this next spell works!",
+    		justHealed : "Only a scrape after all!",
+    		justEXed : "I feel way more magical now :)",
+    		justLeveled :
+    		[
+    			"Hey Matthew, I have a new spell I really wanna try out!"nl"Wait, where are you going?",
+    			""
+    		],
+    		winQuotes : 
+    		[
+    			"I wish we could have spared them...",
+    			"That was fun!",
+    			"I hope this moment of friendship will bring you many happy memories!",
+    			"Would you like to meet my friends? Or are you too injured?"
+    		]
+    	})
+    	.setAllergy([FOOD_TAG.SHELLFISH])
+    	.addAction([global.actionLibrary.heal, global.actionLibrary.healMany, global.actionLibrary.revive])
+        ,
+        Matthew : new Cowboy("Matthew", "Hermit")
+        .setStats({
+            lvl : 1,
+            EXP : 0,
+            requiredEXP : 100,
+            hp: 75,
+            hpMax: 75,
+            ex: 0,
+            exMax: 12,
         
-        
+            str: 4,
+            def: 6,
+            exStr: 5,
+            exDef: 4,
+            int: 2,
+            spd: 5,
+            cha: 0,
+            luk: 3
+        })
+        .setSpriteStruct({ 
+            idle: sMattIdle, 
+            active: sMatthewFightActive, 
+            normals: sMattParry,  
+            slide: sMattIdle, 
+            defend: sMattIdle, 
+            down: sGrave, 
+            head: sHeadMatt, 
+            portrait: sBattlePortPH, 
+            parry : sMattParry
+        })
+        .setBattleLines({
+            lowHP : "[shake]ugh-[/shake] I've had worse... [c_dkgrey]dammit...",
+            lowEX : "Man, I have enough of an 'EX' problem as is...",
+            justHealed : "I could've toughed it out...",
+            justEXed : "Who wants some?",
+            justLeveled :
+            [
+                "Hey man, don't take it personally. It's not easy being this much better than you.",
+                "I'm gonna need all the defense I can get if Charlie's gonna keep testing his spells out on me...",
+                "OOOOOH I'll givem wunna these! and wunna those! And wunna-"nl"And wunna these, and wunna those! And I'll choke 'em!!"nl"And givem wunna these! and I'll..."
+            ],
+            winQuotes : 
+            [
+                "Wubba, wubba. I'm in the pink today, boys!",
+                "Don't you want a rematch...?",
+                "You don't have to be big, to look like a big loser."
+            ]
+        })
+        .setAllergy([FOOD_TAG.DAIRY])
+        .addAction(global.actionLibrary.dp)
+        .setDefType({type : MOVE_TYPE.PHYS, amnt: 25})
     }
-    
-	
-	CHARLIE = new Cowboy("Charlie", "Magician")
-	.setStats({
-		lvl : 2,
-		EXP : 0,
-		requiredEXP : 100,
-		hp: 40,
-		hpMax: 40,
-		ex: 0,
-		exMax: 20,
-	
-		str: 3,
-		def: 4,
-		exStr: 6,
-		exDef: 6,
-		int: 4,
-		spd: 3,
-		cha: 0,
-		luk: 4
-	})
-	.setSpriteStruct({ 
-		idle: sCharIdle, 
-		active: sCharFightActive, 
-		normals: sCharParry, 
-		slide: sCharIdle, 
-		defend: sCharIdle, 
-		down: sGrave, 
-		head: sHeadChar, 
-		portrait: sBattlePortPH, 
-		parry : sCharParry})
-	.setBattleLines({
-		lowHP : "I told grandpa I wouldn't cry anymore...",
-		lowEX : "Better hope this next spell works!",
-		justHealed : "Only a scrape after all!",
-		justEXed : "I feel way more magical now :)",
-		justLeveled :
-		[
-			"Hey Matthew, I have a new spell I really wanna try out!"nl"Wait, where are you going?",
-			""
-		],
-		winQuotes : 
-		[
-			"I wish we could have spared them...",
-			"That was fun!",
-			"I hope this moment of friendship will bring you many happy memories!",
-			"Would you like to meet my friends? Or are you too injured?"
-		]
-	})
-	.setAllergy([FOOD_TAG.SHELLFISH])
-	.addAction([global.actionLibrary.heal, global.actionLibrary.healMany, global.actionLibrary.revive])
-
-	MATTHEW = new Cowboy("Matthew", "Hermit")
-	.setStats({
-		lvl : 1,
-		EXP : 0,
-		requiredEXP : 100,
-		hp: 75,
-		hpMax: 75,
-		ex: 0,
-		exMax: 12,
-	
-		str: 4,
-		def: 6,
-		exStr: 5,
-		exDef: 4,
-		int: 2,
-		spd: 5,
-		cha: 0,
-		luk: 3
-	})
-	.setSpriteStruct({ 
-		idle: sMattIdle, 
-		active: sMatthewFightActive, 
-		normals: sMattParry,  
-		slide: sMattIdle, 
-		defend: sMattIdle, 
-		down: sGrave, 
-		head: sHeadMatt, 
-		portrait: sBattlePortPH, 
-		parry : sMattParry
-	})
-	.setBattleLines({
-		lowHP : "[shake]ugh-[/shake] I've had worse... [c_dkgrey]dammit...",
-		lowEX : "Man, I have enough of an 'EX' problem as is...",
-		justHealed : "I could've toughed it out...",
-		justEXed : "Who wants some?",
-		justLeveled :
-		[
-			"Hey man, don't take it personally. It's not easy being this much better than you.",
-			"I'm gonna need all the defense I can get if Charlie's gonna keep testing his spells out on me...",
-			"OOOOOH I'll givem wunna these! and wunna those! And wunna-"nl"And wunna these, and wunna those! And I'll choke 'em!!"nl"And givem wunna these! and I'll..."
-		],
-		winQuotes : 
-		[
-			"Wubba, wubba. I'm in the pink today, boys!",
-			"Don't you want a rematch...?",
-			"You don't have to be big, to look like a big loser."
-		]
-	})
-	.setAllergy([FOOD_TAG.DAIRY])
-	.addAction(global.actionLibrary.dp)
-	.setDefType({type : MOVE_TYPE.PHYS, amnt: 25});
     
     global.party = [
         NILS,
-        CHARLIE,
-        MATTHEW,
+        //CHARLIE,
+        //MATTHEW,
     ]
 
 #endregion

@@ -87,3 +87,6 @@ if DEV {
     menuXoffset = 150;
     screeny = noone;
 }
+
+escFrames = 0;
+escTarg = DEV ? 10 : 90;
