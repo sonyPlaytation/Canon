@@ -63,6 +63,7 @@ function Item(_name = "", _desc = "", _type = ITEM_TYPE.KEY) : IMenuable() const
 	desc = _desc;
 	itemType = _type;
 	usedBy = global.party;
+    equipped = noone;
 	stats =  {
 		
 		lvl : 0, // level requirement
@@ -302,14 +303,26 @@ function equipArmor(user = global.currentMenuUser, source = -1, _message = true)
 	if users == undefined or array_contains(users,user){
 		
 		var slot = global.currentEquipMenu
-		
-		//equip item as key
-		user.equips[slot].equip = self.key;
+		var equipment = global.items[$ user.equips[slot].equip ]
+        
+        // if you take an equip that someone else was using, strip it from them
+        if equipment != undefined and global.characters[$ equipment.equipped].equips != noone {
+            global.characters[$ equipment.equipped].equips[global.currentEquipMenu].equip = global.items.unequip;
+        }
+        
+        // tell old equipment its not longer equipped
+        if equipment != undefined {
+            equipment.equipped = noone
+        }
+        
+		//equip new item as key
+		user.equips[slot].equip = key;
+        equipped = user.name;
 		
 		// update the sprite in the equip menu slots
 		var menuItem = other.options[$ user.name][global.currentEquipMenu]
-		menuItem.value = self.key
-		menuItem.sprite = self.sprite
+		menuItem.value = key
+		menuItem.sprite = sprite
 		
 		if _message {
 			shortMessage($"//Equipped [c_red]{me.name}!",TXTPOS.MID)

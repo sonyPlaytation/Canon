@@ -570,7 +570,6 @@ initFlags();
     	static setLuk = function(v){ stats.luk = v; return self; };
         
         static setActions = function(v){ actions = is_array(v) ? v : [v]; return self; }
-        
         static addAction = function(v){ 
             if is_array(v){
                 var newactions = array_concat(actions,v)
@@ -578,21 +577,11 @@ initFlags();
             } else array_push(actions, v); 
             return self;  
         }
-        
         static removeAction = function(v){ array_delete(actions, array_get_index(actions,v), 1) ; return self; }
 		
 		static setAtkType = function(v){ atkTypes = is_array(v) ? v : [v]; return self; }
 		static setDefType = function(v){ defTypes = is_array(v) ? v : [v]; return self; }
         
-        static addEXP = function(v)
-        {
-        	setEXP(stats.EXP + v);
-        	show_debug_message($"{name} recieves {v} EXP! {stats.EXP}/{stats.requiredEXP}")
-        	
-        	if stats.EXP >= stats.requiredEXP {
-        		levelUp(self);
-        	}
-        }
         static levelUp = function()
         {
         	var STATS = stats
@@ -611,6 +600,16 @@ initFlags();
         		array_push(oBattleResults.level,self)
         		array_push(oBattleResults.stats, [STATS.str,STATS.def,STATS.exStr,STATS.exDef,STATS.int,STATS.spd,STATS.cha,STATS.luk] )
         		array_push(oBattleResults.baseStats, [STATS.str,STATS.def,STATS.exStr,STATS.exDef,STATS.int,STATS.spd,STATS.cha,STATS.luk] )
+        	}
+        }
+        
+        static addEXP = function(v)
+        {
+        	setEXP(stats.EXP + v);
+        	show_debug_message($"{name} recieves {v} EXP! {stats.EXP}/{stats.requiredEXP}")
+        	
+        	if stats.EXP >= stats.requiredEXP {
+        		levelUp();
         	}
         }
   
@@ -666,58 +665,63 @@ initFlags();
         static setSprite = function(key, val){ sprites[$ key] = val; return self; } 
     }
     
-    NILS = new Cowboy(FLAGS.playerName, "Fool")
-	.setStats({
-		lvl : 1,
-		EXP : 0,
-		requiredEXP : 100,
-		hp: 50,
-		hpMax: 50,
-		ex: 50,
-		exMax: 15,
-	
-		str: 3,
-		def: 4,
-		exStr: 8,
-		exDef: 5,
-		int: 0,
-		spd: 5,
-		cha: 0,
-		luk: 5 })
-	.setSpriteStruct({ 
-		idle: sNilsBattleIdle, 
-		active: sNilsWalkD, 
-		slide: sNilsDash, 
-		normals: sNilsBattlePunchL,
-		shoot : sNilsBattleShot,
-		volley : sNilsBattleVolley,
-		defend: sNilsIdle, 
-		down: sGrave, 
-		head: sHeadNils, 
-		portrait: sBattlePort, 
-		parry : sNilsBattleParry })
-	.setBattleLines({
-		lowHP : "I could really use a hand right now...",
-		lowEX : "Runnin' low on ammo, you guys.",
-		justHealed : "Okay, that's so much better.",
-		justEXed : "More scary evil bullets, comin' right up!",
-		justLeveled :
-		[
-			"I can already feel this thing getting stronger..."nl" That's a good thing, right?",
-			"This prophecy business wouldn't be so bad if I were jacked as shit.",
-			"Maybe I don't need to hold back as much."nl"Maybe... maybe this power is good for me..."
-		],
-		winQuotes : 
-		[ 
-			"I almost had a heart attack!",
-			"Think that was the last of 'em.",
-			"If we went home right now, would anyone really care? Probably not.",
-			"...but my aim is gettin' better!"
-		]
-	})
-	.setAllergy([FOOD_TAG.SPICY, FOOD_TAG.SWEETS])
-	.addAction([global.actionLibrary.devilshot, global.actionLibrary.devilVolley])
-	.setDefType({type : MOVE_TYPE.FIRE, amnt: 60});
+    characters = {
+        Nils : new Cowboy(FLAGS.playerName, "Fool")
+        .setStats({
+            lvl : 1,
+            EXP : 0,
+            requiredEXP : 100,
+            hp: 50,
+            hpMax: 50,
+            ex: 50,
+            exMax: 15,
+        
+            str: 3,
+            def: 4,
+            exStr: 8,
+            exDef: 5,
+            int: 0,
+            spd: 5,
+            cha: 0,
+            luk: 5 })
+        .setSpriteStruct({ 
+            idle: sNilsBattleIdle, 
+            active: sNilsWalkD, 
+            slide: sNilsDash, 
+            normals: sNilsBattlePunchL,
+            shoot : sNilsBattleShot,
+            volley : sNilsBattleVolley,
+            defend: sNilsIdle, 
+            down: sGrave, 
+            head: sHeadNils, 
+            portrait: sBattlePort, 
+            parry : sNilsBattleParry })
+        .setBattleLines({
+            lowHP : "I could really use a hand right now...",
+            lowEX : "Runnin' low on ammo, you guys.",
+            justHealed : "Okay, that's so much better.",
+            justEXed : "More scary evil bullets, comin' right up!",
+            justLeveled :
+            [
+                "I can already feel this thing getting stronger..."nl" That's a good thing, right?",
+                "This prophecy business wouldn't be so bad if I were jacked as shit.",
+                "Maybe I don't need to hold back as much."nl"Maybe... maybe this power is good for me..."
+            ],
+            winQuotes : 
+            [ 
+                "I almost had a heart attack!",
+                "Think that was the last of 'em.",
+                "If we went home right now, would anyone really care? Probably not.",
+                "...but my aim is gettin' better!"
+            ]
+        })
+        .setAllergy([FOOD_TAG.SPICY, FOOD_TAG.SWEETS])
+        .addAction([global.actionLibrary.devilshot, global.actionLibrary.devilVolley])
+        .setDefType({type : MOVE_TYPE.FIRE, amnt: 60})
+        
+        
+    }
+    
 	
 	CHARLIE = new Cowboy("Charlie", "Magician")
 	.setStats({

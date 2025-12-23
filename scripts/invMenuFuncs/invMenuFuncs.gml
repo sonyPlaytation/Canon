@@ -80,7 +80,7 @@ function createEquipMenu(invType = itemType, key = name)
 	array_foreach(global.inv[invType],function(element, index)
 	{
 		var theItem = global.items[$ element];
-        with theItem { setAllowed((stats.lvl <= global.currentMenuUser.stats.lvl) and array_contains(usedBy,global.currentMenuUser)) }
+        with theItem { setAllowed((stats.lvl <= global.currentMenuUser.stats.lvl) and array_contains(usedBy,global.currentMenuUser) and equipped != global.currentMenuUser.name) }
 
 		array_push(other.items,theItem)
 	})
@@ -158,30 +158,30 @@ function drawSlider(_x, _y, active = false, _value = value, _scale = scale){
     updatevolume()
 }
 
-function drawItem(_x, _y, _active = false, _value = value){
+function drawItem(_x, _y, _active = false){
 	
 	var xx = _x + (TILE_SIZE*5);
     var yy = _y;
     var space = TILE_SIZE*0.75
 	
 	draw_sprite_ext(sBattleEXCost,_active,xx,yy-8,1,1,0, _active ? c_white : c_dkgrey, 1)
-	if is_undefined(_value) or _value == noone exit;
+	if is_undefined(value) or value == noone exit;
 	
-	var sprite = self[$ "sprite"]
 	if !is_undefined(sprite) draw_sprite(sprite, 0, xx + (sprite_get_width(sBattleEXCost)/2)-1 + (sprite_get_width(sprite)mod 2 == 0), yy)
+        
+    if equipped != noone draw_sprite(global.characters[$ equipped].sprites.head,0,xx + 36 ,yy)
 	
 }
 
-function drawSlot(_x, _y, _active = false, _value = value){
+function drawSlot(_x, _y, _active = false){
 	
 	var xx = _x + (TILE_SIZE*5);
     var yy = _y;
     var space = TILE_SIZE*0.75
 	
 	draw_sprite_ext(sMenuItemFrame,_active,xx,yy-8,1,1,0, _active ? c_white : c_dkgrey, 1)
-	if is_undefined(_value) or _value == noone exit;
+	if is_undefined(value) or value == noone exit;
 	
-	var sprite = self[$ "sprite"]
 	if !is_undefined(sprite) draw_sprite(sprite, 0, xx + (sprite_get_width(sBattleEXCost)/2) + (sprite_get_width(sprite)mod 2 == 0), yy)
 	
 }

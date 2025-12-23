@@ -32,7 +32,7 @@ function saveGame()
 {
 	global.enemiesKilled = {}
 
-	if array_contains(PARTY[0].actions,global.actionLibrary.devilshot) {flashScreen(c_red,snDoomSave,0.05)};
+	if FLAGS.act1.hasDevilsGun {flashScreen(c_red,snDoomSave,0.05)};
 	
 	file_delete(SAVEFILE)
 	oGame.nowSaving = true;
@@ -49,21 +49,25 @@ function saveGame()
 			[],
 			[],
 		],
-		party : []
+		party : [],
+        equips : [],
 	}
 	
-	for (var i = 0; i < array_length(global.inv); i++)
-	{
-		for (var j = 0; j < array_length(global.inv[i]); j++)
-		{
-			array_push( mainStruct.inv[i], global.inv[i][j])
+	for (var i = 0; i < array_length(global.inv); i++) {
+		for (var j = 0; j < array_length(global.inv[i]); j++) {
+			
+            array_push( mainStruct.inv[i], global.inv[i][j])
 		}
 	}
 	
-	for (var i = 0; i < array_length(PARTY); ++i) 
-	{
-		mainStruct.party[i] = array_get_index(global.characters,PARTY[i]);
+	for (var i = 0; i < array_length(PARTY); ++i) {
+		
+        for (var j = 0; j < array_length(PARTY[i].equips); j++) {
+        	mainStruct.equips[i][j] = PARTY[i].equips[j].equip;
+        }
+		
 		mainStruct.stats[i] = PARTY[i].stats;
+        mainStruct.party[i] = PARTY[i].name
 	}
 	
 	var _json = json_stringify(mainStruct, DEV);
@@ -106,12 +110,19 @@ function loadGame(roomChange = false){
 	var _json = LoadString(SAVEFILE);
 	var mainStruct = json_parse(_json);
 	
-	for (var i = 0; i < array_length(PARTY); ++i) {
-	    PARTY[i].stats = mainStruct.stats[i];
-	}
-	
 	for (var i = 0; i < array_length(mainStruct.party); ++i) {
-	    PARTY[i] = global.characters[mainStruct.party[i]];
+        
+	    PARTY[i] = global.characters[$ mainStruct.party[i]];
+        
+        for (var j = 0; j < array_length(mainStruct.equips[i]); j++) {
+        	
+            var item = mainStruct.equips[i][j];
+            PARTY[i].equips[j].equip = item;
+            
+        	if item != -4 global.items[$ item].equipped = PARTY[i].name;
+        }
+        
+        PARTY[i].stats = mainStruct.stats[i];
 	}
 	
 	FLAGS = mainStruct.flags;
@@ -182,6 +193,7 @@ function initFlags(){
             officeBathroomKey : false,
             narratorFunny : false,
             lostAsFuck : 0,
+            hasDevilsGun : false,
             chargeTackle : false,
         },
     }
