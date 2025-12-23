@@ -49,7 +49,7 @@ function createConsumeMenu()
 		oPauseMenu.CurrentIndex = index
 		var _guy = new IMenuable(element.name)
 			.setType("submenu")
-			.setFunc(function(){overworldChangeHP(name,global.CurrentConsumable.value)})
+			.setFunc(function(){battleChangeHP(global.characters[$ name] ,global.CurrentConsumable.value,,global.CurrentConsumable.sound,true,true)})
             .setDraw(drawHead)
 		;
 		

@@ -227,7 +227,7 @@ enum FOOD_TAG
 		else {
             
 			global.CurrentConsumable = item;
-            if array_length(PARTY) > 1 { createConsumeMenu() } else overworldChangeHP(PARTY[0].name, global.CurrentConsumable.value,,global.CurrentConsumable.sound,false)
+            if array_length(PARTY) > 1 { createConsumeMenu() } else battleChangeHP(PARTY[0], global.CurrentConsumable.value,,global.CurrentConsumable.sound,true,false)
 		}
 		
 		var me = array_get_index(global.inv[_type],item);

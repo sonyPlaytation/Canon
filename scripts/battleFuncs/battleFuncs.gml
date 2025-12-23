@@ -29,112 +29,95 @@ function leaveBattle()
 	//oCamera.drawNothing = false
 };
 
-function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1)
+function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1, inMenu = false, goBack = false)
 {
 	// ADOE : 
 	// 0 - ALIVE, 
 	// 1 - DEAD, 
 	// 2 - EITHER 	
-	var failed = false;
-	if (AliveDeadOrEither == 0) and target.stats.hp <= 0 {failed = true};
-	if (AliveDeadOrEither == 1) and target.stats.hp > 0 {failed = true};
-	text = abs(amount);
-	
-	var col = c_white;
-	if amount > 0 col = c_lime;
-	if failed
-	{
-		if amount < 0 {SFX snSwingMiss};
-		col = c_white;
-		text = "Whiff!";
-		
-	}
-	else if !failed
-	{ 
-		if amount > 0 //healing
-		{
-			if target.stats.hp <= 0 {text = "Resurrection!";}
-			target.flash += 15;
-		}
-		else // damage
-		{
-			target.hit = 0;
-			target.hit += 5;
-			amount = min(amount + target.stats.def, 0)
-			text = amount;
-			global.cam.shake_screen(amount/2,abs(amount))	
-		}
-		
-		if sound != -1 { oSFX.battlehit = sound; } 
-	}
-	
-	var healthLine = -1
-	
-	if variable_struct_exists(target,"battleLines") 
-	{
-		if (target.stats.hp > target.stats.hpMax/2) and (target.stats.hp + amount <= target.stats.hpMax/2)	healthLine = target.battleLines.lowHP
-		if (amount > 0 and target.stats.hp < target.stats.hpMax) healthLine = target.battleLines.justHealed
-	}
-	
-	if healthLine != -1 {BATTLE($"[{sprite_get_name(target.sprites.head)}]: "+healthLine)}
-	
-	instance_create_depth
-	(
-		target.x,
-		target.selfCenter,
-		target.depth-20,
-		oBattleHitText,
-		{
-			font : fSmall,
-			color : col,
-			text : text
-		}
-	)
-	if is_numeric(amount) and !failed {target.stats.hp = clamp(target.stats.hp + amount, 0, target.stats.hpMax)};
-}
-
-function overworldChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1, goBack = true)
-{
-	// ADOE : 
-	// 0 - ALIVE, 
-	// 1 - DEAD, 
-	// 2 - EITHER 	'
     
-    var targ = global.actors[$ target];
-    target = global.characters[$ target];
+    var failed = false;
+    var targ = target;
+    var healthLine = -1
     
-	text = abs(amount);
-	
-	var col = c_white;
-	
-	if sound != -1 { SFX sound; } 
-	
-	var healthLine = -1
-	
-	instance_create_depth
-	(
-		targ.x,
-		targ.selfCenter,
-		targ.depth-20,
-		oBattleHitText,
-		{
-			font : fSmall,
-			color : col,
-			text : text
-		}
-	)
-	if is_numeric(amount) {target.stats.hp = clamp(target.stats.hp + amount, 0, target.stats.hpMax)};
-        
-    
-    with oPauseMenu {
-        
-        var me = array_get_index(options[$ "Consumables"],global.CurrentConsumable);
-        array_delete(options[$ "Consumables"],me,1);
-        if goBack { doGoBack() }
-        if hover == array_length(options[$ "Consumables"])-1 {hover--}
+    if !inMenu{
+        if (AliveDeadOrEither == 0) and target.stats.hp <= 0 {failed = true};
+        if (AliveDeadOrEither == 1) and target.stats.hp > 0 {failed = true};
     }
-}
+    
+    text = abs(amount);
+    
+    var col = c_white;
+    
+    if amount > 0 col = c_lime;
+    if failed {
+        if amount < 0 { sound = snSwingMiss };
+        col = c_white;
+        text = "Whiff!";
+    }
+    
+    if sound != -1 { SFX sound; } 
+    
+    if inMenu {
+        
+        targ = global.actors[$ target.name ];
 
+        with oPauseMenu {
+        
+            var me = array_get_index(options[$ "Consumables"],global.CurrentConsumable);
+            array_delete(options[$ "Consumables"],me,1);
+            if goBack { doGoBack() }
+            if hover == array_length(options[$ "Consumables"])-1 {hover--}
+        }
+    } else {
+        
+        if !failed { 
+        
+            if amount > 0 { //healing
+            
+                if target.stats.hp <= 0 {text = "Resurrection!";}
+                target.flash += 15;
+            } else { // damage
+            
+                target.hit = 0;
+                target.hit += 5;
+                amount = min(amount + target.stats.def, 0)
+                text = amount;
+                global.cam.shake_screen(amount/2,abs(amount))	
+            }
+        }
+        
+        if variable_struct_exists(target,"battleLines") {
+            
+            if (target.stats.hp > target.stats.hpMax/2) and (target.stats.hp + amount <= target.stats.hpMax/2)	healthLine = target.battleLines.lowHP
+            if (amount > 0 and target.stats.hp < target.stats.hpMax) healthLine = target.battleLines.justHealed
+        }
+        
+        if healthLine != -1 {BATTLE($"[{sprite_get_name(target.sprites.head)}]: "+healthLine)}
+    }
+    
+    //TODO: make heal number show you exactly how much was actually healed and not just the healing value of the item
+    text = clamp(text, 0, abs(target.stats.hpMax - (target.stats.hp + amount)))
+    
+    
+    
+    
+    instance_create_depth(
+        
+        targ.x,
+        targ.selfCenter,
+        targ.depth-20,
+        oBattleHitText,
+        {
+            font : fSmall,
+            color : col,
+            text : text
+        }
+    )
+    
+    if is_numeric(amount) and !failed {target.stats.hp = clamp(target.stats.hp + amount, 0, target.stats.hpMax)};
+	
+}
 
 function battleChangeEX(target, amount, _number = false, sound = -1)
 {
@@ -179,6 +162,10 @@ function battleChangeEX(target, amount, _number = false, sound = -1)
 		)
 	}
 	
-	if !failed {target.stats.ex = clamp(target.stats.ex + amount, 0, target.stats.exMax)};
+	if failed return false;
+        
+    target.stats.ex = clamp(target.stats.ex + amount, 0, target.stats.exMax);
+    
+    return true
 }
 
