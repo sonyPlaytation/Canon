@@ -1202,6 +1202,7 @@
     {"id":{"name":"sLevelUpStats","path":"sprites/sLevelUpStats/sLevelUpStats.yy",},},
     {"id":{"name":"sLineDef","path":"sprites/sLineDef/sLineDef.yy",},},
     {"id":{"name":"sLockDebug","path":"sprites/sLockDebug/sLockDebug.yy",},},
+    {"id":{"name":"sMattBattleIdle","path":"sprites/sMattBattleIdle/sMattBattleIdle.yy",},},
     {"id":{"name":"sMatthewFightActive","path":"sprites/sMatthewFightActive/sMatthewFightActive.yy",},},
     {"id":{"name":"sMattIdle","path":"sprites/sMattIdle/sMattIdle.yy",},},
     {"id":{"name":"sMattParry","path":"sprites/sMattParry/sMattParry.yy",},},

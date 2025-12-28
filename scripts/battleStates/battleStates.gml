@@ -114,7 +114,7 @@ function battleStates(){
 				{
 					var anim = struct_get(currentAction, "userAnimation");
 					if currentUser.sprites[$ anim ] != undefined and currentUser.sprite_index != currentUser.sprites[$ anim ] 
-					{ currentUser.image_index = 0; currentUser.sprite_index = currentUser.sprites[$ anim ];  }
+					{ /*currentUser.image_index = 0;*/ currentUser.sprite_index = currentUser.sprites[$ anim ];  }
 				}
 				
 				if currentUser.acting 
@@ -174,6 +174,10 @@ function battleStates(){
 
 	.add("doNormals",
 	{
+        enter : function(){
+            show_debug_message("DONORMALS NOW")   
+        }
+        ,
 		step : function()
 		{
 			var char = "";

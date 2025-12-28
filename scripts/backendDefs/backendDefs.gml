@@ -161,7 +161,7 @@ initFlags();
         }
 
         //"623L"
-        function moveString(_str){
+        function convertMoveString(_str){
             
             var str = "";
             
@@ -393,7 +393,7 @@ initFlags();
 	            .setInfoCard(
 	                "Deal fire damage to one"nl"enemy. Can hit multiple targets.",
 	                [MOVE_TYPE.PHYS,MOVE_TYPE.FIRE,MOVE_TYPE.STUN],
-	                moveString("623P")
+	                convertMoveString("623P")
 	            )
 	        
 	    		.setFunc(function(user, targets)
@@ -420,7 +420,7 @@ initFlags();
 	            .setInfoCard(
 	                "Shoot a big shot of 'Devil Energy'.",
 	                [MOVE_TYPE.DEVIL],
-	                moveString("236P")
+	                convertMoveString("236P")
 	            )
 	        
 	    		.setFunc(function(user, targets)
@@ -446,7 +446,7 @@ initFlags();
 	            .setInfoCard(
 	                "Somehow hit everyone"nl"with one bullet.",
 	                [MOVE_TYPE.DEVIL],
-	                moveString("41236H")
+	                convertMoveString("41236H")
 	            )
 	        
 	    		.setFunc(function(user, targets)
@@ -475,7 +475,7 @@ initFlags();
 	            .setInfoCard(
 	                "Heal whoevers health is lowest.",
 	                [MOVE_TYPE.HEAL, MOVE_TYPE.LIGHT],
-	                moveString("236L")
+	                convertMoveString("236L")
 	            )
 	        
 	    		.setFunc(function(user, targets)
@@ -521,7 +521,7 @@ initFlags();
 	            .setInfoCard(
 	                "Small heal to all targets.",
 	                [MOVE_TYPE.HEAL, MOVE_TYPE.LIGHT],
-	                moveString("623P")
+	                convertMoveString("623P")
 	            )
 	        
 	    		.setFunc(function(user, targets)
@@ -548,7 +548,7 @@ initFlags();
 	            .setInfoCard(
 	                "Revive a dead teammate.",
 	                [MOVE_TYPE.REVIVE, MOVE_TYPE.HEAL, MOVE_TYPE.LIGHT],
-	                moveString("236236L")
+	                convertMoveString("236236L")
 	            )
 	        
 	    		.setFunc(function(user, targets)
@@ -888,10 +888,10 @@ initFlags();
     		luk: 4
     	})
     	.setSpriteStruct({ 
-    		idle: sCharIdle, 
+    		idle: sCharWalkD, 
     		active: sCharFightActive, 
     		normals: sCharParry, 
-    		slide: sCharIdle, 
+    		slide: sCharWalkR, 
     		defend: sCharIdle, 
     		down: sGrave, 
     		head: sHeadChar, 
@@ -941,10 +941,10 @@ initFlags();
             luk: 3
         })
         .setSpriteStruct({ 
-            idle: sMattIdle, 
+            idle: sMattBattleIdle, 
             active: sMatthewFightActive, 
             normals: sMattParry,  
-            slide: sMattIdle, 
+            slide: sMattWalkR, 
             defend: sMattIdle, 
             down: sGrave, 
             head: sHeadMatt, 
@@ -977,7 +977,7 @@ initFlags();
     global.party = [
         NILS,
         CHARLIE,
-        //MATTHEW,
+        MATTHEW,
     ]
 
 #endregion

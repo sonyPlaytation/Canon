@@ -204,17 +204,17 @@ beginAction = function(user, action, targets) // THIS IS A FUNCTION NOT A STATE
 checkNormalsString = function()
 {
 	// find a move that the current user has that also is mapped to the input performed
-	for (var i = 0; i < array_length(currentUser.actions); i++)
-	{
-		if currentUser.actions[i][$ "notation"] != undefined 
+	for (var i = 0; i < array_length(currentUser.actions); i++) {
+		
+        var action = currentUser.actions[i]
+        if action[$ "notation"] != undefined 
 		{
-			if is_array(currentUser.actions[i][$ "notation"])
-			{
-				if array_contains( currentUser.actions[i][$ "notation"], moveString ) { currentAction = currentUser.actions[i]; }
-			}
-			else
-			{
-				if currentUser.actions[i][$ "notation"] == moveString { currentAction = currentUser.actions[i];	}
+			if is_array(action.notation) {
+				
+                if array_contains( action.notation, moveString ) { currentAction = action; }
+			} else {
+				
+                if action.notation == moveString { currentAction = action;	}
 			}
 		}
 	}

@@ -1,10 +1,10 @@
 {
   "$GMSprite":"v2",
-  "%Name":"sMattWalkD",
+  "%Name":"sMattBattleIdle",
   "bboxMode":0,
-  "bbox_bottom":71,
+  "bbox_bottom":70,
   "bbox_left":1,
-  "bbox_right":28,
+  "bbox_right":23,
   "bbox_top":0,
   "collisionKind":1,
   "collisionTolerance":0,
@@ -12,7 +12,7 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"v1","%Name":"668b9bde-4599-41f7-a727-1de7a6e7010f","name":"668b9bde-4599-41f7-a727-1de7a6e7010f","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"2a743c32-7090-45ef-b15c-abc614e54ff0","name":"2a743c32-7090-45ef-b15c-abc614e54ff0","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -21,19 +21,19 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"90c5d89f-62fc-4b97-a147-31afc94056a9","blendMode":0,"displayName":"default","isLocked":false,"name":"90c5d89f-62fc-4b97-a147-31afc94056a9","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"sMattWalkD",
+  "name":"sMattBattleIdle",
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Sprites",
-    "path":"folders/!Party/Sprites.yy",
+    "name":"Matt",
+    "path":"folders/Battles/Sprites/Party/Matt.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"sMattWalkD",
+    "%Name":"sMattBattleIdle",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -48,7 +48,7 @@
             "0":{"$MessageEventKeyframe":"","Events":[
                 "perform",
               ],"resourceType":"MessageEventKeyframe","resourceVersion":"2.0",},
-          },"Disabled":false,"id":"b8a3ecc2-e75e-4eb5-bd22-203320628949","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<MessageEventKeyframe>","resourceVersion":"2.0","Stretch":false,},
+          },"Disabled":false,"id":"2ff21432-ca0c-4116-8061-e57a3b4d9be3","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<MessageEventKeyframe>","resourceVersion":"2.0","Stretch":false,},
       ],
       "resourceType":"KeyframeStore<MessageEventKeyframe>",
       "resourceVersion":"2.0",
@@ -63,7 +63,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"sMattWalkD",
+    "name":"sMattBattleIdle",
     "playback":1,
     "playbackSpeed":5.0,
     "playbackSpeedType":0,
@@ -77,8 +77,8 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"668b9bde-4599-41f7-a727-1de7a6e7010f","path":"sprites/sMattWalkD/sMattWalkD.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"1b9014e8-1f59-452d-bb7f-8ecd0b9119a1","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"2a743c32-7090-45ef-b15c-abc614e54ff0","path":"sprites/sMattBattleIdle/sMattBattleIdle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"53549a4a-5717-41b7-afb5-6603cdfc72f2","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,
