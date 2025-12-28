@@ -12,3 +12,4 @@ if position_meeting(global.mX,global.mY,id)
 }
 
 if string_lower(doThis) = "loadsavefile" and !file_exists(SAVEFILE) {instance_destroy()}
+if string_lower(doThis) = "startGame" and !DEV {instance_destroy()}

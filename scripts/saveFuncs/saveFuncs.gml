@@ -180,8 +180,7 @@ function loadSettings()
 
 function initFlags(){
     
-    global.flags = 
-    {
+    global.flags = {
         playerName : DEV ? "Nils" : "???",
         cutscenes :[],
         enemiesActive : DEV,

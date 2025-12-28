@@ -27,7 +27,26 @@ hit = 0;
 flashCol = c_white;
 acting = false;
 
+statuses = []
+buffs = []
+debuffs = []
+
 curve = animcurve_get_channel(acBattleSlideIn,"curve1");
 percent = 0;
 percentTarg = -1;
 forward = false;
+
+runStatus = function(){
+    
+    array_foreach(statuses,function(element, index){
+        if element == 0 exit;
+            
+        element.statFunc(id);
+        
+        if element.life <= 0 {
+            element.statEnd()
+            array_delete(statuses,index,1);
+        }
+    })
+    
+}

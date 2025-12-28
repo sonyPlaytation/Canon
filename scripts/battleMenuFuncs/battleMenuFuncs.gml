@@ -90,7 +90,7 @@ function menuSelectAction(_user, _action)
 	
 	with oBattle
 	{
-		if (_action.targetRequired)	
+		if ( _action[$ "targetRequired"] )
 		{
 			with cursor
 			{

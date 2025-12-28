@@ -79,6 +79,7 @@ enemyStuff = function()
 	
 			if advantage == -1 {set_song_ingame(mPHFightStartDisadv,,,true)} else set_song_ingame(mPHFightStartAdv,,,true)
 			global.advantage = advantage;
+            if DEV and SETTINGS.other.devAdv != 0 { global.advantage = SETTINGS.other.devAdv; }
 			global.fightStarter = id;
 			global.fightEnemies = myEncounter;
 			global.fightBG = bg;

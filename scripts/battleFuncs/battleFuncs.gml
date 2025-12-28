@@ -45,6 +45,7 @@ function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1, inMen
         if (AliveDeadOrEither == 1) and target.stats.hp > 0 {failed = true};
     }
     
+    amount = round(amount);
     text = abs(amount);
     
     var col = c_white;
@@ -97,10 +98,7 @@ function battleChangeHP(target, amount, AliveDeadOrEither = 0, sound = -1, inMen
     }
     
     //TODO: make heal number show you exactly how much was actually healed and not just the healing value of the item
-    text = clamp(text, 0, abs(target.stats.hpMax - (target.stats.hp + amount)))
-    
-    
-    
+    //text = clamp(text, 0, abs(target.stats.hpMax - (target.stats.hp + amount)))
     
     instance_create_depth(
         

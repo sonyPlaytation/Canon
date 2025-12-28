@@ -4,16 +4,103 @@ initFlags();
 
 #region battle definitions
 
+    #region constructor defs
+        
+        ///@param {string} Name 
+        ///@param {string} Desc 
+        function IMenuable(_name = "", _desc = "") constructor{
+        	
+        	// Universal 
+            allowed = true;
+        	menuType = "submenu";
+            itemType = noone;
+        	name = _name;
+        	desc = _desc;
+        	sprite = sBlank;
+        	value = {};
+        	
+        	infoCard = {
+        		desc,
+        		types : [],
+        		input : undefined,
+        		exCost : undefined
+        	};
+        	
+        	func = function(){show_message($"FUNCTION OF IMenuable: \"{self.name}\" NOT DECLARED BEFORE CALLING.")};
+        	draw = function(){};
+        	
+        	///@param {asset} Sprite Object sprite
+        	static setSprite = function(v){ sprite = v; return self; };
+        	static setFunc = function(v){ func = method(self, v); return self; };
+        	static setDraw = function(v){ draw = method(self, v); return self; };
+        	static setValue = function(v){ value = v; return self; };
+        	
+        	///@param {string} Desc
+        	///@param {string} Type
+        	///@param {string} Desc
+        	static setInfoCard = function(_desc = "", _types = [], _input = undefined, _exCost = undefined){ 
+        		
+        		info = {
+        			desc : _desc,
+        			types : _types,
+        			input : _input,
+        			exCost : _exCost
+        		}
+        
+        		return self; 
+        	};
+        	static setType = function(v){ menuType = v; return self; }
+        	static setItemType = function(v){ itemType = v; return self; }
+        	static setAllowed = function(v){ allowed = v; return self; };
+        	static toggleAllowed = function(){ allowed = !allowed; return self; };
+        	
+        	static setInfoDesc = function(v){ info.desc = v; return self; };
+        	static setInfoTypes = function(v){ info.types = v; return self; };
+        	static setInfoInput = function(v){ info.input = v; return self; };
+        }
+
+        function Status(_name = "", _desc = "", _life = 1, _func = function(){}) : IMenuable() constructor{
+            
+            name = _name;
+            desc = _desc;
+            life = _life;
+            lifeMax = _life;
+            
+            // useful for setting things once for things like passive buffs
+            // run when status is assigned, can be before assignees turn
+            statStart = function(target){};
+            
+            // this system works best for DOT type things
+            // TODO: passive statuses. ex: BLOOD thats just a "you currently have BLOOD on you" but doesn't do anything per turn
+            statFunc = function(){life--};
+            
+            statEnd = function(){}
+            
+            static setStart = function(v){statStart = method(self,v); return self;}
+            static setStatus = function(v){statFunc = method(self,v); return self;}
+            static setEnd = function(v){statEnd = method(self,v); return self;}
+        }
+
+        function assignStatus(target,status){
+            
+            var stat = variable_clone(status)
+            array_push(target.statuses,stat);
+            stat.statStart(target);
+            
+        }
+
+    #endregion
+
+
     #region macros and enums
     
-        enum MODE
-        {
+        enum MODE {
             NEVER = 0,
             ALWAYS = 1,
             VARIES = 2
         }
         
-        enum MOVE_TYPE{
+        enum MOVE_TYPE {
             PHYS,
             STUN,
             FIRE,
@@ -33,21 +120,82 @@ initFlags();
             ENTROPY,
             DEVIL
         }
+
+        enum ITEM_TYPE {
+        	CONSUMABLE,
+        	ARMOR,
+        	MOD,
+        	WEAPON,
+        	KEY
+        }
         
-        #macro s1 "[sInputArrows, 5]"
-        #macro s2 "[sInputArrows, 6]"
-        #macro s3 "[sInputArrows, 7]"
-        #macro s4 "[sInputArrows, 4]"
-        #macro s5 "[sInputArrows, 8]"
-        #macro s6 "[sInputArrows, 0]"
-        #macro s7 "[sInputArrows, 3]"
-        #macro s8 "[sInputArrows, 2]"
-        #macro s9 "[sInputArrows, 1]"
+        enum FOOD_TAG {
+        	MEAT,
+        	DAIRY,
+        	SEAFOOD,
+        	SHELLFISH,
+        	SPICY,
+        	GRAIN,
+        	SWEETS
+        }
+
+        #macro STATUS global.status
         
-        #macro sG "[sInputG, 1]"
-        #macro sL "[sInputL, 1]"
-        #macro sM "[sInputM, 1]"
-        #macro sH "[sInputH, 1]"
+        S = {
+            
+            s1 : "[sInputArrows, 5]",
+            s2 : "[sInputArrows, 6]",
+            s3 : "[sInputArrows, 7]",
+            s4 : "[sInputArrows, 4]",
+            s5 : "[sInputArrows, 8]",
+            s6 : "[sInputArrows, 0]",
+            s7 : "[sInputArrows, 3]",
+            s8 : "[sInputArrows, 2]",
+            s9 : "[sInputArrows, 1]",
+            
+            sG : "[sInputG, 1]",
+            sL : "[sInputL, 1]",
+            sM : "[sInputM, 1]",
+            sH : "[sInputH, 1]",
+            sP : "[sInputP, 0]",
+        }
+
+        //"623L"
+        function moveString(_str){
+            
+            var str = "";
+            
+            // strings are 1 indexed for some fucking reason
+            for (var i = 1; i <= string_length(_str); i++) {
+            	
+                var char = string_char_at(_str,i);
+                var sub = "";
+                
+                switch(char) {
+                    case "1": sub = global.S.s1 /*+ ">"*/; break;
+                    case "2": sub = global.S.s2 /*+ ">"*/; break;
+                    case "3": sub = global.S.s3 /*+ ">"*/; break;
+                    case "4": sub = global.S.s4 /*+ ">"*/; break;
+                    case "5": sub = global.S.s5 /*+ ">"*/; break;
+                    case "6": sub = global.S.s6 /*+ ">"*/; break;
+                    case "7": sub = global.S.s7 /*+ ">"*/; break;
+                    case "8": sub = global.S.s8 /*+ ">"*/; break;
+                    case "9": sub = global.S.s9 /*+ ">"*/; break;
+                        
+                    case "G": sub = global.S.sG; break;
+                    case "L": sub = global.S.sL; break;
+                    case "M": sub = global.S.sM; break;
+                    case "H": sub = global.S.sH; break;
+                    case "P": sub = global.S.sP; break;
+                        
+                    default: sub = char;
+                }
+                
+                str += sub;
+            }
+            
+            return str; 
+        }
 
         #macro PARTY global.party
 		#macro NILS global.characters[$ "Nils"]
@@ -83,6 +231,13 @@ initFlags();
 	    	
 	    	normal : ["L","M","H"],
 	    }
+
+        status = {
+            
+            burnDOT : new Status("burn","take damage",3)
+        }
+
+        invSize = 24;
     
     #endregion
 
@@ -136,8 +291,8 @@ initFlags();
 			static setFrameCost = function(v){ frameCost = v; return self; };
 			
 			///@param {bool} Target_Requirement
-			/// @desc True: Attacks regardless of target.
-			/// False: Requires target to be set before use.
+			/// @desc True: THERE IS A TARGET
+			/// False: THERE IS NO TARGET
 			static setTargetRequired = function(v){ targetRequired = v; return self; };
 			
 			///@param {bool} Target_Side
@@ -159,8 +314,7 @@ initFlags();
 		
 		}
 	    
-	    global.actionLibrary = 
-	    {
+	    global.actionLibrary = {
 	    	// NOTES FOR OPERATION:
 	    	
 	    	// submenu sets the menu a move is grouped to. 
@@ -171,8 +325,7 @@ initFlags();
 	    		.setUserAnim("idle")
 	    		.setFunc(function(user, targets) {
 	    			
-					with oBattle 
-	    			{
+					with oBattle {
 	    				sState.change("doNormals");
 	    			}
 	    		})
@@ -182,8 +335,7 @@ initFlags();
 	    		.setUserAnim("idle")
 	    		.setFunc(function(user, targets){
 					
-	    			with oBattle 
-	    			{
+	    			with oBattle {
 	    				oBattle.sState.change("enemyNormals");
 	    				oBattle.enemyMove = user.attacks[irandom(array_length(user.attacks)-1)];
 	    			}
@@ -209,8 +361,7 @@ initFlags();
 	            .setHitSound(snHit7)
 	            .setFrameCost(8)
 	            .setFxSprite(sPunch)
-	    		.setFunc(function(user, targets)
-	    		{
+	    		.setFunc(function(user, targets) {
 	    			var damage = ceil(user.stats.str * random_range(1.5,1.75));
 	    			battleChangeHP(targets[0], -damage,, hitSound);
 	    			battleChangeEX(user,2)
@@ -223,8 +374,7 @@ initFlags();
 	            .setHitSound(snHit9)
 	            .setFrameCost(14)
 	            .setFxSprite(sPunch)
-	    		.setFunc(function(user, targets)
-	    		{
+	    		.setFunc(function(user, targets) {
 	    			var damage = ceil(user.stats.str * random_range(1.75,2));
 	    			battleChangeHP(targets[0], -damage,, hitSound);
 	    			battleChangeEX(user,3)
@@ -243,11 +393,12 @@ initFlags();
 	            .setInfoCard(
 	                "Deal fire damage to one"nl"enemy. Can hit multiple targets.",
 	                [MOVE_TYPE.PHYS,MOVE_TYPE.FIRE,MOVE_TYPE.STUN],
-	                s6+ s2 + s3 + sH
+	                moveString("623P")
 	            )
 	        
 	    		.setFunc(function(user, targets)
 	    		{
+                    
 	    			for (var i = 0; i< array_length(targets); i++)
 	    			{
 	    				var damage = ceil(user.stats.exStr + random_range(-user.stats.exStr/3, user.stats.exStr/2));
@@ -269,13 +420,12 @@ initFlags();
 	            .setInfoCard(
 	                "Shoot a big shot of 'Devil Energy'.",
 	                [MOVE_TYPE.DEVIL],
-	                s2+s3+s6+sL
+	                moveString("236P")
 	            )
 	        
 	    		.setFunc(function(user, targets)
 	    		{
-	    			for (var i = 0; i< array_length(targets); i++)
-	    			{
+	    			for (var i = 0; i< array_length(targets); i++) {
 	    				var damage = ceil(user.stats.exStr * random_range(1.45,2.25));
 	    				if array_length(targets) > 1 {damage = ceil(damage*0.75)}
 	    				battleChangeHP(targets[i], -damage,, self.hitSound);
@@ -284,28 +434,28 @@ initFlags();
 	    	,
             
             devilVolley : new Attack("Fan Hammer")
-	    		.setNotation(global.moves.halfCircle)
+	    		.setNotation(global.moves.halfCircle[2])
 	    		.setUserAnim("volley")
                 .setSubmenu("Specials")
                 .setHitSound(snHit9)
 	            .setFrameCost(36)
 	            .setExCost(12)
 	            .setFxSprite(sPunch)
-                .setTargetRequired(false)
 	            .setTargetAll(MODE.ALWAYS)
 	        
 	            .setInfoCard(
 	                "Somehow hit everyone"nl"with one bullet.",
 	                [MOVE_TYPE.DEVIL],
-	                s4+s1+s2+s3+s6+sL
+	                moveString("41236H")
 	            )
 	        
 	    		.setFunc(function(user, targets)
 	    		{
 	    			for (var i = 0; i< array_length(targets); i++)
 	    			{
+                        var targ = targets[i];
 	    				var damage = ceil((user.stats.exStr * random_range(1.25,1.65))*(0.65 + (user.stats.int/global.lvlCap)));
-	    				battleChangeHP(targets[i], -damage, 0, self.hitSound);
+	    				battleChangeHP(targ, -damage, 0, self.hitSound);
 	    			}
 	    		})
 	    	,
@@ -319,14 +469,13 @@ initFlags();
 	            .setExCost(10)
 	            .setFxSprite(sHeal)
                     
-                .setTargetRequired(false)
 	            .setTargetAll(MODE.ALWAYS)
                 .setTargetEnemyByDefault(false)
 	        
 	            .setInfoCard(
 	                "Heal whoevers health is lowest.",
 	                [MOVE_TYPE.HEAL, MOVE_TYPE.LIGHT],
-	                s2+s3+s6+sL
+	                moveString("236L")
 	            )
 	        
 	    		.setFunc(function(user, targets)
@@ -347,16 +496,12 @@ initFlags();
 	            .setFrameCost(24)
 	            .setExCost(16)
 	            .setFxSprite(sPunch)
-                    
-                .setTargetRequired(true)
-	            .setTargetAll(MODE.NEVER)
 	        
 	    		.setFunc(function(user, targets)
 	    		{
                     var damage = ceil((user.stats.exStr*3) + random_range(-user.stats.exStr/3, user.stats.exStr/2));
                     battleChangeHP(targets[0], damage, 0, self.hitSound);
                     battleChangeHP(user, -damage, 0);
-	    			
 	    		})
 	    	,
             
@@ -376,17 +521,14 @@ initFlags();
 	            .setInfoCard(
 	                "Small heal to all targets.",
 	                [MOVE_TYPE.HEAL, MOVE_TYPE.LIGHT],
-	                s6+s2+s3+sL // Make a generic "P" input icon for moves that accept any punch
+	                moveString("623P")
 	            )
 	        
 	    		.setFunc(function(user, targets)
 	    		{
-                    array_sort(targets,function(e1,e2){
-                        return  e1.stats.hpMax/e1.stats.hp - e2.stats.hpMax/e2.stats.hp; // should sort whoever in the list has the lowest hp percent? havent tested it yet
-                    })
                     var damage = ceil((user.stats.exStr*3) + random_range(-user.stats.exStr/3, user.stats.exStr/2)*(0.65 + (user.stats.int/global.lvlCap)));
+                    
                     battleChangeHP(targets[0], damage, 0, self.hitSound);
-	    			
 	    		})
 	    	,
             
@@ -406,7 +548,7 @@ initFlags();
 	            .setInfoCard(
 	                "Revive a dead teammate.",
 	                [MOVE_TYPE.REVIVE, MOVE_TYPE.HEAL, MOVE_TYPE.LIGHT],
-	                s2+s3+s6+s2+s3+s6+sL
+	                moveString("236236L")
 	            )
 	        
 	    		.setFunc(function(user, targets)
@@ -420,8 +562,10 @@ initFlags();
 	    		})
 	    	
 	    }
+
 	#endregion 	
     	
+    // automatically set each moves infoCard to have an exCost that matches the functional cost
     struct_foreach(global.actionLibrary, function(moveName, move)
     {
         if variable_struct_exists(move, "info")
@@ -430,7 +574,7 @@ initFlags();
         }
     })
 
-    function Character(_name = "", _level = global.areaLevel) constructor{
+    function Character(_name = "", _level = global.areaLevel) : IMenuable() constructor{
     
         curve = animcurve_get_channel(acExpCurve,"curve1")
         
@@ -647,21 +791,25 @@ initFlags();
         actions = [ global.actionLibrary.normals, global.actionLibrary.light, global.actionLibrary.medium, global.actionLibrary.heavy ]
         equips = variable_clone(global.equipSlotsTemplate);
         
-        allergies = []; //TODO: food effects should be a struct of functions slash statuseffects
+        allergies = {}; //TODO: food effects should be a struct of functions slash statuseffects
         sprites = {};
         battleLines = {};
         
         static setJob = function(v){ job = v; return self; }
         static setBattleLines = function(v){ battleLines = v; return self; }
         
-        static setAllergy = function(v){ allergies = is_array(v) ? v : [v]; return self; }
-        static addAllergy = function(v){ array_push(allergies, v); return self; }
-        static removeAllergy = function(v){ array_delete(allergies, array_get_index(allergies,v), 1) ; return self; }
+        static setAllergies = function(v){ allergies = v; return self; }
+        static addAllergy = function(key, val){ struct_set(allergies,key,variable_clone(val)); return self; }
         
         static setSpriteStruct = function(v){ sprites = v; return self; }
         static setSprite = function(key, val){ sprites[$ key] = val; return self; } 
     }
     
+    allergy = {
+        tag : FOOD_TAG.SPICY,
+        status : variable_clone(STATUS.burnDOT)
+    }
+
     characters = {
         Nils : new Cowboy(FLAGS.playerName, "Fool")
         .setStats({
@@ -712,7 +860,11 @@ initFlags();
                 "...but my aim is gettin' better!"
             ]
         })
-        .setAllergy([FOOD_TAG.SPICY, FOOD_TAG.SWEETS])
+        .addAllergy( FOOD_TAG.SPICY, new Status("Spicy!!","You are too white for this.",3) .setStatus(function(targ){
+            
+                battleChangeHP(targ, -ceil(targ.stats.hpMax/5) * ((life+1)/lifeMax))
+                life--;
+            }))
         .addAction([global.actionLibrary.devilshot, global.actionLibrary.devilVolley])
         .setDefType({type : MOVE_TYPE.FIRE, amnt: 60})
         ,
@@ -763,7 +915,10 @@ initFlags();
     			"Would you like to meet my friends? Or are you too injured?"
     		]
     	})
-    	.setAllergy([FOOD_TAG.SHELLFISH])
+    	.addAllergy(FOOD_TAG.SHELLFISH, new Status("Anaphylaxis","It was all worth it...",3) 
+            .setStart(function(targ){ array_push(targ.debuffs,MOVE_TYPE.ENTROPY) })
+            .setEnd(function(targ){ battleChangeHP(targ, -999) })
+        )
     	.addAction([global.actionLibrary.heal, global.actionLibrary.healMany, global.actionLibrary.revive])
         ,
         Matthew : new Cowboy("Matthew", "Hermit")
@@ -814,14 +969,14 @@ initFlags();
                 "You don't have to be big, to look like a big loser."
             ]
         })
-        .setAllergy([FOOD_TAG.DAIRY])
+        //.setAllergy([FOOD_TAG.DAIRY])
         .addAction(global.actionLibrary.dp)
         .setDefType({type : MOVE_TYPE.PHYS, amnt: 25})
     }
     
     global.party = [
         NILS,
-        //CHARLIE,
+        CHARLIE,
         //MATTHEW,
     ]
 
@@ -1056,12 +1211,13 @@ initFlags();
             str: 14,
             def : 2,
             exStr: 5,
-            spd : 4
+            spd : 4,
+            int : 1
         })
     ,
     
     bat: new Enemy("Swoopty",sBat,6)
-        .addAction([global.actionLibrary.revive,global.actionLibrary.lifesteal])
+        .addAction([global.actionLibrary.lifesteal,global.actionLibrary.revive])
         .setAttacks("spiral")
         .setStats({
             hpMax: 25,
@@ -1070,7 +1226,8 @@ initFlags();
             str: 12,
             def: 1,
             exStr: 6,
-            spd : 4
+            spd : 4,
+            int : 5
         })
     ,
     
@@ -1082,7 +1239,8 @@ initFlags();
             str: 15,
             def: 0,
             exStr: 6,
-            spd : 6
+            spd : 6,
+            int : 3
         })
     ,
                 
@@ -1094,7 +1252,8 @@ initFlags();
             str: 13,
             def: 1,
             exStr: 6,
-            spd : 4
+            spd : 4,
+            int : 2
         })
     }
 

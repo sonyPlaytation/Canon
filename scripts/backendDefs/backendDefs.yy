@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"battleData",
+  "%Name":"backendDefs",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"battleData",
+  "name":"backendDefs",
   "parent":{
     "name":"Battles",
     "path":"folders/Battles.yy",

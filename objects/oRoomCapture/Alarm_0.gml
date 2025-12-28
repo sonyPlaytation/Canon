@@ -1,6 +1,6 @@
-
-for (var i = 0; i < array_length(entities); i++)
-{
+if room == rTestTest exit; 
+    
+for (var i = 0; i < array_length(entities); i++) {
 	
 	var guy = entities[i].id
 		

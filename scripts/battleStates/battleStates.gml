@@ -50,7 +50,7 @@ function battleStates(){
 						if is_string(_action){_action = global.items[$ _action]}
 						var _avail = true; // check EX cost here
 						var _nameAndCount = _action.name;
-						var _info = _action[$ "info"]
+						var _info = _action[$ "infoCard"]
 				
 						if _action[$ "submenu"] != undefined and _action.submenu == -1 // if Top Level action, not submenu
 						{
@@ -443,9 +443,9 @@ function battleStates(){
 		,
 		leave : function()
 		{
-		
-			
-			
+            // run status effects
+            var unit = unitTurnOrder[turn];
+            with unit {runStatus()}
 		}
 	})
 

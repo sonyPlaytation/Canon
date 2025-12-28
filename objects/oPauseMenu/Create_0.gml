@@ -130,17 +130,17 @@ array_push(options[$ "Item"],
 array_push(options[$ "Item"],variable_clone(goBack))
 #endregion
 
-options[$ "System"] = 
-[
-	{
-		allowed : true,
+options[$ "System"] =  [
+	
+    {
+		allowed : array_contains(PARTY,MATTHEW),
 		menuType : "submenu",
 		name : "Save",
 		func : function(){ instance_destroy(other) saveGame()}
 	},
 
 	{
-		allowed : true,
+		allowed : file_exists(SAVEFILE),
 		menuType : "submenu",
 		name : "Load",
 		func : function(){ instance_destroy(other) loadGame(true)}
@@ -171,8 +171,8 @@ options[$ "System"] =
 	
 ]
 
-options[$ "Settings"] =
-[
+options[$ "Settings"] = [
+    
     {
 		allowed : true,
 		menuType : "submenu",
@@ -197,8 +197,8 @@ options[$ "Settings"] =
 	variable_clone(goBack)
 ]
 
-options[$ "Audio"] =
-[
+options[$ "Audio"] = [
+    
     {
 		allowed : true,
 		menuType : "toggle",
@@ -320,6 +320,8 @@ options[$ "Video"] =
 
 options[$ "Other"] =
 [
+    
+    
     {
 		allowed : true,
 		menuType : "slider",
@@ -369,6 +371,21 @@ if DEV array_insert(options[$ "Settings"], 0,
         name : "Toggle Debug",
         func : function(){ global.debug = !global.debug }
     }
+)
+
+if DEV array_insert(options[$ "Settings"], 0,
+    {
+		allowed : true,
+		menuType : "toggle",
+		name : "DEV ADVANTAGE",
+        value : SETTINGS.other.devAdv,
+		func : function(){ 
+            
+            SETTINGS.other.devAdv = !SETTINGS.other.devAdv; 
+            value = SETTINGS.other.devAdv
+        },
+        draw : drawToggle
+	},
 )
 
 menuControls()

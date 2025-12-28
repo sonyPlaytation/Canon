@@ -15,6 +15,8 @@ if nothing is pressed then its registered as holding neutral
 
 */
 
+if global.serious alphaTarg = 0
+
 // inputs
 detectInputs();
 

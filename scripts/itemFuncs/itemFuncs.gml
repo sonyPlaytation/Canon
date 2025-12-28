@@ -1,60 +1,5 @@
 
 
-global.invSize = 24;
-
-///@param {string} Name 
-///@param {string} Desc 
-function IMenuable(_name = "", _desc = "") constructor{
-	
-	// Universal 
-    allowed = true;
-	menuType = "submenu";
-    itemType = noone;
-	name = _name;
-	desc = _desc;
-	sprite = sBlank;
-	value = {};
-	
-	infoCard = {
-		desc,
-		types : [],
-		input : undefined,
-		exCost : undefined
-	};
-	
-	func = function(){show_message($"FUNCTION OF {self.name} NOT DECLARED BEFORE CALLING.")};
-	draw = function(){};
-	
-	///@param {asset} Sprite Object sprite
-	static setSprite = function(v){ sprite = v; return self; };
-	static setFunc = function(v){ func = method(self, v); return self; };
-	static setDraw = function(v){ draw = method(self, v); return self; };
-	static setValue = function(v){ value = v; return self; };
-	
-	///@param {string} Desc
-	///@param {string} Type
-	///@param {string} Desc
-	static setInfoCard = function(_desc = "", _types = [], _input = undefined, _exCost = undefined){ 
-		
-		info = {
-			desc : _desc,
-			types : _types,
-			input : _input,
-			exCost : _exCost
-		}
-
-		return self; 
-	};
-	static setType = function(v){ menuType = v; return self; }
-	static setItemType = function(v){ itemType = v; return self; }
-	static setAllowed = function(v){ allowed = v; return self; };
-	static toggleAllowed = function(){ allowed = !allowed; return self; };
-	
-	static setInfoDesc = function(v){ info.desc = v; return self; };
-	static setInfoTypes = function(v){ info.types = v; return self; };
-	static setInfoInput = function(v){ info.input = v; return self; };
-}
-
 ///@param {string} Name 
 ///@param {string} Desc 
 ///@param {Enum.ITEM_TYPE} Type 
@@ -67,6 +12,18 @@ function Item(_name = "", _desc = "", _type = ITEM_TYPE.KEY) : IMenuable() const
 	usedBy = global.party;
     equipped = noone;
     sound = snHealMinor;
+    
+    //ATTACK traits
+    submenu = -2;
+    targetRequired = true;
+    targetEnemyByDefault = false;
+    targetAll = MODE.NEVER;
+    
+    userAnimation = "idle";
+    fxSprite = sBlank;
+    effectOnTarget = MODE.ALWAYS;
+    hitSound = noone;
+    
 	stats =  {
 		
 		lvl : 0, // level requirement
@@ -92,7 +49,7 @@ function Item(_name = "", _desc = "", _type = ITEM_TYPE.KEY) : IMenuable() const
     
     draw = drawItem;
     switch(itemType){
-        case ITEM_TYPE.CONSUMABLE: func = consume break;
+        case ITEM_TYPE.CONSUMABLE: func = consume; submenu = "Items" break;
         case ITEM_TYPE.ARMOR: func = equipArmor break;
         case ITEM_TYPE.WEAPON: func = equipArmor break;
         case ITEM_TYPE.MOD: func = equipArmor break;
@@ -176,53 +133,39 @@ function Item(_name = "", _desc = "", _type = ITEM_TYPE.KEY) : IMenuable() const
 	/// @param {Enum.MOVE_TYPE,array<Enum.MOVE_TYPE>} Type Damage type
 	/// @desc Sets damage type of Move, or damage type bonus of Equip.
 	/// Takes either a MOVE_TYPE enum or array of MOVE_TYPE enums.
-	static setAtkTypes = function(v){ atkTypes = v; info.types = v; return self; };
+	static setAtkTypes = function(v){ atkTypes = is_array(v) ? v : [v]; infoCard.types = atkTypes; return self; };
 	
 	/// @param {Enum.MOVE_TYPE,array<Enum.MOVE_TYPE>} Type Damage type resistance
 	/// @desc Sets resistance to damage type for Equip.
 	/// Takes either a MOVE_TYPE enum or array of MOVE_TYPE enums.
-	static setDefTypes = function(v){ defTypes = v; return self; };
+	static setDefTypes = function(v){ defTypes = is_array(v) ? v : [v]; return self; };
 	
 	/// @param {Enum.FOOD_TAG,array<Enum.FOOD_TAG>} Type Consumable food type
 	/// @desc Sets food type of consumable.
 	/// Takes either a FOOD_TAG enum or array of FOOD_TAG enums.
-	static setTags = function(v){ tags = v; info.tags = v; return self; };
+	static setTags = function(v){ tags = is_array(v) ? v : [v]; infoCard.tags = tags; return self; };
 	
     static setSound = function(v){ sound = v; return self; };
 
 }
 
-enum ITEM_TYPE
-{
-	CONSUMABLE,
-	ARMOR,
-	MOD,
-	WEAPON,
-	KEY
-}
 
-enum FOOD_TAG 
-{
-	MEAT,
-	DAIRY,
-	SEAFOOD,
-	SHELLFISH,
-	SPICY,
-	GRAIN,
-	SWEETS
-}
 
 #region item function archetypes
 
-	function consume(user, targets = [NILS], _val) { 
+	function consume(user, targets = [NILS]) { 
 		
 		item = global.items[$ self.key];
-		if is_undefined(_val) _val = item.value;
+		var _val = item.value;
 		var _type = item.itemType;
 		
 		if instance_exists(oBattle) {
 			
+            global.CurrentConsumable = targets[0]
             battleChangeHP(targets[0],_val,0)
+            struct_foreach(targets[0].allergies,function(key,value){
+                if array_contains(other.tags,key) assignStatus(global.CurrentConsumable,value);
+            })
 		} 
 		else {
             
@@ -230,6 +173,7 @@ enum FOOD_TAG
             if array_length(PARTY) > 1 { createConsumeMenu() } else battleChangeHP(PARTY[0], global.CurrentConsumable.value,,global.CurrentConsumable.sound,true,false)
 		}
 		
+        if DEV exit;
 		var me = array_get_index(global.inv[_type],item);
 		array_delete(global.inv[_type],me,1);
 	}
@@ -277,6 +221,7 @@ function initItems(){
 		
 		burger: new Item("Burger", "Heals you 20 hp", ITEM_TYPE.CONSUMABLE)
 			.setSprite(sItemBurger)
+            .setTags([FOOD_TAG.SPICY, FOOD_TAG.SHELLFISH])
 			.setValue(20)
 		,
 		
@@ -286,7 +231,8 @@ function initItems(){
 	
 	struct_foreach(global.items, function(_key, _val){
 		_val[$ "key"] = _key  
-		if _val[$ "type"] == ITEM_TYPE.CONSUMABLE {_val[$ "submenu"] = "Items"}
+		if _val[$ "type"] == ITEM_TYPE.CONSUMABLE {_val[$ "submenu"] = "Items"} 
+        if DEV addItem(_val,false)
 	})
 	
 }

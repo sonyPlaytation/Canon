@@ -1,9 +1,9 @@
 
 color = c_white;
 
-options = 
-{
-	startGame : 
+options =  {
+	
+    startGame : 
 	{
 		label : "Debug Start",
 		func : function() { transition(room_next(room),sqFadeOut,sqFadeIn,,,,,true) }
