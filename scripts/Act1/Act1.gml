@@ -1,6 +1,6 @@
 
-//flavorText
-//textSoundLUT()
+// flavorText
+// textSoundLUT()
 global.topics = {};
 
 function initDialogueAct1()
@@ -8,7 +8,7 @@ function initDialogueAct1()
     
 	global.topics[$ "placeholder"] = 
 	[
-		TEXT("//an extremely interesting placeholder text box with very funny placeholder text"),
+		TEXT("// an extremely interesting placeholder text box with very funny placeholder text"),
 	]
 
 	global.topics[$ "menuHelp"] = 
@@ -20,8 +20,8 @@ function initDialogueAct1()
 
 	global.topics[$ "theBigWet"] = 
 	[
-		TEXT("//Wait!!!"),
-		TEXT("//You can't go down there! Look at that wet floor sign!"),
+		TEXT("// Wait!!!"),
+		TEXT("// You can't go down there! Look at that wet floor sign!"),
 		SPEAKER(FLAGS.playerName,sPortNils),
 		TEXT("Oh yeah, I'd better not. Lookin pretty wet!")
 	]
@@ -109,16 +109,16 @@ function initDialogueAct1()
 			SPEAKER(FLAGS.playerName, sPortNils),
 			TEXT("Is that what I look like??"nl"I'm a chubby little skeleton guy? Since when??"),
 			SPEAKER(),
-			TEXT("//Oh? Were you not always this way?"),
+			TEXT("// Oh? Were you not always this way?"),
 			SPEAKER(FLAGS.playerName, sPortNils),
 			TEXT("... I- I don't know... I don't remember..."nl"I have such foggy memories, but... I'm sure I wasn't always this..."),
 			SPEAKER(FLAGS.playerName, sPortNils,4),
 			TEXT("Why don't I remember anything important??"nl"All I can remember is useless shit like the capital of Canada!!"nl"And where the fuck am I anyway?? Does Ottawa even still exist???"),
 			SPEAKER(),
-			TEXT("//Perhaps we can find someone who can help you remember more about yourself..."nl"//Though for now it may be best to try and calm yourself."),
-			TEXT("//Maybe take some toilet time to catch your breath."),
+			TEXT("// Perhaps we can find someone who can help you remember more about yourself..."nl"// Though for now it may be best to try and calm yourself."),
+			TEXT("// Why not take some toilet time to catch your breath?"),
 			SPEAKER(FLAGS.playerName, sPortNils,1),
-			TEXT("Yeah okay... worth a shot."nl"I mean who even knows if I can shit, I doubt I have internal organs anyway..."),
+			TEXT("Yeah okay... worth a shot I guess."nl"I mean who even knows if I can shit, I doubt I have internal organs anyway..."),
 		];
 		
 		global.topics[$ "cutWakeUpOffice"] = 
@@ -126,9 +126,9 @@ function initDialogueAct1()
 			SPEAKER(FLAGS.playerName,sPortNils,1),
 			TEXT("Ugh Jesus, my head... I really overslept..."nl"What time is it?"),
 			SPEAKER(),
-			TEXT("//Suddenly you notice the state of the room."),
-			TEXT("//This may just be the cleanest room ever."nl"//The walls are a crisp eggshell, the floor boards look and feel brand new, and the chair you're in feels straight from the factory."),
-			TEXT("//For some reason you feel disturbed."),
+			TEXT("// Suddenly you notice the state of the room."),
+			TEXT("// This may just be the cleanest room ever."nl"// The walls are a crisp eggshell, the floor boards look and feel brand new, and the chair you're in feels straight from the factory."),
+			TEXT("// For some reason you feel disturbed."),
 			SPEAKER(FLAGS.playerName,sPortNils,2),
 			TEXT("Better question is..."), 
 			SPEAKER(FLAGS.playerName,sPortNils,3),

@@ -12,6 +12,7 @@ colls = [oColl,oDashGap,pNPC,tiles];
 followers = [];
 
 cutMove = false;
+currentInteraction = noone;
 
 //if !layer_exists("Particles") {layer_create(depth-1,"Particles")}
 partLayer = part_system_create_layer("Instances", false);
@@ -77,23 +78,23 @@ anims =
 	}
 }
 
-interact = function()
-{
+interact = function() {
+    
 	var seeDist = TILE_SIZE
 	if instance_exists(oDarkness) seeDist = TILE_SIZE/2;
 	
 	var actX = lengthdir_x(seeDist,dir);
 	var actY = lengthdir_y(seeDist,dir);
 	
-	if collision_line(x, y, x+actX, y+actY, pEntity, false, false) and InputPressed(INPUT_VERB.ACTION)
-	{
-		var actors = ds_list_create()
-		var act = collision_line_list(x,y,x+actX,y+actY,pEntity,false,false,actors,true);
-		var actNow = ds_list_find_value(actors,0)
+	if collision_line(x, y, x+actX, y+actY, pEntity, false, false) and InputPressed(INPUT_VERB.ACTION) {
 		
-		if actNow != -1
+        var actors = ds_list_create()
+		var act = collision_line_list(x,y,x+actX,y+actY,pEntity,false,false,actors,true);
+		currentInteraction = ds_list_find_value(actors,0)
+		
+		if currentInteraction != -1 and currentInteraction != noone
 		{
-			with actNow
+			with currentInteraction
 			{ 
 				if struct_exists(anims,"idle")
 				{
@@ -156,6 +157,7 @@ groundMove = function()
 	
 	if going 
 	{
+        currentInteraction = noone;
 		dir = point_direction(0, 0, xinput, yinput);
 		facing = round(point_direction(0, 0, xinput, yinput) / 90)
 		if facing > 3 {facing = 0}
@@ -278,7 +280,7 @@ stateInCutscene = function()
 		
 		facing = dir div 90;
 		
-		animate();	
+		if going animate();	
 	}
 	
 	rot = image_angle;

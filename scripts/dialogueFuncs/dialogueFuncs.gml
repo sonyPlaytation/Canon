@@ -365,3 +365,4 @@ function startDialogue(topic,yMode = TXTPOS.BTM)
     inst.setTopic(topic);
     show_debug_message($"Set topic: {topic}");
 }
+

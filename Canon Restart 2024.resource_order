@@ -880,6 +880,7 @@
     {"name":"__shd_scribble_bake_outline_8dir","order":1,"path":"shaders/__shd_scribble_bake_outline_8dir/__shd_scribble_bake_outline_8dir.yy",},
     {"name":"__shd_scribble_bake_shadow","order":3,"path":"shaders/__shd_scribble_bake_shadow/__shd_scribble_bake_shadow.yy",},
     {"name":"shParryBlue","order":2,"path":"shaders/shParryBlue/shParryBlue.yy",},
+    {"name":"shPortraitFeather","order":3,"path":"shaders/shPortraitFeather/shPortraitFeather.yy",},
     {"name":"shRedFlash","order":1,"path":"shaders/shRedFlash/shRedFlash.yy",},
     {"name":"m2093Lite","order":4,"path":"sounds/m2093Lite/m2093Lite.yy",},
     {"name":"mBattleAdv","order":7,"path":"sounds/mBattleAdv/mBattleAdv.yy",},

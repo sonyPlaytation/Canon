@@ -110,6 +110,6 @@ sceneAddMoment(cutWakeUpOffice, -1, function() {
     
 	instance_activate_object(obj_stanncam_zone) 
 	oCamera.follow = oPlayer
-	oPlayer.image_index = 3;
+	oPlayer.facing = 3;
     SETTINGS.sound.musicVolume = 1;
 });

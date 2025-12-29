@@ -1051,6 +1051,7 @@
     {"id":{"name":"__shd_scribble_bake_shadow","path":"shaders/__shd_scribble_bake_shadow/__shd_scribble_bake_shadow.yy",},},
     {"id":{"name":"__shd_scribble","path":"shaders/__shd_scribble/__shd_scribble.yy",},},
     {"id":{"name":"shParryBlue","path":"shaders/shParryBlue/shParryBlue.yy",},},
+    {"id":{"name":"shPortraitFeather","path":"shaders/shPortraitFeather/shPortraitFeather.yy",},},
     {"id":{"name":"shRedFlash","path":"shaders/shRedFlash/shRedFlash.yy",},},
     {"id":{"name":"shWhiteFlash","path":"shaders/shWhiteFlash/shWhiteFlash.yy",},},
     {"id":{"name":"m2093Lite","path":"sounds/m2093Lite/m2093Lite.yy",},},

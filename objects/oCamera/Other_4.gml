@@ -1,6 +1,6 @@
 /// @
 
-alarm[1]=1
+alarm[1] = 1
 
 for (var i = 0; i < array_length(overlays); i++)
 {

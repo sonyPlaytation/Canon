@@ -7,8 +7,8 @@
 
 if !drawNothing {global.cam.draw(0,0);}
 
-var lerpSpd = global.serious ? 0.15 : 0.2
-letterBoxHTarg = global.serious ? 4 : -1;
+var lerpSpd = global.letterbox ? 0.15 : 0.2
+letterBoxHTarg = global.letterbox ? 4 : -1;
 letterBoxH = lerp(letterBoxH,letterBoxHTarg,lerpSpd)
 
 draw_set_colour(c_black)

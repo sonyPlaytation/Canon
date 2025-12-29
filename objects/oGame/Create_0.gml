@@ -26,13 +26,14 @@ global.settings = {
     other : { // other/gameplay
         devAdv : DEV,
         textspeed : 0.6,
-        inputDisplay : true,
+        inputDisplay : false,
         dashCooldown : true
     },
 }	
 loadSettings()
 
-global.serious = true;
+global.serious = false;
+global.letterbox = global.serious;
 
 global.current_frame = 0;
 

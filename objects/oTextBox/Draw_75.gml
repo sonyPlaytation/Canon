@@ -17,6 +17,8 @@ var shrinkSize = 0.15
 
 if speakersVisible
 {
+    shader_set(shPortraitFeather)
+    
 	var _side = PORT_SIDE.L
 	var portX;
 	// left portraits
@@ -98,7 +100,10 @@ if speakersVisible
                 _spkr.alpha
             );                   
 		}
+        
 	}
+    
+    shader_reset();
 }
 
 draw_sprite_stretched(sprite_index,boxSpr,x,y,width,height);

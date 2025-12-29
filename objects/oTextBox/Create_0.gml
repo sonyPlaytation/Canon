@@ -2,6 +2,7 @@
 
 oInputReader.alphaTarg = 0;
 depth = -9999
+global.letterbox = true;
 
 onHold = false
 

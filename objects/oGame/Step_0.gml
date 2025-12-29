@@ -1,7 +1,7 @@
 /// @
 /// 
 
-
+if global.serious global.letterbox = true;
 
 if DEV{
     

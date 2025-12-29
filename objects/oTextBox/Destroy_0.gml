@@ -10,5 +10,5 @@ if instance_exists(oCutscene)
 } else if instance_exists(oPlayer) oPlayer.hasControl = true;
 
 //InputVerbConsume(INPUT_VERB.SKIP)
-
+global.letterbox = global.serious;
 postDialogue();

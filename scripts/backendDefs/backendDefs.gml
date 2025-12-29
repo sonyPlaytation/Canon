@@ -67,13 +67,15 @@ initFlags();
             dmgType = _dmgType
             life = _life; // how many turns the will remain active for
             lifeMax = _life; // how many turns the effect was set to last for initially
+            permanent = false;
+            tickRate = 1
             
             // useful for setting things once for things like passive buffs
             // run when status is assigned, can be before assignees turn
             statStart = function(targ){};
             
             // this system works best for DOT type things
-            statFunc = function(targ){life--};
+            statFunc = function(targ){ tickDown() };
             
             // runs once when status effect ends
             statEnd = function(targ){}
@@ -85,6 +87,12 @@ initFlags();
             static setStatus = function(v){statFunc = method(self,v); return self;}
             static setEnd = function(v){statEnd = method(self,v); return self;}
             static setDraw = function(v){drawEffect = method(self,v); return self;}
+            
+            static noTick = function(){statFunc = method(self, function(targ){} ); return self;}
+            static isPermanent = function(){permanent = true; return self;}
+            static setTick = function(v){ tickRate = v; return self;}
+            static tickDown = function(){ life -= tickRate }
+            
         }
 
         function assignStatus(target,status){
@@ -139,7 +147,8 @@ initFlags();
             ENTROPY,
             DEVIL,
             ACID,
-            WET
+            WET,
+            CURSE // dark souls curse
         }
         enum ITEM_TYPE {
         	CONSUMABLE,
@@ -149,13 +158,19 @@ initFlags();
         	KEY
         }
         enum FOOD_TAG {
-        	MEAT,
-        	DAIRY,
-        	SEAFOOD,
+        	RED_MEAT,
+            PORK,
+        	POULTRY,
+            FISH,
         	SHELLFISH,
         	SPICY,
+            DAIRY,
+            CHEESE,
         	GRAIN,
-        	SWEETS
+        	SWEETS,
+            CHOCOLATE,
+            VEGGIE,
+            MUSHROOM
         }
         
         #macro COWBOY new Cowboy
@@ -198,43 +213,43 @@ initFlags();
 	    	
 	    	normal : ["L","M","H"],
 	    }
+        statusEffects = {
+            
+            entropyTimer : function(targ){ 
+                draw_set_text(fSmart,c_black,fa_center,fa_bottom)
+                draw_text(targ.x+1, targ.y-targ.sprite_height+1, life) 
+                draw_set_color(c_reddish)
+                draw_text(targ.x, targ.y-targ.sprite_height, life) 
+            }
+            ,
+        }
         statusLibrary = {
             
-            burnDOT : STATUS("burn","take damage",5,MOVE_TYPE.FIRE)
+            burnDOT : STATUS("BURN!","BURN TO THE GROUND! BUUURN!!!",5,MOVE_TYPE.FIRE)
                 .setStatus(function(targ){ 
                     battleChangeHP(targ, -ceil(targ.stats.hpMax/10)); 
-                    life--; 
+                    tickDown(); 
                 })
             ,
             entropy : STATUS("Entropy","Your time is coming.",3, MOVE_TYPE.ENTROPY)
                 .setEnd( function(targ){ battleChangeHP(targ, -999) } )
-                .setDraw( function(targ){ 
-                    draw_set_text(fSmart,c_black,fa_center,fa_bottom)
-                    draw_text(targ.x+1, targ.y-targ.sprite_height+1, life) 
-                    draw_set_color(c_reddish)
-                    draw_text(targ.x, targ.y-targ.sprite_height, life) 
-                })
+                .setDraw( statusEffects.entropyTimer )
             ,
             nilsSpicy : STATUS("Heartburn", "\"//You are far too white for this heat.\"", 3, MOVE_TYPE.ACID) 
                 .setStatus(function(targ){ 
                     battleChangeHP(targ, -ceil(targ.stats.hpMax/5) * ((life+1)/lifeMax)); 
-                    life--; 
+                    tickDown(); 
                 })
             ,
             charlieShellfish : STATUS("Anaphylaxis", "\"//Thirty more minutes, Charlie...\"", 3, MOVE_TYPE.ENTROPY) 
                 .setEnd( function(targ){ battleChangeHP(targ, -999) } )
-                .setDraw( function(targ){ 
-                    draw_set_text(fSmart,c_black,fa_center,fa_bottom)
-                    draw_text(targ.x+1, targ.y-targ.sprite_height+1, life) 
-                    draw_set_color(c_reddish)
-                    draw_text(targ.x, targ.y-targ.sprite_height, life) 
-                })
+                .setDraw( statusEffects.entropyTimer )
             ,
             matthewDairy : STATUS("Intolerance","[c_red]! ! TOILET RISK",900, MOVE_TYPE.WET)
                 .setStart(function(targ){ targ.stats.speed -= 100} )
                 .setStatus(function(targ){ 
                     battleChangeHP(targ, -5); 
-                    life--; 
+                    tickDown(); 
                 })
                 .setEnd( function(targ){ targ.stats.speed += 100 } )
         }
@@ -455,6 +470,7 @@ initFlags();
 	    				var damage = ceil(user.stats.exStr + random_range(-user.stats.exStr/3, user.stats.exStr/2));
 	    				if array_length(targets) > 1 {damage = ceil(damage*0.75)}
 	    				battleChangeHP(targets[i], -damage,, self.hitSound);
+                        assignStatus(targets[i],global.statusLibrary.burnDOT)
 	    			}
 	    		})
 	    	,

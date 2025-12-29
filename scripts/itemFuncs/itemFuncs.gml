@@ -230,7 +230,7 @@ function initItems(){
 	struct_foreach(global.items, function(_key, _val){
 		_val[$ "key"] = _key  
 		if _val[$ "type"] == ITEM_TYPE.CONSUMABLE {_val[$ "submenu"] = "Items"} 
-        if DEV addItem(_val,false)
+        if DEV and _val != global.items.unequip addItem(_val,false)
 	})
 	
 }
