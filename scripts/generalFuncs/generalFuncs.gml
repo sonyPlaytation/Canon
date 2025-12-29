@@ -15,8 +15,15 @@ function parryFlash(_frame)
 	}
 }
 
-function menuControls(){
+function menuControls(init = false){
 
+    if init {
+        downFrames = 0;
+        upFrames = 0;
+        leftFrames = 0;
+        rightFrames = 0;
+    }
+    
 	if other != oTextBox and instance_exists(oTextBox){
 		
 		down = false
@@ -56,6 +63,11 @@ function menuControls(){
 	//else if back or close SFX choose(snHit1,snHit2,snHit3)
 }
 
+function hasAllergy(_character, _allergen){
+    
+    return struct_exists(_character.allergies,string(_allergen))
+}
+
 function toggleFullscreen(){
     
     if global.window_mode == STANNCAM_WINDOW_MODE.WINDOWED { 
@@ -90,10 +102,17 @@ function drawBbox(){
 function drawCharacter(_sprite = sprite_index, _frame = image_index, _x = x, _y = y, _z = 0, _xscale = image_xscale , _yscale = image_yscale, _rot = image_angle, _color = image_blend, _alpha = image_alpha, _fogCol = undefined, _fogAlpha = 0){
     
     if drawShadow draw_character_shadow(sprite_width, sprite_height);
+        
+    if self[$ "flash" ] > 0 { flash--; shader_set(shWhiteFlash);}
+    if self[$ "hit" ] > 0   { hit--;   shader_set(shRedFlash);}
+    if self[$ "parry" ] > 0 { parry--;	parryFlash(parry); }
+    
     draw_sprite_ext(_sprite,_frame,round(_x),round(_y-_z),_xscale,_yscale,_rot,_color,_alpha);
     
-    if _fogAlpha > 0
-    {
+    shader_reset();
+    
+    if _fogAlpha > 0 {
+        
     	draw_set_alpha(_fogAlpha)
     	
     	gpu_set_fog((_fogCol != undefined),_fogCol,0,1);

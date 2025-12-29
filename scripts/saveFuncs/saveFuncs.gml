@@ -181,7 +181,11 @@ function loadSettings()
 function initFlags(){
     
     global.flags = {
-        playerName : DEV ? "Nils" : "???",
+        playerName :    DEV ? "Nils" : "???",
+        ladName :       DEV ? "Charlie" : "Child",
+        stinkName :     DEV ? "Matthew" : "Patron",
+        knightName :    DEV ? "Gwen" : "Black Knight",
+        
         cutscenes :[],
         enemiesActive : DEV,
         canDash : true,

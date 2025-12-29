@@ -1,8 +1,12 @@
 /// @
 
 for (var i = 0; i < array_length(sound); i++) {
-	if audio_is_playing(sound[i]) {speakerSquish = 1.05;}
+	if doSquish == squishEvery and audio_is_playing(sound[i]) {speakerSquish = 1.05;}
+    
 }
+
+if doSquish >= squishEvery {doSquish = 0}
+doSquish++
 
 speakerSquish = lerp(speakerSquish,1,0.15)
 

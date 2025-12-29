@@ -59,31 +59,32 @@ initFlags();
         	static setInfoInput = function(v){ info.input = v; return self; };
         }
 
-        function Status(_name = "", _desc = "", _isBuff = BOOL.IDK, _life = 1, _func = function(){}) : IMenuable() constructor{
+        function Status(_name = "", _desc = "", _life = 1, _dmgType = MOVE_TYPE.PHYS, _isBuff = BOOL.NO, _func = function(){}) : IMenuable() constructor{
             
             name = _name;
             desc = _desc;
             isBuff = _isBuff;
+            dmgType = _dmgType
             life = _life; // how many turns the will remain active for
             lifeMax = _life; // how many turns the effect was set to last for initially
             
             // useful for setting things once for things like passive buffs
             // run when status is assigned, can be before assignees turn
-            statStart = function(){};
+            statStart = function(targ){};
             
             // this system works best for DOT type things
-            // TODO: passive statuses. ex: BLOOD thats just a "you currently have BLOOD on you" but doesn't do anything per turn
-            statFunc = function(){life--};
+            statFunc = function(targ){life--};
             
             // runs once when status effect ends
-            statEnd = function(){}
+            statEnd = function(targ){}
             
             // effect drawn on character for duration of status 
-            drawEffect = function(){}
+            drawEffect = function(targ){}
             
             static setStart = function(v){statStart = method(self,v); return self;}
             static setStatus = function(v){statFunc = method(self,v); return self;}
             static setEnd = function(v){statEnd = method(self,v); return self;}
+            static setDraw = function(v){drawEffect = method(self,v); return self;}
         }
 
         function assignStatus(target,status){
@@ -92,12 +93,12 @@ initFlags();
             
             switch(stat.isBuff){
                 
-                case MODE.NEVER: array_push(target.effects.debuffs,stat); break;
+                case BOOL.NO: array_push(target.effects.debuffs,stat); break;
                 
-                case MODE.ALWAYS: array_push(target.effects.buffs,stat); break;
+                case BOOL.YES: array_push(target.effects.buffs,stat); break;
                 
-                case MODE.VARIES: 
-                case default: array_push(target.effects.statuses,stat); break;
+                case BOOL.IDK: 
+                default: array_push(target.effects.statuses,stat); break;
             }
             
             stat.statStart(target);
@@ -113,13 +114,11 @@ initFlags();
             ALWAYS = 1,
             VARIES = 2
         }
-        
         enum BOOL {
             YES = 1,
             NO = 0,
             IDK = 2
         }
-        
         enum MOVE_TYPE {
             PHYS,
             STUN,
@@ -138,9 +137,10 @@ initFlags();
             RADS,
             WORM,
             ENTROPY,
-            DEVIL
+            DEVIL,
+            ACID,
+            WET
         }
-        
         enum ITEM_TYPE {
         	CONSUMABLE,
         	ARMOR,
@@ -148,7 +148,6 @@ initFlags();
         	WEAPON,
         	KEY
         }
-        
         enum FOOD_TAG {
         	MEAT,
         	DAIRY,
@@ -199,9 +198,45 @@ initFlags();
 	    	
 	    	normal : ["L","M","H"],
 	    }
-        status = {
+        statusLibrary = {
             
-            burnDOT : new Status("burn","take damage",3)
+            burnDOT : STATUS("burn","take damage",5,MOVE_TYPE.FIRE)
+                .setStatus(function(targ){ 
+                    battleChangeHP(targ, -ceil(targ.stats.hpMax/10)); 
+                    life--; 
+                })
+            ,
+            entropy : STATUS("Entropy","Your time is coming.",3, MOVE_TYPE.ENTROPY)
+                .setEnd( function(targ){ battleChangeHP(targ, -999) } )
+                .setDraw( function(targ){ 
+                    draw_set_text(fSmart,c_black,fa_center,fa_bottom)
+                    draw_text(targ.x+1, targ.y-targ.sprite_height+1, life) 
+                    draw_set_color(c_reddish)
+                    draw_text(targ.x, targ.y-targ.sprite_height, life) 
+                })
+            ,
+            nilsSpicy : STATUS("Heartburn", "\"//You are far too white for this heat.\"", 3, MOVE_TYPE.ACID) 
+                .setStatus(function(targ){ 
+                    battleChangeHP(targ, -ceil(targ.stats.hpMax/5) * ((life+1)/lifeMax)); 
+                    life--; 
+                })
+            ,
+            charlieShellfish : STATUS("Anaphylaxis", "\"//Thirty more minutes, Charlie...\"", 3, MOVE_TYPE.ENTROPY) 
+                .setEnd( function(targ){ battleChangeHP(targ, -999) } )
+                .setDraw( function(targ){ 
+                    draw_set_text(fSmart,c_black,fa_center,fa_bottom)
+                    draw_text(targ.x+1, targ.y-targ.sprite_height+1, life) 
+                    draw_set_color(c_reddish)
+                    draw_text(targ.x, targ.y-targ.sprite_height, life) 
+                })
+            ,
+            matthewDairy : STATUS("Intolerance","[c_red]! ! TOILET RISK",900, MOVE_TYPE.WET)
+                .setStart(function(targ){ targ.stats.speed -= 100} )
+                .setStatus(function(targ){ 
+                    battleChangeHP(targ, -5); 
+                    life--; 
+                })
+                .setEnd( function(targ){ targ.stats.speed += 100 } )
         }
         S = {
             
@@ -279,7 +314,7 @@ initFlags();
 			targetEnemyByDefault = true;
 			targetAll = MODE.NEVER;
 			
-			userAnimation = "idle";
+			userAnimation = "normals";
 			fxSprite = sBlank;
 			effectOnTarget = MODE.ALWAYS;
 			hitSound = noone;
@@ -363,7 +398,6 @@ initFlags();
 	    	
 	    	light : new Attack("Jab")
 	    		.setNotation("L")
-	    		.setUserAnim("normals")
 	            .setHitSound(snHit8)
 	            .setFrameCost(6)
 	            .setFxSprite(sPunch)
@@ -376,7 +410,6 @@ initFlags();
 	        
 	        medium : new Attack("Straight")
 	    		.setNotation("M")
-	    		.setUserAnim("normals")
 	            .setHitSound(snHit7)
 	            .setFrameCost(8)
 	            .setFxSprite(sPunch)
@@ -389,7 +422,6 @@ initFlags();
 	        
 	        heavy : new Attack("Fierce")
 	    		.setNotation("H")
-	    		.setUserAnim("normals")
 	            .setHitSound(snHit9)
 	            .setFrameCost(14)
 	            .setFxSprite(sPunch)
@@ -430,7 +462,6 @@ initFlags();
             devilshot : new Attack("Devil's Gun")
 	    		.setNotation(global.moves.fireball)
 	    		.setUserAnim("shoot")
-                .setSubmenu("Specials")
                 .setHitSound(snHit9)
 	            .setFrameCost(24)
 	            .setExCost(7)
@@ -455,7 +486,6 @@ initFlags();
             devilVolley : new Attack("Fan Hammer")
 	    		.setNotation(global.moves.halfCircle[2])
 	    		.setUserAnim("volley")
-                .setSubmenu("Specials")
                 .setHitSound(snHit9)
 	            .setFrameCost(36)
 	            .setExCost(12)
@@ -481,8 +511,6 @@ initFlags();
             
             heal : new Attack("Healing!","heal")
 	    		.setNotation(global.moves.fireball)
-	    		.setUserAnim("normals")
-                .setSubmenu("Specials")
                 .setHitSound(snHealMinor)
 	            .setFrameCost(24)
 	            .setExCost(10)
@@ -509,8 +537,6 @@ initFlags();
 	    	,
             
             lifesteal : new Attack("Trepanation","heal")
-	    		.setUserAnim("normals")
-                .setSubmenu("Specials")
                 .setHitSound(snHit4)
 	            .setFrameCost(24)
 	            .setExCost(16)
@@ -526,8 +552,6 @@ initFlags();
             
             healMany : new Attack("Healing Wave","heal")
 	    		.setNotation(global.moves.dp)
-	    		.setUserAnim("normals")
-                .setSubmenu("Specials")
                 .setHitSound(snHealMinor)
 	            .setFrameCost(24)
 	            .setExCost(10)
@@ -553,8 +577,6 @@ initFlags();
             
             revive : new Attack("Resurrection!","revive")
 	    		.setNotation(global.moves.superart)
-	    		.setUserAnim("normals")
-                .setSubmenu("Specials")
                 .setHitSound(snHealMinor)
 	            .setFrameCost(48)
 	            .setExCost(16)
@@ -586,9 +608,9 @@ initFlags();
     	
     // automatically set each moves infoCard to have an exCost that matches the functional cost
     struct_foreach(global.actionLibrary, function(moveName, move) {
-        if variable_struct_exists(move, "infoCard") {
-           variable_struct_set(move[$ "infoCard"],"exCost", move[$ "exCost"]) ;
-        }
+        
+        variable_struct_set(move[$ "infoCard"],"exCost", move[$ "exCost"]) ;
+        if string_length(move.notation) > 2 move.setSubmenu("Specials")
     })
 
     function Character(_name = "", _level = global.areaLevel) : IMenuable() constructor{
@@ -879,11 +901,7 @@ initFlags();
                 "...but my aim is gettin' better!"
             ]
         })
-        .addAllergy( FOOD_TAG.SPICY, STATUS("Spicy!!","You are too white for this.", BOOL.NO, 3) .setStatus(function(targ){
-            
-                battleChangeHP(targ, -ceil(targ.stats.hpMax/5) * ((life+1)/lifeMax))
-                life--;
-            }))
+        .addAllergy( FOOD_TAG.SPICY, global.statusLibrary.nilsSpicy)
         .addAction([global.actionLibrary.devilshot, global.actionLibrary.devilVolley])
         .setDefType({type : MOVE_TYPE.FIRE, amnt: 60})
         ,
@@ -938,9 +956,7 @@ initFlags();
     			"Would you like to meet my friends? Or are you too injured?"
     		]
     	})
-    	.addAllergy(FOOD_TAG.SHELLFISH, new Status("Anaphylaxis","It was all worth it...",BOOL.NO,3) 
-            .setStart(function(targ){ array_push(targ.debuffs,MOVE_TYPE.ENTROPY) })
-            .setEnd(function(targ){ battleChangeHP(targ, -999) })
+    	.addAllergy(FOOD_TAG.SHELLFISH, global.statusLibrary.charlieShellfish
         )
     	.addAction([global.actionLibrary.heal, global.actionLibrary.healMany, global.actionLibrary.revive])
         ,
@@ -1004,8 +1020,8 @@ initFlags();
     
     global.party = [
         NILS,
-        //CHARLIE,
-        //MATTHEW,
+        CHARLIE,
+        MATTHEW,
     ]
 
 #endregion

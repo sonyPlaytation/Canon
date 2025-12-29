@@ -1,17 +1,15 @@
-/// @
+menuControls()
 
 x = lerp(x,xTarg,lerpSpd);
 
-if active
+if active 
 {
-	//if InputPressed(INPUT_VERB.DOWN) or InputPressed(INPUT_VERB.UP){SFX sNarr}
-	
-	owner.active = false
-	hover += InputPressed(INPUT_VERB.DOWN) - InputPressed(INPUT_VERB.UP);
+	//if InputPressed(INPUT_VERB.DOWN) or InputPressed(INPUT_VERB.UP){SFX sNarr}	
+    hover += vert;
 	if hover > array_length(options)-1 {hover = 0;}
 	if (hover < 0 ) { hover = array_length(options)-1; }
-	
-	if InputPressed(INPUT_VERB.ACCEPT)
+    
+	if accept
 	{
 		if (array_length(options[hover]) > 1) and (options[hover][3] == true)
 		{
@@ -26,10 +24,9 @@ if active
 			}
 		}
 	}
-	
-	if InputPressed(INPUT_VERB.CANCEL)
-	{
-		if subMenuLevel == 0 destroyMenu = true;
+    
+    if back and subMenuLevel == 0 {
+		destroyMenu = true;
 	}
 }
 
@@ -40,6 +37,7 @@ if !destroyMenu
 }
 else 
 {
+    depth = owner.depth + 20
 	xTarg = xstart-24;
 	alphaTarg = 0;
 	if alpha <= 0.05 instance_destroy();

@@ -4,6 +4,7 @@ sprite_index = sprites.idle;
 
 show_debug_message(name)
 selfCenter = y;
+z = 0;
 
 dieText = ds_list_create()
 
@@ -43,7 +44,7 @@ runStatus = function(){
     array_foreach(StatusEffectResolveOrder, function(element, index){
         for (var i = 0; i < array_length(effects[$ element]); i++) {
     	
-            var status = element[i]
+            var status = effects[$ element][i]
             
             if status == 0 exit;
             
@@ -51,8 +52,22 @@ runStatus = function(){
             
             if status.life <= 0 {
                 status.statEnd(self)
-                array_delete(element,i,1);
+                array_delete(effects[$ element],i,1);
             }   
+        }
+    })
+}
+
+drawStatus = function(){
+    
+    array_foreach(StatusEffectResolveOrder, function(element, index){
+        for (var i = 0; i < array_length(effects[$ element]); i++) {
+    	
+            var status = effects[$ element][i]
+            
+            if status == 0 exit;
+            
+            status.drawEffect(id);
         }
     })
 }

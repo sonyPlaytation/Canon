@@ -1,0 +1,1 @@
+show_message(hasAllergy(NILS,FOOD_TAG.SWEETS))

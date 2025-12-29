@@ -7,8 +7,8 @@ function startFight(_enemies = global.fightEnemies, _creator = global.fightStart
 	createTransition(global.typeIn); 
 };
 
-function leaveBattle()
-{
+function leaveBattle() {
+    
 	instance_activate_all();
 	global.pauseEvery = false;
 	

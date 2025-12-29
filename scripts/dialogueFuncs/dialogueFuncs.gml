@@ -137,9 +137,9 @@ function textSoundLUT(_name)
     {
         case "":					return [snNarr];
         case FLAGS.playerName:		return [snTextNils1,snTextNils2,snTextNils3,snTextNils4,snTextNils5];
-        case "Charlie":				return [snTextChar1,snTextChar2,snTextChar3,snTextChar4,snTextChar5];
-        case "Matthew":				return [snTextMatt1,snTextMatt2,snTextMatt3,snTextMatt4,snTextMatt5];
-        case "Gwen":				return [snTextGwen1,snTextGwen2,snTextGwen3,snTextGwen4,snTextGwen5];
+        case FLAGS.ladName:			return [snTextChar1,snTextChar2,snTextChar3,snTextChar4,snTextChar5];
+        case FLAGS.stinkName:       return [snTextMatt1,snTextMatt2,snTextMatt3,snTextMatt4,snTextMatt5];
+        case FLAGS.knightName:		return [snTextGwen1,snTextGwen2,snTextGwen3,snTextGwen4,snTextGwen5];
     }
 }
 

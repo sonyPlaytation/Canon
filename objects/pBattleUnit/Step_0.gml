@@ -4,10 +4,8 @@ selfCenter = y - (sprite_height/2)
 
 if stats.hp == 0 { 
 	
-    if !alreadyDead
-	{
-		if sprite_index != sprites.down
-		{
+    if !alreadyDead {
+		if sprite_index != sprites.down {
 			ds_list_shuffle(dieText);
 			myDied = ds_list_find_value(dieText,0);
 			with oBattle {
@@ -22,8 +20,8 @@ if stats.hp == 0 {
 	if sprite_index == sprites.down {sprite_index = sprites.idle; alreadyDead = false}
 }
 
-if forward
-{
+if forward {
+    
     if sprites[$ "slide"] != undefined and percent < percentTarg {sprite_index = sprites.slide}
     
 	percent += 1/60
@@ -36,9 +34,7 @@ if forward
 	if percent >= 0.75 {percent = 1};
 			
 	x = _start + (_dist * position);
-} 
-else
-{
+} else {
 	percent = 0
 	x = lerp(x, xstart, 0.25);	
 }

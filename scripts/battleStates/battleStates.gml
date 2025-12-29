@@ -52,26 +52,21 @@ function battleStates(){
 						var _nameAndCount = _action.name;
 						var _info = _action[$ "infoCard"]
 				
-						if _action[$ "submenu"] != undefined and _action.submenu == -1 // if Top Level action, not submenu
+                        if _action[$ "submenu"] != undefined and _action.submenu == -1 // if Top Level action, not submenu
 						{
 							// _menuOptions is the Top Level Menu
-							array_push(_menuOptions, {
-                                name : _nameAndCount, 
-                                func : function(){ menuSelectAction(unit, _action) }, 
-                                available : _avail, 
-                                infoCard : _info
-                            })
+							array_push(_menuOptions, [_nameAndCount, menuSelectAction, [unit, _action], _avail, _info])	
 						}
-						//else if _action[$ "submenu"] != undefined and _action.submenu != -2
-						//{
-							//// if current submenu does not exist in the struct containing all the subMenus
-							//if is_undefined(_subMenus[$ _action.submenu])
-							//{	// I still dont know why this part is double arrayed? idk what thats doing for it
-								//variable_struct_set(_subMenus, _action.submenu, [[ _nameAndCount, menuSelectAction, [unit, _action], _avail, _info ]]);
-							//}
-							//else array_push(_subMenus[$ _action.submenu], [ _nameAndCount, menuSelectAction, [unit, _action], _avail, _info ]);
-						//}
-					}
+						else if _action[$ "submenu"] != undefined and _action.submenu != -2
+						{
+							// if current submenu does not exist in the struct containing all the subMenus
+							if is_undefined(_subMenus[$ _action.submenu])
+							{	// I still dont know why this part is double arrayed? idk what thats doing for it
+								variable_struct_set(_subMenus, _action.submenu, [[ _nameAndCount, menuSelectAction, [unit, _action], _avail, _info ]]);
+							}
+							else array_push(_subMenus[$ _action.submenu], [ _nameAndCount, menuSelectAction, [unit, _action], _avail, _info ]);
+						}
+                    }
 			
 					//turn submenus into array
 					var _subMenusArray = variable_struct_get_names(_subMenus);
@@ -368,20 +363,18 @@ function battleStates(){
 	{
 		enter : function()
 		{
+            
 			set_song_ingame(mBattleWin,,,true)
 			BATTLE("[c_lime][wave]YOU WIN![/wave]")
 		
-			for (var i = 0; i < array_length(partyUnits); i++ )
-			{
+			for (var i = 0; i < array_length(partyUnits); i++ ) {
+                
 				if partyUnits[i].stats.hp <= 0 {battleChangeHP(partyUnits[i], 1, 1)};
 				partyUnits[i].sprite_index = partyUnits[i].sprites.active
                 partyUnits[i].acting = false;
-			}
-			
-			for (var i = 0; i < array_length(partyUnits); i++) 
-			{
-				PARTY[i].stats.hp = partyUnitsFixed[i].stats.hp;
-				//PARTY[i].stats.ex = partyUnits[i].stats.ex; 
+                
+                PARTY[i].stats = partyBaseStats[i];
+                PARTY[i].stats.hp = partyUnitsFixed[i].stats.hp;
 			}
 		
 			var winQuoteSayer = partyUnits[irandom(array_length(partyUnits)-1)];

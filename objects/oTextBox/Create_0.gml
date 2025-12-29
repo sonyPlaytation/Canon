@@ -14,6 +14,8 @@ margin = TILE_SIZE*1.5;
 padding = 16
 width = display_get_gui_width() - (margin*4);
 height = TILE_SIZE*4;
+doSquish = 0;
+squishEvery = 10 - (10*SETTINGS.other.textspeed)
 
 enum TXTPOS
 {
@@ -83,8 +85,7 @@ typist
 
 if instance_exists(oPlayer) oPlayer.hasControl = false
 
-enum PORT_SIDE
-{
+enum PORT_SIDE {
 	L,
 	R
 }

@@ -3,10 +3,10 @@
 if DEV{
 	
 	if InputPressed(INPUT_VERB.SKIP){
-		normalsPerformed = 99;
+		
+        normalsPerformed = 99;
 		normalsTimer = 0
 	}
-	
 }
 
 textAlpha = lerp(textAlpha,textAlphaTarg,0.15);

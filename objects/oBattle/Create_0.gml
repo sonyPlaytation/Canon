@@ -30,6 +30,7 @@ perform = false;
 partyHP = 0;
 partyHPMAX = 0;
 partyHPPercent = 0;
+partyBaseStats = [];
 
 enemyHP = 0;
 enemyHPMAX = 0;
@@ -76,8 +77,7 @@ postParryCounter = false;
 
 potExp = 0;
 
-cursor = 
-{
+cursor =  {
 	activeUser : noone,
 	activeTarget : noone,
 	activeAction : -1,
@@ -88,9 +88,9 @@ cursor =
 	active: false
 }
 
-for (var i = 0; i < array_length(enemies); i++)
-{
-	var enemy = enemies[i]
+for (var i = 0; i < array_length(enemies); i++) {
+	
+    var enemy = enemies[i]
 	enemyUnits[i] = instance_create_depth(x+200+(i*20), y + 68 + (i*30), depth-(20 + i), oBattleEnemy, enemy);
 	enemyUnits[i].stats = variable_clone(enemy.stats)
 	potExp += enemy.xpWorth
@@ -98,11 +98,12 @@ for (var i = 0; i < array_length(enemies); i++)
 	array_push(units,enemyUnits[i]);
 }
 
-for (var i = 0; i < array_length(PARTY); i++)
-{
-	partyUnits[i] = instance_create_depth(x-200-(i*30), y + 68 + (i*30), depth-(20 + i), oBattleHero, global.party[i]);
-	partyUnitsFixed[i] = global.party[i];
+for (var i = 0; i < array_length(PARTY); i++) {
+    
+	partyUnits[i] = instance_create_depth(x-200-(i*30), y + 68 + (i*30), depth-(20 + i), oBattleHero, PARTY[i]);
+	partyUnitsFixed[i] = PARTY[i];
 	partyHPMAX += partyUnits[i].stats.hpMax;
+    partyBaseStats[i] = variable_clone(PARTY[i].stats);
 	array_push(units,partyUnits[i]);
 }
 
@@ -220,11 +221,11 @@ checkNormalsString = function()
 	}
 	
 	if killsPerTurn == 2 {BATTLE("[#F16EAA]HAPPY BIRTHDAY!")}
-	else if killsPerTurn == 3 {BATTLE("[c_red]MERRY [c_lime]CHRISTMAS!!")}
+	else if killsPerTurn == 3 {BATTLE("YO! [c_red]MERRY [c_lime]CHRISTMAS!!")}
 }
 
-useCursor = function()
-{
+useCursor = function() {
+    
 	// cursor
 	if cursor.active
 	{

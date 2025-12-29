@@ -308,22 +308,39 @@ function unlockDoor(_locked, _unlocked)
 	}
 }
 
-function addItem(_item, _showMsg = true)
-{
-	if array_length(global.inv[_item.itemType]) < global.invSize
-	{
-		item = _item
-		var itemKey = item.key;
-	
-		array_push(global.inv[_item.itemType],itemKey);
-	
-		if _showMsg { SFX snCaveStoryGetItem; shortMessage($"//Found a [c_red]{_item.name}[c_white]!",TXTPOS.MID) }
-		show_debug_message($"Added Item: {_item.name} to Inventory")
-		return true;
+function addItem(_item, _showMsg = true) {
+    
+    item = _item
+    var valid = true
+    var itemKey = item.key;
+    var type = item.itemType
+    var equipTypes = [
+        ITEM_TYPE.ARMOR,
+        ITEM_TYPE.WEAPON,
+        ITEM_TYPE.MOD
+    ]
+    
+    // already have that equip item
+    if array_contains(equipTypes,type) and array_contains(global.inv[type],item) {
+        valid = $"//You don't have room for this [c_red]{_item.name}[c_white].";
+    }  
+    
+    // inventory is full
+	if array_length(global.inv[_item.itemType]) >= global.invSize {
+        valid = $"//You don't have room for this [c_red]{_item.name}[c_white]."
 	}
-	
-	shortMessage($"//You don't have room for this [c_red]{_item.name}[c_white].",TXTPOS.MID)
-	return false;
+    
+    if valid {
+        
+        array_push(global.inv[_item.itemType],itemKey);
+        if _showMsg { SFX snCaveStoryGetItem; shortMessage($"//Found a [c_red]{_item.name}[c_white]!",TXTPOS.MID) }
+        show_debug_message($"Added Item: {_item.name} to Inventory");
+        return true;
+    }
+    
+    shortMessage(valid,TXTPOS.MID)
+    return false;
+    
 }
 
 function giveItemAction(_item,_count = 1) : dialogueAction() constructor
