@@ -59,22 +59,27 @@ initFlags();
         	static setInfoInput = function(v){ info.input = v; return self; };
         }
 
-        function Status(_name = "", _desc = "", _life = 1, _func = function(){}) : IMenuable() constructor{
+        function Status(_name = "", _desc = "", _isBuff = BOOL.IDK, _life = 1, _func = function(){}) : IMenuable() constructor{
             
             name = _name;
             desc = _desc;
-            life = _life;
-            lifeMax = _life;
+            isBuff = _isBuff;
+            life = _life; // how many turns the will remain active for
+            lifeMax = _life; // how many turns the effect was set to last for initially
             
             // useful for setting things once for things like passive buffs
             // run when status is assigned, can be before assignees turn
-            statStart = function(target){};
+            statStart = function(){};
             
             // this system works best for DOT type things
             // TODO: passive statuses. ex: BLOOD thats just a "you currently have BLOOD on you" but doesn't do anything per turn
             statFunc = function(){life--};
             
+            // runs once when status effect ends
             statEnd = function(){}
+            
+            // effect drawn on character for duration of status 
+            drawEffect = function(){}
             
             static setStart = function(v){statStart = method(self,v); return self;}
             static setStatus = function(v){statFunc = method(self,v); return self;}
@@ -84,20 +89,36 @@ initFlags();
         function assignStatus(target,status){
             
             var stat = variable_clone(status)
-            array_push(target.statuses,stat);
+            
+            switch(stat.isBuff){
+                
+                case MODE.NEVER: array_push(target.effects.debuffs,stat); break;
+                
+                case MODE.ALWAYS: array_push(target.effects.buffs,stat); break;
+                
+                case MODE.VARIES: 
+                case default: array_push(target.effects.statuses,stat); break;
+            }
+            
             stat.statStart(target);
             
         }
 
     #endregion
 
-
     #region macros and enums
-    
+        
         enum MODE {
             NEVER = 0,
             ALWAYS = 1,
             VARIES = 2
+        }
+        
+        enum BOOL {
+            YES = 1,
+            NO = 0,
+            MAYBE = choose(0,1),
+            IDK = 2
         }
         
         enum MOVE_TYPE {
@@ -120,7 +141,7 @@ initFlags();
             ENTROPY,
             DEVIL
         }
-
+        
         enum ITEM_TYPE {
         	CONSUMABLE,
         	ARMOR,
@@ -138,9 +159,51 @@ initFlags();
         	GRAIN,
         	SWEETS
         }
-
-        #macro STATUS global.status
         
+        #macro COWBOY new Cowboy
+        #macro ENEMY new Enemy
+        #macro STATUS new Status
+        
+        #macro PARTY global.party
+		#macro NILS global.characters[$ "Nils"]
+		#macro CHARLIE global.characters[$ "Charlie"]
+		#macro MATTHEW global.characters[$ "Matthew"]
+        
+        advantage = 0;
+        lvlCap = 99;
+        invSize = 24;
+        areaLevel = 1;
+		
+        characters = {}
+        actors = {
+            Nils : oPlayer,
+            Charlie : oCharlie,
+            Matthew : oMatthew
+        }
+        moves = {
+	    	superart : [
+                "236236L", 
+                "236236M", 
+                "236236H"],
+	    	halfCircle : [
+                "41236L",
+                "41236M",
+                "41236H"],
+	    	fireball : [
+                "236L",
+                "236M",
+                "236H"],
+	    	dp : [
+                "623L",
+                "623M",
+                "623H"],
+	    	
+	    	normal : ["L","M","H"],
+	    }
+        status = {
+            
+            burnDOT : new Status("burn","take damage",3)
+        }
         S = {
             
             s1 : "[sInputArrows, 5]",
@@ -159,8 +222,7 @@ initFlags();
             sH : "[sInputH, 1]",
             sP : "[sInputP, 0]",
         }
-
-        //"623L"
+        
         function convertMoveString(_str){
             
             var str = "";
@@ -196,48 +258,6 @@ initFlags();
             
             return str; 
         }
-
-        #macro PARTY global.party
-		#macro NILS global.characters[$ "Nils"]
-		#macro CHARLIE global.characters[$ "Charlie"]
-		#macro MATTHEW global.characters[$ "Matthew"]
-        advantage = 0;
-        lvlCap = 99;
-        areaLevel = 1;
-		characters = {}
-        actors = {
-            Nils : oPlayer,
-            Charlie : oCharlie,
-            Matthew : oMatthew
-        }
-
-        moves = {
-	    	superart : [
-                "236236L", 
-                "236236M", 
-                "236236H"],
-	    	halfCircle : [
-                "41236L",
-                "41236M",
-                "41236H"],
-	    	fireball : [
-                "236L",
-                "236M",
-                "236H"],
-	    	dp : [
-                "623L",
-                "623M",
-                "623H"],
-	    	
-	    	normal : ["L","M","H"],
-	    }
-
-        status = {
-            
-            burnDOT : new Status("burn","take damage",3)
-        }
-
-        invSize = 24;
     
     #endregion
 
@@ -566,11 +586,9 @@ initFlags();
 	#endregion 	
     	
     // automatically set each moves infoCard to have an exCost that matches the functional cost
-    struct_foreach(global.actionLibrary, function(moveName, move)
-    {
-        if variable_struct_exists(move, "info")
-        {
-           variable_struct_set(move[$ "info"],"exCost", move[$ "exCost"]) ;
+    struct_foreach(global.actionLibrary, function(moveName, move) {
+        if variable_struct_exists(move, "infoCard") {
+           variable_struct_set(move[$ "infoCard"],"exCost", move[$ "exCost"]) ;
         }
     })
 
@@ -601,25 +619,30 @@ initFlags();
     		luk: 0
     	};
         
+        effects = {
+            buffs : [],
+            debuffs : [],
+            statuses : []
+        };
+        
         sprites = {};
         actions = [];
 		
-		atkTypes = [];
-		defTypes = [];
+		atkTypes = []; // passive damage type of melee attacks
+		defTypes = []; // passive defense bonus against damage types
         
-        ///@param {real} Lvl Level Requirement
-    	///@param {real} Exp Bonus Exp Gain (percentage)
-    	///@param {real} Hp Bonus Hp Gain (percentage)
-    	///@param {real} HpMax Bonus Max Health
-    	///@param {real} Str Adds To Stat
-    	///@param {real} Def Adds To Stat
-    	///@param {real} ExStr Adds To Stat
-    	///@param {real} ExDef Adds To Stat
-    	///@param {real} Int Adds To Stat
-    	///@param {real} Spd Adds To Stat
-    	///@param {real} Cha Adds To Stat
-    	///@param {real} Luck Adds To Stat
-    	///@desc Sets all stat bonuses.
+        ///@param {real,struct} Lvl Can pass in a struct in the first argument to set all at once.
+    	///@param {real} Exp 
+    	///@param {real} Hp 
+    	///@param {real} HpMax 
+    	///@param {real} Str
+    	///@param {real} Def
+    	///@param {real} ExStr
+    	///@param {real} ExDef
+    	///@param {real} Int
+    	///@param {real} Spd
+    	///@param {real} Cha
+    	///@param {real} Luck
     	static setStats = function(
     		lvl = 0,
     		EXP = 0,
@@ -805,13 +828,10 @@ initFlags();
         static setSprite = function(key, val){ sprites[$ key] = val; return self; } 
     }
     
-    allergy = {
-        tag : FOOD_TAG.SPICY,
-        status : variable_clone(STATUS.burnDOT)
-    }
-
     characters = {
-        Nils : new Cowboy(FLAGS.playerName, "Fool")
+        Nils : 
+        #region
+        new Cowboy(FLAGS.playerName, "Fool")
         .setStats({
             lvl : 1,
             EXP : 0,
@@ -860,7 +880,7 @@ initFlags();
                 "...but my aim is gettin' better!"
             ]
         })
-        .addAllergy( FOOD_TAG.SPICY, new Status("Spicy!!","You are too white for this.",3) .setStatus(function(targ){
+        .addAllergy( FOOD_TAG.SPICY, STATUS("Spicy!!","You are too white for this.", BOOL.NO, 3) .setStatus(function(targ){
             
                 battleChangeHP(targ, -ceil(targ.stats.hpMax/5) * ((life+1)/lifeMax))
                 life--;
@@ -868,7 +888,11 @@ initFlags();
         .addAction([global.actionLibrary.devilshot, global.actionLibrary.devilVolley])
         .setDefType({type : MOVE_TYPE.FIRE, amnt: 60})
         ,
-        Charlie : new Cowboy("Charlie", "Magician")
+        #endregion
+        
+        Charlie : 
+        #region
+        new Cowboy("Charlie", "Magician")
     	.setStats({
     		lvl : 2,
     		EXP : 0,
@@ -915,13 +939,17 @@ initFlags();
     			"Would you like to meet my friends? Or are you too injured?"
     		]
     	})
-    	.addAllergy(FOOD_TAG.SHELLFISH, new Status("Anaphylaxis","It was all worth it...",3) 
+    	.addAllergy(FOOD_TAG.SHELLFISH, new Status("Anaphylaxis","It was all worth it...",BOOL.NO,3) 
             .setStart(function(targ){ array_push(targ.debuffs,MOVE_TYPE.ENTROPY) })
             .setEnd(function(targ){ battleChangeHP(targ, -999) })
         )
     	.addAction([global.actionLibrary.heal, global.actionLibrary.healMany, global.actionLibrary.revive])
         ,
-        Matthew : new Cowboy("Matthew", "Hermit")
+        #endregion
+        
+        Matthew : 
+        #region
+        new Cowboy("Matthew", "Hermit")
         .setStats({
             lvl : 1,
             EXP : 0,
@@ -968,16 +996,17 @@ initFlags();
                 "Don't you want a rematch...?",
                 "You don't have to be big, to look like a big loser."
             ]
-        })
-        //.setAllergy([FOOD_TAG.DAIRY])
+        }) STATUS
+        .addAllergy(FOOD_TAG.DAIRY, new Status())
         .addAction(global.actionLibrary.dp)
-        .setDefType({type : MOVE_TYPE.PHYS, amnt: 25})
+        .setDefType({type : MOVE_TYPE.PHYS, amnt: 15})
+        #endregion
     }
     
     global.party = [
         NILS,
-        CHARLIE,
-        MATTHEW,
+        //CHARLIE,
+        //MATTHEW,
     ]
 
 #endregion

@@ -149,8 +149,6 @@ function Item(_name = "", _desc = "", _type = ITEM_TYPE.KEY) : IMenuable() const
 
 }
 
-
-
 #region item function archetypes
 
 	function consume(user, targets = [NILS]) { 

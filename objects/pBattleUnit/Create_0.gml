@@ -27,26 +27,32 @@ hit = 0;
 flashCol = c_white;
 acting = false;
 
-statuses = []
-buffs = []
-debuffs = []
-
 curve = animcurve_get_channel(acBattleSlideIn,"curve1");
 percent = 0;
 percentTarg = -1;
 forward = false;
 
+StatusEffectResolveOrder = [
+    "debuffs",
+    "buffs",
+    "statuses"
+]
+
 runStatus = function(){
     
-    array_foreach(statuses,function(element, index){
-        if element == 0 exit;
+    array_foreach(StatusEffectResolveOrder, function(element, index){
+        for (var i = 0; i < array_length(effects[$ element]); i++) {
+    	
+            var status = element[i]
             
-        element.statFunc(id);
-        
-        if element.life <= 0 {
-            element.statEnd()
-            array_delete(statuses,index,1);
+            if status == 0 exit;
+            
+            status.statFunc(self);
+            
+            if status.life <= 0 {
+                status.statEnd(self)
+                array_delete(element,i,1);
+            }   
         }
     })
-    
 }
