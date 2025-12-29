@@ -55,17 +55,22 @@ function battleStates(){
 						if _action[$ "submenu"] != undefined and _action.submenu == -1 // if Top Level action, not submenu
 						{
 							// _menuOptions is the Top Level Menu
-							array_push(_menuOptions, [_nameAndCount, menuSelectAction, [unit, _action], _avail, _info])	
+							array_push(_menuOptions, {
+                                name : _nameAndCount, 
+                                func : function(){ menuSelectAction(unit, _action) }, 
+                                available : _avail, 
+                                infoCard : _info
+                            })
 						}
-						else if _action[$ "submenu"] != undefined and _action.submenu != -2
-						{
-							// if current submenu does not exist in the struct containing all the subMenus
-							if is_undefined(_subMenus[$ _action.submenu])
-							{	// I still dont know why this part is double arrayed? idk what thats doing for it
-								variable_struct_set(_subMenus, _action.submenu, [[ _nameAndCount, menuSelectAction, [unit, _action], _avail, _info ]]);
-							}
-							else array_push(_subMenus[$ _action.submenu], [ _nameAndCount, menuSelectAction, [unit, _action], _avail, _info ]);
-						}
+						//else if _action[$ "submenu"] != undefined and _action.submenu != -2
+						//{
+							//// if current submenu does not exist in the struct containing all the subMenus
+							//if is_undefined(_subMenus[$ _action.submenu])
+							//{	// I still dont know why this part is double arrayed? idk what thats doing for it
+								//variable_struct_set(_subMenus, _action.submenu, [[ _nameAndCount, menuSelectAction, [unit, _action], _avail, _info ]]);
+							//}
+							//else array_push(_subMenus[$ _action.submenu], [ _nameAndCount, menuSelectAction, [unit, _action], _avail, _info ]);
+						//}
 					}
 			
 					//turn submenus into array

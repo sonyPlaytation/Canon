@@ -54,9 +54,9 @@ rightFrames = 0;
 
 goBack = new IMenuable("Back").setFunc(doGoBack);
 
-options[$ "Menu"] = 
-[
-	MENU("Item")
+options[$ "Menu"] =  [
+	
+    MENU("Item")
 	.setFunc(enterSubmenu),
 	
 	MENU("Equip")
@@ -266,9 +266,9 @@ options[$ "Audio"] = [
 	variable_clone(goBack)
 ]
 
-options[$ "Video"] =
-[
-    {
+options[$ "Video"] = [
+    
+{
 		allowed : true,
 		menuType : "toggle",
 		name : "Fullscreen",
@@ -318,9 +318,7 @@ options[$ "Video"] =
 	variable_clone(goBack)
 ]
 
-options[$ "Other"] =
-[
-    
+options[$ "Other"] = [
     
     {
 		allowed : true,

@@ -130,11 +130,11 @@ function enterSubmenu(_menuName = name)
 	}
 }
 
-function doGoBack()
-{
+function doGoBack(menu = oPauseMenu) {
+    
     saveSettings()
-	with oPauseMenu
-	{
+	with menu {
+        
 		var _struct = array_pop(prevMenus)
 		currentMenu = _struct.menu;
 		hover = _struct.hover;

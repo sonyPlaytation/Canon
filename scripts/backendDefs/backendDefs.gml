@@ -117,7 +117,6 @@ initFlags();
         enum BOOL {
             YES = 1,
             NO = 0,
-            MAYBE = choose(0,1),
             IDK = 2
         }
         
@@ -996,7 +995,7 @@ initFlags();
                 "Don't you want a rematch...?",
                 "You don't have to be big, to look like a big loser."
             ]
-        }) STATUS
+        })
         .addAllergy(FOOD_TAG.DAIRY, new Status())
         .addAction(global.actionLibrary.dp)
         .setDefType({type : MOVE_TYPE.PHYS, amnt: 15})
