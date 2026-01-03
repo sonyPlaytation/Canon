@@ -362,28 +362,28 @@ options[$ "Other"] = [
 	variable_clone(goBack)
 ]
 
-if DEV array_insert(options[$ "Settings"], 0,
-    {
-        allowed : DEV,
-        menuType : "submenu",
-        name : "Toggle Debug",
-        func : function(){ global.debug = !global.debug }
-    }
-)
-
-if DEV array_insert(options[$ "Settings"], 0,
-    {
-		allowed : true,
-		menuType : "toggle",
-		name : "DEV ADVANTAGE",
-        value : SETTINGS.other.devAdv,
-		func : function(){ 
-            
-            SETTINGS.other.devAdv = !SETTINGS.other.devAdv; 
-            value = SETTINGS.other.devAdv
-        },
-        draw : drawToggle
-	},
-)
+//if DEV array_insert(options[$ "Settings"], 0,
+    //{
+        //allowed : DEV,
+        //menuType : "submenu",
+        //name : "Toggle Debug",
+        //func : function(){ global.debug = !global.debug }
+    //}
+//)
+//
+//if DEV array_insert(options[$ "Settings"], 0,
+    //{
+		//allowed : true,
+		//menuType : "toggle",
+		//name : "DEV ADVANTAGE",
+        //value : SETTINGS.other.devAdv,
+		//func : function(){ 
+            //
+            //SETTINGS.other.devAdv = !SETTINGS.other.devAdv; 
+            //value = SETTINGS.other.devAdv
+        //},
+        //draw : drawToggle
+	//},
+//)
 
 menuControls()

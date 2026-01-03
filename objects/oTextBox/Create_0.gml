@@ -18,8 +18,8 @@ height = TILE_SIZE*4;
 doSquish = 0;
 squishEvery = 10 - (10*SETTINGS.other.textspeed)
 
-enum TXTPOS
-{
+enum TXTPOS {
+	
 	TOP,
 	MID,
 	BTM
@@ -85,6 +85,9 @@ typist
 	.character_delay_add("\n", 400)
 
 if instance_exists(oPlayer) oPlayer.hasControl = false
+	
+// CHATTERBOX
+//chat = ChatterboxCreate("test");
 
 enum PORT_SIDE {
 	L,

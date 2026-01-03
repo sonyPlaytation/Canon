@@ -24,7 +24,7 @@ global.settings = {
     },
     
     other : { // other/gameplay
-        devAdv : DEV,
+        devAdv : true,
         textspeed : 0.6,
         inputDisplay : false,
         dashCooldown : true

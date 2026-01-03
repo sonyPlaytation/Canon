@@ -16,12 +16,11 @@ var skip = InputCheck(INPUT_VERB.SKIP)
 
 progress = min(progress + spd, length);
 
-if skip and typist.get_state() >= 0.1
-{
+if skip and typist.get_state() >= 0.01 {
+	
 	if optCount == 0 { next(); } else typist.skip();
-}
-else if typist.get_state() >= 1
-{
+} else if typist.get_state() >= 1 {
+	
 	if optCount > 0
 	{ 
 		var left = InputPressed(INPUT_VERB.LEFT);
@@ -48,8 +47,7 @@ else if typist.get_state() >= 1
 	}
 	else if confirm {next()};
 	
-}
-else if skipLess
-{
+} else if skipLess {
+	
 	typist.skip();
 }

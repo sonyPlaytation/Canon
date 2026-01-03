@@ -70,6 +70,7 @@ function textAction(_text) : dialogueAction() constructor
         
     act = function(textbox)
     {
+		
         textbox.setText(text);
         textbox.onHold = false;	
     }
@@ -285,48 +286,28 @@ function checkFlagAction(_source, _flag, _operator, _check, _ifTrue, _ifFalse = 
     ifTrue = _ifTrue;
     ifFalse = _ifFalse;
     isTrue = false
+	
+	switch(operator)
+	{
+		case ">":	isTrue = (source[$ flag] >  check) break;
+		case "<":	isTrue = (source[$ flag] <  check) break;		   
+		case ">=":	isTrue = (source[$ flag] >= check) break;			   
+		case "<=":	isTrue = (source[$ flag] >= check) break;			   
+		case "==":	isTrue = (source[$ flag] == check) break;			   
+		case "!=":	isTrue = (source[$ flag] != check) break;
+	}
+
+	if isTrue {textbox.setTopic(ifTrue);}
+	else if ifFalse = -1 {textbox.next();}
+	else {textbox.setTopic(ifFalse)}
 
     act = function(textbox)
     {
-        switch(operator)
-        {
-            case ">":	isTrue = (source[$ flag] >  check) break;
-            case "<":	isTrue = (source[$ flag] <  check) break;		   
-            case ">=":	isTrue = (source[$ flag] >= check) break;			   
-            case "<=":	isTrue = (source[$ flag] >= check) break;			   
-            case "==":	isTrue = (source[$ flag] == check) break;			   
-            case "!=":	isTrue = (source[$ flag] != check) break;
-        }
-
-        if isTrue {textbox.setTopic(ifTrue);} 
-        else if ifFalse = -1 {textbox.next();}
-        else {textbox.setTopic(ifFalse)}
+        
     }
 }
 
-///@param {real} item The item to check for, as a struct reference.
-///@param {string} ifTrue Topic to jump to if check resolves true.
-///@param {string} ifFalse Topic to jump to if check resolves false.
-///@param {bool} has Check for if player should have the item or not.
-///@param {bool} remove If found, whether or not to remove item from player's inventory.
-function checkItemAction(_item, _ifTrue, _ifFalse = -1, _has = true, _remove = false) : dialogueAction() constructor {
-    
-    item = _item
-    has = _has;
-    remove = _remove;
 
-    ifTrue = _ifTrue;
-    ifFalse = _ifFalse;
-
-    act = function(textbox)
-    {
-        if has {isTrue = array_contains(global.inv[item.type],item)} else isTrue = !array_contains(global.inv[item.type],item)
-
-        if isTrue {textbox.setTopic(ifTrue);} 
-        else if ifFalse = -1 {textbox.next();}
-        else {textbox.setTopic(ifFalse)}
-    }
-}
 
 /// @param {struct} source The struct to change.
 /// @param {string} flag The key's name as a string.
@@ -366,3 +347,8 @@ function startDialogue(topic,yMode = TXTPOS.BTM)
     show_debug_message($"Set topic: {topic}");
 }
 
+// CHATTERBOX
+//ChatterboxLoadFromFile("test.yarn", "test");
+//ChatterboxAddFunction("TEXT", textAction)
+//ChatterboxAddFunction("SPEAKER", speakerAction)
+//ChatterboxVariableSet("playerName", FLAGS.playerName)
