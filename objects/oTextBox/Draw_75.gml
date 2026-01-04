@@ -13,8 +13,6 @@ var xscale;
 var portcolor = c_dkgrey;
 var shrinkSize = 0.15
 
-
-
 if speakersVisible
 {
     shader_set(shPortraitFeather)
@@ -50,7 +48,7 @@ if speakersVisible
 			_spkr.alpha = approach(_spkr.alpha,1,alphaSpeed)
 			draw_sprite_ext(
                 _spkr.sprite, 
-                _spkr.emotion, 
+                _spkr.frame, 
                 portX, 
                 portraitY + _spkr.y + 30 - (_squish*30),
                 xscale - (shrinkSize*(i-portSlide[_side])),
@@ -90,7 +88,7 @@ if speakersVisible
 			_spkr.alpha = approach(_spkr.alpha,1,alphaSpeed)
 			draw_sprite_ext(
                 _spkr.sprite, 
-                _spkr.emotion, 
+                _spkr.frame, 
                 portX, 
                 portraitY + _spkr.y - 1 - (_squish*3),
                 xscale + (shrinkSize*(i-portSlide[_side])),

@@ -1,5 +1,30 @@
 
 
+
+function initFlags(){
+    
+    global.flags = {
+        playerName :    DEV ? "Nils" : "???",
+        ladName :       DEV ? "Charlie" : "Child",
+        stinkName :     DEV ? "Matthew" : "Patron",
+        knightName :    DEV ? "Gwen" : "Black Knight",
+        
+        cutscenes :[],
+        enemiesActive : DEV,
+        canDash : true,
+        
+        // act flags in rough chronological order
+        act1 : {
+            solitaire: 0,
+            officeBathroomKey : false,
+            narratorFunny : false,
+            lostAsFuck : 0,
+            hasDevilsGun : false,
+            chargeTackle : false,
+        },
+    }
+}
+
 function beginSave()
 {
 	audio_pause_all()
@@ -178,29 +203,6 @@ function loadSettings()
     
 }
 
-function initFlags(){
-    
-    global.flags = {
-        playerName :    DEV ? "Nils" : "???",
-        ladName :       DEV ? "Charlie" : "Child",
-        stinkName :     DEV ? "Matthew" : "Patron",
-        knightName :    DEV ? "Gwen" : "Black Knight",
-        
-        cutscenes :[],
-        enemiesActive : DEV,
-        canDash : true,
-        
-        // act flags in rough chronological order
-        act1 : {
-            solitaire: 0,
-            officeBathroomKey : false,
-            narratorFunny : false,
-            lostAsFuck : 0,
-            hasDevilsGun : false,
-            chargeTackle : false,
-        },
-    }
-}
 
 function deleteSave(){
 	

@@ -4,6 +4,20 @@ oInputReader.alphaTarg = 0;
 depth = -9999
 global.letterbox = true;
 
+// CHATTERBOX
+ChatterboxLoadFromFile("dialogue/test.yarn", "test");
+global.chatter = ChatterboxCreate("test");
+
+ChatterboxVariableSet("Nils", FLAGS.playerName)
+ChatterboxVariableSet("Gwen", FLAGS.knightName)
+ChatterboxVariableSet("shortMsg", global.shortMsg)
+ChatterboxVariableSet("saveMessage", global.saveMessage)
+ChatterboxAddFindReplace("|","\n")
+
+ChatterboxAddFunction("SAVE", beginSave);
+ChatterboxAddFunction("PARTY", speakersAddParty);
+ChatterboxAddFunction("CHECK", checkFlag);
+
 onHold = false
 
 alpha = 0;
@@ -94,6 +108,12 @@ enum PORT_SIDE {
 	R
 }
 
+textAll = {
+	speaker : "",
+	data : "",
+	speech : ""
+}
+
 speaker[PORT_SIDE.L] = [];
 speaker[PORT_SIDE.R] = [];
 //portW = sprite_get_width(sprite); // For a portrait background 
@@ -111,21 +131,23 @@ dialogueResponse = -1
 postDialogue = function(){}
 
 // Methods
-setTopic = function(topic)
-{
-	actions = global.topics[$ topic];
-	currentAction = -1;
-	
-	next();
+setTopic = function(topic) {
+    
+	ChatterboxJump(global.chatter,topic);
+	next(true);
 };
 
-next = function()
-{
-	currentAction++;
-	if (currentAction >= array_length(actions))
-	{ instance_destroy(); }
-	else 
-	{ actions[currentAction].act(id); }
+next = function(init = false) {
+	
+	if !init ChatterboxContinue(global.chatter);
+	text = ChatterboxGetContentSpeech(global.chatter,0)
+	getTextAttributes();
+	
+	if ChatterboxIsStopped(global.chatter) and typist.get_state() >= 1 instance_destroy()
+	else {
+		
+		setText(textAll.speech) 
+	}
 };
 
 setText = function(newText)
@@ -148,3 +170,31 @@ setText = function(newText)
 	progress = 0;
 }
 
+getTextAttributes = function(){
+	
+	textAll = {
+		speaker : 	ChatterboxGetContentSpeaker(global.chatter,0),
+		tags : 		ChatterboxGetContentSpeakerData(global.chatter,0),
+		speech : 	ChatterboxGetContentSpeech(global.chatter,0)
+	}
+	
+	//if textAll.speaker == "" or textAll.speaker == "Gaia" 
+	//{ textAll.speech = string_insert("// ",textAll.speech,1) }
+	
+	parseChatterbox(textAll)
+	
+	typist.sound(sound,0.1,0.9,1.1,1);
+	
+	scribb = scribble(text)
+		.wrap(txtW)
+		.starting_format(font_get_name(font),color)
+		.fit_to_box(txtW,height-8);
+		
+	myName = scribble(name)
+		.starting_format(font_get_name(font),nameColor)
+		.align(fa_left,fa_middle)
+		
+	currentOption = 0;
+	length = string_length_scribble(textAll.speech);
+	progress = 0;
+}

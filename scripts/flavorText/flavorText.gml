@@ -16,51 +16,6 @@ function initFlavorTextAct1() {
 
 	#region general reusable stuff
 
-	global.topics[$ "jammed"] = [TEXT("[snSH2DoorLocked]// The lock is "JAMMED"!\n// This door can't be opened.")]
-	global.topics[$ "lockedGeneric"] = [TEXT("// It's "LOCKED".")]
-	global.topics[$ "unlockedGeneric"] = [
-        TEXT("// You unlock the door."),
-        CALL(function(){other.locked = false})
-    ]
-
-    global.topics[$ "voiceTest"] = [
-		
-        PARTYSPEAK(),
-        TEXT("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-        SPEAKER("Charlie",sPortChar),
-        TEXT("Borem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-        SPEAKER("Matthew",sPortMatt),
-        TEXT("Gorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-        SPEAKER("Gwen",sPortGwen,, PORT_SIDE.R),   
-        TEXT("Snorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."), 
-    ]
-    
-	global.topics[$ "saveFlies"] = 
-	[
-		TEXT("// A group of smelly flies buzz around you, each one chasing anothers smell."nl"// They are caught in an unending ouroboruos of stench..."),
-		GOTO("save")
-	]
-
-	global.topics[$ "save"] = 
-	[
-		CHOICE("// Would you like to save your progress?",
-			OPTION("Yes","yesToSave"),
-			OPTION("No",""))
-	]
-	
-	global.topics[$ "optionsTest"] = 
-	[
-		TEXT("When this box is destroyed it should alert saying 'Wee'"),
-		CALL(function(){oPlayer.facing = 0}),
-		TEXT("Prepare for Wee"),
-		
-	]
-
-	global.topics[$ "yesToSave"] = 
-	[
-		SET(oTextBox,"dialogueResponse", true),
-		BEGINSAVE()
-	]
 
 	#endregion
 
@@ -68,31 +23,6 @@ function initFlavorTextAct1() {
 
         if (global.flags.act1.narratorFunny)
         {
-
-            global.topics[$ "officePhoto"] = 
-            [
-                TEXT("// On the cabinet sits a photo of several people at some kind of party."nl"// Its placard reads 'FEESE Wrap Party 20XX'"),
-                TEXT("// It doesn't LITERALLY say 20XX, it's just scratched in such a way that you can't make out the last two digits."nl"// How inconvenient..."),
-                CHOICE("// Inspect the photo?",
-                    OPTION("Sure",			"choiceOfficePhotoYes"),
-                    OPTION("Don't care",	"choiceOfficePhotoNo"))
-            ];
-    
-            global.topics[$ "choiceOfficePhotoYes"] = 
-            [
-                TEXT("// The guy closest to the camera is a middle aged man with a very trendy old man moustache. He looks to be about 60."),
-                TEXT("// He's in the middle of stretching his arms to either side of him, but it's an intensely awkward gesture."nl"// He looks like he was probably wasted, I'd say 81% chance."),
-                TEXT("// Everyone around him seems uncomfortable."),
-                SPEAKER(FLAGS.playerName,sPortNils),
-                TEXT("Damn, they look like they're having fun..."),
-            ]
-    
-            global.topics[$ "choiceOfficePhotoNo"] = 
-            [
-                TEXT("// The photo likely depicts something very important..."nl"// I guess it doesn't interest you."),
-                SPEAKER(FLAGS.playerName,sPortNils),
-                TEXT("Booooriiiiing!"),
-            ]
 
             global.topics[$ "officeDesk"] = 
             [

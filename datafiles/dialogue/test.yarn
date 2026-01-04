@@ -1,31 +1,199 @@
 #__PrivCrochet_version:1
+#Act1
 __PrivCrochet_colorID: 1
-__PrivCrochet_position: 785,672
-__PrivCrochet_tags: 
+__PrivCrochet_position: -40,120
+__PrivCrochet_tags: test
+test:
 title: Start
 ---
-Yo whatsup my name is sans undertale I love to eat hot dog and ddruink ketchuop LOL
-
-I am his brother papyrus ooooo i hate puns argh!!!! 
-
-//<<jump OtherNode>>
+{$Nils}: Yarn Spinner is a language for writing conversations in games!
+{$Nils}: You can use it to write branching dialogue, and use that in a game engine!
+{$Gwen}[side=R]: Nils what the fuck are you talking about.
+-> Nothing.
+    Nils: Oh, man. Maybe you should have.
+-> That she was a jerk.
+    Nils: Hah! I bet that pissed her off.
+    Nils: How'd she react?
+    -> She didn't.
+        Nils: Booooo. That's boring.
+    -> Furiously.
+        Nils: That's what I like to hear!
+Nils: Anyway, I'd better get going.
 ===
 __PrivCrochet_colorID: 0
-__PrivCrochet_position: 1176,696
-__PrivCrochet_tags: 
-title: OtherNode
+__PrivCrochet_position: 680,-400
+__PrivCrochet_tags: system
+system:
+title: save
 ---
-title: OtherNode
----
-Here we are in a different node! Nodes let you divide up your content into different blocks, which makes it easier to manage.
-
-We're all done! Try changing the text in the editor to the left, and clicking Test again!
+<<define $saveMessage as "">>
+{$saveMessage}
+Would you like to save your progress?
+-> Yes
+    <<SAVE>>
+-> No
 ===
 __PrivCrochet_colorID: 0
-__PrivCrochet_position: 915,460
-__PrivCrochet_tags: 
-title: GwenTest
+__PrivCrochet_position: 920,-400
+__PrivCrochet_tags: system
+system:
+title: saveGame
 ---
-<<SPEAKER({$playerName}, sPortNils )>>
-Hi Gwen
+Your game was saved.
+===
+__PrivCrochet_colorID: 0
+__PrivCrochet_position: 200,-400
+__PrivCrochet_tags: 
+title: shortMessage
+---
+{$shortMessage}
+===
+__PrivCrochet_colorID: 7
+__PrivCrochet_position: -40,-400
+__PrivCrochet_tags: 
+title: Declarations
+---
+<<declare $Nils = "???">>
+<<declare $Charlie = "Child">>
+<<declare $Matthew = "Drunk">>
+<<declare $Gwen = "Black Knight">>
+
+<<declare $shortMsg = "">>
+<<declare $narr = "// ">>
+
+<<declare $LOCKED = "[c_yellow]LOCKED[c_white]">>
+<<declare $JAMMED = "[c_red]JAMMED[c_white]">>
+===
+__PrivCrochet_colorID: 0
+__PrivCrochet_position: 440,-160
+__PrivCrochet_tags: 
+title: lockedGeneric
+---
+It's {$LOCKED}.
+===
+__PrivCrochet_colorID: 0
+__PrivCrochet_position: -40,-160
+__PrivCrochet_tags: 
+title: jammed
+---
+[snSH2DoorLocked] {$narr}The lock is {$JAMMED}!|{$narr}This door can't be opened.
+===
+__PrivCrochet_colorID: 0
+__PrivCrochet_position: 200,-160
+__PrivCrochet_tags: 
+title: unlockedGeneric
+---
+You unlock the door.
+===
+__PrivCrochet_colorID: 0
+__PrivCrochet_position: -40,640
+__PrivCrochet_tags: act1
+act1:
+title: theBigWet
+---
+{$narr}Wait!!!
+{$narr}You can't go down there! Look at that wet floor sign!
+{$Nils}:Oh yeah, I'd better not. Lookin pretty wet!
+===
+__PrivCrochet_colorID: 0
+__PrivCrochet_position: -40,400
+__PrivCrochet_tags: cutscene act1
+cutscene:
+act1:
+title: cutBathroomMirror
+---
+{$Nils}: Is that what I look like??|I'm a chubby little skeleton guy? Since when??
+{$$}Oh? Were you not always this way?
+{$Nils}:... I- I don't know... I don't remember... |I have such foggy memories, but... I'm sure I wasn't always this...
+{$Nils}[frame=4]:Why don't I remember anything important??|All I can remember is useless shit like the capital of Canada!!|And where the fuck am I anyway?? Does Ottawa even still exist???"
+{$$}Perhaps we can find someone who can help you remember more about yourself...|Though for now it may be best to try and calm yourself.
+{$$}Why not take some toilet time to catch your breath?
+{$Nils}:Yeah okay... worth a shot I guess."nl"I mean who even knows if I can shit, I doubt I have internal organs anyway...
+===
+__PrivCrochet_colorID: 0
+__PrivCrochet_position: 200,400
+__PrivCrochet_tags: cutscene act1
+cutscene:
+act1:
+title: cutWakeUpOffice
+---
+{$Nils}[frame=1]:Ugh Jesus, my head... I really overslept...|What time is it?
+{$narr}Suddenly you notice the state of the room.
+{$narr}This may just be the cleanest room ever.|{$narr}The walls are a crisp eggshell, the floor boards look and feel brand new, and the chair you're in feels straight from the factory.
+{$narr}For some reason you feel disturbed
+{$Nils}[frame=2]:Better question is...
+{$Nils}[frame=3]:Where the hell am I??
+===
+__PrivCrochet_colorID: 0
+__PrivCrochet_position: 200,120
+__PrivCrochet_tags: test
+test:
+title: voiceTest
+---
+Nils:Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Charlie:Borem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Matthew:Gorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Gwen[side=R]:Snorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+===
+__PrivCrochet_colorID: 0
+__PrivCrochet_position: 200,640
+__PrivCrochet_tags: act1
+act1:
+title: officePhoto
+---
+<<if CHECK("act1","narratorFunny","==",true)>>
+{$narr}On the cabinet sits a photo of several people at some kind of party.|{$narr}Its placard reads 'FEESE Wrap Party 20XX'.
+{$narr}Okay, well, it doesn't actually SAY 20XX, it's just scratched in such a way that you can't make out the last two digits.|{$narr}How inconvenient...
+{$narr}Inspect the photo?
+    -> Sure
+        {$narr}The guy closest to the camera is a middle aged man with a very trendy old man moustache. He looks to be about 60.
+        {$narr}He's in the middle of stretching his arms to either side of him, but it's an intensely awkward gesture.|He looks like he was probably wasted, I'd say 81% chance.
+        {$narr}Everyone around him seems uncomfortable.
+        {$Nils}: Damn, they look like they're having fun...
+    -> Nah
+        {$narr}What if the photo is of something really important?
+        {$Nils}:Nope! Don't care!
+        {$narr}...
+        {$narr}Okay...|{$narr}You don't look at the photo.
+<<else>>
+...
+(A photo of a bunch of people, but who the hell are they?)
+<<endif>>
+===
+__PrivCrochet_colorID: 0
+__PrivCrochet_position: 440,640
+__PrivCrochet_tags: act1
+act1:
+title: officeDesk
+---
+<<if CHECK("act1","narratorFunny","==",true)>>
+{$narr}You eye the expensive looking desk you woke up in front of.|{$narr}It still looks new, but its surface is marked with several water rings.
+    -> Check the drawers
+        {$narr}Despite your wimpiest tug, the desks drawers will not budge. 
+        {$Nils}[frame=1]:I guess its {$LOCKED}!
+        {$Nils}[frame=3]:Aw man... I bet something really useful or cool is in there...
+    -> Check the desktop
+        {$narr}The desktop is made of a very dark brown wood.
+        {$narr}You know Jack from Shit about woodworking so that's the most you can really discern.
+        {$Nils}:The perfect arena for a blistering round of solitaire!
+        {$Nils}[frame=2]:Not sure why I remember what solitaire is though...
+    -> Check nothing
+        {$narr}You check nothing... I guess.
+        {$Nils}:Stupid nerd desk! I don't even care about your drawer contents or anything!
+<<else>>
+(The desk I woke up behind.)|(A solemn monolith of industry, reigned in by the errant water ring.)
+(It totally dwarfs me...)
+    -> (A high plinth of commandeered respect...)
+        <<jump ...>>
+    -> (A renaissance man's virgin canvas...)
+        <<jump ...>>
+<<endif>>
+===
+__PrivCrochet_colorID: 0
+__PrivCrochet_position: 640,840
+__PrivCrochet_tags: act1
+act1:
+title: ...
+---
+{$Nils}:...
 ===
