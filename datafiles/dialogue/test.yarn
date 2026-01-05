@@ -6,18 +6,23 @@ __PrivCrochet_tags: test
 test:
 title: Start
 ---
+//<<PARTY()>>
+{$Nils}[frame=1]: Yarn Spinner is a language for writing conversations in games!
 {$Nils}: Yarn Spinner is a language for writing conversations in games!
+{$Nils}[frame=2]: Yarn Spinner is a language for writing conversations in games!
 {$Nils}: You can use it to write branching dialogue, and use that in a game engine!
 {$Gwen}[side=R]: Nils what the fuck are you talking about.
 -> Nothing.
-    Nils: Oh, man. Maybe you should have.
+    {$Gwen}[side=R]: Oh, man. Maybe you should have.
 -> That she was a jerk.
-    Nils: Hah! I bet that pissed her off.
-    Nils: How'd she react?
+    {$Charlie}: Hah! I bet that pissed her off.
+    {$Matthew}: How'd she react?
     -> She didn't.
-        Nils: Booooo. That's boring.
+        {$Gwen}[side=R]: Booooo. That's boring.
+        {$Gwen}[side=R,frame=1]: Booooo. That's boring.
+        {$Gwen}[side=R]: Booooo. That's boring.
     -> Furiously.
-        Nils: That's what I like to hear!
+        {$Gwen}[side=R]: That's what I like to hear!
 Nils: Anyway, I'd better get going.
 ===
 __PrivCrochet_colorID: 0
@@ -26,6 +31,7 @@ __PrivCrochet_tags: system
 system:
 title: save
 ---
+<<declare $saveMessage = "">>
 {$saveMessage}
 * Would you like to save your progress?
 -> Yes
@@ -52,16 +58,16 @@ __PrivCrochet_position: -40,-400
 __PrivCrochet_tags: 
 title: Declarations
 ---
-<<declare $Nils as "???">>
-<<declare $Charlie as "Child">>
-<<declare $Matthew as "Drunk">>
-<<declare $Gwen as "Black Knight">>
+<<declare $Nils = "???">>
+<<declare $Charlie = "Child">>
+<<declare $Matthew = "Drunk">>
+<<declare $Gwen = "Black Knight">>
 
-<<declare $shortMsg as "pee">>
-<<declare $saveMessage as "pee">>
+<<declare $shortMsg = "">>
+<<declare $narr = "// ">>
 
-<<declare $LOCKED as "[c_yellow]LOCKED[c_white]">>
-<<declare $JAMMED as "[c_red]JAMMED[c_white]">>
+<<declare $LOCKED = "[c_yellow]LOCKED[c_white]">>
+<<declare $JAMMED = "[c_red]JAMMED[c_white]">>
 ===
 __PrivCrochet_colorID: 0
 __PrivCrochet_position: 160,-160
@@ -151,11 +157,11 @@ __PrivCrochet_tags: act1
 act1:
 title: officeDesk
 ---
-<<if CHECK("act1","narratorFunny","==",true)>>
+<<if CHECK("act1","narratorFunny","==",1)>>
 * You eye the expensive looking desk you woke up in front of.|* It still looks new, but its surface is marked with several water rings.
     -> Check the drawers
         * Despite your wimpiest tug, the desks drawers will not budge. 
-        {$Nils}[frame=1]:I guess its {$LOCKED}!
+        {$Nils}[frame=1]:I guess it's {$LOCKED}!
         {$Nils}[frame=3]:Aw man... I bet something really useful or cool is in there...
     -> Check the desktop
         * The desktop is made of a very dark brown wood.
@@ -169,7 +175,7 @@ title: officeDesk
 (The desk I woke up behind.)|(A solemn monolith of industry, reigned in by the errant water ring.)
 (It totally dwarfs me...)
     -> (A high plinth of commandeered respect...)
-        <<>>jump ...>>
+        <<jump ...>>
     -> (A renaissance man's virgin canvas...)
         <<jump ...>>
 <<endif>>

@@ -8,29 +8,5 @@ initFlags()
 
 function initFlavorTextAct1() {
 
-    show_debug_message("Flavortext Initialized!")
-    
-	// dialogue
-	// textSoundLUT()
-	// dialogueFuncs
-
-	#region general reusable stuff
-
-
-	#endregion
-
-	#region rOffice
-
-
-	#endregion
-
-	#region rOffice_3
-
-
-	#endregion
-
-	#region rOfficeBathroom
-
-	#endregion
 
 }
