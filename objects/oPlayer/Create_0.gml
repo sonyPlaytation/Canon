@@ -102,6 +102,8 @@ interact = function() {
 					facing = round(point_direction(x, y, other.x, other.y) / 90)
 					if facing > 3 {facing = 0}
 				}
+				
+				if shortMsg != "" {global.topics[$ "shortMessage"] = [TEXT(shortMsg)]}
 
 				myScript(myTopic);
 			}

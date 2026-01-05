@@ -10,21 +10,20 @@ ChatterboxLoadFromFile("dialogue/test.yarn", "test");
 ChatterboxAddFunction("SAVE", beginSave);
 ChatterboxAddFunction("PARTY", speakersAddParty);
 ChatterboxAddFunction("CHECK", checkFlag);
-
-ChatterboxAddFindReplace("|","\n")
-ChatterboxAddFindReplace("*","// ")
+ChatterboxAddFunction("SET", setFlag);
+ChatterboxAddFunction("ITEM", addItem);
 
 global.chatter = ChatterboxCreate("test");
 
 ChatterboxVariableSet("Nils", FLAGS.playerName)
 ChatterboxVariableSet("Gwen", FLAGS.knightName)
+ChatterboxVariableSet("Charlie", FLAGS.ladName)
+ChatterboxVariableSet("Matthew", FLAGS.stinkName)
 ChatterboxVariableSet("shortMsg", global.shortMsg)
 ChatterboxVariableSet("saveMessage", global.saveMessage)
+ChatterboxAddFindReplace("|","\n")
 
-
-entry = {}
-
-onHold = false;
+onHold = false
 
 alpha = 0;
 alphaTarg = 1;
@@ -143,16 +142,17 @@ setTopic = function(topic) {
 	next(true);
 };
 
-next = function(progress = false) {
+next = function(init = false) {
 	
-	if !progress ChatterboxContinue(global.chatter);
-    if !ChatterboxIsStopped(global.chatter) typist.reset();
-            
+	if !init ChatterboxContinue(global.chatter);
 	text = ChatterboxGetContentSpeech(global.chatter,0)
 	getTextAttributes();
 	
-	if ChatterboxIsStopped(global.chatter) and typist.get_state() >= 1 { instance_destroy() }
-	else setText(textAll.speech) 
+	if ChatterboxIsStopped(global.chatter) and typist.get_state() >= 1 instance_destroy()
+	else {
+		
+		setText(textAll.speech) 
+	}
 };
 
 setText = function(newText)

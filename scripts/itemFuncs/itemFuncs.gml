@@ -292,7 +292,7 @@ function openChest(_chest)
 	}
 }
 
-function unlockDoor(_locked, _unlocked)
+function unlockDoor(_locked, _unlocked, _message = true)
 {
 	if array_contains(global.inv[ITEM_TYPE.KEY],keyNeeded) 
 	{
@@ -342,20 +342,3 @@ function addItem(_item, _showMsg = true) {
     return false;
     
 }
-
-function giveItemAction(_item,_count = 1)
-{
-	item = _item;
-	count = _count;
-	
-	act = function(textbox)
-	{
-		addItem(item);
-		textbox.yMode = TXTPOS.MID
-		shortMessage("",TXTPOS.MID)
-		textbox.setText($"//Found a {item.name}!")
-	}
-}
-
-
-

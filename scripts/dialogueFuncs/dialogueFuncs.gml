@@ -71,12 +71,12 @@ function portraitLUT(_name) {
 			return sPortNils;
 			
 		case FLAGS.ladName:				
-		case "Child":				
+		case "Kid":				
 		case "Charlie":					
 			return sPortChar;
 			
 		case FLAGS.stinkName:				
-		case "Drunk":
+		case "Stinky Patron":
 		case "Matthew":			
 			return sPortMatt;
 			
@@ -111,10 +111,10 @@ function speakersAddParty( _side = PORT_SIDE.L ) {
 	for (var i = array_length(PARTY)-1; i >= 0 ; i--) {
 		
 		var _name = PARTY[i].name
-		entry[$ _name] = {
-            
+		entry[$ _name] = 
+		{
 			sprite : ports[i],
-			frame : 0,
+			emotion : 0,
 			alpha : 0,
 			y : TILE_SIZE
 		}
@@ -138,12 +138,12 @@ function checkFlag(_source, _flag, _operator, _check) {
 	
 	switch(operator) {
 		
-		case ">":	isTrue = (FLAGS[$ source][$ flag] >  check) break;
-		case "<":	isTrue = (FLAGS[$ source][$ flag] <  check) break;		   
-		case ">=":	isTrue = (FLAGS[$ source][$ flag] >= check) break;			   
-		case "<=":	isTrue = (FLAGS[$ source][$ flag] >= check) break;			   
-		case "==":	isTrue = (FLAGS[$ source][$ flag] == check) break;			   
-		case "!=":	isTrue = (FLAGS[$ source][$ flag] != check) break;
+		case ">":	isTrue = (source[$ flag] >  check) break;
+		case "<":	isTrue = (source[$ flag] <  check) break;
+		case ">=":	isTrue = (source[$ flag] >= check) break;
+		case "<=":	isTrue = (source[$ flag] >= check) break;
+		case "==":	isTrue = (source[$ flag] == check) break;
+		case "!=":	isTrue = (source[$ flag] != check) break;
 	}
 
 	return isTrue
@@ -166,9 +166,9 @@ function checkItem(_item, _has = true, _remove = false){
 	
 }
 
-function setFlag(_category, _value){
+function setFlag(_category, _flag, _value){
 	
-	FLAGS[$ _category] = _value;
+	FLAGS[$ _category][$ _flag] = _value;
 }
 
 
@@ -218,39 +218,35 @@ function parseChatterbox(_data){
 	activeSpeaker = side;
 	speakersVisible = true;
 
+	entry = {}
 	if name != "" {
 		
-        var exists = variable_struct_exists(entry,name)
-        
+		entry[$ name] = {
+			
+			sprite,
+			frame,
+			alpha : 0,
+			y : TILE_SIZE
+		}
+
 		if sprite != noone {
 				
-            if !exists { 
-                
-                entry[$ name] = {
-			
-                   sprite,
-                   frame,
-                   alpha : 0,
-                   y : TILE_SIZE
-               }
-                
-                array_insert(speaker[side],0,entry[$ name]); 
-                portSlide[side] = 1;
-            } else {
-                
-                // array already populated, replacing speaker
-                if (array_length(speaker[side]) > 0 and speaker[side][0][$ "name"] != name)  {
-                    
-                    var pos = array_get_index(speaker[side],entry[$ name])
-                    if pos != 0 portSlide[side] = 1;
-                    var guy = array_get(speaker[side], pos)
-                    array_delete(speaker[side],array_get_index(speaker[side],entry[$ name]),1)
-                    array_insert(speaker[side],0,guy); 
-                    guy.frame = frame
-                    
-                    speaker[side][0].y = 0
-                } 
-            }
+			if !array_contains(speaker[side],entry[$ name]) { //TODO: change this to be if entry is undefined instead of if the array contains it
+				
+				speaker[side] = array_filter(speaker[side],function(element,index)
+				{
+					return element.sprite != sprite;
+				})
+				portSlide[side] = 1;
+			} else {
+				
+				var pos = array_get_index(speaker[side],entry[$ name])
+				speaker[side][pos].emotion = frame
+				portSlide[side] = 0;
+			}
+	
+			array_insert(speaker[side],0,entry[$ name]);
+	
 		}
 	} else activeSpeaker = -1; // no active speakers during system messages
 
