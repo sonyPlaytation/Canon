@@ -12,5 +12,6 @@ if locked and place_meeting(x,y,oRoomExit)
 
 myScript = function(myTopic)
 {
+	
 	unlockDoor(lockedText,unlockText)
 }

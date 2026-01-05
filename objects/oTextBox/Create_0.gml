@@ -6,17 +6,22 @@ global.letterbox = true;
 
 // CHATTERBOX
 ChatterboxLoadFromFile("dialogue/test.yarn", "test");
-global.chatter = ChatterboxCreate("test");
-
-ChatterboxVariableSet("Nils", FLAGS.playerName)
-ChatterboxVariableSet("Gwen", FLAGS.knightName)
-ChatterboxVariableSet("shortMsg", global.shortMsg)
-ChatterboxVariableSet("saveMessage", global.saveMessage)
-ChatterboxAddFindReplace("|","\n")
 
 ChatterboxAddFunction("SAVE", beginSave);
 ChatterboxAddFunction("PARTY", speakersAddParty);
 ChatterboxAddFunction("CHECK", checkFlag);
+ChatterboxAddFunction("SET", setFlag);
+ChatterboxAddFunction("ITEM", addItem);
+
+global.chatter = ChatterboxCreate("test");
+
+ChatterboxVariableSet("Nils", FLAGS.playerName)
+ChatterboxVariableSet("Gwen", FLAGS.knightName)
+ChatterboxVariableSet("Charlie", FLAGS.ladName)
+ChatterboxVariableSet("Matthew", FLAGS.stinkName)
+ChatterboxVariableSet("shortMsg", global.shortMsg)
+ChatterboxVariableSet("saveMessage", global.saveMessage)
+ChatterboxAddFindReplace("|","\n")
 
 onHold = false
 
