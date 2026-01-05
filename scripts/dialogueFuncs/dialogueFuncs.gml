@@ -184,12 +184,6 @@ function startDialogue(topic,yMode = TXTPOS.BTM)
     show_debug_message($"Set topic: {topic}");
 }
 
-// CHATTERBOX
-//ChatterboxLoadFromFile("test.yarn", "test");
-//ChatterboxAddFunction("TEXT", textAction)
-//ChatterboxAddFunction("SPEAKER", speakerAction)
-//ChatterboxVariableSet("playerName", FLAGS.playerName)
-
 
 function parseChatterbox(_data){
 	
@@ -208,20 +202,6 @@ function parseChatterbox(_data){
 		if string_starts_with(string_lower(tags[i]),"side=") { side = string_replace(tags[i],"side=","") }
 		if string_starts_with(string_lower(tags[i]),"sound=") { sound = asset_get_index(string_replace(tags[i],"sound=","")) }
 	}
-    
-    charWrap = false;
-    forceSpd = 30;
-    
-    switch(string_lower(textAll.speaker)){
-        case "gill": 
-            
-            color = c_red;
-            charWrap = true;
-            forceSpd = 0.3;
-            string_insert("[c_red][shake]",textAll.speech,1)
-            break;
-            
-    }
 	
 	switch(string_upper(side)){
 		
@@ -273,5 +253,39 @@ function parseChatterbox(_data){
             }
 		}
 	} else activeSpeaker = -1; // no active speakers during system messages
+}
 
+function addTypingQuirks(_struct){
+	
+	var text = _struct.speech
+	var spkr = _struct.speaker
+	var meta = _struct.tags
+	
+	text = string_replace_all(text,"|","\n") // Newlines 
+	charWrap = false;
+    forceSpd = 30;
+    
+	switch(string_lower(spkr)){
+		
+		case "": text = string_replace_all(text,"*","//") break; // Gaia quirk
+		
+		case "gill": 
+		
+			color = c_red;
+			charWrap = true;
+			forceSpd = 0.3;
+			string_insert("[c_red][shake]",textAll.speech,1)
+		break;
+	}
+	
+	textAll = {
+		speech : text,
+		speaker : spkr,
+		tags : meta
+	}
+}
+
+function sendDialogueResponse(_response){
+	
+	dialogueResponse = _response;
 }

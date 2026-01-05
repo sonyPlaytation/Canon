@@ -4,20 +4,20 @@ if cutscenePlaying == noone and scene != -1 and place_meeting(x,y,oPlayer) and !
 { 
 	if array_contains(FLAGS.cutscenes,scene) {instance_destroy() exit;}
 		
-	with oPlayer 
-	{
+	with oPlayer {
+		
 		state = stateStartCutscene;
 		gotoX = other.playX
 		gotoY = other.playY
 	}
 	
-	if instance_exists(oCharlie)
-	{
-		with oCharlie
-		{
+	if instance_exists(oCharlie) {
+		
+		with oCharlie {
+			
 			state = stateStartCutscene;
-			if follow
-			{
+			if follow and instance_exists(oCutStartC) {
+				
 				myCutStart = oCutStartC
 				gotoX = myCutStart.x
 				gotoY = myCutStart.y
@@ -25,13 +25,13 @@ if cutscenePlaying == noone and scene != -1 and place_meeting(x,y,oPlayer) and !
 		}
 	}
 	
-	if instance_exists(oMatthew)
-	{
-		with oMatthew
-		{
+	if instance_exists(oMatthew) {
+		
+		with oMatthew {
+			
 			state = stateStartCutscene;
-			if follow
-			{
+			if follow and instance_exists(oCutStartM) {
+				
 				myCutStart = oCutStartM
 				gotoX = myCutStart.x
 				gotoY = myCutStart.y

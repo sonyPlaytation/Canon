@@ -4,20 +4,21 @@ event_inherited();
 myScript = function()
 {
 	if !array_contains(FLAGS.cutscenes,cutBathroomMirror) array_push(FLAGS.cutscenes,cutBathroomMirror)
-	startDialogue(myTopic)
+	
+	global.saveMessage = "// Your nostril-hole is bombarded by a toilet of utmost stench."nl"// This thing couldn't have been cleaned in the past decade."
+	startDialogue("save")
 
-	if !array_contains(global.inv[ITEM_TYPE.KEY], global.items.keyGeneric) and !instance_exists(oItemPickup)
+	if !checkItem("keyGeneric") and !instance_exists(oItemPickup)
 	{
 		FLAGS.act1.narratorFunny = false;
-		initDialogue();
-		var _item = instance_create_depth(264,384,depth,oItemPickup)
-		_item.item = "keyGeneric"
+
+		var _item = instance_create_depth(264,384,depth,oItemPickup,{item : "keyGeneric"})
 	}
 	
 	AFTERTEXT
 	{
-		if dialogueResponse
-		{
+		if dialogueResponse {
+			
 			FLAGS.act1.narratorFunny = true;
 			//initDialogue();
 			oPlayer.hasControl = false

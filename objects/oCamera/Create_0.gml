@@ -1,5 +1,7 @@
 /// @
 
+depth = 9999
+
 overlays = [
     {
         tag: "darkRoom",
@@ -32,7 +34,7 @@ gameWHalf = GAME_W/2
 gameHHalf = GAME_H/2
 
 letterBoxH = 0
-letterBoxHTarg = 4
+letterBoxHTarg = 1.5
 
 alarm[0] = 1;
 

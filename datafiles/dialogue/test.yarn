@@ -37,14 +37,16 @@ title: save
 {$saveMessage}
 * Would you like to save your progress?
 -> Yes
-    <<SAVE>>
+    <<RESPONSE(true)>>
+    <<SAVE()>>
 -> No
+    <<RESPONSE(false)>>
 ===
 __PrivCrochet_colorID: 0
 __PrivCrochet_position: 640,-400
 __PrivCrochet_tags: system
 system:
-title: saveGame
+title: gameSaved
 ---
 * Your game was saved.
 ===
@@ -330,7 +332,7 @@ title: cubicleCoffee
 * This cubicle is absolutely littered with personal adornments.
 * A poster reads as follows
 'WARNING[c_red]![c_white] Do not talk to programmer until they've had there coffee! [sLaughingCryingEmoji]'
-{$Nils}:Ugh, lame!
+{$Nils}[frame=1]:Ugh, lame!
 * Thats not all! Their coffee mug reads
 'WARNING[c_red]![c_white] Do not talk to programmer until they've had there coffee! [sLaughingCryingEmoji]'
 * Both the poster and the mug have the exact same typo.

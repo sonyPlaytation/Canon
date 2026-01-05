@@ -107,7 +107,7 @@ function SaveString( _str, _filename, _message = false)
 	show_debug_message("Successfully wrote file: "+_filename);
 	buffer_delete(_buffer);
     
-	if _message shortMessage("//Game Saved",TXTPOS.MID)
+	if _message startDialogue("gameSaved",TXTPOS.MID)
 	oGame.nowSaving = false;
 }
 

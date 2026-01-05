@@ -5,14 +5,13 @@ depth = -9999
 global.letterbox = true;
 
 // CHATTERBOX
+
 ChatterboxLoadFromFile("dialogue/test.yarn", "test");
 
 ChatterboxAddFunction("SAVE", beginSave);
 ChatterboxAddFunction("PARTY", speakersAddParty);
 ChatterboxAddFunction("CHECK", checkFlag);
-
-ChatterboxAddFindReplace("|","\n")
-ChatterboxAddFindReplace("*","// ")
+ChatterboxAddFunction("RESPONSE", sendDialogueResponse);
 
 global.chatter = ChatterboxCreate("test");
 
@@ -22,7 +21,6 @@ ChatterboxVariableSet("Matthew", FLAGS.stinkName)
 ChatterboxVariableSet("Charlie", FLAGS.ladName)
 ChatterboxVariableSet("shortMsg", global.shortMsg)
 ChatterboxVariableSet("saveMessage", global.saveMessage)
-
 
 entry = {}
 
@@ -52,8 +50,8 @@ y = display_get_gui_height() - height - padding;
 
 drawNow = false;
 
-with pProtag
-{
+with pProtag {
+	
 	going = false;
 	image_speed = 0
 }
@@ -147,6 +145,7 @@ next = function(progress = false) {
             
 	text = ChatterboxGetContentSpeech(global.chatter,0)
 	getTextAttributes();
+	addTypingQuirks(textAll);
 	
 	if ChatterboxIsStopped(global.chatter) /*and typist.get_state() >= 1 */{ instance_destroy() }
 	else setText(textAll.speech) 
