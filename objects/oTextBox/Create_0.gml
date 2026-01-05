@@ -18,6 +18,8 @@ global.chatter = ChatterboxCreate("test");
 
 ChatterboxVariableSet("Nils", FLAGS.playerName)
 ChatterboxVariableSet("Gwen", FLAGS.knightName)
+ChatterboxVariableSet("Matthew", FLAGS.stinkName)
+ChatterboxVariableSet("Charlie", FLAGS.ladName)
 ChatterboxVariableSet("shortMsg", global.shortMsg)
 ChatterboxVariableSet("saveMessage", global.saveMessage)
 
@@ -96,13 +98,6 @@ progress = 0;
 length = 0;
 
 typist = scribble_typist();
-typist
-	.in(spd,0)
-	.character_delay_add(". ", 250)
-	.character_delay_add("! ", 250)
-	.character_delay_add("? ", 250)
-	.character_delay_add(", ", 125)
-	.character_delay_add("\n", 400)
 
 if instance_exists(oPlayer) oPlayer.hasControl = false
 	
@@ -127,6 +122,8 @@ speaker[PORT_SIDE.R] = [];
 //portSide = PORT_SIDE.L;
 name = ""; 
 nameW = 0;
+charWrap = false;
+forceSpd = 30;
 
 options = [];
 currentOption = 0;
@@ -151,7 +148,7 @@ next = function(progress = false) {
 	text = ChatterboxGetContentSpeech(global.chatter,0)
 	getTextAttributes();
 	
-	if ChatterboxIsStopped(global.chatter) and typist.get_state() >= 1 { instance_destroy() }
+	if ChatterboxIsStopped(global.chatter) /*and typist.get_state() >= 1 */{ instance_destroy() }
 	else setText(textAll.speech) 
 };
 
@@ -160,12 +157,19 @@ setText = function(newText)
 	sound = textSoundLUT(name);
 	text = newText;
 
-	typist.sound(sound,0.1,0.9,1.1,global.voiceVol);
+    typist
+        .in(min(spd,forceSpd),0)
+        .character_delay_add(". ", 250)
+        .character_delay_add("! ", 250)
+        .character_delay_add("? ", 250)
+        .character_delay_add(", ", 125)
+        .character_delay_add("\n", 400)
+        .sound(sound,0.1,0.9,1.1,global.voiceVol);
 	
 	scribb = scribble(text)
-		.wrap(txtW)
+		.wrap(txtW,,charWrap)
 		.starting_format(font_get_name(font),color)
-		.fit_to_box(txtW,height-8);
+		.fit_to_box(txtW,height-8,charWrap);
 		
 	myName = scribble(name)
 		.starting_format(font_get_name(font),nameColor)
@@ -191,9 +195,10 @@ getTextAttributes = function(){
 	typist.sound(sound,0.1,0.9,1.1,1);
 	
 	scribb = scribble(text)
-		.wrap(txtW)
+		.wrap(txtW,,charWrap)
 		.starting_format(font_get_name(font),color)
 		.fit_to_box(txtW,height-8);
+    
 		
 	myName = scribble(name)
 		.starting_format(font_get_name(font),nameColor)

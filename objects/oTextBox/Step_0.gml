@@ -19,7 +19,9 @@ progress = min(progress + spd, length);
 options = ChatterboxGetOptionArray(global.chatter);
 optCount = ChatterboxGetOptionCount(global.chatter);	
 
-if skip and !ChatterboxIsStopped(global.chatter) and typist.get_state() >= 0.01 {
+var canSkip = (spd < forceSpd)
+
+if canSkip and skip and typist.get_state() >= 0.01 {
 	
 	if optCount == 0 { next(); } else typist.skip();
 } else if typist.get_state() >= 1 and (optCount > 0 or ChatterboxIsWaiting(global.chatter)) {
@@ -54,7 +56,7 @@ if skip and !ChatterboxIsStopped(global.chatter) and typist.get_state() >= 0.01 
 		next()
 	};
 	
-} else if skipLess {
+} else if canSkip and skipLess {
 	
 	typist.skip();
 } 

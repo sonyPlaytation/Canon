@@ -208,6 +208,20 @@ function parseChatterbox(_data){
 		if string_starts_with(string_lower(tags[i]),"side=") { side = string_replace(tags[i],"side=","") }
 		if string_starts_with(string_lower(tags[i]),"sound=") { sound = asset_get_index(string_replace(tags[i],"sound=","")) }
 	}
+    
+    charWrap = false;
+    forceSpd = 30;
+    
+    switch(string_lower(textAll.speaker)){
+        case "gill": 
+            
+            color = c_red;
+            charWrap = true;
+            forceSpd = 0.3;
+            string_insert("[c_red][shake]",textAll.speech,1)
+            break;
+            
+    }
 	
 	switch(string_upper(side)){
 		
@@ -240,6 +254,12 @@ function parseChatterbox(_data){
                 
                 // array already populated, replacing speaker
                 if (array_length(speaker[side]) > 0 and speaker[side][0][$ "name"] != name)  {
+                    
+                    //TODO: add dialogue side switching case
+                    //var otherSide = (side == PORT_SIDE.L) ? PORT_SIDE.R : PORT_SIDE.L
+                    //if array_contains(speaker[otherSide],entry[$ name]) {
+                        //array_delete(speaker[otherSide],array_get_index(speaker[otherSide],entry[$ name]),1)
+                    //}
                     
                     var pos = array_get_index(speaker[side],entry[$ name])
                     if pos != 0 portSlide[side] = 1;
