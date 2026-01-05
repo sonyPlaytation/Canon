@@ -1,7 +1,7 @@
 #__PrivCrochet_version:1
 #Act1
 __PrivCrochet_colorID: 1
-__PrivCrochet_position: -40,80
+__PrivCrochet_position: -40,120
 __PrivCrochet_tags: test
 test:
 title: Start
@@ -21,96 +21,111 @@ title: Start
 Nils: Anyway, I'd better get going.
 ===
 __PrivCrochet_colorID: 0
-__PrivCrochet_position: 440,-400
+__PrivCrochet_position: 680,-400
 __PrivCrochet_tags: system
 system:
 title: save
 ---
+<<define $saveMessage as "">>
 {$saveMessage}
-* Would you like to save your progress?
+Would you like to save your progress?
 -> Yes
     <<SAVE>>
 -> No
 ===
 __PrivCrochet_colorID: 0
-__PrivCrochet_position: 640,-400
+__PrivCrochet_position: 920,-400
 __PrivCrochet_tags: system
 system:
 title: saveGame
 ---
-* Your game was saved.
+Your game was saved.
 ===
 __PrivCrochet_colorID: 0
 __PrivCrochet_position: 200,-400
 __PrivCrochet_tags: 
 title: shortMessage
 ---
-{$shortMsg}
+{$shortMessage}
 ===
 __PrivCrochet_colorID: 7
 __PrivCrochet_position: -40,-400
 __PrivCrochet_tags: 
 title: Declarations
 ---
-<<declare $Nils as "???">>
-<<declare $Charlie as "Child">>
-<<declare $Matthew as "Drunk">>
-<<declare $Gwen as "Black Knight">>
+<<declare $Nils = "???">>
+<<declare $Charlie = "Child">>
+<<declare $Matthew = "Drunk">>
+<<declare $Gwen = "Black Knight">>
 
-<<declare $shortMsg as "pee">>
-<<declare $saveMessage as "pee">>
+<<declare $shortMsg = "">>
+<<declare $narr = "// ">>
 
-<<declare $LOCKED as "[c_yellow]LOCKED[c_white]">>
-<<declare $JAMMED as "[c_red]JAMMED[c_white]">>
+<<declare $LOCKED = "[c_yellow]LOCKED[c_white]">>
+<<declare $JAMMED = "[c_red]JAMMED[c_white]">>
 ===
 __PrivCrochet_colorID: 0
-__PrivCrochet_position: 160,-160
+__PrivCrochet_position: 440,-160
+__PrivCrochet_tags: 
+title: lockedGeneric
+---
+It's {$LOCKED}.
+===
+__PrivCrochet_colorID: 0
+__PrivCrochet_position: -40,-160
+__PrivCrochet_tags: 
+title: jammed
+---
+[snSH2DoorLocked] {$narr}The lock is {$JAMMED}!|{$narr}This door can't be opened.
+===
+__PrivCrochet_colorID: 0
+__PrivCrochet_position: 200,-160
 __PrivCrochet_tags: 
 title: unlockedGeneric
 ---
-* You unlock the door.
+You unlock the door.
 ===
 __PrivCrochet_colorID: 0
-__PrivCrochet_position: -40,880
+__PrivCrochet_position: -40,640
 __PrivCrochet_tags: act1
 act1:
 title: theBigWet
 ---
-* Wait!!!
-* You can't go down there! Look at that wet floor sign!
+{$narr}Wait!!!
+{$narr}You can't go down there! Look at that wet floor sign!
 {$Nils}:Oh yeah, I'd better not. Lookin pretty wet!
 ===
 __PrivCrochet_colorID: 0
-__PrivCrochet_position: -40,360
+__PrivCrochet_position: -40,400
 __PrivCrochet_tags: cutscene act1
 cutscene:
 act1:
 title: cutBathroomMirror
 ---
 {$Nils}: Is that what I look like??|I'm a chubby little skeleton guy? Since when??
-* Oh? Were you not always this way?
+{$$}Oh? Were you not always this way?
 {$Nils}:... I- I don't know... I don't remember... |I have such foggy memories, but... I'm sure I wasn't always this...
 {$Nils}[frame=4]:Why don't I remember anything important??|All I can remember is useless shit like the capital of Canada!!|And where the fuck am I anyway?? Does Ottawa even still exist???"
-* Perhaps we can find someone who can help you remember more about yourself...|* Though for now it may be best to try and calm yourself.
-* Why not take some toilet time to catch your breath?
-{$Nils}:Yeah okay... worth a shot I guess.|I mean who even knows if I can shit, I doubt I have internal organs anyway...
+{$$}Perhaps we can find someone who can help you remember more about yourself...|Though for now it may be best to try and calm yourself.
+{$$}Why not take some toilet time to catch your breath?
+{$Nils}:Yeah okay... worth a shot I guess."nl"I mean who even knows if I can shit, I doubt I have internal organs anyway...
 ===
 __PrivCrochet_colorID: 0
-__PrivCrochet_position: 200,360
+__PrivCrochet_position: 200,400
 __PrivCrochet_tags: cutscene act1
 cutscene:
 act1:
 title: cutWakeUpOffice
 ---
 {$Nils}[frame=1]:Ugh Jesus, my head... I really overslept...|What time is it?
-* Suddenly you notice the state of the room.
-* This may just be the cleanest room ever.|* The walls are a crisp eggshell, the floor boards look and feel brand new, and the chair you're in feels straight from the factory.
-* For some reason you feel disturbed
+{$narr}Suddenly you notice the state of the room.
+{$narr}This may just be the cleanest room ever.|{$narr}The walls are a crisp eggshell, the floor boards look and feel brand new, and the chair you're in feels straight from the factory.
+{$narr}For some reason you feel disturbed
 {$Nils}[frame=2]:Better question is...
 {$Nils}[frame=3]:Where the hell am I??
 ===
 __PrivCrochet_colorID: 0
-__PrivCrochet_position: 200,80
+__PrivCrochet_position: 200,120
 __PrivCrochet_tags: test
 test:
 title: voiceTest
@@ -121,210 +136,64 @@ Matthew:Gorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
 Gwen[side=R]:Snorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 ===
 __PrivCrochet_colorID: 0
-__PrivCrochet_position: -40,640
+__PrivCrochet_position: 200,640
 __PrivCrochet_tags: act1
 act1:
 title: officePhoto
 ---
 <<if CHECK("act1","narratorFunny","==",true)>>
-* On the cabinet sits a photo of several people at some kind of party.|* Its placard reads 'FEESE Wrap Party 20XX'.
-* Okay, well, it doesn't actually SAY 20XX, it's just scratched in such a way that you can't make out the last two digits.|* How inconvenient...
-* Inspect the photo?
+{$narr}On the cabinet sits a photo of several people at some kind of party.|{$narr}Its placard reads 'FEESE Wrap Party 20XX'.
+{$narr}Okay, well, it doesn't actually SAY 20XX, it's just scratched in such a way that you can't make out the last two digits.|{$narr}How inconvenient...
+{$narr}Inspect the photo?
     -> Sure
-        * The guy closest to the camera is a middle aged man with a very trendy old man moustache. He looks to be about 60.
-        * He's in the middle of stretching his arms to either side of him, but it's an intensely awkward gesture.|He looks like he was probably wasted, I'd say 81 percent chance.
-        * Everyone around him seems uncomfortable.
+        {$narr}The guy closest to the camera is a middle aged man with a very trendy old man moustache. He looks to be about 60.
+        {$narr}He's in the middle of stretching his arms to either side of him, but it's an intensely awkward gesture.|He looks like he was probably wasted, I'd say 81% chance.
+        {$narr}Everyone around him seems uncomfortable.
         {$Nils}: Damn, they look like they're having fun...
     -> Nah
-        * What if the photo is of something really important?
+        {$narr}What if the photo is of something really important?
         {$Nils}:Nope! Don't care!
-        * ...
-        * Okay...|* You don't look at the photo.
+        {$narr}...
+        {$narr}Okay...|{$narr}You don't look at the photo.
 <<else>>
 ...
 (A photo of a bunch of people, but who the hell are they?)
 <<endif>>
 ===
 __PrivCrochet_colorID: 0
-__PrivCrochet_position: 200,640
+__PrivCrochet_position: 440,640
 __PrivCrochet_tags: act1
 act1:
 title: officeDesk
 ---
 <<if CHECK("act1","narratorFunny","==",true)>>
-* You eye the expensive looking desk you woke up in front of.|* It still looks new, but its surface is marked with several water rings.
+{$narr}You eye the expensive looking desk you woke up in front of.|{$narr}It still looks new, but its surface is marked with several water rings.
     -> Check the drawers
-        * Despite your wimpiest tug, the desks drawers will not budge. 
+        {$narr}Despite your wimpiest tug, the desks drawers will not budge. 
         {$Nils}[frame=1]:I guess its {$LOCKED}!
         {$Nils}[frame=3]:Aw man... I bet something really useful or cool is in there...
     -> Check the desktop
-        * The desktop is made of a very dark brown wood.
-        * You know Jack from Shit about woodworking so that's the most you can really discern.
+        {$narr}The desktop is made of a very dark brown wood.
+        {$narr}You know Jack from Shit about woodworking so that's the most you can really discern.
         {$Nils}:The perfect arena for a blistering round of solitaire!
         {$Nils}[frame=2]:Not sure why I remember what solitaire is though...
     -> Check nothing
-        * You check nothing... I guess.
+        {$narr}You check nothing... I guess.
         {$Nils}:Stupid nerd desk! I don't even care about your drawer contents or anything!
 <<else>>
 (The desk I woke up behind.)|(A solemn monolith of industry, reigned in by the errant water ring.)
 (It totally dwarfs me...)
     -> (A high plinth of commandeered respect...)
-        <<>>jump ...>>
+        <<jump ...>>
     -> (A renaissance man's virgin canvas...)
         <<jump ...>>
 <<endif>>
 ===
 __PrivCrochet_colorID: 0
-__PrivCrochet_position: -320,640
+__PrivCrochet_position: 640,840
 __PrivCrochet_tags: act1
 act1:
 title: ...
 ---
 {$Nils}:...
-===
-__PrivCrochet_colorID: 0
-__PrivCrochet_position: 440,640
-__PrivCrochet_tags: act1
-act1:
-title: officeFilingCabinet
----
-<<if CHECK("act1","narratorFunny","==",true)>>
-* Before you stands a most-temptuous filing cabinet, no doubt full to bursting with [c_red][wave]Lascivious Business Secrets[/wave][c_white].
-* Search for sexy secrets?
-    -> Indulge...
-        {$Nils}[frame=2]:Perhaps I am a sick pervert, what do I know?
-        {$Nils}:Time to yank this bad boy wide open!
-        * You begin to yank it, revealing a plethora of manilla folders grouped by year.
-        * The dates start at the year 2080, and seem to end abruptly at 2093.
-        * You are NOT about to read any of these.
-        {$Nils}[frame=1]:Wait... 2093... |Then that means...
-        {$Nils}:HOLY CRAP I'M IN THE FUTURE!!!
-        * What do you mean 'in the future'?
-        * Do you even know what year it was when you fell asleep?
-        {$Nils}[frame=1]:Well no, but I....
-        {$Nils}[frame=3]:Well it FEELS like the future!
-        <<SET "act1" "future" "1">>
-    -> Refrain!
-        {$Nils}:Nice try, idiot! |These [wave]Sexy Secrets[/wave] are to be kept between a cabinet and its zero to one hundred manilla folder wives!
-        * Your will-power is truly generational.
-        * These hallowed aluminum handles remain un-yanked... for now...
-<<else>>
-(A filing cabinet.)
-(Not really in need of any paperwork right now.)
-<<endif>>
-===
-__PrivCrochet_colorID: 0
-__PrivCrochet_position: 680,640
-__PrivCrochet_tags: act1
-act1:
-title: officeHallSign1
----
-<<if CHECK("act1","narratorFunny","==",true)>>
-* An office name plate hangs beside the privacy-glass door.
-* 'Ted Merkle - Design'
-<<else>>
-Ted Merkle - Design Lead
-<<endif>>
-===
-__PrivCrochet_colorID: 0
-__PrivCrochet_position: 720,680
-__PrivCrochet_tags: act1
-act1:
-title: officeHallSign2
----
-<<if CHECK("act1","narratorFunny","==",true)>>
-* An office name plate hangs beside the privacy-glass door.
-* 'Evelyn Proust - Logistics'
-<<else>>
-'Evelyn Proust - Head of Logistics'
-<<endif>>
-===
-__PrivCrochet_colorID: 0
-__PrivCrochet_position: 760,720
-__PrivCrochet_tags: act1
-act1:
-title: officeHallSign3
----
-<<if CHECK("act1","narratorFunny","==",true)>>
-* An office name plate hangs beside the privacy-glass door.
-* 'Bill Wozniak - Director'
-* Someone seems to have added a little accent over the 'z' with whiteout.
-<<else>>
-...?
-<<endif>>
-===
-__PrivCrochet_colorID: 0
-__PrivCrochet_position: 200,880
-__PrivCrochet_tags: act1
-act1:
-title: officeBathroomMirror
----
-<<if CHECK("act1","narratorFunny","==",true)>>
-* It's you!
-<<else>>
-(It's me...)
-<<endif>>
-===
-__PrivCrochet_colorID: 0
-__PrivCrochet_position: 440,880
-__PrivCrochet_tags: act1
-act1:
-title: lockedOfficeExit
----
-<<if CHECK("act1","narratorFunny","==",1)>>
-* The glass door to the patio.
-* Shall we?
-    -> We shall!
-    
-    -> We shan't.
-<<else>>
-(A glass door.)|(The glare is so intense. No matter how long I look out my eyes can't quite seem to adjust.)
-(Also... it... seems they installed this thing backwards...?)
-(The keyhole is on the inside, and the little turny thing that's supposed to be here is on the outside.)
-(Time to look for the key I guess.)
-<<endif>>
-===
-__PrivCrochet_colorID: 0
-__PrivCrochet_position: -40,1120
-__PrivCrochet_tags: act1
-act1:
-title: cubiclePC
----
-* At this desk sits a typical government donor pc.
-* It's probably just barely good enough for word processing and the like.
-* In other words, it's an ancient piece of shit.
-* On further inspection, you notice the layout of the the pre-installed Solitaire game faintly burnt into the monitor.
-<<if CHECK("solitaire","==",1)>>
-{$Nils}:[shake]I KNEW IT![/shake] 
-{$Nils}[frame=2]:How deep does this Solitaire Conspiracy run...
-<<endif>>
-===
-__PrivCrochet_colorID: 0
-__PrivCrochet_position: 440,-160
-__PrivCrochet_tags: 
-title: lockedGeneric
----
-* It's {$LOCKED}.
-===
-__PrivCrochet_colorID: 0
-__PrivCrochet_position: -40,-160
-__PrivCrochet_tags: 
-title: jammed
----
-[snSH2DoorLocked] * The lock is {$JAMMED}!|* This door can't be opened.
-===
-__PrivCrochet_colorID: 0
-__PrivCrochet_position: 200,1120
-__PrivCrochet_tags: act1
-act1:
-title: cubicleCoffee
----
-* This cubicle is absolutely littered with personal adornments.
-* A poster reads as follows
-'WARNING[c_red]![c_white] Do not talk to programmer until they've had there coffee! [sLaughingCryingEmoji]'
-{$Nils}:Ugh, lame!
-* Thats not all! Their coffee mug reads
-'WARNING[c_red]![c_white] Do not talk to programmer until they've had there coffee! [sLaughingCryingEmoji]'
-* Both the poster and the mug have the exact same typo.
-{$Nils}[frame=3]:Jesus man, was it really THAT funny??
 ===

@@ -21,16 +21,225 @@ function initFlavorTextAct1() {
 
 	#region rOffice
 
+        if (global.flags.act1.narratorFunny)
+        {
+
+            global.topics[$ "officeDesk"] = 
+            [
+                CHOICE("// You eye the expensive looking desk you woke up in front of."nl"// It still looks new, yet its surface is marked with several water rings.",
+                    OPTION("Check the drawers", "choice desk drawers"),
+                    OPTION("Check the desktop", "choice desk top"),
+                    OPTION("Check nothing", "choice desk nothing"))
+            ];
+
+            global.topics[$ "choice desk drawers"] = 
+            [
+                TEXT("// Despite your wimpiest tug, the desks drawers will not budge. "),
+                SPEAKER(FLAGS.playerName,sPortNils,1),
+                TEXT("I guess its [c_red]LOCKED[c_white]!\n[portrait,sPortNils,2]I bet something really useful or cool is in there..."),
+                SPEAKER(),
+                TEXT("// The desks drawers are "JAMMED", not "LOCKED"."nl"// This is universal shorthand for 'Give up'."),
+            ]
+
+            global.topics[$ "choice desk top"] = 
+            [
+                TEXT("// The desktop is made of a very dark brown wood."),
+                TEXT("// You know Jack Shit about wood so that's the most you can discern."),
+                SPEAKER(FLAGS.playerName,sPortNils),
+                TEXT("The perfect arena for a blistering round of solitaire!"),
+                SPEAKER(FLAGS.playerName,sPortNils,2),
+                TEXT("Not sure why I remember what solitaire is though..."),
+                SET(FLAGS,"solitaire", 1)
+            ]
+
+            global.topics[$ "choice desk nothing"] = 
+            [
+                TEXT("// You check nothing, I guess."),
+                SPEAKER(FLAGS.playerName,sPortNils),
+                TEXT("Stupid nerd desk! I don't even care about your drawer contents or anything!")
+            ]
+
+            global.topics[$ "officeFilingCabinet"] = 
+            [
+                TEXT("// Before you stands a temptingly slate-toned filing cabinet, no doubt full to bursting with [c_red]Lascivious Business Secrets."),
+                CHOICE("// Search for sexy secrets?",
+                    OPTION("Indulge...", "officeFilingCabinet Choice1"),
+                    OPTION("Remain chaste!", "officeFilingCabinet Choice2"))
+            ];
+
+            global.topics[$ "officeFilingCabinet Choice1"] = 
+            [
+                SPEAKER(FLAGS.playerName,sPortNils,2),
+                TEXT("Perhaps I am a sick pervert, what do I know?"),
+                SPEAKER(FLAGS.playerName,sPortNils,0),
+                TEXT("Time to yank this bad boy wide open!"),
+                SPEAKER(),
+                TEXT("// You begin to yank it, revealing a plethora of manilla folders grouped by year."nl"// The years range from 2085 to 2093, the last of which is comparably much lighter."),
+                TEXT("// Your ass is NOT reading these."),
+                SPEAKER(FLAGS.playerName,sPortNils,1),
+                TEXT("2093... that means..."),
+                SPEAKER(FLAGS.playerName,sPortNils,0),
+                TEXT("HOLY CRAP I'M IN THE FUTURE!!!"),
+                SPEAKER(FLAGS.playerName,sPortNils,1),
+                TEXT("Or actually..."nl"No that doesn't really tell me anything. Damn!"),
+            ]
+
+            global.topics[$ "officeFilingCabinet Choice2"] = 
+            [
+                SPEAKER(FLAGS.playerName,sPortNils),
+                TEXT("Nice try, idiot! "nl"These Sexy Secrets are to be kept between a cabinet and its zero to one hundred manilla folder wives!"),
+                SPEAKER(),
+                TEXT("// Your will-power is truly outstanding."nl"// These hallowed aluminum handles remain un-yanked... for now...")
+            ]
+            
+            // rOffice1
+            global.topics[$ "officeHallSign1"] = 
+            [
+                SPEAKER(),
+                TEXT("// An office name plate hangs beside the frosted glass door."),
+                TEXT("// Ted Merkle\n// Design Lead")
+            ];
+    
+            global.topics[$ "officeHallSign2"] = 
+            [
+                SPEAKER(),
+                TEXT("// An office name plate hangs beside the frosted glass door."),
+                TEXT("// Evelyn Proust\n// Logistics")
+            ];
+    
+            global.topics[$ "officeHallSign3"] = 
+            [
+                SPEAKER(),
+                TEXT("// An office name plate hangs beside the heavy wooden door."),
+                TEXT("// Bill Wozniak\n// Director"),
+                TEXT("// Someone seems to have added an accent over the 'z' with whiteout."),
+            ];   
+            
+            global.topics[$ "officeBathroomMirror"] = 
+            [
+                TEXT("// It's you!")
+            ];    
+            
+            global.topics[$ "lockedOfficeExit" ] = [
+                TEXT("// The glass door to the patio."),
+                CHOICE("// Shall we?",
+                    OPTION("We shall!", "unlockedGeneric"),
+                    OPTION("We shan't.", ""))
+            ];
+        }
+    
+        else{
+            
+            global.topics[$ "..."] = [
+                SPEAKER(" ",sPortNils,0),
+                TEXT("...")
+            ];
+            
+            global.topics[$ "lockedOfficeExit" ] = [
+                TEXT("(A glass door.)"nl"(The glare is so intense, no matter how long I look out my eyes can't quite seem to adjust.)"),
+                TEXT("(Also... it... looks like they installed this thing backwards...?)"),
+                TEXT("(The keyhole is on the inside, and the little knob that's supposed to be here is on the other side)"),
+                TEXT("(Guess I'm findng a key now.)"),
+                GOTO("...")
+            ];
+                
+            global.topics[$ "officePhoto"] = 
+            [
+                TEXT("..."),
+                TEXT("(A photo of a bunch of people, but who the hell are they?)")
+            ];
+    
+            global.topics[$ "officeDesk"] = 
+            [
+                TEXT("(The desk I woke up behind.)"nl"(A solemn monolith of industry, reigned in by errant water rings.)"),
+                CHOICE("(It totally dwarfs me...)",
+                    OPTION("(A high plinth of authority...)", "..."),
+                    OPTION("(A renaissance man's blank canvas...)", "..."))
+            ];
+    
+            global.topics[$ "officeFilingCabinet"] = 
+            [
+                TEXT("(A filing cabinet.)")
+            ];
+                
+            // rOffice1
+            global.topics[$ "officeHallSign1"] = 
+            [
+                TEXT("Ted Merkle"nl"Design Lead")
+            ];
+    
+            global.topics[$ "officeHallSign2"] = 
+            [
+                TEXT("Evelyn Proust"nl"Head of Logistics")
+            ];
+    
+            global.topics[$ "officeHallSign3"] = 
+            [
+                TEXT("...?")
+            ];    
+            
+            global.topics[$ "officeBathroomMirror"] = 
+            [
+                TEXT("(It's me...)")
+            ];    
+            
+            
+       
+        }
+        
+		
 
 	#endregion
 
 	#region rOffice_3
 
+		global.topics[$ "cubicleCoffee"] = 
+		[
+			TEXT("// Write something cool about paper"),
+		]
 
+		global.topics[$ "cubiclePC"] = 
+		[
+			TEXT("// At this desk sits a typical outdated government donor pc."),
+			TEXT("// It's probably just barely good enough for word processing and the like." nl"// In other words, it's a total piece of shit."),
+			TEXT("// On further inspection, you notice the layout of the the pre-installed Solitaire game faintly burnt into the monitor."),
+			CHECKFLAG(FLAGS,"solitaire", "==", 1, "cubicleSolitaire")
+		]
+	
+		global.topics[$ "cubicleSolitaire"] = 
+		[
+			SPEAKER(FLAGS.playerName,sPortNils),
+			TEXT("[shake]I KNEW IT![/shake] How deep does this Solitaire Conspiracy run..."),
+		]
+	
+		global.topics[$ "cubicle1Nothing"] = 
+		[
+			SPEAKER(FLAGS.playerName,sPortNils),
+			TEXT("Who cares..."),
+		]
+	
+		global.topics[$ "cubicleCoffee"] = 
+		[
+			TEXT("// This cubicle is littered with personal adornments."),
+			TEXT("// A poster reads:" nl "'WARNING[c_red]![c_white] Do not talk to programmer until they've had there coffee! [sLaughingCryingEmoji]'"),
+			SPEAKER(FLAGS.playerName,sPortNils,1),
+			TEXT("Ugh, lame!"),
+			SPEAKER(),
+			TEXT("// That's not all!"),
+			TEXT("// Their coffee mug reads:" nl "'WARNING[c_red]![c_white] Do not talk to programmer until they've had there coffee! [sLaughingCryingEmoji]'"),
+			TEXT("// Both the poster and the mug have the exact same typo."),
+			SPEAKER(FLAGS.playerName,sPortNils,3),
+			TEXT("Jesus man, was it really THAT funny??"),
+		]
 	#endregion
 
 	#region rOfficeBathroom
-
+		global.topics[$ "officeBathroom"] = 
+		[
+            SET(global.flags.act1,"narratorFunny", true),
+			TEXT("// Your creepy skeletal nostril hole is bombarded with the stench of a toilet that hasn't been cleaned in at least a dozen years."),
+			GOTO("save"),
+		]
 	#endregion
 
 }

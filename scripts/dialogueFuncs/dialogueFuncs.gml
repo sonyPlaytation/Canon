@@ -139,10 +139,10 @@ function checkFlag(_source, _flag, _operator, _check) {
 	switch(operator) {
 		
 		case ">":	isTrue = (source[$ flag] >  check) break;
-		case "<":	isTrue = (source[$ flag] <  check) break;
-		case ">=":	isTrue = (source[$ flag] >= check) break;
-		case "<=":	isTrue = (source[$ flag] >= check) break;
-		case "==":	isTrue = (source[$ flag] == check) break;
+		case "<":	isTrue = (source[$ flag] <  check) break;		   
+		case ">=":	isTrue = (source[$ flag] >= check) break;			   
+		case "<=":	isTrue = (source[$ flag] >= check) break;			   
+		case "==":	isTrue = (source[$ flag] == check) break;			   
 		case "!=":	isTrue = (source[$ flag] != check) break;
 	}
 
@@ -166,9 +166,9 @@ function checkItem(_item, _has = true, _remove = false){
 	
 }
 
-function setFlag(_category, _flag, _value){
+function setFlag(_category, _value){
 	
-	FLAGS[$ _category][$ _flag] = _value;
+	FLAGS[$ _category] = _value;
 }
 
 
