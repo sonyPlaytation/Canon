@@ -343,7 +343,7 @@ function addItem(_item, _showMsg = true) {
     
 }
 
-function giveItemAction(_item,_count = 1) : dialogueAction() constructor
+function giveItemAction(_item,_count = 1)
 {
 	item = _item;
 	count = _count;

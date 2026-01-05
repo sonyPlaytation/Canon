@@ -48,7 +48,6 @@ global.debug = false;
 global.piratedCopy = true;
 if "pirated" != true {global.piratedCopy = false;}
 
-initDialogue()
 //initCharacters()
 
 global.fightEnemies = [global.enemies.sand];
