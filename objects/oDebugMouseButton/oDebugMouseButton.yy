@@ -34,6 +34,7 @@
         "\"loadSavefile\"",
         "\"wipeSave\"",
         "\"help\"",
+        "\"readme\"",
       ],"multiselect":false,"name":"doThis","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"\"startGame\"","varType":6,},
   ],
   "resourceType":"GMObject",

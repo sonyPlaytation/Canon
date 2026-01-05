@@ -26,6 +26,12 @@ options =  {
 		label : "Help",
 		func :  function() { startDialogue("menuHelp") }
 	},
+    
+    readme : 
+	{
+		label : "About",
+		func :  function() { startDialogue("menuReadme") }
+	},
 	
 	wipeSave : 
 	{
