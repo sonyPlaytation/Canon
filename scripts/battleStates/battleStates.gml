@@ -364,7 +364,7 @@ function battleStates(){
 		enter : function()
 		{
             
-			set_song_ingame(mBattleWin,,,true)
+			playSong(mBattleWin,,,true)
 			BATTLE("[c_lime][wave]YOU WIN![/wave]")
 		
 			for (var i = 0; i < array_length(partyUnits); i++ ) {
@@ -408,7 +408,7 @@ function battleStates(){
 	{
 		enter : function()
 		{
-			//set_song_ingame(mGameOver,,,true)
+			//playSong(mGameOver,,,true)
 			//BATTLE("[c_red][shake]YOU LOSE![/shake]")
 			shortMessage("you died",TXTPOS.MID)
             global.fightStarter = noone;

@@ -7,27 +7,26 @@
 
 #endregion
 
-/// @function					set_song_ingame()
+/// @function					playSong()
 /// @description				Changes the song you want to play next, with fade in and out times.
 /// @param {Real}	song		The song you want to play.
 /// @param {Real}	fadeOut		The time it should take to fade out, counted in frames.
 /// @param {Real}	fadeIn		The time it should take to fade in, counted in frames.
 /// @param {bool}	tempSong	Should this song pause the main area theme or not.
 /// @returns {asset} currentSong current song playing.
-function set_song_ingame(_song = noone, _fadeOut = 10, _fadeIn = 0, _tempSong = false)
-{
+function playSong(_song = noone, _fadeOut = 10, _fadeIn = 0) {
+	
 		//_song to set any song (including noone to stop
 		//_fadeOut to fade out in frames
 		//_fadeIn to fade in in frames
-	with (oMusic)
-	{
-		currentSong = _song;
+	
+	var newSong = new Song(_song,_fadeOut, _fadeIn)
+	
+	
+	with (oMusic) {
 		
-		if _tempSong 
-		{
-			end_temp_song(_fadeOut, _fadeIn);
-			tempSongAsset = _song;
-		} else targetSongAsset = _song;		
+		array_push(playStack,newSong)
+		
 		
 		fadeOutTime = _fadeOut;
 		fadeInTime = _fadeIn;
@@ -38,6 +37,18 @@ function set_song_ingame(_song = noone, _fadeOut = 10, _fadeIn = 0, _tempSong = 
 		global.songPlaying = _song
 	}
 	return global.songPlaying
+}
+
+function Song(_song, _fadeOut, _fadeIn) constructor{
+	
+	song = _song;
+	fadeOut = _fadeOut;
+	fadeIn = _fadeIn;
+	vol = (fadeIn > 0) ? 1/fadeIn : 0;
+	playHead = 0;
+	
+	
+	
 }
 
 function end_temp_song(_fadeOut = 10, _fadeIn = oMusic.fadeInTime)

@@ -77,7 +77,7 @@ enemyStuff = function()
 	
 			if forceAdvantage != noone {advantage = forceAdvantage}
 	
-			if advantage == -1 {set_song_ingame(mPHFightStartDisadv,,,true)} else set_song_ingame(mPHFightStartAdv,,,true)
+			if advantage == -1 {playSong(mPHFightStartDisadv,,,true)} else playSong(mPHFightStartAdv,,,true)
 			global.advantage = advantage;
             if DEV and SETTINGS.other.devAdv != 0 { global.advantage = global.settings.other.devAdv; }
 			global.fightStarter = id;

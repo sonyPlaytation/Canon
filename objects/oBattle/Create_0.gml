@@ -167,7 +167,7 @@ enemyHealthbar.enemy = true;
 
 if global.fightSong != -1 {bgm = global.fightSong}
 
-set_song_ingame(bgm,,,true);
+playSong(bgm,,,true);
 
 refreshRenderOrder = function()
 {

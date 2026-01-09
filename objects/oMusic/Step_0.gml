@@ -3,6 +3,51 @@
 
 //var _finalVol = global.musVol * 3
 
+targetSong = array_last(playStack);
+
+if playStack != []{
+	
+	for (var i = 0; i < array_length(playStack); i++) {
+		
+		var songCheck = playStack[i]
+		if songCheck.vol > 0 and songCheck != targetSong { // fade previous song out because new song is coming on
+			
+			if songCheck.fadeOut > 0 { //if there is still time left in its fadeout timer
+				
+				if songCheck.vol > 0 {songCheck.vol -= 1/songCheck.fadeOut};
+			} else { //immediately cut volume to 0
+			
+				songCheck.vol = 0;
+				audio_pause_sound(songCheck.song)
+			}
+			
+		} else if songCheck == targetSong { // fade in/play normally
+			
+			if audio_is_playing(songInstance) {
+				
+				//fade the song in
+				if songCheck.fadeIn > 0 {
+					
+					if songCheck.vol < 1 {songCheck.vol += 1/songCheck.fadeOut} else songCheck.vol = 1;
+				} else { //immediately start the song if the fade in time is 0 frames
+					
+					songCheck.vol = 1;
+				}
+				
+				songInstance = audio_play_sound(songCheck.song, 400, true,global.musVol);
+				
+				//actually set gain
+				audio_sound_gain(songInstance, songCheck.vol*sceneVol*global.musVol, 0);
+			} else if audio_is_paused(songCheck.song){
+				
+				
+			}
+		}
+		
+		audio_sound_gain(songCheck, songCheck.vol,0);
+	}
+}
+
 if tempSongAsset != noone 
 {
 	if !audio_is_playing(tempSongAsset)
@@ -25,9 +70,9 @@ if songAsset != targetSongAsset
 	if audio_is_playing(songInstance)
 	{
 		//add songinstance to our array of songs to fade out
-		array_push(fadeOutInst, songInstance)
+		array_push(fadeOutInst, songInstance);
 		//add the songinstances starting volume (so theres no abrupt change in vol;ume
-		array_push(fadeOutInstVol,fadeInInstVol );
+		array_push(fadeOutInstVol, fadeInInstVol);
 		//add the fadeoutinsts fade out frames
 		array_push(fadeOutInstTime, fadeOutTime);
 		
@@ -52,19 +97,19 @@ if songAsset != targetSongAsset
 	
 		//set the song asset top match target song asset
 		songAsset = targetSongAsset;
-		}
+	}
 }
 
 
 
 //volume control
 //main song volume
-if songInstance!= noone
+if songInstance != noone
 {
 	if audio_is_playing(songInstance)
 	{
 		//fade the song in
-		if fadeInTime >0
+		if fadeInTime > 0
 		{
 			if fadeInInstVol < 1 {fadeInInstVol += 1/fadeInTime} else fadeInInstVol = 1;
 		}
