@@ -25,6 +25,8 @@ function playSong(_song = noone, _fadeOut = 10, _fadeIn = 0) {
 	
 	with (oMusic) {
 		
+		if is_undefined(playStack){playStack = []}
+		
 		array_push(playStack,newSong)
 		
 		
