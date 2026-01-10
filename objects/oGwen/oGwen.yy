@@ -8,9 +8,7 @@
   ],
   "managed":true,
   "name":"oGwen",
-  "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"propertyId":{"name":"myTopic","path":"objects/pEntity/pEntity.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"Gwen\"",},
-  ],
+  "overriddenProperties":[],
   "parent":{
     "name":"NPC",
     "path":"folders/Interactive/Objects/NPC.yy",

@@ -25,7 +25,7 @@ function playSong(_song = noone, _fadeOut = 10, _fadeIn = 0) {
 	
 	with (oMusic) {
 		
-		if is_undefined(playStack){playStack = []}
+		if self[$ "playStack"] == undefined {playStack = []}
 		
 		array_push(playStack,newSong)
 		
@@ -57,17 +57,7 @@ function end_temp_song(_fadeOut = 10, _fadeIn = oMusic.fadeInTime)
 {
 	with oMusic
 	{
-		if audio_is_paused(songAsset) or !audio_is_playing(songAsset)
-		{
-			audio_stop_sound(tempSongAsset)
-			tempSongAsset = noone;
-			if audio_is_paused(songAsset) 
-			{
-				audio_resume_sound(songAsset)
-				audio_sound_gain(songAsset,0.5,_fadeIn)
-			}
-			
-		}	
+
 	}
 }
 

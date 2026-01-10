@@ -28,8 +28,8 @@ if canSkip and skip and typist.get_state() >= 0.01 {
 	
 	if optCount > 0 {
 		 
-		var left = InputPressed(INPUT_VERB.LEFT);
-		var right = InputPressed(INPUT_VERB.RIGHT); 
+		var left = InputPressed(INPUT_VERB.LEFT) or InputPressed(INPUT_VERB.UP);
+		var right = InputPressed(INPUT_VERB.RIGHT) or InputPressed(INPUT_VERB.DOWN); 
 		var change = (right - left);
 		
 		if change != 0
@@ -43,8 +43,8 @@ if canSkip and skip and typist.get_state() >= 0.01 {
 			}
 		}
 		
-		if confirm
-		{
+		if confirm {
+			
 			var option = options[currentOption];
 			options = [];
 			optCount = 0;

@@ -1,7 +1,7 @@
 #__PrivCrochet_version:1
 #Act1
 __PrivCrochet_colorID: 1
-__PrivCrochet_position: -40,80
+__PrivCrochet_position: -40,78
 __PrivCrochet_tags: test
 test:
 title: Start
@@ -12,9 +12,9 @@ title: Start
 {$Nils}[frame=2]: Yarn Spinner is a language for writing conversations in games!
 {$Nils}: You can use it to write branching dialogue, and use that in a game engine!
 {$Gwen}[side=R]: Nils what the fuck are you talking about.
--> Nothing.
+-> Nothing. #Halign=L yoff=-12
     {$Gwen}[side=R]: Oh, man. Maybe you should have.
--> That she was a jerk.
+-> That she was a jerk. #Halign=R yoff=12
     {$Charlie}: Hah! I bet that pissed her off.
     {$Matthew}: How'd she react?
     -> She didn't.
@@ -178,9 +178,9 @@ title: officeDesk
 <<else>>
 (The desk I woke up behind.)|(A solemn monolith of industry, reigned in by the errant water ring.)
 (It totally dwarfs me...)
-    -> (A high plinth of commandeered respect...)
+    -> (A high plinth of commandeered respect...) #halign=0,yoff=-12
         <<jump ...>>
-    -> (A renaissance man's virgin canvas...)
+    -> (A renaissance man's virgin canvas...) #halign=2,yoff=12
         <<jump ...>>
 <<endif>>
 ===

@@ -29,3 +29,21 @@ function lostInDesert(){
         }
     }
 }
+
+function characterFaceDir(_char, _dir){
+	
+	var char;
+	
+	switch (string_lower(_char)){
+		case "nils": 		char = oPlayer	break;
+		case "charlie": 	char = oCharlie	break;
+		case "matthew": 	char = oMatthew	break;
+		case "gwen": 		char = oGwen	break;
+		case "npc": 		char = oPlayer.currentInteraction	break;
+		case "all" : 		char = pAllLivingThings break;
+		case "party" : 		char = pProtag break;
+	}
+	
+	if instance_exists(char) { char.facing = _dir }
+	
+}

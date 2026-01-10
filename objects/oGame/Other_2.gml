@@ -1,5 +1,12 @@
 /// @
 
+ChatterboxLoadFromFile(DIALOGUE, "text");
+
+ChatterboxAddFunction("SAVE", beginSave);
+ChatterboxAddFunction("PARTY", speakersAddParty);
+ChatterboxAddFunction("CHECK", checkFlag);
+ChatterboxAddFunction("RESPONSE", sendDialogueResponse);
+
 //room_goto_next();
 
 instance_create_depth(GAME_W/2,GAME_H/2,depth,oCamera);

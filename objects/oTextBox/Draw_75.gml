@@ -132,12 +132,27 @@ if (yMode == TXTPOS.BTM and alpha == alphaTarg) or yMode != TXTPOS.BTM  {
         
 		for (var i = 0; i < optCount; i++) {
             
-			var _optX = x + optX + ((txtW / optCount) * i) + padding;
-			var _optY = y + optY;
+			var meta = string_split(ChatterboxGetOptionMetadata(global.chatter,i), ",")
+			
+			var metaXoff = 0
+			var metaYoff = 0
+			var Halign = fa_center
+			var Valign = fa_middle
+			
+			for (var j = 0; j < array_length(meta); j++) {
+				
+				if string_starts_with(string_lower(meta[j]),"xoff=") { metaXoff = real(string_replace(meta[j],"xoff=","")) }
+				if string_starts_with(string_lower(meta[j]),"yoff=") { metaYoff = real(string_replace(meta[j],"yoff=","")) }
+				if string_starts_with(string_lower(meta[j]),"halign=") { Halign = real(string_replace(meta[j],"halign=",""))}
+				if string_starts_with(string_lower(meta[j]),"valign=") { Valign = real(string_replace(meta[j],"valign=",""))}
+			}
+			
+			var _optX = x + optX + ((txtW / optCount) * i) + padding + metaXoff;
+			var _optY = y + optY + metaYoff;
 		
 			var scropt = scribble(options[i].text)
 				.starting_format(font_get_name(font),color)
-				.align(fa_center,fa_middle)
+				.align(Halign,Valign)
 		
 			if i == currentOption {
                 

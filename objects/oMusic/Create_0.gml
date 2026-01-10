@@ -9,3 +9,5 @@ sceneVol = 1;
 targetSong = noone;
 currentSong = noone;
 playStack = [] // array of Song struct members
+
+songInstance = noone;

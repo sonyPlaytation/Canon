@@ -1,19 +1,14 @@
 /// @
 
+#macro DIALOGUE "DIALOGUE MASTER.yarn"
+
 oInputReader.alphaTarg = 0;
 depth = -9999
 global.letterbox = true;
 
 // CHATTERBOX
 
-ChatterboxLoadFromFile("dialogue/test.yarn", "test");
-
-ChatterboxAddFunction("SAVE", beginSave);
-ChatterboxAddFunction("PARTY", speakersAddParty);
-ChatterboxAddFunction("CHECK", checkFlag);
-ChatterboxAddFunction("RESPONSE", sendDialogueResponse);
-
-global.chatter = ChatterboxCreate("test");
+global.chatter = ChatterboxCreate("text");
 
 ChatterboxVariableSet("Nils", FLAGS.playerName)
 ChatterboxVariableSet("Gwen", FLAGS.knightName)

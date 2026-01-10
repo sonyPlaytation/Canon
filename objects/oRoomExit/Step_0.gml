@@ -13,6 +13,5 @@ if place_meeting(x,y,oPlayer) and !locked
 	}
 	
 	transition(target,outType,inType,,moveX,moveY,facing,defaultSpawn);	
-	
-	if endTempSong { end_temp_song() }
+
 }

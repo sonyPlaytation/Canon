@@ -37,7 +37,6 @@
     {"$GMObjectProperty":"v2","%Name":"moveX","filters":[],"listItems":[],"multiselect":false,"name":"moveX","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
     {"$GMObjectProperty":"v2","%Name":"moveY","filters":[],"listItems":[],"multiselect":false,"name":"moveY","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
     {"$GMObjectProperty":"v2","%Name":"facing","filters":[],"listItems":[],"multiselect":false,"name":"facing","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"-1","varType":1,},
-    {"$GMObjectProperty":"v2","%Name":"endTempSong","filters":[],"listItems":[],"multiselect":false,"name":"endTempSong","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
     {"$GMObjectProperty":"v2","%Name":"locked","filters":[],"listItems":[],"multiselect":false,"name":"locked","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
     {"$GMObjectProperty":"v2","%Name":"defaultSpawn","filters":[],"listItems":[],"multiselect":false,"name":"defaultSpawn","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
   ],

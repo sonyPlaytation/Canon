@@ -172,8 +172,10 @@ function setFlag(_category, _value){
 }
 
 
-function startDialogue(topic,yMode = TXTPOS.BTM)
-{
+function startDialogue(topic,yMode = TXTPOS.BTM) {
+	
+	if topic == "nothing" exit;
+		
     if instance_exists(oTextBox) and !instance_exists(oPauseMenu) {return};	
 
     var inst = instance_create_depth(0,0,-999,oTextBox,{
@@ -271,10 +273,9 @@ function addTypingQuirks(_struct){
 		
 		case "gill": 
 		
-			color = c_red;
 			charWrap = true;
 			forceSpd = 0.3;
-			string_insert("[c_red][shake]",textAll.speech,1)
+			text = string_insert("[c_red][shake]",textAll.speech,1)
 		break;
 	}
 	

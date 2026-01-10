@@ -204,8 +204,8 @@
     {"link":"io.gamemaker.gm_filter_heathaze-1.0.0","name":"io.gamemaker.gm_filter_heathaze-1.0.0","path":"io.gamemaker.gm_filter_heathaze-1.0.0.yyp",},
   ],
   "IncludedFiles":[
-    {"$GMIncludedFile":"","%Name":"battleResults.yui","CopyToMask":-1,"filePath":"datafiles","name":"battleResults.yui","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"chatterbox_license.txt","CopyToMask":-1,"filePath":"datafiles","name":"chatterbox_license.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"Dialogue Master.yarn","CopyToMask":-1,"filePath":"datafiles","name":"Dialogue Master.yarn","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"bigwet.yarn","CopyToMask":-1,"filePath":"datafiles/dialogue","name":"bigwet.yarn","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"test.yarn","CopyToMask":-1,"filePath":"datafiles/dialogue","name":"test.yarn","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"gamecontrollerdb.txt","CopyToMask":-1,"filePath":"datafiles","name":"gamecontrollerdb.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
